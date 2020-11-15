@@ -1,0 +1,606 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B781BA002560F5E0008EB298 /* bowtie2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781B9FF2560F5E0008EB298 /* bowtie2App.swift */; };
+		B781BA022560F5E0008EB298 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA012560F5E0008EB298 /* ContentView.swift */; };
+		B781BA042560F5E2008EB298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B781BA032560F5E2008EB298 /* Assets.xcassets */; };
+		B781BA072560F5E2008EB298 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B781BA062560F5E2008EB298 /* Preview Assets.xcassets */; };
+		B781BA092560F5E2008EB298 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA082560F5E2008EB298 /* Persistence.swift */; };
+		B781BA0C2560F5E2008EB298 /* bowtie2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B781BA0A2560F5E2008EB298 /* bowtie2.xcdatamodeld */; };
+		B781BA172560F5E2008EB298 /* bowtie2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA162560F5E2008EB298 /* bowtie2Tests.swift */; };
+		B781BA222560F5E2008EB298 /* bowtie2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA212560F5E2008EB298 /* bowtie2UITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B781BA132560F5E2008EB298 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B781B9F42560F5E0008EB298 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B781B9FB2560F5E0008EB298;
+			remoteInfo = bowtie2;
+		};
+		B781BA1E2560F5E2008EB298 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B781B9F42560F5E0008EB298 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B781B9FB2560F5E0008EB298;
+			remoteInfo = bowtie2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B781B9FC2560F5E0008EB298 /* bowtie2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bowtie2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B781B9FF2560F5E0008EB298 /* bowtie2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bowtie2App.swift; sourceTree = "<group>"; };
+		B781BA012560F5E0008EB298 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B781BA032560F5E2008EB298 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B781BA062560F5E2008EB298 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B781BA082560F5E2008EB298 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		B781BA0B2560F5E2008EB298 /* bowtie2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = bowtie2.xcdatamodel; sourceTree = "<group>"; };
+		B781BA0D2560F5E2008EB298 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B781BA122560F5E2008EB298 /* bowtie2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bowtie2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B781BA162560F5E2008EB298 /* bowtie2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bowtie2Tests.swift; sourceTree = "<group>"; };
+		B781BA182560F5E2008EB298 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B781BA1D2560F5E2008EB298 /* bowtie2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bowtie2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B781BA212560F5E2008EB298 /* bowtie2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bowtie2UITests.swift; sourceTree = "<group>"; };
+		B781BA232560F5E2008EB298 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B781B9F92560F5E0008EB298 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B781BA0F2560F5E2008EB298 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B781BA1A2560F5E2008EB298 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B781B9F32560F5E0008EB298 = {
+			isa = PBXGroup;
+			children = (
+				B781B9FE2560F5E0008EB298 /* bowtie2 */,
+				B781BA152560F5E2008EB298 /* bowtie2Tests */,
+				B781BA202560F5E2008EB298 /* bowtie2UITests */,
+				B781B9FD2560F5E0008EB298 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B781B9FD2560F5E0008EB298 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B781B9FC2560F5E0008EB298 /* bowtie2.app */,
+				B781BA122560F5E2008EB298 /* bowtie2Tests.xctest */,
+				B781BA1D2560F5E2008EB298 /* bowtie2UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B781B9FE2560F5E0008EB298 /* bowtie2 */ = {
+			isa = PBXGroup;
+			children = (
+				B781B9FF2560F5E0008EB298 /* bowtie2App.swift */,
+				B781BA012560F5E0008EB298 /* ContentView.swift */,
+				B781BA032560F5E2008EB298 /* Assets.xcassets */,
+				B781BA082560F5E2008EB298 /* Persistence.swift */,
+				B781BA0D2560F5E2008EB298 /* Info.plist */,
+				B781BA0A2560F5E2008EB298 /* bowtie2.xcdatamodeld */,
+				B781BA052560F5E2008EB298 /* Preview Content */,
+			);
+			path = bowtie2;
+			sourceTree = "<group>";
+		};
+		B781BA052560F5E2008EB298 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B781BA062560F5E2008EB298 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B781BA152560F5E2008EB298 /* bowtie2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B781BA162560F5E2008EB298 /* bowtie2Tests.swift */,
+				B781BA182560F5E2008EB298 /* Info.plist */,
+			);
+			path = bowtie2Tests;
+			sourceTree = "<group>";
+		};
+		B781BA202560F5E2008EB298 /* bowtie2UITests */ = {
+			isa = PBXGroup;
+			children = (
+				B781BA212560F5E2008EB298 /* bowtie2UITests.swift */,
+				B781BA232560F5E2008EB298 /* Info.plist */,
+			);
+			path = bowtie2UITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B781B9FB2560F5E0008EB298 /* bowtie2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B781BA262560F5E2008EB298 /* Build configuration list for PBXNativeTarget "bowtie2" */;
+			buildPhases = (
+				B781B9F82560F5E0008EB298 /* Sources */,
+				B781B9F92560F5E0008EB298 /* Frameworks */,
+				B781B9FA2560F5E0008EB298 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = bowtie2;
+			productName = bowtie2;
+			productReference = B781B9FC2560F5E0008EB298 /* bowtie2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B781BA112560F5E2008EB298 /* bowtie2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B781BA292560F5E2008EB298 /* Build configuration list for PBXNativeTarget "bowtie2Tests" */;
+			buildPhases = (
+				B781BA0E2560F5E2008EB298 /* Sources */,
+				B781BA0F2560F5E2008EB298 /* Frameworks */,
+				B781BA102560F5E2008EB298 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B781BA142560F5E2008EB298 /* PBXTargetDependency */,
+			);
+			name = bowtie2Tests;
+			productName = bowtie2Tests;
+			productReference = B781BA122560F5E2008EB298 /* bowtie2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B781BA1C2560F5E2008EB298 /* bowtie2UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B781BA2C2560F5E2008EB298 /* Build configuration list for PBXNativeTarget "bowtie2UITests" */;
+			buildPhases = (
+				B781BA192560F5E2008EB298 /* Sources */,
+				B781BA1A2560F5E2008EB298 /* Frameworks */,
+				B781BA1B2560F5E2008EB298 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B781BA1F2560F5E2008EB298 /* PBXTargetDependency */,
+			);
+			name = bowtie2UITests;
+			productName = bowtie2UITests;
+			productReference = B781BA1D2560F5E2008EB298 /* bowtie2UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B781B9F42560F5E0008EB298 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1210;
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					B781B9FB2560F5E0008EB298 = {
+						CreatedOnToolsVersion = 12.1;
+					};
+					B781BA112560F5E2008EB298 = {
+						CreatedOnToolsVersion = 12.1;
+						TestTargetID = B781B9FB2560F5E0008EB298;
+					};
+					B781BA1C2560F5E2008EB298 = {
+						CreatedOnToolsVersion = 12.1;
+						TestTargetID = B781B9FB2560F5E0008EB298;
+					};
+				};
+			};
+			buildConfigurationList = B781B9F72560F5E0008EB298 /* Build configuration list for PBXProject "bowtie2" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B781B9F32560F5E0008EB298;
+			productRefGroup = B781B9FD2560F5E0008EB298 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B781B9FB2560F5E0008EB298 /* bowtie2 */,
+				B781BA112560F5E2008EB298 /* bowtie2Tests */,
+				B781BA1C2560F5E2008EB298 /* bowtie2UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B781B9FA2560F5E0008EB298 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B781BA072560F5E2008EB298 /* Preview Assets.xcassets in Resources */,
+				B781BA042560F5E2008EB298 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B781BA102560F5E2008EB298 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B781BA1B2560F5E2008EB298 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B781B9F82560F5E0008EB298 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B781BA0C2560F5E2008EB298 /* bowtie2.xcdatamodeld in Sources */,
+				B781BA092560F5E2008EB298 /* Persistence.swift in Sources */,
+				B781BA022560F5E0008EB298 /* ContentView.swift in Sources */,
+				B781BA002560F5E0008EB298 /* bowtie2App.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B781BA0E2560F5E2008EB298 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B781BA172560F5E2008EB298 /* bowtie2Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B781BA192560F5E2008EB298 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B781BA222560F5E2008EB298 /* bowtie2UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B781BA142560F5E2008EB298 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B781B9FB2560F5E0008EB298 /* bowtie2 */;
+			targetProxy = B781BA132560F5E2008EB298 /* PBXContainerItemProxy */;
+		};
+		B781BA1F2560F5E2008EB298 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B781B9FB2560F5E0008EB298 /* bowtie2 */;
+			targetProxy = B781BA1E2560F5E2008EB298 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B781BA242560F5E2008EB298 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B781BA252560F5E2008EB298 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B781BA272560F5E2008EB298 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"bowtie2/Preview Content\"";
+				DEVELOPMENT_TEAM = 4TPDCY22V9;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = bowtie2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jakerunzer.bowtie2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B781BA282560F5E2008EB298 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"bowtie2/Preview Content\"";
+				DEVELOPMENT_TEAM = 4TPDCY22V9;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = bowtie2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jakerunzer.bowtie2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B781BA2A2560F5E2008EB298 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TPDCY22V9;
+				INFOPLIST_FILE = bowtie2Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jakerunzer.bowtie2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bowtie2.app/bowtie2";
+			};
+			name = Debug;
+		};
+		B781BA2B2560F5E2008EB298 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TPDCY22V9;
+				INFOPLIST_FILE = bowtie2Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jakerunzer.bowtie2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bowtie2.app/bowtie2";
+			};
+			name = Release;
+		};
+		B781BA2D2560F5E2008EB298 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TPDCY22V9;
+				INFOPLIST_FILE = bowtie2UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jakerunzer.bowtie2UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = bowtie2;
+			};
+			name = Debug;
+		};
+		B781BA2E2560F5E2008EB298 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TPDCY22V9;
+				INFOPLIST_FILE = bowtie2UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jakerunzer.bowtie2UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = bowtie2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B781B9F72560F5E0008EB298 /* Build configuration list for PBXProject "bowtie2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B781BA242560F5E2008EB298 /* Debug */,
+				B781BA252560F5E2008EB298 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B781BA262560F5E2008EB298 /* Build configuration list for PBXNativeTarget "bowtie2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B781BA272560F5E2008EB298 /* Debug */,
+				B781BA282560F5E2008EB298 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B781BA292560F5E2008EB298 /* Build configuration list for PBXNativeTarget "bowtie2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B781BA2A2560F5E2008EB298 /* Debug */,
+				B781BA2B2560F5E2008EB298 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B781BA2C2560F5E2008EB298 /* Build configuration list for PBXNativeTarget "bowtie2UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B781BA2D2560F5E2008EB298 /* Debug */,
+				B781BA2E2560F5E2008EB298 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B781BA0A2560F5E2008EB298 /* bowtie2.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B781BA0B2560F5E2008EB298 /* bowtie2.xcdatamodel */,
+			);
+			currentVersion = B781BA0B2560F5E2008EB298 /* bowtie2.xcdatamodel */;
+			path = bowtie2.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B781B9F42560F5E0008EB298 /* Project object */;
+}
