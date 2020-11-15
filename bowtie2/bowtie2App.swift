@@ -13,7 +13,7 @@ struct bowtie2App: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

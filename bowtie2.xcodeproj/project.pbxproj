@@ -16,6 +16,16 @@
 		B781BA172560F5E2008EB298 /* bowtie2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA162560F5E2008EB298 /* bowtie2Tests.swift */; };
 		B781BA222560F5E2008EB298 /* bowtie2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA212560F5E2008EB298 /* bowtie2UITests.swift */; };
 		B781BA38256100D6008EB298 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B781BA37256100D6008EB298 /* CloudKit.framework */; };
+		B781BA40256114F4008EB298 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA3F256114F4008EB298 /* AppView.swift */; };
+		B781BA4825611518008EB298 /* GamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA4725611518008EB298 /* GamesView.swift */; };
+		B781BA4D25611521008EB298 /* PlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA4C25611521008EB298 /* PlayersView.swift */; };
+		B7B2503B256120B200C82EC6 /* CreateEditPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B2503A256120B200C82EC6 /* CreateEditPlayer.swift */; };
+		B7B250432561269B00C82EC6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B250422561269B00C82EC6 /* Color.swift */; };
+		B7B25048256126CD00C82EC6 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B25047256126CD00C82EC6 /* Date.swift */; };
+		B7B2504D256126E000C82EC6 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B2504C256126E000C82EC6 /* String.swift */; };
+		B7C130FF25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C130FB25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift */; };
+		B7C1310125611D4D00EE6601 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */; };
+		B7C1311125611FBB00EE6601 /* Game+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +62,16 @@
 		B781BA232560F5E2008EB298 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B781BA32256100D4008EB298 /* bowtie2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bowtie2.entitlements; sourceTree = "<group>"; };
 		B781BA37256100D6008EB298 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		B781BA3F256114F4008EB298 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		B781BA4725611518008EB298 /* GamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesView.swift; sourceTree = "<group>"; };
+		B781BA4C25611521008EB298 /* PlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersView.swift; sourceTree = "<group>"; };
+		B7B2503A256120B200C82EC6 /* CreateEditPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEditPlayer.swift; sourceTree = "<group>"; };
+		B7B250422561269B00C82EC6 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		B7B25047256126CD00C82EC6 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		B7B2504C256126E000C82EC6 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		B7C130FB25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerScore+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +124,9 @@
 		B781B9FE2560F5E0008EB298 /* bowtie2 */ = {
 			isa = PBXGroup;
 			children = (
+				B7C130FA25611D4000EE6601 /* models */,
+				B7C130F125611C5200EE6601 /* extensions */,
+				B781BA5125611627008EB298 /* views */,
 				B781BA32256100D4008EB298 /* bowtie2.entitlements */,
 				B781B9FF2560F5E0008EB298 /* bowtie2App.swift */,
 				B781BA012560F5E0008EB298 /* ContentView.swift */,
@@ -148,6 +171,37 @@
 				B781BA37256100D6008EB298 /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B781BA5125611627008EB298 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				B781BA4725611518008EB298 /* GamesView.swift */,
+				B781BA3F256114F4008EB298 /* AppView.swift */,
+				B781BA4C25611521008EB298 /* PlayersView.swift */,
+				B7B2503A256120B200C82EC6 /* CreateEditPlayer.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		B7C130F125611C5200EE6601 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B7B250422561269B00C82EC6 /* Color.swift */,
+				B7B25047256126CD00C82EC6 /* Date.swift */,
+				B7B2504C256126E000C82EC6 /* String.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		B7C130FA25611D4000EE6601 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */,
+				B7C130FB25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift */,
+				B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,10 +333,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B781BA4825611518008EB298 /* GamesView.swift in Sources */,
 				B781BA0C2560F5E2008EB298 /* bowtie2.xcdatamodeld in Sources */,
 				B781BA092560F5E2008EB298 /* Persistence.swift in Sources */,
+				B7C1311125611FBB00EE6601 /* Game+CoreDataClass.swift in Sources */,
+				B7B2504D256126E000C82EC6 /* String.swift in Sources */,
 				B781BA022560F5E0008EB298 /* ContentView.swift in Sources */,
+				B7B250432561269B00C82EC6 /* Color.swift in Sources */,
+				B781BA40256114F4008EB298 /* AppView.swift in Sources */,
+				B781BA4D25611521008EB298 /* PlayersView.swift in Sources */,
+				B7C1310125611D4D00EE6601 /* Player+CoreDataClass.swift in Sources */,
 				B781BA002560F5E0008EB298 /* bowtie2App.swift in Sources */,
+				B7C130FF25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift in Sources */,
+				B7B25048256126CD00C82EC6 /* Date.swift in Sources */,
+				B7B2503B256120B200C82EC6 /* CreateEditPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
