@@ -18,8 +18,10 @@ struct PersistenceController {
             newItem.timestamp = Date()
         }
         
-        let player = Player(context: viewContext)
-        player.name = "Jake"
+        Player.createPlayer(context: viewContext, name: "Jake", colour: "FF00FF")
+        Player.createPlayer(context: viewContext, name: "Aleesha", colour: "FFD700")
+        Player.createPlayer(context: viewContext, name: "Gab", colour: "00CED1")
+        Player.createPlayer(context: viewContext, name: "Mum", colour: "4169E1")
         
         do {
             try viewContext.save()

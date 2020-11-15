@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlayersView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(
         entity: Player.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Player.created, ascending: true)],
@@ -18,24 +18,30 @@ struct PlayersView: View {
     
     @State var showingCreatePlayer = false
     
+    var columns: [GridItem] =
+        Array(repeating: .init(.flexible()), count: 2)
+    
     var body: some View {
         NavigationView {
-            VStack {
-                List {
+            ScrollView {
+                LazyVGrid(columns: columns) {
                     ForEach(players, id: \.self) { player in
-                        Text(player.name!)
+                        PlayerCard(name: player.name!, colour: player.colour!)
                     }
                 }
-                
-                Button(action: {
-                    self.showingCreatePlayer.toggle()
-                }) {
-                    Text("Create Player")
-                }
+                .padding(35)
             }
+            .padding(-20)
             .navigationTitle("Players")
             .sheet(isPresented: $showingCreatePlayer) {
                 CreateEditPlayer()
+            }
+            .toolbar {
+                Button(action: {
+                    self.showingCreatePlayer.toggle()
+                }) {
+                    Label("Add Player", systemImage: "plus")
+                }
             }
         }
     }

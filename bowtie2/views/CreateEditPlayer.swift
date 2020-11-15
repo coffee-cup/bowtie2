@@ -9,12 +9,12 @@ import SwiftUI
 
 struct PlayerWheel: View {
     @Binding var colour: Color
-    var boundingSize: CGFloat = 200.0
+    var boundingSize: CGFloat = 140.0
     
     var body: some View {
         VStack {
             ColorPicker("Choose color for player", selection: $colour, supportsOpacity: false)
-                .scaleEffect(CGSize(width: 6, height: 6))
+                .scaleEffect(CGSize(width: 4, height: 4))
                 .labelsHidden()
                 .position(x: boundingSize / 2, y: boundingSize / 2)
         }
@@ -26,20 +26,30 @@ struct CreateEditPlayer: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
     
+    @State private var editPlayer: Player?
+    
     @State private var name: String = ""
     @State private var colour: Color = Color(hex: "FF1493")
     
     var body: some View {
         NavigationView {
             VStack {
-                PlayerWheel(colour: $colour)
-                    .padding(.bottom)
+                VStack {
+                    PlayerWheel(colour: $colour)
+                        .padding(.bottom)
+                    
+                    TextField("Player name", text: $name)
+                        .padding(.all)
+                        .multilineTextAlignment(.center)
+                        .font(.title2)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(4)
+                }
+                .padding(.vertical, 20)
                 
-                TextField("Player name", text: $name)
-                    .padding(.horizontal)
-                    .multilineTextAlignment(.center)
-                    .font(.title)
+                Spacer()
             }
+            .padding(.horizontal)
             .navigationTitle("Create Player")
             .navigationBarItems(leading:
                                     Button("Close") {
@@ -65,27 +75,12 @@ struct CreateEditPlayer: View {
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
-    
-    //    private func addItem() {
-    //        withAnimation {
-    //            let newItem = Item(context: viewContext)
-    //            newItem.timestamp = Date()
-    //
-    //            do {
-    //                try viewContext.save()
-    //            } catch {
-    //                // Replace this implementation with code to handle the error appropriately.
-    //                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-    //                let nsError = error as NSError
-    //                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-    //            }
-    //        }
-    //    }
-    
 }
 
 struct CreateEditPlayer_Previews: PreviewProvider {
     static var previews: some View {
+        CreateEditPlayer().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        
         CreateEditPlayer().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

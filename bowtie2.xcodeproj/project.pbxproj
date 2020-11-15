@@ -23,6 +23,7 @@
 		B7B250432561269B00C82EC6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B250422561269B00C82EC6 /* Color.swift */; };
 		B7B25048256126CD00C82EC6 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B25047256126CD00C82EC6 /* Date.swift */; };
 		B7B2504D256126E000C82EC6 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B2504C256126E000C82EC6 /* String.swift */; };
+		B7B2505B2561AC9800C82EC6 /* PlayerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B2505A2561AC9800C82EC6 /* PlayerCard.swift */; };
 		B7C130FF25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C130FB25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift */; };
 		B7C1310125611D4D00EE6601 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */; };
 		B7C1311125611FBB00EE6601 /* Game+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */; };
@@ -69,6 +70,7 @@
 		B7B250422561269B00C82EC6 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B7B25047256126CD00C82EC6 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		B7B2504C256126E000C82EC6 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		B7B2505A2561AC9800C82EC6 /* PlayerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCard.swift; sourceTree = "<group>"; };
 		B7C130FB25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerScore+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -180,6 +182,7 @@
 				B781BA3F256114F4008EB298 /* AppView.swift */,
 				B781BA4C25611521008EB298 /* PlayersView.swift */,
 				B7B2503A256120B200C82EC6 /* CreateEditPlayer.swift */,
+				B7B2505A2561AC9800C82EC6 /* PlayerCard.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				B781BA092560F5E2008EB298 /* Persistence.swift in Sources */,
 				B7C1311125611FBB00EE6601 /* Game+CoreDataClass.swift in Sources */,
 				B7B2504D256126E000C82EC6 /* String.swift in Sources */,
+				B7B2505B2561AC9800C82EC6 /* PlayerCard.swift in Sources */,
 				B781BA022560F5E0008EB298 /* ContentView.swift in Sources */,
 				B7B250432561269B00C82EC6 /* Color.swift in Sources */,
 				B781BA40256114F4008EB298 /* AppView.swift in Sources */,
