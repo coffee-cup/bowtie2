@@ -14,7 +14,7 @@ struct PlayerWheel: View {
     var body: some View {
         VStack {
             ColorPicker("Choose color for player", selection: $colour, supportsOpacity: false)
-                .scaleEffect(CGSize(width: 4, height: 4))
+                .scaleEffect(CGSize(width: 5, height: 5))
                 .labelsHidden()
                 .position(x: boundingSize / 2, y: boundingSize / 2)
         }
@@ -24,10 +24,11 @@ struct PlayerWheel: View {
 
 struct CreateEditPlayer: View {
     @Environment(\.presentationMode) var presentationMode
-    @Environment(\.managedObjectContext) private var viewContext
     
-    @State private var editPlayer: Player?
+    let onPlayer: ((_ name: String, _ colour: String) -> ())?
+    let editingPlayer: Player?
     
+    @State private var title: String = "Create Player"
     @State private var name: String = ""
     @State private var colour: Color = Color(hex: "FF1493")
     
@@ -50,37 +51,46 @@ struct CreateEditPlayer: View {
                 Spacer()
             }
             .padding(.horizontal)
-            .navigationTitle("Create Player")
+            .navigationTitle(title)
             .navigationBarItems(leading:
                                     Button("Close") {
                                         self.presentationMode.wrappedValue.dismiss()
                                     },
                                 trailing:
                                     Button("Create") {
-                                        self.addPlayer()
+                                        if let onPlayer = onPlayer {
+                                            onPlayer(name, colour.toHex(alpha: false))
+                                        }
+                                        self.presentationMode.wrappedValue.dismiss()
                                     }.disabled(name == ""))
+            .onAppear(perform: {
+                if let player = editingPlayer {
+                    title = "Edit Player"
+                    name = player.name!
+                    colour = Color(hex: player.colour!)
+                }
+            })
         }
     }
     
-    private func addPlayer() {
-        let newPlayer = Player(context: viewContext)
-        newPlayer.name = name
-        newPlayer.colour = colour.toHex(alpha: false)
-        
-        do {
-            try viewContext.save()
-            self.presentationMode.wrappedValue.dismiss()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-    }
+//    private func addPlayer() {
+//        let newPlayer = Player(context: viewContext)
+//        newPlayer.name = name
+//        newPlayer.colour = colour.toHex(alpha: false)
+//
+//        do {
+//            try viewContext.save()
+//            self.presentationMode.wrappedValue.dismiss()
+//        } catch {
+//            let nsError = error as NSError
+//            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//        }
+//    }
 }
 
 struct CreateEditPlayer_Previews: PreviewProvider {
     static var previews: some View {
-        CreateEditPlayer().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        
-        CreateEditPlayer().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        CreateEditPlayer(onPlayer: nil, editingPlayer: nil)
+
     }
 }

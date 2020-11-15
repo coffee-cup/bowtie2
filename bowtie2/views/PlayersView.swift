@@ -7,6 +7,16 @@
 
 import SwiftUI
 
+class SheetState: Identifiable {
+    var editingPlayer: Player?
+    var isCreating: Bool
+    
+    init(editing player: Player?) {
+        self.isCreating = player == nil
+        self.editingPlayer = player
+    }
+}
+
 struct PlayersView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -16,14 +26,14 @@ struct PlayersView: View {
         animation: .default)
     private var players: FetchedResults<Player>
     
-    @State var showingCreatePlayer = false
+    @State private var sheetState: SheetState? = nil
     
     var columns: [GridItem] =
         Array(repeating: .init(.flexible()), count: 2)
     
     var body: some View {
         NavigationView {
-        
+            
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(players, id: \.self) { player in
@@ -32,25 +42,53 @@ struct PlayersView: View {
                                 Button(action: {
                                     self.deletePlayer(player: player)
                                 }) {
-                                    Text("Delete Player")
+                                    HStack {
+                                        Text("Delete Player")
+                                        Image(systemName: "trash")
+                                    }
                                 }
                             }
+                            .onTapGesture(count: 1, perform: {
+                                self.sheetState = SheetState(editing: player)
+                            })
                     }
                 }
                 .padding(35)
             }
             .padding(-20)
             .navigationTitle("Players")
-            .sheet(isPresented: $showingCreatePlayer) {
-                CreateEditPlayer()
-            }
             .toolbar {
                 Button(action: {
-                    self.showingCreatePlayer.toggle()
+                    self.sheetState = SheetState(editing: nil)
                 }) {
                     Label("Add Player", systemImage: "plus")
                 }
             }
+            .sheet(item: $sheetState, onDismiss: {
+                self.sheetState = nil
+            }) { item in
+                CreateEditPlayer(onPlayer: onPlayer(name:colour:), editingPlayer: item.editingPlayer)
+            }
+        }
+    }
+    
+    private func onPlayer(name: String, colour: String) {
+        guard let sheetState = self.sheetState else {
+            return
+        }
+        
+        do {
+            if let player = sheetState.editingPlayer {
+                player.name = name
+                player.colour = colour
+            } else {
+                Player.createPlayer(context: viewContext, name: name, colour: colour)
+            }
+            
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
     
@@ -60,19 +98,6 @@ struct PlayersView: View {
             
             try! viewContext.save()
         }
-        
-//        withAnimation {
-//            do {
-//                offsets.map { players[$0] }.forEach(viewContext.delete)
-//
-//                try viewContext.save()
-//            } catch {
-//                // Replace this implementation with code to handle the error appropriately.
-//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
-//        }
     }
 }
 
