@@ -20,19 +20,30 @@ public class Game: NSManagedObject {
         return newGame
     }
     
-    func numPlayers() -> Int {
-        guard let scores = self.playerScores else {
-            return 0
+    public var wrappedName: String {
+        return name ?? "Unnamed"
+    }
+    
+    public var wrappedCreated: Date {
+        return created ?? Date()
+    }
+    
+    public var scoresArray: [PlayerScore] {
+        let set = playerScores as? Set<PlayerScore> ?? []
+        return set.sorted {
+            $0.currentScore > $1.currentScore
+        }
+    }
+    
+    public var winner: Player? {
+        if scoresArray.count <= 0 {
+            return nil
         }
         
-        return scores.count
+        return scoresArray[0].player
     }
 }
 
 extension Game {
-//    var numPlayers: Int {
-//        get {
-//            return self.playerScores!.count
-//        }
-//    }
+    
 }

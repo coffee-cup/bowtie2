@@ -37,7 +37,7 @@ struct PlayersView: View {
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(players, id: \.self) { player in
-                        PlayerCard(name: player.name!, colour: player.colour!)
+                        PlayerCard(name: player.wrappedName, colour: player.wrappedColor)
                             .contextMenu {
                                 Button(action: {
                                     self.deletePlayer(player: player)

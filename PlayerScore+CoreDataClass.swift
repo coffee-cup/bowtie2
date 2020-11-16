@@ -11,22 +11,20 @@ import CoreData
 
 @objc(PlayerScore)
 public class PlayerScore: NSManagedObject {
-    static func createPlayerScore(context: NSManagedObjectContext, game: Game, player: Player) -> PlayerScore {
+    static func createPlayerScore(context: NSManagedObjectContext, game: Game, player: Player, history: [Int] = []) -> PlayerScore {
         let newScore = PlayerScore(context: context)
         newScore.game = game
         newScore.player = player
-        newScore.history = []
+        newScore.history = history
         
         return newScore
     }
     
     var currentScore: Int {
-        get {
-            guard let history = self.history else {
-                return 0
-            }
-            
-            return history.reduce(0, { x, y in x + y })
+        guard let history = self.history else {
+            return 0
         }
+        
+        return history.reduce(0, { x, y in x + y })
     }
 }

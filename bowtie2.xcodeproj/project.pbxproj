@@ -27,6 +27,7 @@
 		B7C130FF25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C130FB25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift */; };
 		B7C1310125611D4D00EE6601 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */; };
 		B7C1311125611FBB00EE6601 /* Game+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */; };
+		B7F82AB72562406600C7B221 /* GameCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F82AB62562406600C7B221 /* GameCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		B7C130FB25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerScore+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B7F82AB62562406600C7B221 /* GameCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 				B781BA4C25611521008EB298 /* PlayersView.swift */,
 				B7B2503A256120B200C82EC6 /* CreateEditPlayer.swift */,
 				B7B2505A2561AC9800C82EC6 /* PlayerCard.swift */,
+				B7F82AB62562406600C7B221 /* GameCard.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				B7C1310125611D4D00EE6601 /* Player+CoreDataClass.swift in Sources */,
 				B781BA002560F5E0008EB298 /* bowtie2App.swift in Sources */,
 				B7C130FF25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift in Sources */,
+				B7F82AB72562406600C7B221 /* GameCard.swift in Sources */,
 				B7B25048256126CD00C82EC6 /* Date.swift in Sources */,
 				B7B2503B256120B200C82EC6 /* CreateEditPlayer.swift in Sources */,
 			);

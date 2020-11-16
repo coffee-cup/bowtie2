@@ -19,4 +19,16 @@ public class Player: NSManagedObject {
         
         return newPlayer
     }
+    
+    var wrappedName: String {
+        return name ?? "Unamed"
+    }
+    
+    var wrappedColor: String {
+        return colour ?? "000000"
+    }
+    
+    var wrappedCreated: Date {
+        created ?? Date()
+    }
 }

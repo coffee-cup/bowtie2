@@ -17,12 +17,24 @@ struct GamesView: View {
     private var games: FetchedResults<Game>
     
     var body: some View {
-        List {
-            ForEach(games, id: \.self) { game in
-                HStack {
-                    Text(game.name!)
-                    Spacer()
-                    Text("\(game.numPlayers()) players")
+        NavigationView {
+            ScrollView {
+                VStack {
+                    ForEach(games, id: \.self) { game in
+                        HStack {
+                            GameCard(name: game.wrappedName, winner: game.winner?.wrappedName ?? "N", colour: game.winner?.wrappedColor ?? "000000", created: game.wrappedCreated)
+                        }
+                    }
+                }
+                .padding(35)
+            }
+            .padding(-20)
+            .navigationTitle("Games")
+            .toolbar {
+                Button(action: {
+                    print("boop")
+                }) {
+                    Label("Create Game", systemImage: "plus")
                 }
             }
         }
