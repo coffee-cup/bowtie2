@@ -11,6 +11,15 @@ import CoreData
 
 @objc(PlayerScore)
 public class PlayerScore: NSManagedObject {
+    static func createPlayerScore(context: NSManagedObjectContext, game: Game, player: Player) -> PlayerScore {
+        let newScore = PlayerScore(context: context)
+        newScore.game = game
+        newScore.player = player
+        newScore.history = []
+        
+        return newScore
+    }
+    
     var currentScore: Int {
         get {
             guard let history = self.history else {

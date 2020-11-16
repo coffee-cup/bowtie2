@@ -3,7 +3,7 @@
     <entity name="Game" representedClassName="Game" syncable="YES" codeGenerationType="category">
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String" defaultValueString="&lt;empty&gt;"/>
-        <relationship name="playerScores" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerScore" inverseName="game" inverseEntity="PlayerScore"/>
+        <relationship name="playerScores" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlayerScore" inverseName="game" inverseEntity="PlayerScore"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -20,9 +20,9 @@
         <relationship name="player" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="scores" inverseEntity="Player"/>
     </entity>
     <elements>
-        <element name="Game" positionX="-54" positionY="27" width="128" height="74"/>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
-        <element name="Player" positionX="-63" positionY="-9" width="128" height="89"/>
-        <element name="PlayerScore" positionX="-54" positionY="18" width="128" height="74"/>
+        <element name="Game" positionX="206.443115234375" positionY="-297.8959655761719" width="128" height="74"/>
+        <element name="Item" positionX="142.9830932617188" positionY="-440.3352355957031" width="128" height="44"/>
+        <element name="Player" positionX="-17.52392578125" positionY="-189.6279296875" width="128" height="89"/>
+        <element name="PlayerScore" positionX="219.8523559570312" positionY="-113.0895080566406" width="128" height="74"/>
     </elements>
 </model>

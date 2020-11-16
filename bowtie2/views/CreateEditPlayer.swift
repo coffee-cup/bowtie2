@@ -30,6 +30,7 @@ struct CreateEditPlayer: View {
     
     @State private var title: String = "Create Player"
     @State private var name: String = ""
+    @State private var createText: String = "Create"
     @State private var colour: Color = Color(hex: "FF1493")
     
     var body: some View {
@@ -57,7 +58,7 @@ struct CreateEditPlayer: View {
                                         self.presentationMode.wrappedValue.dismiss()
                                     },
                                 trailing:
-                                    Button("Create") {
+                                    Button(createText) {
                                         if let onPlayer = onPlayer {
                                             onPlayer(name, colour.toHex(alpha: false))
                                         }
@@ -66,26 +67,13 @@ struct CreateEditPlayer: View {
             .onAppear(perform: {
                 if let player = editingPlayer {
                     title = "Edit Player"
+                    createText = "Save"
                     name = player.name!
                     colour = Color(hex: player.colour!)
                 }
             })
         }
     }
-    
-//    private func addPlayer() {
-//        let newPlayer = Player(context: viewContext)
-//        newPlayer.name = name
-//        newPlayer.colour = colour.toHex(alpha: false)
-//
-//        do {
-//            try viewContext.save()
-//            self.presentationMode.wrappedValue.dismiss()
-//        } catch {
-//            let nsError = error as NSError
-//            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//        }
-//    }
 }
 
 struct CreateEditPlayer_Previews: PreviewProvider {
