@@ -40,6 +40,12 @@ public class Game: NSManagedObject {
             return nil
         }
         
+//        let values = scoresArray.map { $0.currentScore }
+//        if values.similar().count > 0 {
+//            // a tie
+//            return nil
+//        }
+        
         return scoresArray[0].player
     }
 }

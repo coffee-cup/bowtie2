@@ -28,6 +28,8 @@
 		B7C1310125611D4D00EE6601 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */; };
 		B7C1311125611FBB00EE6601 /* Game+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */; };
 		B7F82AB72562406600C7B221 /* GameCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F82AB62562406600C7B221 /* GameCard.swift */; };
+		B7F82ABC256258EA00C7B221 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F82ABB256258EA00C7B221 /* Array.swift */; };
+		B7F82AC125625A8C00C7B221 /* CreateGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F82AC025625A8C00C7B221 /* CreateGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7F82AB62562406600C7B221 /* GameCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCard.swift; sourceTree = "<group>"; };
+		B7F82ABB256258EA00C7B221 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		B7F82AC025625A8C00C7B221 /* CreateGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +190,7 @@
 				B7B2503A256120B200C82EC6 /* CreateEditPlayer.swift */,
 				B7B2505A2561AC9800C82EC6 /* PlayerCard.swift */,
 				B7F82AB62562406600C7B221 /* GameCard.swift */,
+				B7F82AC025625A8C00C7B221 /* CreateGame.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 				B7B250422561269B00C82EC6 /* Color.swift */,
 				B7B25047256126CD00C82EC6 /* Date.swift */,
 				B7B2504C256126E000C82EC6 /* String.swift */,
+				B7F82ABB256258EA00C7B221 /* Array.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -340,8 +346,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B781BA4825611518008EB298 /* GamesView.swift in Sources */,
+				B7F82AC125625A8C00C7B221 /* CreateGame.swift in Sources */,
 				B781BA0C2560F5E2008EB298 /* bowtie2.xcdatamodeld in Sources */,
 				B781BA092560F5E2008EB298 /* Persistence.swift in Sources */,
+				B7F82ABC256258EA00C7B221 /* Array.swift in Sources */,
 				B7C1311125611FBB00EE6601 /* Game+CoreDataClass.swift in Sources */,
 				B7B2504D256126E000C82EC6 /* String.swift in Sources */,
 				B7B2505B2561AC9800C82EC6 /* PlayerCard.swift in Sources */,

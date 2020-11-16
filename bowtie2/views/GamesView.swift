@@ -16,6 +16,8 @@ struct GamesView: View {
         animation: .default)
     private var games: FetchedResults<Game>
     
+    @State var isCreating = false
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -32,10 +34,13 @@ struct GamesView: View {
             .navigationTitle("Games")
             .toolbar {
                 Button(action: {
-                    print("boop")
+                    self.isCreating = true
                 }) {
                     Label("Create Game", systemImage: "plus")
                 }
+            }
+            .sheet(isPresented: $isCreating) {
+                CreateGame()
             }
         }
     }
