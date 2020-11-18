@@ -17,7 +17,7 @@ class SheetState: Identifiable {
     }
 }
 
-struct PlayersView: View {
+struct PlayersListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @FetchRequest(
@@ -103,6 +103,6 @@ struct PlayersView: View {
 
 struct PlayersView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayersView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        PlayersListView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

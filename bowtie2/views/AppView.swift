@@ -10,11 +10,11 @@ import SwiftUI
 struct AppView: View {
     var body: some View {
         TabView {
-            GamesView().tabItem {
+            GamesListView().tabItem {
                 Image(systemName: "house.fill")
                 Text("Games")
             }
-            PlayersView().tabItem {
+            PlayersListView().tabItem {
                 Image(systemName: "person.2.fill")
                 Text("Players")
             }

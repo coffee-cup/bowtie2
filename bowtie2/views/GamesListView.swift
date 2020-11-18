@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GamesView: View {
+struct GamesListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @FetchRequest(
@@ -48,6 +48,6 @@ struct GamesView: View {
 
 struct GamesView_Previews: PreviewProvider {
     static var previews: some View {
-        GamesView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        GamesListView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
