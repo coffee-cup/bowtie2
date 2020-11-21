@@ -24,7 +24,9 @@ struct GamesListView: View {
                 VStack {
                     ForEach(games, id: \.self) { game in
                         HStack {
-                            GameCard(name: game.wrappedName, winner: game.winner?.wrappedName ?? "N", colour: game.winner?.wrappedColor ?? "000000", created: game.wrappedCreated)
+                            NavigationLink(destination: GameView(game: game)) {
+                                GameCard(name: game.wrappedName, winner: game.winner?.wrappedName ?? "N", colour: game.winner?.wrappedColor ?? "000000", created: game.wrappedCreated)
+                            }
                         }
                     }
                 }

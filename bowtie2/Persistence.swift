@@ -53,6 +53,14 @@ struct PersistenceController {
         }
         return result
     }()
+    
+    static var sampleGame: Game {
+        let request: NSFetchRequest<Game> = Game.fetchRequest()
+        request.fetchLimit = 1
+        request.predicate = NSPredicate(format: "name ==[c] %@", "Blittzzzzzz 🇳🇱")
+        let games = try? preview.container.viewContext.fetch(request)
+        return games!.first!
+    }
 
     let container: NSPersistentCloudKitContainer
 
