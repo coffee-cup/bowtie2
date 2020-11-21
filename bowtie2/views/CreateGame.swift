@@ -7,24 +7,61 @@
 
 import SwiftUI
 
+class CreateGameData: ObservableObject {
+    @Published var name = ""
+    @Published var addedPlayers: [ObjectIdentifier:Bool] = [:]
+    @State var numPlayersAdded = 0
+    
+    func getSelected(id: ObjectIdentifier) -> Binding<Bool> {
+        let binding = Binding<Bool>(get: {
+            return self.addedPlayers[id] ?? false
+        }, set: { newValue in
+            self.addedPlayers[id] = newValue
+            
+            let t = self.addedPlayers.values.reduce(0, { num, v in num + (v ? 1 : 0) })
+            self.numPlayersAdded = t
+        })
+        
+        return binding
+    }
+}
+
+struct PlayerItem: View {
+    var colour: String
+    var name: String
+    @Binding var isSelected: Bool
+    
+    var body: some View {
+        HStack(spacing: 20) {
+            Toggle(isOn: $isSelected) {
+                Text("Include player \(name)")
+            }
+            .labelsHidden()
+            
+            Text(name)
+            
+            Spacer()
+            
+            RoundedRectangle(cornerRadius: 4)
+                .fill(Color(hex: colour))
+                .frame(width: 32, height: 32)
+        }
+        .padding(.vertical, 6)
+    }
+}
+
 struct CreateGame: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
+    
+    @ObservedObject var createData = CreateGameData()
+    
     
     @FetchRequest(
         entity: Player.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Player.created, ascending: true)],
         animation: .default)
     private var players: FetchedResults<Player>
-    
-    @State private var name: String = ""
-    @State private var isOn = true
-    
-//    @State var includedPlayers: [String: Bool] {
-//        get {
-//            
-//        }
-//    }
     
     var body: some View {
         NavigationView {
@@ -34,7 +71,7 @@ struct CreateGame: View {
                         .font(.caption)
                         .foregroundColor(Color(.label))
                     
-                    TextField("Game", text: $name)
+                    TextField("Game", text: $createData.name)
                         .padding(.all)
                         .background(Color(.systemGray6))
                         .cornerRadius(4)
@@ -59,21 +96,7 @@ struct CreateGame: View {
                     
                     List {
                         ForEach(players, id: \.self) { player in
-                            HStack(spacing: 20) {
-                                Toggle(isOn: $isOn) {
-                                    Text("Include player \(player.wrappedName)")
-                                }
-                                .labelsHidden()
-                                
-                                Text(player.wrappedName)
-                                
-                                Spacer()
-                                
-                                RoundedRectangle(cornerRadius: 4)
-                                    .fill(Color(hex: player.wrappedColor))
-                                    .frame(width: 32, height: 32)
-                            }
-                            .padding(.vertical, 6)
+                            PlayerItem(colour: player.wrappedColor, name: player.wrappedName, isSelected: self.createData.getSelected(id: player.id))
                         }
                     }
                     .listStyle(PlainListStyle())
@@ -87,15 +110,42 @@ struct CreateGame: View {
                                     },
                                 trailing:
                                     Button("Create") {
-                                        print("Create")
-                                    }.disabled(name == ""))
+                                        self.createGame()
+                                    }.disabled(createData.name == ""))
             .navigationTitle("Create Game")
+        }
+    }
+    
+    private func createGame() {
+        do {
+            var playerLookup: [ObjectIdentifier:Player] = [:]
+            players.forEach({ player in playerLookup[player.id] = player })
+                
+            let playersToAdd = self.createData.addedPlayers.keys
+                .filter({ k in createData.addedPlayers[k] ?? false })
+                .map({ k in viewContext.object(with: playerLookup[k]!.objectID) as! Player })
+            
+            let game = Game.createGame(context: viewContext, name: createData.name)
+
+            // Create player scores for each playexzr
+            playersToAdd.forEach({ player in
+                PlayerScore.createPlayerScore(context: viewContext, game: game, player: player)
+            })
+            
+            try viewContext.save()
+            
+            self.presentationMode.wrappedValue.dismiss()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
 }
 
 struct CreateGame_Previews: PreviewProvider {
     static var previews: some View {
-        CreateGame().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        Group {
+            CreateGame().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        }
     }
 }
