@@ -72,7 +72,22 @@ extension Color {
                           Int(round(b * 255)), Int(round(a * 255)))
         } else {
             return String(format: "#%02X%02X%02X", Int(round(r * 255)),
-                                      Int(round(g * 255)), Int(round(b * 255)))
+                          Int(round(g * 255)), Int(round(b * 255)))
         }
+    }
+    
+    func lighter(by percentage: CGFloat = 30.0) -> Color {
+        return self.adjust(by: abs(percentage) )
+    }
+    
+    func darker(by percentage: CGFloat = 30.0) -> Color {
+        return self.adjust(by: -1 * abs(percentage) )
+    }
+    
+    func adjust(by percentage: CGFloat = 30.0) -> Color {
+        return Color(red: min(Double(self.components.red + percentage/100), 1.0),
+                     green: min(Double(self.components.green + percentage/100), 1.0),
+                     blue: min(Double(self.components.blue + percentage/100), 1.0),
+                     opacity: Double(self.components.opacity))
     }
 }

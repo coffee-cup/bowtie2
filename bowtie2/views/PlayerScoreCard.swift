@@ -26,7 +26,6 @@ struct PlayerScoreCard: View {
                         .multilineTextAlignment(.center)
                     
                     Text(name)
-                        .fontWeight(.bold)
                         .foregroundColor(.white)
                         .font(.callout)
                 }.frame(maxHeight: .infinity)

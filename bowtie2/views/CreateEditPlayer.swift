@@ -44,7 +44,7 @@ struct CreateEditPlayer: View {
                         .padding(.all)
                         .multilineTextAlignment(.center)
                         .font(.title2)
-                        .background(Color(.systemGray6))
+                        .background(Color(.tertiarySystemFill))
                         .cornerRadius(4)
                 }
                 .padding(.vertical, 20)

@@ -26,7 +26,7 @@ struct CalcButton: View {
 struct EnterScoreView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @ObservedObject var playerScore: PlayerScore
     
     @State var score: Int = 0
@@ -36,54 +36,53 @@ struct EnterScoreView: View {
         Array(repeating: .init(.flexible()), count: 3)
     
     var body: some View {
-        ScrollView {
-            VStack {
-                Text("Enter score for \(playerScore.player?.wrappedName ?? "No name"    )")
-                    .font(.callout)
-                    .padding(.top, 32)
-                
-                Text("\(score)")
-                    .font(.system(size: 160, weight: .bold))
-                    .padding(.vertical)
-                    .lineLimit(1)
-                
-                LazyVGrid(columns: columns) {
-                    CalcButton(text: "1", onTap: { self.addValue(digit: 1)})
-                    CalcButton(text: "2", onTap: { self.addValue(digit: 2)})
-                    CalcButton(text: "3", onTap: { self.addValue(digit: 3)})
-                    CalcButton(text: "4", onTap: { self.addValue(digit: 4)})
-                    CalcButton(text: "5", onTap: { self.addValue(digit: 5)})
-                    CalcButton(text: "6", onTap: { self.addValue(digit: 6)})
-                    CalcButton(text: "7", onTap: { self.addValue(digit: 7)})
-                    CalcButton(text: "8", onTap: { self.addValue(digit: 8)})
-                    CalcButton(text: "9", onTap: { self.addValue(digit: 9)})
-                }
-                LazyVGrid(columns: columns) {
-                    Spacer()
-                    CalcButton(text: "0", onTap: { self.addValue(digit: 0)})
-                    CalcButton(text: "<", onTap: { self.deleteValue() })
-                }
-                .padding(.bottom)
-                
-                Spacer(minLength: 20)
-                
+        VStack {
+            Text("Enter score for \(playerScore.player?.wrappedName ?? "No name"    )")
+                .font(.callout)
+                .padding(.top, 32)
+            
+            Text("\(score)")
+                .font(.system(size: 160, weight: .bold))
+                .padding(.vertical)
+                .gradientForeground(gradient: primaryGradient)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+                .frame(maxHeight: .infinity)
+            
+            LazyVGrid(columns: columns) {
+                CalcButton(text: "1", onTap: { self.addValue(digit: 1)})
+                CalcButton(text: "2", onTap: { self.addValue(digit: 2)})
+                CalcButton(text: "3", onTap: { self.addValue(digit: 3)})
+                CalcButton(text: "4", onTap: { self.addValue(digit: 4)})
+                CalcButton(text: "5", onTap: { self.addValue(digit: 5)})
+                CalcButton(text: "6", onTap: { self.addValue(digit: 6)})
+                CalcButton(text: "7", onTap: { self.addValue(digit: 7)})
+                CalcButton(text: "8", onTap: { self.addValue(digit: 8)})
+                CalcButton(text: "9", onTap: { self.addValue(digit: 9)})
+            }
+            LazyVGrid(columns: columns) {
+                CalcButton(text: "<", onTap: { self.deleteValue() })
+                CalcButton(text: "0", onTap: { self.addValue(digit: 0)})
                 Button(action: {
                     if let addScore = self.addScore {
                         addScore(playerScore, score)
                     }
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
-                    Text("add score")
-                        .foregroundColor(Color.white)
+                    Text("Go")
+                        .foregroundColor(.white)
                 }
-                .font(.system(size: 22))
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: 44, maxHeight: 44)
                 .padding(.all)
                 .background(Color.primary)
-                .cornerRadius(40)
-                .padding(.all)
+                .cornerRadius(44)
             }
+            .padding(.bottom)
+            
+            Spacer(minLength: 20)
         }
+        .padding(.horizontal)
+        .frame(maxHeight: .infinity)
     }
     
     private func addValue (digit: Int) {

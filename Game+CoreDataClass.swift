@@ -48,8 +48,15 @@ public class Game: NSManagedObject {
             return nil
         }
         
-        // TODO: handle tie
+        let values = scoresArray.map({ ps in ps.currentScore })
         
+        print("values: \(values) uniques: \(values.uniques)")
+        
+        if values.count != values.uniques.count {
+            // There is a tie
+            print("game is tie")
+            return nil
+        }
         
         return scoresArray[0].player
     }

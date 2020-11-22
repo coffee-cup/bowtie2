@@ -16,10 +16,6 @@ struct GamesListView: View {
         animation: .default)
     private var games: FetchedResults<Game>
     
-    //    private var didSave = NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
-    //    @State
-    //    private var refreshing: Bool = false
-    //
     @State var isCreating = false
     
     var body: some View {
@@ -30,7 +26,6 @@ struct GamesListView: View {
                         NavigationLink(destination: GameView(game: game)) {
                             GameCard(game: game)
                         }
-                        // TODO: FIX THIS
                         .contextMenu {
                             Button(action: {
                                 self.deleteGame(game: game)
