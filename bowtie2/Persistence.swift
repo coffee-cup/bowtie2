@@ -32,7 +32,7 @@ struct PersistenceController {
         PlayerScore.createPlayerScore(context: viewContext, game: g2, player: jake, history: [-1])
         PlayerScore.createPlayerScore(context: viewContext, game: g2, player: aleesha, history: [1])
         
-        let g3 = Game.createGame(context: viewContext, name: "Blittzzzzzz 🇳🇱")
+        let g3 = Game.createGame(context: viewContext, name: "Blitz")
         PlayerScore.createPlayerScore(context: viewContext, game: g3, player: jake, history: [1])
         PlayerScore.createPlayerScore(context: viewContext, game: g3, player: aleesha, history: [2])
         PlayerScore.createPlayerScore(context: viewContext, game: g3, player: gab, history: [30])
@@ -53,14 +53,6 @@ struct PersistenceController {
         }
         return result
     }()
-    
-    static var sampleGame: Game {
-        let request: NSFetchRequest<Game> = Game.fetchRequest()
-        request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "name ==[c] %@", "Blittzzzzzz 🇳🇱")
-        let games = try? preview.container.viewContext.fetch(request)
-        return games!.first!
-    }
 
     let container: NSPersistentCloudKitContainer
 

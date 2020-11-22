@@ -74,7 +74,7 @@ struct CreateGame: View {
                     
                     TextField("Game", text: $createData.name)
                         .padding(.all)
-                        .background(Color(.systemGray6))
+                        .background(Color(.tertiarySystemFill))
                         .cornerRadius(4)
                     
                 }

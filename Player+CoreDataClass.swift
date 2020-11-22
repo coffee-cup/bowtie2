@@ -20,6 +20,13 @@ public class Player: NSManagedObject {
         return newPlayer
     }
     
+    public var scoresArray: [PlayerScore] {
+        let set = scores as? Set<PlayerScore> ?? []
+        return set.sorted {
+            $0.currentScore > $1.currentScore
+        }
+    }
+    
     var wrappedName: String {
         return name ?? "Unamed"
     }

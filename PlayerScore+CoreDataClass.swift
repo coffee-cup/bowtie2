@@ -20,6 +20,20 @@ public class PlayerScore: NSManagedObject {
         return newScore
     }
     
+    static func scoresForGame(context: NSManagedObjectContext, name: String) -> [PlayerScore] {
+        let request: NSFetchRequest<Game> = Game.fetchRequest()
+        request.fetchLimit = 1
+        request.predicate = NSPredicate(format: "name ==[c] %@", name)
+        let games = try? context.fetch(request)
+        
+        if games?.first == nil {
+            return []
+        }
+        
+        let game = games?.first!
+        return game!.scoresArray
+    }
+    
     var currentScore: Int {
         guard let history = self.history else {
             return 0

@@ -16,6 +16,10 @@ struct GamesListView: View {
         animation: .default)
     private var games: FetchedResults<Game>
     
+    //    private var didSave = NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
+    //    @State
+    //    private var refreshing: Bool = false
+    //
     @State var isCreating = false
     
     var body: some View {
@@ -24,8 +28,9 @@ struct GamesListView: View {
                 LazyVStack {
                     ForEach(games, id: \.self) { game in
                         NavigationLink(destination: GameView(game: game)) {
-                            GameCard(name: game.wrappedName, winner: game.winner?.wrappedName ?? "N", colour: game.winner?.wrappedColor ?? "000000", created: game.wrappedCreated)
+                            GameCard(game: game)
                         }
+                        // TODO: FIX THIS
                         .contextMenu {
                             Button(action: {
                                 self.deleteGame(game: game)
@@ -36,11 +41,10 @@ struct GamesListView: View {
                                 }
                             }
                         }
-                        
                     }
                 }
             }
-            .padding(.all)
+            .padding(.horizontal)
             .navigationBarTitle("Games", displayMode: .large)
             .toolbar {
                 Button(action: {
@@ -52,29 +56,6 @@ struct GamesListView: View {
             .sheet(isPresented: $isCreating) {
                 CreateGame()
             }
-            
-            //            ScrollView {
-            //                ForEach(games, id: \.self) { game in
-            //                    HStack {
-            //                        NavigationLink(destination: GameView(game: game)) {
-            //                            GameCard(name: game.wrappedName, winner: game.winner?.wrappedName ?? "N", colour: game.winner?.wrappedColor ?? "000000", created: game.wrappedCreated)
-            //                        }
-            //                    }
-            //                }
-            //                .padding(35)
-            //            }
-            //            .padding(-20)
-            //            .navigationTitle("Games")
-            //            .toolbar {
-            //                Button(action: {
-            //                    self.isCreating = true
-            //                }) {
-            //                    Label("Create Game", systemImage: "plus")
-            //                }
-            //            }
-            //            .sheet(isPresented: $isCreating) {
-            //                CreateGame()
-            //            }
         }
     }
     

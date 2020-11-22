@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AppView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    
     var body: some View {
         TabView {
             GamesListView().tabItem {

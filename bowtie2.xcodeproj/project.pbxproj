@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B72DC112256A68F100DF28F1 /* EnterScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC111256A68F100DF28F1 /* EnterScoreView.swift */; };
+		B72DC117256A776100DF28F1 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC116256A776100DF28F1 /* Number.swift */; };
 		B781BA002560F5E0008EB298 /* bowtie2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781B9FF2560F5E0008EB298 /* bowtie2App.swift */; };
 		B781BA022560F5E0008EB298 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA012560F5E0008EB298 /* ContentView.swift */; };
 		B781BA042560F5E2008EB298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B781BA032560F5E2008EB298 /* Assets.xcassets */; };
@@ -52,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B72DC111256A68F100DF28F1 /* EnterScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterScoreView.swift; sourceTree = "<group>"; };
+		B72DC116256A776100DF28F1 /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
 		B781B9FC2560F5E0008EB298 /* bowtie2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bowtie2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B781B9FF2560F5E0008EB298 /* bowtie2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bowtie2App.swift; sourceTree = "<group>"; };
 		B781BA012560F5E0008EB298 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 				B7B2505A2561AC9800C82EC6 /* PlayerCard.swift */,
 				B7D3390C2569DAB300ADBEFF /* PlayerScoreCard.swift */,
 				B781BA4C25611521008EB298 /* PlayersListView.swift */,
+				B72DC111256A68F100DF28F1 /* EnterScoreView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				B7B25047256126CD00C82EC6 /* Date.swift */,
 				B7B2504C256126E000C82EC6 /* String.swift */,
 				B7F82ABB256258EA00C7B221 /* Array.swift */,
+				B72DC116256A776100DF28F1 /* Number.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -356,6 +362,7 @@
 				B781BA0C2560F5E2008EB298 /* bowtie2.xcdatamodeld in Sources */,
 				B781BA092560F5E2008EB298 /* Persistence.swift in Sources */,
 				B7F82ABC256258EA00C7B221 /* Array.swift in Sources */,
+				B72DC112256A68F100DF28F1 /* EnterScoreView.swift in Sources */,
 				B7C1311125611FBB00EE6601 /* Game+CoreDataClass.swift in Sources */,
 				B7B2504D256126E000C82EC6 /* String.swift in Sources */,
 				B7D3390D2569DAB300ADBEFF /* PlayerScoreCard.swift in Sources */,
@@ -366,6 +373,7 @@
 				B781BA4D25611521008EB298 /* PlayersListView.swift in Sources */,
 				B7C1310125611D4D00EE6601 /* Player+CoreDataClass.swift in Sources */,
 				B7D339082569AD6F00ADBEFF /* GameView.swift in Sources */,
+				B72DC117256A776100DF28F1 /* Number.swift in Sources */,
 				B781BA002560F5E0008EB298 /* bowtie2App.swift in Sources */,
 				B7C130FF25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift in Sources */,
 				B7F82AB72562406600C7B221 /* GameCard.swift in Sources */,

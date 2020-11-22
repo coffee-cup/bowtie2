@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 class SheetState: Identifiable {
     var editingPlayer: Player?
@@ -81,6 +82,15 @@ struct PlayersListView: View {
             if let player = sheetState.editingPlayer {
                 player.name = name
                 player.colour = colour
+                
+                // refresh all scores and games for this player
+                player.scoresArray.forEach({ score in
+                    viewContext.refresh(score, mergeChanges: true)
+                    
+                    if score.game != nil {
+                        viewContext.refresh(score.game!, mergeChanges: true)
+                    }
+                })
             } else {
                 Player.createPlayer(context: viewContext, name: name, colour: colour)
             }

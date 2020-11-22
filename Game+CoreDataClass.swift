@@ -20,6 +20,14 @@ public class Game: NSManagedObject {
         return newGame
     }
     
+    static func gameByName(context: NSManagedObjectContext, name: String) -> Game? {
+        let request: NSFetchRequest<Game> = Game.fetchRequest()
+        request.fetchLimit = 1
+        request.predicate = NSPredicate(format: "name ==[c] %@", name)
+        let games = try? context.fetch(request)
+        return games?.first
+    }
+    
     public var wrappedName: String {
         return name ?? "Unnamed"
     }
@@ -40,11 +48,8 @@ public class Game: NSManagedObject {
             return nil
         }
         
-//        let values = scoresArray.map { $0.currentScore }
-//        if values.similar().count > 0 {
-//            // a tie
-//            return nil
-//        }
+        // TODO: handle tie
+        
         
         return scoresArray[0].player
     }
