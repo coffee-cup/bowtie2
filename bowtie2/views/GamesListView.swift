@@ -12,7 +12,7 @@ struct GamesListView: View {
     
     @FetchRequest(
         entity: Game.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Game.created, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Game.created, ascending: false)],
         animation: .default)
     private var games: FetchedResults<Game>
     
@@ -21,19 +21,27 @@ struct GamesListView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack {
+                LazyVStack {
                     ForEach(games, id: \.self) { game in
-                        HStack {
-                            NavigationLink(destination: GameView(game: game)) {
-                                GameCard(name: game.wrappedName, winner: game.winner?.wrappedName ?? "N", colour: game.winner?.wrappedColor ?? "000000", created: game.wrappedCreated)
+                        NavigationLink(destination: GameView(game: game)) {
+                            GameCard(name: game.wrappedName, winner: game.winner?.wrappedName ?? "N", colour: game.winner?.wrappedColor ?? "000000", created: game.wrappedCreated)
+                        }
+                        .contextMenu {
+                            Button(action: {
+                                self.deleteGame(game: game)
+                            }) {
+                                HStack {
+                                    Text("Delete Game")
+                                    Image(systemName: "trash")
+                                }
                             }
                         }
+                        
                     }
                 }
-                .padding(35)
             }
-            .padding(-20)
-            .navigationTitle("Games")
+            .padding(.all)
+            .navigationBarTitle("Games", displayMode: .large)
             .toolbar {
                 Button(action: {
                     self.isCreating = true
@@ -44,6 +52,37 @@ struct GamesListView: View {
             .sheet(isPresented: $isCreating) {
                 CreateGame()
             }
+            
+            //            ScrollView {
+            //                ForEach(games, id: \.self) { game in
+            //                    HStack {
+            //                        NavigationLink(destination: GameView(game: game)) {
+            //                            GameCard(name: game.wrappedName, winner: game.winner?.wrappedName ?? "N", colour: game.winner?.wrappedColor ?? "000000", created: game.wrappedCreated)
+            //                        }
+            //                    }
+            //                }
+            //                .padding(35)
+            //            }
+            //            .padding(-20)
+            //            .navigationTitle("Games")
+            //            .toolbar {
+            //                Button(action: {
+            //                    self.isCreating = true
+            //                }) {
+            //                    Label("Create Game", systemImage: "plus")
+            //                }
+            //            }
+            //            .sheet(isPresented: $isCreating) {
+            //                CreateGame()
+            //            }
+        }
+    }
+    
+    private func deleteGame(game: Game) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7){
+            viewContext.delete(game)
+            
+            try! viewContext.save()
         }
     }
 }

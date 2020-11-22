@@ -1,17 +1,17 @@
 //
-//  GameCard.swift
+//  PlayerScoreCard.swift
 //  bowtie2
 //
-//  Created by Jake Runzer on 2020-11-15.
+//  Created by Jake Runzer on 2020-11-21.
 //
 
 import SwiftUI
 
-struct GameCard: View {
+struct PlayerScoreCard: View {
     var name: String
-    var winner: String
     var colour: String
-    var created: Date
+    var score: Int
+    var numTurns: Int
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -20,12 +20,13 @@ struct GameCard: View {
             HStack {
                 VStack(alignment: .leading) {
                     Spacer()
-                    Text(winner[0])
+                    Text("\(score)")
                         .font(.system(size: 48, weight: .bold))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
                     Text(name)
+                        .fontWeight(.bold)
                         .foregroundColor(.white)
                         .font(.callout)
                 }.frame(maxHeight: .infinity)
@@ -33,22 +34,30 @@ struct GameCard: View {
                 Spacer()
                 
                 VStack(alignment: .leading) {
-                    Spacer()
-                    Text(created.toString(format: "MMM dd"))
-                        .foregroundColor(.white)
+                    Text("\(numTurns)")
+                        .foregroundColor(Color(hex: colour))
                         .font(.caption)
-                }.frame(maxHeight: .infinity)
+                        .frame(minWidth: 16, minHeight: 16)
+                        .padding(.all, 4)
+                        .background(Color.white.opacity(1))
+                        .cornerRadius(20)
+                    
+                    Spacer()
+                }
             }.padding(.all)
         }
-        .frame(height: 130)
+        .frame(height: 120)
         .cornerRadius(24)
 //        .shadow(color: Color(hex: colour), radius: 4)
     }
 }
 
-struct GameCard_Previews: PreviewProvider {
+struct PlayerScoreCard_Previews: PreviewProvider {
     static var previews: some View {
-        GameCard(name: "🎄 Xmas 7s", winner: "Jake", colour: "FF00FF", created: Date())
+        PlayerScoreCard(name: "Jake",
+                        colour: "FF00FF",
+                        score: 100,
+                        numTurns: 1)
             .padding(.horizontal)
     }
 }

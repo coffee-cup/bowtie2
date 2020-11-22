@@ -29,6 +29,7 @@ class CreateGameData: ObservableObject {
 struct PlayerItem: View {
     var colour: String
     var name: String
+    
     @Binding var isSelected: Bool
     
     var body: some View {

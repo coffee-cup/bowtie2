@@ -13,16 +13,21 @@ struct GameView: View {
     var game: Game
     
     var body: some View {
-        NavigationView {
-            Text(game.wrappedName)
-                .navigationTitle(game.wrappedName)
+        ScrollView {
+            ForEach(game.scoresArray, id: \.self) { score in
+                PlayerScoreCard(name: score.player!.wrappedName, colour: score.player!.wrappedColor, score: score.currentScore, numTurns: score.history!.count)
+            }
         }
+        .padding(.all)
+        .navigationBarTitle(game.wrappedName, displayMode: .large)
     }
 }
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView(game: PersistenceController.sampleGame)
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        NavigationView{
+            GameView(game: PersistenceController.sampleGame)
+                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        }
     }
 }
