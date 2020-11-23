@@ -24,6 +24,10 @@ class CreateGameData: ObservableObject {
         
         return binding
     }
+    
+    func selectPlayer(id: ObjectIdentifier) {
+        self.addedPlayers[id] = true
+    }
 }
 
 struct PlayerItem: View {
@@ -57,12 +61,13 @@ struct CreateGame: View {
     
     @ObservedObject var createData = CreateGameData()
     
-    
     @FetchRequest(
         entity: Player.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Player.created, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Player.created, ascending: false)],
         animation: .default)
     private var players: FetchedResults<Player>
+    
+    @State var isCreatingPlayer = false
     
     var body: some View {
         NavigationView {
@@ -89,7 +94,7 @@ struct CreateGame: View {
                         Spacer()
                         
                         Button(action: {
-                            print("add player")
+                            self.isCreatingPlayer.toggle()
                         }, label: {
                             Image(systemName: "plus")
                         }).padding(.horizontal)
@@ -113,7 +118,23 @@ struct CreateGame: View {
                                     Button("Create") {
                                         self.createGame()
                                     }.disabled(createData.name == ""))
+            .sheet(isPresented: $isCreatingPlayer) {
+                CreateEditPlayer(onPlayer: self.addPlayer, editingPlayer: nil)
+            }
             .navigationTitle("Create Game")
+        }
+    }
+    
+    private func addPlayer(name: String, colour: String) {
+        do {
+            let player = Player.createPlayer(context: viewContext, name: name, colour: colour)
+            
+            createData.selectPlayer(id: player.id)
+            
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
     
