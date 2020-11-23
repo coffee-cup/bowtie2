@@ -73,6 +73,10 @@ public class Game: NSManagedObject {
         let entryCount = scoresArray.map({ playerScore in playerScore.history?.count ?? 0 })
         return entryCount.max() ?? 0
     }
+    
+    public var colourList: [String] {
+        return scoresArray.map({ score in score.player?.wrappedColor ?? "000000" })
+    }
 }
 
 extension Game {
