@@ -89,7 +89,7 @@ struct EnterScoreView: View {
                 CalcButton(text: "9", onTap: { self.addValue(digit: 9)})
             }
             LazyVGrid(columns: columns) {
-                CalcButton(text: "<", onTap: { self.deleteValue() })
+                CalcButton(text: "C", onTap: { self.clearScore() })
                 CalcButton(text: "0", onTap: { self.addValue(digit: 0)})
                 Button(action: {
                     if let addScore = self.addScore {
@@ -119,6 +119,10 @@ struct EnterScoreView: View {
     
     private func deleteValue () {
         score = score.removeDigit()
+    }
+    
+    private func clearScore() {
+        score = 0
     }
 }
 
