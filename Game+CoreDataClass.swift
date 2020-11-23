@@ -20,6 +20,17 @@ public class Game: NSManagedObject {
         return newGame
     }
     
+    static func createGameWithPlayers(context: NSManagedObjectContext, name: String, players: [Player]) -> Game {
+        let game = Game.createGame(context: context, name: name)
+
+        // Create player scores for each playexzr
+        players.forEach({ player in
+            PlayerScore.createPlayerScore(context: context, game: game, player: player)
+        })
+        
+        return game
+    }
+    
     static func gameByName(context: NSManagedObjectContext, name: String) -> Game? {
         let request: NSFetchRequest<Game> = Game.fetchRequest()
         request.fetchLimit = 1

@@ -38,4 +38,18 @@ public class Player: NSManagedObject {
     var wrappedCreated: Date {
         created ?? Date()
     }
+    
+    func update(context: NSManagedObjectContext, name: String, colour: String) {
+        self.name = name
+        self.colour = colour
+        
+        // refresh all scores and games for this player
+        self.scoresArray.forEach({ score in
+            context.refresh(score, mergeChanges: true)
+            
+            if let game = score.game {
+                context.refresh(game, mergeChanges: true)
+            }
+        })
+    }
 }

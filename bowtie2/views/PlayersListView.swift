@@ -80,17 +80,7 @@ struct PlayersListView: View {
         
         do {
             if let player = sheetState.editingPlayer {
-                player.name = name
-                player.colour = colour
-                
-                // refresh all scores and games for this player
-                player.scoresArray.forEach({ score in
-                    viewContext.refresh(score, mergeChanges: true)
-                    
-                    if score.game != nil {
-                        viewContext.refresh(score.game!, mergeChanges: true)
-                    }
-                })
+                player.update(context: viewContext, name: name, colour: colour)
             } else {
                 Player.createPlayer(context: viewContext, name: name, colour: colour)
             }

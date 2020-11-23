@@ -147,12 +147,7 @@ struct CreateGame: View {
                 .filter({ k in createData.addedPlayers[k] ?? false })
                 .map({ k in viewContext.object(with: playerLookup[k]!.objectID) as! Player })
             
-            let game = Game.createGame(context: viewContext, name: createData.name)
-
-            // Create player scores for each playexzr
-            playersToAdd.forEach({ player in
-                PlayerScore.createPlayerScore(context: viewContext, game: game, player: player)
-            })
+            Game.createGameWithPlayers(context: viewContext, name: createData.name, players: playersToAdd)
             
             try viewContext.save()
             
