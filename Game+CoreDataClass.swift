@@ -50,8 +50,6 @@ public class Game: NSManagedObject {
         
         let values = scoresArray.map({ ps in ps.currentScore })
         
-        print("values: \(values) uniques: \(values.uniques)")
-        
         if values.count != values.uniques.count {
             // There is a tie
             print("game is tie")

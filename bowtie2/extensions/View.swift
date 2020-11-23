@@ -14,4 +14,16 @@ extension View {
                                     endPoint: .bottomTrailing))
             .mask(self)
     }
+    
+    @ViewBuilder
+    func `if`<Transform: View>(
+        _ condition: Bool,
+        transform: (Self) -> Transform
+    ) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
 }

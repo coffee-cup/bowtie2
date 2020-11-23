@@ -18,8 +18,41 @@ struct CalcButton: View {
             Text(text)
                 .foregroundColor(.primary)
                 .font(.system(size: 22))
+                .padding(.vertical, 22)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .padding(.vertical, 22)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+struct ScoreView: View {
+    var score: Int
+    @Binding var isNegative: Bool
+    
+    var body: some View {
+        ZStack {
+            Text("\(score)")
+                .font(.system(size: 140, weight: .bold))
+                .padding(.vertical)
+                .gradientForeground(gradient: primaryGradient)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                .background(Color.yellow)
+                .padding(.leading, 70)
+            
+            HStack {
+                Button(action: {
+                    isNegative.toggle()
+                }) {
+                    Text("-")
+                        .font(.system(size: 140, weight: .bold))
+                        .if(isNegative) { $0.gradientForeground(gradient: primaryGradient) }
+                        .if(!isNegative) { $0.foregroundColor(Color(.tertiarySystemFill)) }
+                }
+                Spacer()
+            }
+        }
     }
 }
 
@@ -30,6 +63,7 @@ struct EnterScoreView: View {
     @ObservedObject var playerScore: PlayerScore
     
     @State var score: Int = 0
+    @State var isNegative = false
     let addScore: ((_ playerScore: PlayerScore, _ score: Int) -> ())?
     
     var columns: [GridItem] =
@@ -41,13 +75,7 @@ struct EnterScoreView: View {
                 .font(.callout)
                 .padding(.top, 32)
             
-            Text("\(score)")
-                .font(.system(size: 160, weight: .bold))
-                .padding(.vertical)
-                .gradientForeground(gradient: primaryGradient)
-                .lineLimit(1)
-                .minimumScaleFactor(0.5)
-                .frame(maxHeight: .infinity)
+            ScoreView(score: score, isNegative: $isNegative)
             
             LazyVGrid(columns: columns) {
                 CalcButton(text: "1", onTap: { self.addValue(digit: 1)})
@@ -65,7 +93,7 @@ struct EnterScoreView: View {
                 CalcButton(text: "0", onTap: { self.addValue(digit: 0)})
                 Button(action: {
                     if let addScore = self.addScore {
-                        addScore(playerScore, score)
+                        addScore(playerScore, (isNegative ? -1 : 1) * score)
                     }
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
