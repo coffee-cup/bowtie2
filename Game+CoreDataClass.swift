@@ -63,11 +63,15 @@ public class Game: NSManagedObject {
         
         if values.count != values.uniques.count {
             // There is a tie
-            print("game is tie")
             return nil
         }
         
         return scoresArray[0].player
+    }
+    
+    public var maxNumberOfEntries: Int {
+        let entryCount = scoresArray.map({ playerScore in playerScore.history?.count ?? 0 })
+        return entryCount.max() ?? 0
     }
 }
 

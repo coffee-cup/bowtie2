@@ -12,6 +12,7 @@ struct PlayerScoreCard: View {
     var colour: String
     var score: Int
     var numTurns: Int
+    var maxScoresGame: Int
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -34,12 +35,13 @@ struct PlayerScoreCard: View {
                 
                 VStack(alignment: .leading) {
                     Text("\(numTurns)")
-                        .foregroundColor(Color(hex: colour))
                         .font(.caption)
                         .frame(minWidth: 16, minHeight: 16)
                         .padding(.all, 4)
-                        .background(Color.white.opacity(1))
+                        .foregroundColor(Color.white)
+                        .background(numTurns < maxScoresGame ? Color.red : Color(hex: colour).lighter(by: 30))
                         .cornerRadius(20)
+                        .shadow(color: Color.black.opacity(numTurns < maxScoresGame ? 0.2 : 0), radius: 5)
                     
                     Spacer()
                 }
@@ -56,7 +58,8 @@ struct PlayerScoreCard_Previews: PreviewProvider {
         PlayerScoreCard(name: "Jake",
                         colour: "FF00FF",
                         score: 100,
-                        numTurns: 1)
+                        numTurns: 1,
+                        maxScoresGame: 1)
             .padding(.horizontal)
     }
 }

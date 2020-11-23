@@ -18,7 +18,11 @@ struct GameView: View {
     var body: some View {
         ScrollView {
             ForEach(game.scoresArray, id: \.self) { score in
-                PlayerScoreCard(name: score.player!.wrappedName, colour: score.player!.wrappedColor, score: score.currentScore, numTurns: score.history!.count)
+                PlayerScoreCard(name: score.player!.wrappedName,
+                                colour: score.player!.wrappedColor,
+                                score: score.currentScore,
+                                numTurns: score.history!.count,
+                                maxScoresGame: game.maxNumberOfEntries)
                     .onTapGesture(count: 1, perform: {
                         self.addingScore = score
                     })
