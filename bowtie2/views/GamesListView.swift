@@ -28,6 +28,15 @@ struct GamesListView: View {
                         }
                         .contextMenu {
                             Button(action: {
+                                self.duplicateGame(game: game)
+                            }) {
+                                HStack {
+                                    Text("Duplicate Game")
+                                    Image(systemName: "doc.on.doc")
+                                }
+                            }
+                            
+                            Button(action: {
                                 self.deleteGame(game: game)
                             }) {
                                 HStack {
@@ -35,6 +44,8 @@ struct GamesListView: View {
                                     Image(systemName: "trash")
                                 }
                             }
+                            
+                            
                         }
                     }
                 }
@@ -55,8 +66,16 @@ struct GamesListView: View {
     }
     
     private func deleteGame(game: Game) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             viewContext.delete(game)
+            
+            try! viewContext.save()
+        }
+    }
+    
+    private func duplicateGame(game: Game) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            Game.duplicateGame(context: viewContext, gameToDuplicate: game)
             
             try! viewContext.save()
         }

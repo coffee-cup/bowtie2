@@ -31,6 +31,12 @@ public class Game: NSManagedObject {
         return game
     }
     
+    static func duplicateGame(context: NSManagedObjectContext, gameToDuplicate: Game) -> Game {
+        let players = gameToDuplicate.scoresArray.map({ score in score.player }).filter({ player in player != nil }) as! [Player]
+        let game = Game.createGameWithPlayers(context: context, name: gameToDuplicate.wrappedName, players: players)
+        return game
+    }
+    
     static func gameByName(context: NSManagedObjectContext, name: String) -> Game? {
         let request: NSFetchRequest<Game> = Game.fetchRequest()
         request.fetchLimit = 1
