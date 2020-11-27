@@ -25,6 +25,7 @@ public class Game: NSManagedObject {
 
         // Create player scores for each playexzr
         players.forEach({ player in
+            context.refresh(player, mergeChanges: true)
             PlayerScore.createPlayerScore(context: context, game: game, player: player)
         })
         
