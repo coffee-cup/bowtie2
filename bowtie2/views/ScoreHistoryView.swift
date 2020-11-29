@@ -19,7 +19,7 @@ struct ScoreHistoryView: View {
                 .padding(.top, 32)
             
             List {
-                ForEach(playerScore.wrappedHistory, id: \.self) { item in
+                ForEach(playerScore.wrappedHistory.reversed(), id: \.self) { item in
                     Text("\(item)")
                 }
                 .onDelete(perform: deleteItems)
@@ -30,7 +30,7 @@ struct ScoreHistoryView: View {
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             var history = playerScore.wrappedHistory
-            offsets.forEach { history.remove(at: $0) }
+            offsets.forEach { history.remove(at: history.count - 1 - $0) }
             playerScore.history = history
             
             if let game = playerScore.game {
