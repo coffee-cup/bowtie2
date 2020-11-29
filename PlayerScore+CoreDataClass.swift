@@ -41,4 +41,8 @@ public class PlayerScore: NSManagedObject {
         
         return history.reduce(0, { x, y in x + y })
     }
+
+    var wrappedHistory: [Int] {
+        self.history ?? []
+    }
 }

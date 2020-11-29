@@ -7,13 +7,31 @@
 
 import SwiftUI
 
+class GameViewSheetState: Identifiable {
+    var addingScore: PlayerScore?
+    var playerHistory: PlayerScore?
+
+    init(adding addingScore: PlayerScore?,
+         history playerHistory: PlayerScore?) {
+        self.addingScore = addingScore
+        self.playerHistory = playerHistory
+    }
+
+    static func addingScore(for player: PlayerScore) -> GameViewSheetState {
+        return GameViewSheetState.init(adding: player, history: nil)
+    }
+
+    static func viewHistory(for player: PlayerScore) -> GameViewSheetState {
+        return GameViewSheetState.init(adding: nil, history: player)
+    }
+}
+
 struct GameView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @ObservedObject var game: Game
-    
     @State private var addingScore: PlayerScore? = nil
-
+    @State private var sheetState: GameViewSheetState? = nil
     
     var body: some View {
         ScrollView {
@@ -23,19 +41,39 @@ struct GameView: View {
                                 score: score.currentScore,
                                 numTurns: score.history!.count,
                                 maxScoresGame: game.maxNumberOfEntries)
+                    .contextMenu {
+                        Button(action: {
+                            sheetState = GameViewSheetState.viewHistory(for: score)
+                        }) {
+                            HStack {
+                                Text("View History")
+                                Image(systemName: "archivebox")
+                            }
+                        }
+                    }
                     .onTapGesture(count: 1, perform: {
-                        self.addingScore = score
+                        sheetState = GameViewSheetState.addingScore(for: score)
                     })
             }
             .padding(.horizontal)
         }
         .navigationBarTitle(game.wrappedName, displayMode: .large)
-        .sheet(item: $addingScore, onDismiss: {
-            self.addingScore = nil
-        }) { item in
-            EnterScoreView(playerScore: item, addScore: addScore)
-        }
+        .sheet(item: $sheetState, content: presentSheet)
+//        .sheet(item: $addingScore, onDismiss: {
+//            self.addingScore = nil
+//        }) { item in
+//            EnterScoreView(playerScore: item, addScore: addScore)
+//        }
     }
+    
+    @ViewBuilder
+      private func presentSheet(for sheet: GameViewSheetState) -> some View {
+        if let addingScore = sheet.addingScore {
+            EnterScoreView(playerScore: addingScore, addScore: addScore)
+        } else if let playerHistory = sheet.playerHistory {
+            ScoreHistoryView(playerScore: playerHistory)
+        }
+      }
     
     private func addScore(playerScore: PlayerScore, score: Int) {
         do {

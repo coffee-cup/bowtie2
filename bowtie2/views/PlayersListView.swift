@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-class SheetState: Identifiable {
+class PlayersListSheetState: Identifiable {
     var editingPlayer: Player?
     var isCreating: Bool
     
@@ -27,7 +27,7 @@ struct PlayersListView: View {
         animation: .default)
     private var players: FetchedResults<Player>
     
-    @State private var sheetState: SheetState? = nil
+    @State private var sheetState: PlayersListSheetState? = nil
     
     var columns: [GridItem] =
         Array(repeating: .init(.flexible()), count: 2)
@@ -50,7 +50,7 @@ struct PlayersListView: View {
                                 }
                             }
                             .onTapGesture(count: 1, perform: {
-                                self.sheetState = SheetState(editing: player)
+                                self.sheetState = PlayersListSheetState(editing: player)
                             })
                     }
                 }
@@ -60,7 +60,7 @@ struct PlayersListView: View {
             .navigationTitle("Players")
             .toolbar {
                 Button(action: {
-                    self.sheetState = SheetState(editing: nil)
+                    self.sheetState = PlayersListSheetState(editing: nil)
                 }) {
                     Label("Add Player", systemImage: "plus")
                 }
