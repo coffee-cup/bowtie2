@@ -34,7 +34,6 @@ struct PlayersListView: View {
     
     var body: some View {
         NavigationView {
-            
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(players, id: \.self) { player in
@@ -54,9 +53,8 @@ struct PlayersListView: View {
                             })
                     }
                 }
-                .padding(35)
             }
-            .padding(-20)
+            .padding(.horizontal)
             .navigationTitle("Players")
             .toolbar {
                 Button(action: {
