@@ -9,6 +9,23 @@
 import Foundation
 import CoreData
 
+public enum SortOrder: Int, Equatable, CaseIterable {
+    case name = 0
+    case scoreHighest = 1
+    case scoreLowest = 2
+    
+    var stringValue: String {
+        switch self {
+        case .name:
+            return "Name"
+        case .scoreHighest:
+            return "Highest"
+        case.scoreLowest:
+            return "Lowest"
+        }
+    }
+}
+
 @objc(Game)
 public class Game: NSManagedObject {
     static func createGame(context: NSManagedObjectContext, name: String) -> Game {
@@ -16,6 +33,7 @@ public class Game: NSManagedObject {
         newGame.name = name
         newGame.created = Date()
         newGame.playerScores = NSSet()
+        newGame.sortOrder = Int16(SortOrder.scoreHighest.rawValue)
         
         return newGame
     }
@@ -54,10 +72,25 @@ public class Game: NSManagedObject {
         return created ?? Date()
     }
     
+    public var wrappedSortOrder: SortOrder {
+        return SortOrder(rawValue: Int(sortOrder))!
+    }
+    
     public var scoresArray: [PlayerScore] {
         let set = playerScores as? Set<PlayerScore> ?? []
         return set.sorted {
             $0.currentScore > $1.currentScore
+        }
+    }
+    
+    public var sortedScoresArray: [PlayerScore] {
+        switch wrappedSortOrder {
+        case .name:
+            return scoresArray.sorted { ($0.player?.wrappedName ?? "") < ($1.player?.wrappedName ?? "") }
+        case .scoreHighest:
+            return scoresArray
+        case.scoreLowest:
+            return scoresArray.reversed()
         }
     }
     

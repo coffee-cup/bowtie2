@@ -35,7 +35,7 @@ struct GameView: View {
     
     var body: some View {
         ScrollView {
-            ForEach(game.scoresArray, id: \.self) { score in
+            ForEach(game.sortedScoresArray, id: \.self) { score in
                 PlayerScoreCard(name: score.player!.wrappedName,
                                 colour: score.player!.wrappedColor,
                                 score: score.currentScore,
@@ -58,12 +58,14 @@ struct GameView: View {
             .padding(.horizontal)
         }
         .navigationBarTitle(game.wrappedName, displayMode: .large)
+        .toolbar {
+            NavigationLink(
+                destination: GameSettings(game: game),
+                label: {
+                    Label("Game settings", systemImage: "gearshape")
+                })
+        }
         .sheet(item: $sheetState, content: presentSheet)
-//        .sheet(item: $addingScore, onDismiss: {
-//            self.addingScore = nil
-//        }) { item in
-//            EnterScoreView(playerScore: item, addScore: addScore)
-//        }
     }
     
     @ViewBuilder

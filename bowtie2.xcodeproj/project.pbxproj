@@ -12,6 +12,8 @@
 		B72DC11C256AEB5E00DF28F1 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC11B256AEB5E00DF28F1 /* Colours.swift */; };
 		B72DC121256AF1C000DF28F1 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC120256AF1C000DF28F1 /* View.swift */; };
 		B752066B25737C7C00555390 /* ScoreHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B752066A25737C7C00555390 /* ScoreHistoryView.swift */; };
+		B75206702574BD5E00555390 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B752066F2574BD5E00555390 /* GameSettings.swift */; };
+		B75206752574C40C00555390 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75206742574C40C00555390 /* Binding.swift */; };
 		B781BA002560F5E0008EB298 /* bowtie2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781B9FF2560F5E0008EB298 /* bowtie2App.swift */; };
 		B781BA022560F5E0008EB298 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA012560F5E0008EB298 /* ContentView.swift */; };
 		B781BA042560F5E2008EB298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B781BA032560F5E2008EB298 /* Assets.xcassets */; };
@@ -62,6 +64,8 @@
 		B72DC11B256AEB5E00DF28F1 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		B72DC120256AF1C000DF28F1 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		B752066A25737C7C00555390 /* ScoreHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreHistoryView.swift; sourceTree = "<group>"; };
+		B752066F2574BD5E00555390 /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
+		B75206742574C40C00555390 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		B781B9FC2560F5E0008EB298 /* bowtie2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bowtie2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B781B9FF2560F5E0008EB298 /* bowtie2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bowtie2App.swift; sourceTree = "<group>"; };
 		B781BA012560F5E0008EB298 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 				B781BA4C25611521008EB298 /* PlayersListView.swift */,
 				B72DC111256A68F100DF28F1 /* EnterScoreView.swift */,
 				B752066A25737C7C00555390 /* ScoreHistoryView.swift */,
+				B752066F2574BD5E00555390 /* GameSettings.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 				B7F82ABB256258EA00C7B221 /* Array.swift */,
 				B72DC116256A776100DF28F1 /* Number.swift */,
 				B72DC120256AF1C000DF28F1 /* View.swift */,
+				B75206742574C40C00555390 /* Binding.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -368,7 +374,9 @@
 			files = (
 				B781BA4825611518008EB298 /* GamesListView.swift in Sources */,
 				B752066B25737C7C00555390 /* ScoreHistoryView.swift in Sources */,
+				B75206702574BD5E00555390 /* GameSettings.swift in Sources */,
 				B7F82AC125625A8C00C7B221 /* CreateGame.swift in Sources */,
+				B75206752574C40C00555390 /* Binding.swift in Sources */,
 				B781BA0C2560F5E2008EB298 /* bowtie2.xcdatamodeld in Sources */,
 				B781BA092560F5E2008EB298 /* Persistence.swift in Sources */,
 				B7F82ABC256258EA00C7B221 /* Array.swift in Sources */,
