@@ -61,15 +61,21 @@ public class Game: NSManagedObject {
         }
     }
     
+    public var isTie: Bool {
+        guard let maxScore = scoresArray.map({ p in p.currentScore }).max() else {
+            return true
+        }
+        
+        let numPlayersWithMax = scoresArray.filter { p in p.currentScore == maxScore }
+        return numPlayersWithMax.count != 1
+    }
+    
     public var winner: Player? {
         if scoresArray.count <= 0 {
             return nil
         }
         
-        let values = scoresArray.map({ ps in ps.currentScore })
-        
-        if values.count != values.uniques.count {
-            // There is a tie
+        if isTie {
             return nil
         }
         

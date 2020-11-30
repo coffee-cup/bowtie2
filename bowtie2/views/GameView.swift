@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class GameViewSheetState: Identifiable {
+fileprivate class GameViewSheetState: Identifiable {
     var addingScore: PlayerScore?
     var playerHistory: PlayerScore?
 
