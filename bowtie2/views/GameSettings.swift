@@ -22,7 +22,7 @@ struct GameSettings: View {
                     }
                 }
                 
-                Section(header: Text("Sort Players")) {
+                Section(header: Text("Winner")) {
                     Picker(selection: Binding(get: {
                         return selection
                     }, set: { value in

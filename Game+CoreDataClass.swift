@@ -10,18 +10,15 @@ import Foundation
 import CoreData
 
 public enum SortOrder: Int, Equatable, CaseIterable {
-    case name = 0
-    case scoreHighest = 1
-    case scoreLowest = 2
+    case scoreHighest = 0
+    case scoreLowest = 1
     
     var stringValue: String {
         switch self {
-        case .name:
-            return "Name"
         case .scoreHighest:
-            return "Highest"
+            return "Has Most Points"
         case.scoreLowest:
-            return "Lowest"
+            return "Has Fewest Points"
         }
     }
 }
@@ -73,7 +70,7 @@ public class Game: NSManagedObject {
     }
     
     public var wrappedSortOrder: SortOrder {
-        return SortOrder(rawValue: Int(sortOrder))!
+        return SortOrder(rawValue: Int(sortOrder)) ?? .scoreHighest
     }
     
     public var scoresArray: [PlayerScore] {
@@ -85,8 +82,6 @@ public class Game: NSManagedObject {
     
     public var sortedScoresArray: [PlayerScore] {
         switch wrappedSortOrder {
-        case .name:
-            return scoresArray.sorted { ($0.player?.wrappedName ?? "") < ($1.player?.wrappedName ?? "") }
         case .scoreHighest:
             return scoresArray
         case.scoreLowest:
@@ -112,7 +107,7 @@ public class Game: NSManagedObject {
             return nil
         }
         
-        return scoresArray[0].player
+        return sortedScoresArray[0].player
     }
     
     public var maxNumberOfEntries: Int {
