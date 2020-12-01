@@ -34,6 +34,7 @@
 		B7C130FF25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C130FB25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift */; };
 		B7C1310125611D4D00EE6601 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */; };
 		B7C1311125611FBB00EE6601 /* Game+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */; };
+		B7CCE949257630BE00C3129B /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CCE948257630BE00C3129B /* Indicator.swift */; };
 		B7D339082569AD6F00ADBEFF /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D339072569AD6F00ADBEFF /* GameView.swift */; };
 		B7D3390D2569DAB300ADBEFF /* PlayerScoreCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3390C2569DAB300ADBEFF /* PlayerScoreCard.swift */; };
 		B7F82AB72562406600C7B221 /* GameCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F82AB62562406600C7B221 /* GameCard.swift */; };
@@ -93,6 +94,7 @@
 		B7C130FB25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerScore+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B7CCE948257630BE00C3129B /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		B7D339072569AD6F00ADBEFF /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		B7D3390C2569DAB300ADBEFF /* PlayerScoreCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreCard.swift; sourceTree = "<group>"; };
 		B7F82AB62562406600C7B221 /* GameCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCard.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				B72DC111256A68F100DF28F1 /* EnterScoreView.swift */,
 				B752066A25737C7C00555390 /* ScoreHistoryView.swift */,
 				B752066F2574BD5E00555390 /* GameSettings.swift */,
+				B7CCE948257630BE00C3129B /* Indicator.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				B7D3390D2569DAB300ADBEFF /* PlayerScoreCard.swift in Sources */,
 				B7B2505B2561AC9800C82EC6 /* PlayerCard.swift in Sources */,
 				B781BA022560F5E0008EB298 /* ContentView.swift in Sources */,
+				B7CCE949257630BE00C3129B /* Indicator.swift in Sources */,
 				B7B250432561269B00C82EC6 /* Color.swift in Sources */,
 				B781BA40256114F4008EB298 /* AppView.swift in Sources */,
 				B72DC11C256AEB5E00DF28F1 /* Colours.swift in Sources */,
