@@ -40,31 +40,13 @@ extension Color {
         )
     }
     
-    var components: (red: CGFloat, green: CGFloat, blue: CGFloat, opacity: CGFloat) {
-        #if canImport(UIKit)
-        typealias NativeColor = UIColor
-        #elseif canImport(AppKit)
-        typealias NativeColor = NSColor
-        #endif
-        
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var o: CGFloat = 0
-        
-        guard NativeColor(self).getRed(&r, green: &g, blue: &b, alpha: &o) else {
-            // You can handle the failure here as you want
-            return (0, 0, 0, 0)
-        }
-        
-        return (r, g, b, o)
+    func toComponents() -> (red: CGFloat, green: CGFloat, blue: CGFloat, opacity: CGFloat) {
+        let components = UIColor(self).cgColor.components!
+        return (components[0], components[1], components[2], components[3])
     }
     
     func toHex(alpha: Bool = false) -> String {
-        let r = self.components.red
-        let g = self.components.green
-        let b = self.components.blue
-        let a = self.components.opacity
+        let (r, g, b, a) = self.toComponents()
         
         if alpha {
             return String(format: "#%02X%02X%02X%02X",
@@ -85,9 +67,10 @@ extension Color {
     }
     
     func adjust(by percentage: CGFloat = 30.0) -> Color {
-        return Color(red: min(Double(self.components.red + percentage/100), 1.0),
-                     green: min(Double(self.components.green + percentage/100), 1.0),
-                     blue: min(Double(self.components.blue + percentage/100), 1.0),
-                     opacity: Double(self.components.opacity))
+        let components = self.toComponents()
+        return Color(red: min(Double(components.red + percentage/100), 1.0),
+                     green: min(Double(components.green + percentage/100), 1.0),
+                     blue: min(Double(components.blue + percentage/100), 1.0),
+                     opacity: Double(components.opacity))
     }
 }
