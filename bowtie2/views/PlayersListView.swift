@@ -24,6 +24,7 @@ struct PlayersListView: View {
     @FetchRequest(
         entity: Player.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Player.created, ascending: true)],
+        predicate: NSPredicate(format: "hasBeenDeleted == %@", false),
         animation: .default)
     private var players: FetchedResults<Player>
     
@@ -92,7 +93,11 @@ struct PlayersListView: View {
     
     private func deletePlayer(player: Player) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7){
-            viewContext.delete(player)
+            if player.scoresArray.count == 0 {
+                viewContext.delete(player)
+            } else {
+                player.hasBeenDeleted = true
+            }
             
             try! viewContext.save()
         }

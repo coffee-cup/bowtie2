@@ -69,6 +69,17 @@ struct GamesListView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             viewContext.delete(game)
             
+            // delete any players that have already been deleted
+            game.scoresArray.forEach { playerScore in
+                guard let player = playerScore.player else {
+                    return
+                }
+                
+                if player.hasBeenDeleted {
+                    viewContext.delete(player)
+                }
+            }
+            
             try! viewContext.save()
         }
     }
