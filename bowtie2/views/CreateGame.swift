@@ -70,58 +70,60 @@ struct CreateGame: View {
     @State var isCreatingPlayer = false
     
     var body: some View {
-        NavigationView {
-            VStack(alignment: .leading, spacing: 20) {
-                VStack(alignment: .leading){
-                    Text("Game Name")
-                        .font(.caption)
-                        .foregroundColor(Color(.label))
-                    
-                    TextField("Game", text: $createData.name)
-                        .padding(.all)
-                        .background(Color(.tertiarySystemFill))
-                        .cornerRadius(4)
-                    
-                }
-                .padding()
-                
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("Who's Playing")
+        ModalView {
+            NavigationView {
+                VStack(alignment: .leading, spacing: 20) {
+                    VStack(alignment: .leading){
+                        Text("Game Name")
                             .font(.caption)
                             .foregroundColor(Color(.label))
                         
-                        Spacer()
+                        TextField("Game", text: $createData.name)
+                            .padding(.all)
+                            .background(Color(.tertiarySystemFill))
+                            .cornerRadius(4)
                         
-                        Button(action: {
-                            self.isCreatingPlayer.toggle()
-                        }, label: {
-                            Image(systemName: "plus")
-                        }).padding(.horizontal)
-                    }.padding(.horizontal)
-                    
-                    List {
-                        ForEach(players, id: \.self) { player in
-                            PlayerItem(colour: player.wrappedColor, name: player.wrappedName, isSelected: self.createData.getSelected(id: player.id))
-                        }
                     }
-                    .listStyle(PlainListStyle())
+                    .padding()
+                    
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("Who's Playing")
+                                .font(.caption)
+                                .foregroundColor(Color(.label))
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                self.isCreatingPlayer.toggle()
+                            }, label: {
+                                Image(systemName: "plus")
+                            }).padding(.horizontal)
+                        }.padding(.horizontal)
+                        
+                        List {
+                            ForEach(players, id: \.self) { player in
+                                PlayerItem(colour: player.wrappedColor, name: player.wrappedName, isSelected: self.createData.getSelected(id: player.id))
+                            }
+                        }
+                        .listStyle(PlainListStyle())
+                    }
+                    .padding(.vertical)
                 }
-                .padding(.vertical)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                .navigationBarItems(leading:
+                                        Button("Close") {
+                                            self.presentationMode.wrappedValue.dismiss()
+                                        },
+                                    trailing:
+                                        Button("Create") {
+                                            self.createGame()
+                                        }.disabled(createData.name == ""))
+                .sheet(isPresented: $isCreatingPlayer) {
+                    CreateEditPlayer(onPlayer: self.addPlayer, editingPlayer: nil)
+                }
+                .navigationTitle("Create Game")
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-            .navigationBarItems(leading:
-                                    Button("Close") {
-                                        self.presentationMode.wrappedValue.dismiss()
-                                    },
-                                trailing:
-                                    Button("Create") {
-                                        self.createGame()
-                                    }.disabled(createData.name == ""))
-            .sheet(isPresented: $isCreatingPlayer) {
-                CreateEditPlayer(onPlayer: self.addPlayer, editingPlayer: nil)
-            }
-            .navigationTitle("Create Game")
         }
     }
     
@@ -142,7 +144,7 @@ struct CreateGame: View {
         do {
             var playerLookup: [ObjectIdentifier:Player] = [:]
             players.forEach({ player in playerLookup[player.id] = player })
-                
+            
             let playersToAdd = self.createData.addedPlayers.keys
                 .filter({ k in createData.addedPlayers[k] ?? false })
                 .map({ k in viewContext.object(with: playerLookup[k]!.objectID) as! Player })

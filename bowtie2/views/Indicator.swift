@@ -15,7 +15,6 @@ struct Indicator: View {
                 width: 60,
                 height: 6
             )
-            .padding(.vertical)
     }
 }
 

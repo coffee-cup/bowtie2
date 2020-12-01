@@ -34,44 +34,46 @@ struct CreateEditPlayer: View {
     @State private var colour: Color = Color(hex: "FF1493")
     
     var body: some View {
-        NavigationView {
-            VStack {
+        ModalView {
+            NavigationView {
                 VStack {
-                    PlayerWheel(colour: $colour)
-                        .padding(.bottom)
+                    VStack {
+                        PlayerWheel(colour: $colour)
+                            .padding(.bottom)
+                        
+                        TextField("Player name", text: $name)
+                            .padding(.all)
+                            .multilineTextAlignment(.center)
+                            .font(.title2)
+                            .background(Color(.tertiarySystemFill))
+                            .cornerRadius(16)
+                    }
+                    .padding(.vertical, 20)
                     
-                    TextField("Player name", text: $name)
-                        .padding(.all)
-                        .multilineTextAlignment(.center)
-                        .font(.title2)
-                        .background(Color(.tertiarySystemFill))
-                        .cornerRadius(4)
+                    Spacer()
                 }
-                .padding(.vertical, 20)
-                
-                Spacer()
+                .padding(.horizontal)
+                .navigationTitle(title)
+                .navigationBarItems(leading:
+                                        Button("Close") {
+                                            self.presentationMode.wrappedValue.dismiss()
+                                        },
+                                    trailing:
+                                        Button(createText) {
+                                            if let onPlayer = onPlayer {
+                                                onPlayer(name, colour.toHex(alpha: false))
+                                            }
+                                            self.presentationMode.wrappedValue.dismiss()
+                                        }.disabled(name == ""))
+                .onAppear(perform: {
+                    if let player = editingPlayer {
+                        title = "Edit Player"
+                        createText = "Save"
+                        name = player.name!
+                        colour = Color(hex: player.colour!)
+                    }
+                })
             }
-            .padding(.horizontal)
-            .navigationTitle(title)
-            .navigationBarItems(leading:
-                                    Button("Close") {
-                                        self.presentationMode.wrappedValue.dismiss()
-                                    },
-                                trailing:
-                                    Button(createText) {
-                                        if let onPlayer = onPlayer {
-                                            onPlayer(name, colour.toHex(alpha: false))
-                                        }
-                                        self.presentationMode.wrappedValue.dismiss()
-                                    }.disabled(name == ""))
-            .onAppear(perform: {
-                if let player = editingPlayer {
-                    title = "Edit Player"
-                    createText = "Save"
-                    name = player.name!
-                    colour = Color(hex: player.colour!)
-                }
-            })
         }
     }
 }
@@ -79,6 +81,6 @@ struct CreateEditPlayer: View {
 struct CreateEditPlayer_Previews: PreviewProvider {
     static var previews: some View {
         CreateEditPlayer(onPlayer: nil, editingPlayer: nil)
-
+        
     }
 }
