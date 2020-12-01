@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-public enum SortOrder: Int, Equatable, CaseIterable {
+public enum WinnerSort: Int16, Equatable, CaseIterable {
     case scoreHighest = 0
     case scoreLowest = 1
     
@@ -30,7 +30,7 @@ public class Game: NSManagedObject {
         newGame.name = name
         newGame.created = Date()
         newGame.playerScores = NSSet()
-        newGame.sortOrder = Int16(SortOrder.scoreHighest.rawValue)
+        newGame.winnerSortValue = WinnerSort.scoreHighest.rawValue
         
         return newGame
     }
@@ -69,32 +69,39 @@ public class Game: NSManagedObject {
         return created ?? Date()
     }
     
-    public var wrappedSortOrder: SortOrder {
-        return SortOrder(rawValue: Int(sortOrder)) ?? .scoreHighest
+    public var winnerSort: WinnerSort {
+        get {
+            return WinnerSort(rawValue: winnerSortValue) ?? .scoreHighest
+        }
+        set {
+            self.winnerSortValue = newValue.rawValue
+            print("VALUE \(newValue.rawValue)")
+        }
     }
     
-    public var scoresArray: [PlayerScore] {
+    public var sortedScoresArray: [PlayerScore] {
         let set = playerScores as? Set<PlayerScore> ?? []
         return set.sorted {
             $0.currentScore > $1.currentScore
         }
     }
     
-    public var sortedScoresArray: [PlayerScore] {
-        switch wrappedSortOrder {
+    public var scoresArray: [PlayerScore] {
+        switch winnerSort {
         case .scoreHighest:
-            return scoresArray
+            return sortedScoresArray
         case.scoreLowest:
-            return scoresArray.reversed()
+            return sortedScoresArray.reversed()
         }
     }
     
     public var isTie: Bool {
-        guard let maxScore = scoresArray.map({ p in p.currentScore }).max() else {
+        let scoreValues = scoresArray.map { p in p.currentScore }
+        guard let topScore = winnerSort == .scoreHighest ? scoreValues.max() : scoreValues.min() else {
             return true
         }
         
-        let numPlayersWithMax = scoresArray.filter { p in p.currentScore == maxScore }
+        let numPlayersWithMax = scoresArray.filter { p in p.currentScore == topScore }
         return numPlayersWithMax.count != 1
     }
     
@@ -107,7 +114,7 @@ public class Game: NSManagedObject {
             return nil
         }
         
-        return sortedScoresArray[0].player
+        return scoresArray[0].player
     }
     
     public var maxNumberOfEntries: Int {

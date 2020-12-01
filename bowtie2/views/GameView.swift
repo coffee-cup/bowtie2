@@ -35,7 +35,7 @@ struct GameView: View {
     
     var body: some View {
         ScrollView {
-            ForEach(game.sortedScoresArray, id: \.self) { score in
+            ForEach(game.scoresArray, id: \.self) { score in
                 PlayerScoreCard(name: score.player!.wrappedName,
                                 colour: score.player!.wrappedColor,
                                 score: score.currentScore,

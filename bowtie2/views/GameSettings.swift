@@ -11,35 +11,31 @@ struct GameSettings: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @ObservedObject var game: Game
-    @State var selection: Int = 2
     
     var body: some View {
         VStack {
             Form {
-                Section(header: Text("Game Name")){
-                    TextField("Name", text: Binding($game.name, "")) { _ in } onCommit: {
-                        print("COMMIT")
-                    }
+                Section(header: Text("Game Name")) {
+                    TextField("Name", text: Binding($game.name, ""))
                 }
                 
                 Section(header: Text("Winner")) {
-                    Picker(selection: Binding(get: {
-                        return selection
-                    }, set: { value in
-                        self.selection = value
-                        game.sortOrder = Int16(value)
-                    }), label: Text("Player sort order")) {
-                        ForEach(SortOrder.allCases, id: \.self.rawValue) { value in
-                            Text(value.stringValue).tag(value.rawValue)
+                    Picker(selection:
+                            Binding(
+                                get: { game.winnerSort },
+                                set: { value in
+                                    self.game.winnerSort = value
+                                }
+                            ),
+                           label: Text("Winner sort order")) {
+                        ForEach(WinnerSort.allCases, id: \.self.rawValue) { value in
+                            Text(value.stringValue).tag(value)
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
                 }
             }
             .navigationTitle("Game Settings")
-        }
-        .onAppear {
-            self.selection = Int(game.sortOrder)
         }
         .onDisappear {
             self.saveGame()
@@ -48,6 +44,7 @@ struct GameSettings: View {
     
     private func saveGame() {
         do {
+
             try viewContext.save()
         } catch {
             let nsError = error as NSError

@@ -3,7 +3,7 @@
     <entity name="Game" representedClassName="Game" syncable="YES" codeGenerationType="category">
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String" defaultValueString="&lt;empty&gt;"/>
-        <attribute name="sortOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="winnerSortValue" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="playerScores" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlayerScore" inverseName="game" inverseEntity="PlayerScore"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
