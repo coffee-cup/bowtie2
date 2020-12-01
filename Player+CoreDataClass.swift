@@ -11,6 +11,9 @@ import CoreData
 
 @objc(Player)
 public class Player: NSManagedObject {
+}
+
+extension Player {
     static func createPlayer(context: NSManagedObjectContext, name: String, colour: String) -> Player {
         let newPlayer = Player(context: context)
         newPlayer.name = name

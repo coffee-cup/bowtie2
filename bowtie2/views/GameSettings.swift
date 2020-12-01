@@ -44,7 +44,6 @@ struct GameSettings: View {
     
     private func saveGame() {
         do {
-
             try viewContext.save()
         } catch {
             let nsError = error as NSError

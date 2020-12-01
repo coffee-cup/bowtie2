@@ -25,6 +25,9 @@ public enum WinnerSort: Int16, Equatable, CaseIterable {
 
 @objc(Game)
 public class Game: NSManagedObject {
+}
+
+extension Game {
     static func createGame(context: NSManagedObjectContext, name: String) -> Game {
         let newGame = Game(context: context)
         newGame.name = name
@@ -125,8 +128,4 @@ public class Game: NSManagedObject {
     public var colourList: [String] {
         return scoresArray.map({ score in score.player?.wrappedColor ?? "000000" })
     }
-}
-
-extension Game {
-    
 }
