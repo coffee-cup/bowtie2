@@ -7,4 +7,5 @@
 
 import SwiftUI
 
-let primaryGradient = Gradient(colors: [ Color(hex: "#ff6a00"), Color(hex: "#ee0979")])
+//let primaryGradient = Gradient(colors: [ Color(hex: "#ff6a00"), Color(hex: "#ee0979")])
+let primaryGradient = Gradient(colors: [ Color(hex: "#FFA07A"), Color(hex: "#FF1493")])
