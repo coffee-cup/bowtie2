@@ -22,7 +22,7 @@ struct PlayerScoreCard: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
                 .padding(.all)
-                .frame(width: 120, height: 100)
+                .frame(width: 120, height: 80)
                 .background(Color(hex: colour))
             
             HStack {
@@ -49,7 +49,7 @@ struct PlayerScoreCard: View {
             }
         }
         .background(Color(.tertiarySystemGroupedBackground))
-        .frame(height: 100)
+        .frame(height: 80)
         .cornerRadius(10)
     }
     

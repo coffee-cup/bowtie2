@@ -60,7 +60,7 @@ struct GameView: View {
             if game.maxNumberOfEntries >= 2 {
                 GameGraph(game: game)
                     .frame(maxWidth: .infinity, idealHeight: 200)
-                    .padding(.vertical)
+                    .padding(.all)
             } else {
                 EmptyView()
             }
