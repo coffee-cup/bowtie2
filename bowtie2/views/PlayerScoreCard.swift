@@ -38,7 +38,7 @@ struct PlayerScoreCard: View {
                         .font(.caption)
                         .frame(minWidth: 16, minHeight: 16)
                         .padding(.all, 4)
-                        .foregroundColor(Color(.secondaryLabel))
+                        .foregroundColor(numTurns < maxScoresGame ? Color.white : Color(.secondaryLabel))
                         .background(numTurns < maxScoresGame ? Color.red : Color(.tertiarySystemGroupedBackground))
                         .cornerRadius(20)
                         .shadow(color: Color.black.opacity(numTurns < maxScoresGame ? 0.2 : 0), radius: 5)
