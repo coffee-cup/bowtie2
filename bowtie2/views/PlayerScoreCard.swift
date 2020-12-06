@@ -15,42 +15,81 @@ struct PlayerScoreCard: View {
     var maxScoresGame: Int
     
     var body: some View {
-        ZStack(alignment: .leading) {
-            Color(hex: colour)
+        HStack(spacing: 20) {
+            Text("\(score)")
+                .foregroundColor(.white)
+                .font(.system(size: 48, weight: .bold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+                .padding(.all)
+                .frame(width: 150, height: 100)
+                .background(Color(hex: colour))
             
             HStack {
-                VStack(alignment: .leading) {
-                    Spacer()
-                    Text("\(score)")
-                        .font(.system(size: 48, weight: .bold))
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.center)
-                    
-                    Text(name)
-                        .foregroundColor(.white)
-                        .font(.callout)
-                }.frame(maxHeight: .infinity)
+                Text(name)
+                    .foregroundColor(.primary)
+                    .font(.title).fontWeight(.bold)
+                    .padding(.bottom, 4)
                 
                 Spacer()
                 
-                VStack(alignment: .leading) {
+                VStack(spacing: 0) {
                     Text("\(numTurns)")
                         .font(.caption)
                         .frame(minWidth: 16, minHeight: 16)
                         .padding(.all, 4)
-                        .foregroundColor(Color.white)
-                        .background(numTurns < maxScoresGame ? Color.red : Color(hex: colour).darker(by: 15))
+                        .foregroundColor(Color(.secondaryLabel))
+                        .background(numTurns < maxScoresGame ? Color.red : Color(.tertiarySystemGroupedBackground))
                         .cornerRadius(20)
                         .shadow(color: Color.black.opacity(numTurns < maxScoresGame ? 0.2 : 0), radius: 5)
                     
                     Spacer()
                 }
-            }.padding(.all)
+                .padding(.all, 8)
+            }
         }
-        .frame(height: 120)
-        .cornerRadius(24)
-//        .shadow(color: Color(hex: colour), radius: 4)
+        .background(Color(.tertiarySystemGroupedBackground))
+        .frame(height: 100)
+        .cornerRadius(10)
     }
+    
+//    var body: some View {
+//        ZStack(alignment: .leading) {
+//            Color(hex: colour)
+//
+//            HStack {
+//                VStack(alignment: .leading) {
+//                    Spacer()
+//                    Text("\(score)")
+//                        .font(.system(size: 48, weight: .bold))
+//                        .foregroundColor(.white)
+//                        .multilineTextAlignment(.center)
+//
+//                    Text(name)
+//                        .foregroundColor(.white)
+//                        .font(.callout)
+//                }.frame(maxHeight: .infinity)
+//
+//                Spacer()
+//
+//                VStack(alignment: .leading) {
+//                    Text("\(numTurns)")
+//                        .font(.caption)
+//                        .frame(minWidth: 16, minHeight: 16)
+//                        .padding(.all, 4)
+//                        .foregroundColor(Color.white)
+//                        .background(numTurns < maxScoresGame ? Color.red : Color(hex: colour).darker(by: 15))
+//                        .cornerRadius(20)
+//                        .shadow(color: Color.black.opacity(numTurns < maxScoresGame ? 0.2 : 0), radius: 5)
+//
+//                    Spacer()
+//                }
+//            }.padding(.all)
+//        }
+//        .frame(height: 120)
+//        .cornerRadius(24)
+////        .shadow(color: Color(hex: colour), radius: 4)
+//    }
 }
 
 struct PlayerScoreCard_Previews: PreviewProvider {

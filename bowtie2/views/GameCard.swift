@@ -46,7 +46,6 @@ struct GameCard: View {
         }
         .background(Color(.tertiarySystemGroupedBackground))
         .frame(height: 100)
-        .ignoresSafeArea(edges: .all)
         .cornerRadius(10)
     }
     
