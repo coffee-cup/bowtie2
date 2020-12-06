@@ -10,17 +10,17 @@ import SwiftUI
 fileprivate class GameViewSheetState: Identifiable {
     var addingScore: PlayerScore?
     var playerHistory: PlayerScore?
-
+    
     init(adding addingScore: PlayerScore?,
          history playerHistory: PlayerScore?) {
         self.addingScore = addingScore
         self.playerHistory = playerHistory
     }
-
+    
     static func addingScore(for player: PlayerScore) -> GameViewSheetState {
         return GameViewSheetState.init(adding: player, history: nil)
     }
-
+    
     static func viewHistory(for player: PlayerScore) -> GameViewSheetState {
         return GameViewSheetState.init(adding: nil, history: player)
     }
@@ -57,9 +57,13 @@ struct GameView: View {
             }
             .padding(.horizontal)
             
-            GameGraph(game: game)
-                .frame(maxWidth: .infinity, idealHeight: 200)
-                .padding(.vertical)
+            if game.maxNumberOfEntries >= 2 {
+                GameGraph(game: game)
+                    .frame(maxWidth: .infinity, idealHeight: 200)
+                    .padding(.vertical)
+            } else {
+                EmptyView()
+            }
         }
         .navigationBarTitle(game.wrappedName, displayMode: .large)
         .toolbar {
@@ -73,13 +77,13 @@ struct GameView: View {
     }
     
     @ViewBuilder
-      private func presentSheet(for sheet: GameViewSheetState) -> some View {
+    private func presentSheet(for sheet: GameViewSheetState) -> some View {
         if let addingScore = sheet.addingScore {
             EnterScoreView(playerScore: addingScore, addScore: addScore)
         } else if let playerHistory = sheet.playerHistory {
             ScoreHistoryView(playerScore: playerHistory)
         }
-      }
+    }
     
     private func addScore(playerScore: PlayerScore, score: Int) {
         do {
