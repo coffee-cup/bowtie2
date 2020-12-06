@@ -16,7 +16,7 @@ struct GameSettings: View {
         VStack {
             Form {
                 Section(header: Text("Game Name")) {
-                    TextField("Name", text: Binding($game.name, ""))
+                    TextField("Name", text: Binding($game.name, ""), onCommit: {})
                 }
                 
                 Section(header: Text("Winner")) {

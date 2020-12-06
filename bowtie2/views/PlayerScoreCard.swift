@@ -22,7 +22,7 @@ struct PlayerScoreCard: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
                 .padding(.all)
-                .frame(width: 150, height: 100)
+                .frame(width: 120, height: 100)
                 .background(Color(hex: colour))
             
             HStack {

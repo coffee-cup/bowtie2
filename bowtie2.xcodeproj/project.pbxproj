@@ -14,6 +14,8 @@
 		B752066B25737C7C00555390 /* ScoreHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B752066A25737C7C00555390 /* ScoreHistoryView.swift */; };
 		B75206702574BD5E00555390 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B752066F2574BD5E00555390 /* GameSettings.swift */; };
 		B75206752574C40C00555390 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75206742574C40C00555390 /* Binding.swift */; };
+		B7659F85257CB85E00CA139E /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7659F84257CB85E00CA139E /* GraphView.swift */; };
+		B7659F8A257CC22900CA139E /* GameGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7659F89257CC22900CA139E /* GameGraph.swift */; };
 		B781BA002560F5E0008EB298 /* bowtie2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781B9FF2560F5E0008EB298 /* bowtie2App.swift */; };
 		B781BA022560F5E0008EB298 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA012560F5E0008EB298 /* ContentView.swift */; };
 		B781BA042560F5E2008EB298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B781BA032560F5E2008EB298 /* Assets.xcassets */; };
@@ -68,6 +70,8 @@
 		B752066A25737C7C00555390 /* ScoreHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreHistoryView.swift; sourceTree = "<group>"; };
 		B752066F2574BD5E00555390 /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		B75206742574C40C00555390 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
+		B7659F84257CB85E00CA139E /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		B7659F89257CC22900CA139E /* GameGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGraph.swift; sourceTree = "<group>"; };
 		B781B9FC2560F5E0008EB298 /* bowtie2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bowtie2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B781B9FF2560F5E0008EB298 /* bowtie2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bowtie2App.swift; sourceTree = "<group>"; };
 		B781BA012560F5E0008EB298 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				B752066F2574BD5E00555390 /* GameSettings.swift */,
 				B7CCE948257630BE00C3129B /* Indicator.swift */,
 				B7CCE94D25763B2B00C3129B /* ModalView.swift */,
+				B7659F84257CB85E00CA139E /* GraphView.swift */,
+				B7659F89257CC22900CA139E /* GameGraph.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -383,6 +389,8 @@
 				B75206702574BD5E00555390 /* GameSettings.swift in Sources */,
 				B7F82AC125625A8C00C7B221 /* CreateGame.swift in Sources */,
 				B75206752574C40C00555390 /* Binding.swift in Sources */,
+				B7659F85257CB85E00CA139E /* GraphView.swift in Sources */,
+				B7659F8A257CC22900CA139E /* GameGraph.swift in Sources */,
 				B781BA0C2560F5E2008EB298 /* bowtie2.xcdatamodeld in Sources */,
 				B781BA092560F5E2008EB298 /* Persistence.swift in Sources */,
 				B7F82ABC256258EA00C7B221 /* Array.swift in Sources */,

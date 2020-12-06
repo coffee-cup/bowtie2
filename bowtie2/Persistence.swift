@@ -24,18 +24,18 @@ struct PersistenceController {
         let mum = Player.createPlayer(context: viewContext, name: "Mum", colour: "4169E1")
         let dad = Player.createPlayer(context: viewContext, name: "Dad", colour: "5216ff")
         
-        let g1 = Game.createGame(context: viewContext, name: "🦃 3000")
-        PlayerScore.createPlayerScore(context: viewContext, game: g1, player: jake, history: [-1])
-        PlayerScore.createPlayerScore(context: viewContext, game: g1, player: dad, history: [2])
+        let g1 = Game.createGame(context: viewContext, name: "3000")
+        PlayerScore.createPlayerScore(context: viewContext, game: g1, player: jake, history: [250, 500, -20, 750])
+        PlayerScore.createPlayerScore(context: viewContext, game: g1, player: dad, history: [300, 450, 800, -300])
         
         let g2 = Game.createGame(context: viewContext, name: "🎄 XMas 7s")
         PlayerScore.createPlayerScore(context: viewContext, game: g2, player: jake, history: [-1])
         PlayerScore.createPlayerScore(context: viewContext, game: g2, player: aleesha, history: [1])
         
         let g3 = Game.createGame(context: viewContext, name: "Blitz")
-        PlayerScore.createPlayerScore(context: viewContext, game: g3, player: jake, history: [1])
-        PlayerScore.createPlayerScore(context: viewContext, game: g3, player: aleesha, history: [2])
-        PlayerScore.createPlayerScore(context: viewContext, game: g3, player: gab, history: [30])
+        PlayerScore.createPlayerScore(context: viewContext, game: g3, player: jake, history: [1, 4])
+        PlayerScore.createPlayerScore(context: viewContext, game: g3, player: aleesha, history: [2, 9])
+        PlayerScore.createPlayerScore(context: viewContext, game: g3, player: gab, history: [30, 60])
         
         let g4 = Game.createGame(context: viewContext, name: "🥃 Rummy")
         PlayerScore.createPlayerScore(context: viewContext, game: g4, player: aleesha, history: [1])

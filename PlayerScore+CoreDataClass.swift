@@ -44,8 +44,14 @@ extension PlayerScore {
         
         return history.reduce(0, { x, y in x + y })
     }
-
+    
     var wrappedHistory: [Int] {
         self.history ?? []
+    }
+    
+    var summedHistory: [Int] {
+        wrappedHistory.enumerated().map { (index, _) in
+            wrappedHistory[0...index].reduce(0) { (acc, i) in acc + i }
+        }
     }
 }

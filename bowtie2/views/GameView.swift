@@ -56,6 +56,10 @@ struct GameView: View {
                     })
             }
             .padding(.horizontal)
+            
+            GameGraph(game: game)
+                .frame(maxWidth: .infinity, idealHeight: 200)
+                .padding(.vertical)
         }
         .navigationBarTitle(game.wrappedName, displayMode: .large)
         .toolbar {
