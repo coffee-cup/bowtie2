@@ -21,7 +21,7 @@ struct GamesListView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVStack {
+                LazyVStack(spacing: 10) {
                     ForEach(games, id: \.self) { game in
                         NavigationLink(destination: GameView(game: game)) {
                             GameCard(game: game)
@@ -49,8 +49,8 @@ struct GamesListView: View {
                         }
                     }
                 }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
             .navigationBarTitle("Games", displayMode: .large)
             .toolbar {
                 Button(action: {
