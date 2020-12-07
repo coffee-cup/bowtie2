@@ -15,6 +15,7 @@ struct bowtie2App: App {
         WindowGroup {
             AppView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(UserSettings())
         }
     }
 }

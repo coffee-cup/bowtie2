@@ -16,6 +16,8 @@
 		B75206752574C40C00555390 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75206742574C40C00555390 /* Binding.swift */; };
 		B7659F85257CB85E00CA139E /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7659F84257CB85E00CA139E /* GraphView.swift */; };
 		B7659F8A257CC22900CA139E /* GameGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7659F89257CC22900CA139E /* GameGraph.swift */; };
+		B7659F8F257DAA6B00CA139E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7659F8E257DAA6B00CA139E /* SettingsView.swift */; };
+		B7659F94257DE9AB00CA139E /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7659F93257DE9AB00CA139E /* UserSettings.swift */; };
 		B781BA002560F5E0008EB298 /* bowtie2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781B9FF2560F5E0008EB298 /* bowtie2App.swift */; };
 		B781BA022560F5E0008EB298 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA012560F5E0008EB298 /* ContentView.swift */; };
 		B781BA042560F5E2008EB298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B781BA032560F5E2008EB298 /* Assets.xcassets */; };
@@ -72,6 +74,8 @@
 		B75206742574C40C00555390 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		B7659F84257CB85E00CA139E /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		B7659F89257CC22900CA139E /* GameGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGraph.swift; sourceTree = "<group>"; };
+		B7659F8E257DAA6B00CA139E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B7659F93257DE9AB00CA139E /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		B781B9FC2560F5E0008EB298 /* bowtie2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bowtie2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B781B9FF2560F5E0008EB298 /* bowtie2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bowtie2App.swift; sourceTree = "<group>"; };
 		B781BA012560F5E0008EB298 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 				B781BA0A2560F5E2008EB298 /* bowtie2.xcdatamodeld */,
 				B781BA052560F5E2008EB298 /* Preview Content */,
 				B72DC11B256AEB5E00DF28F1 /* Colours.swift */,
+				B7659F93257DE9AB00CA139E /* UserSettings.swift */,
 			);
 			path = bowtie2;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 				B7CCE94D25763B2B00C3129B /* ModalView.swift */,
 				B7659F84257CB85E00CA139E /* GraphView.swift */,
 				B7659F89257CC22900CA139E /* GameGraph.swift */,
+				B7659F8E257DAA6B00CA139E /* SettingsView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -394,6 +400,7 @@
 				B781BA0C2560F5E2008EB298 /* bowtie2.xcdatamodeld in Sources */,
 				B781BA092560F5E2008EB298 /* Persistence.swift in Sources */,
 				B7F82ABC256258EA00C7B221 /* Array.swift in Sources */,
+				B7659F94257DE9AB00CA139E /* UserSettings.swift in Sources */,
 				B72DC112256A68F100DF28F1 /* EnterScoreView.swift in Sources */,
 				B7C1311125611FBB00EE6601 /* Game+CoreDataClass.swift in Sources */,
 				B7B2504D256126E000C82EC6 /* String.swift in Sources */,
@@ -409,6 +416,7 @@
 				B7C1310125611D4D00EE6601 /* Player+CoreDataClass.swift in Sources */,
 				B7D339082569AD6F00ADBEFF /* GameView.swift in Sources */,
 				B72DC117256A776100DF28F1 /* Number.swift in Sources */,
+				B7659F8F257DAA6B00CA139E /* SettingsView.swift in Sources */,
 				B781BA002560F5E0008EB298 /* bowtie2App.swift in Sources */,
 				B7C130FF25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift in Sources */,
 				B7F82AB72562406600C7B221 /* GameCard.swift in Sources */,

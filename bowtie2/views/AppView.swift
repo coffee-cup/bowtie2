@@ -20,6 +20,10 @@ struct AppView: View {
                 Image(systemName: "person.2.fill")
                 Text("Players")
             }
+            SettingsView().tabItem {
+                Image(systemName: "gearshape.fill")
+                Text("Settings")
+            }
         }
     }
 }

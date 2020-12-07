@@ -28,6 +28,7 @@ fileprivate class GameViewSheetState: Identifiable {
 
 struct GameView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var settings: UserSettings
     
     @ObservedObject var game: Game
     @State private var addingScore: PlayerScore? = nil
@@ -57,7 +58,7 @@ struct GameView: View {
             }
             .padding(.horizontal)
             
-            if game.maxNumberOfEntries >= 2 {
+            if settings.showGraph && game.maxNumberOfEntries >= 2 {
                 GameGraph(game: game)
                     .frame(maxWidth: .infinity, idealHeight: 200)
                     .padding(.all)
