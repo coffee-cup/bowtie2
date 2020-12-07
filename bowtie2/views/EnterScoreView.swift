@@ -28,13 +28,14 @@ struct CalcButton: View {
 struct ScoreView: View {
     var score: Int
     @Binding var isNegative: Bool
+    @EnvironmentObject var settings: UserSettings
     
     var body: some View {
         ZStack {
             Text("\(score)")
                 .font(.system(size: 140, weight: .bold))
                 .padding(.vertical)
-                .gradientForeground(gradient: primaryGradient)
+                .gradientForeground(gradient: settings.theme.gradient)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -47,7 +48,7 @@ struct ScoreView: View {
                 }) {
                     Text("-")
                         .font(.system(size: 140, weight: .bold))
-                        .if(isNegative) { $0.gradientForeground(gradient: primaryGradient) }
+                        .if(isNegative) { $0.gradientForeground(gradient: settings.theme.gradient) }
                         .if(!isNegative) { $0.foregroundColor(Color(.tertiarySystemFill)) }
                 }
                 Spacer()
@@ -59,6 +60,7 @@ struct ScoreView: View {
 struct EnterScoreView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var settings: UserSettings
     
     @ObservedObject var playerScore: PlayerScore
     
@@ -103,7 +105,7 @@ struct EnterScoreView: View {
                     }
                     .frame(maxWidth: 44, maxHeight: 44)
                     .padding(.all)
-                    .background(LinearGradient(gradient: primaryGradient, startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .background(settings.theme.gradient)
                     .cornerRadius(44)
                 }
                 .padding(.bottom)

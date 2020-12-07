@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameCard: View {
     @ObservedObject var game: Game
+    @EnvironmentObject var settings: UserSettings
     
     var body: some View {
         HStack(spacing: 16) {
@@ -17,7 +18,7 @@ struct GameCard: View {
                 .font(.system(size: 48, weight: .bold))
                 .padding()
                 .frame(width: 100, height: 100)
-                .if(game.winner == nil) { $0.background(          LinearGradient(gradient: primaryGradient, startPoint: .topLeading, endPoint: .bottomTrailing)) }
+                .if(game.winner == nil) { $0.background(settings.theme.gradient) }
                 .if(game.winner != nil) { $0.background(Color(hex: game.winner?.wrappedColor ?? "#000000")) }
             
             HStack {

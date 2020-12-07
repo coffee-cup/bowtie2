@@ -8,10 +8,8 @@
 import SwiftUI
 
 extension View {
-    public func gradientForeground(gradient: Gradient) -> some View {
-        self.overlay(LinearGradient(gradient: gradient,
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing))
+    public func gradientForeground(gradient: LinearGradient) -> some View {
+        self.overlay(gradient)
             .mask(self)
     }
     

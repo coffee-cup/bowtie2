@@ -81,6 +81,7 @@ struct GameView: View {
     private func presentSheet(for sheet: GameViewSheetState) -> some View {
         if let addingScore = sheet.addingScore {
             EnterScoreView(playerScore: addingScore, addScore: addScore)
+                .environmentObject(settings)
         } else if let playerHistory = sheet.playerHistory {
             ScoreHistoryView(playerScore: playerHistory)
         }
@@ -113,6 +114,7 @@ struct GameView_Previews: PreviewProvider {
         NavigationView{
             GameView(game: Game.gameByName(context: PersistenceController.preview.container.viewContext, name: "Blitz")!)
                 .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                .environmentObject(UserSettings())
         }
     }
 }

@@ -20,11 +20,11 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    NavigationLink(destination:Text("hello")) {
+                    NavigationLink(destination: ThemeSelect()) {
                         HStack {
                             RoundedRectangle(cornerRadius: 4, style: .continuous)
-                                .fill(LinearGradient(gradient: primaryGradient, startPoint: .topLeading, endPoint: .bottomTrailing))
-                                .frame(width: 20, height: 20)
+                                .fill(settings.theme.gradient)
+                                .frame(width: 28, height: 28)
                             
                             Text("Theme")
                         }
@@ -47,7 +47,7 @@ struct SettingsView: View {
                     }) {
                         Text("Get Premium")
                     }
-                    
+
                     Button(action: {
                         print("boop")
                     }) {
@@ -63,5 +63,6 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
+            .environmentObject(UserSettings())
     }
 }

@@ -58,6 +58,7 @@ struct PlayerItem: View {
 struct CreateGame: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var settings: UserSettings
     
     @ObservedObject var createData = CreateGameData()
     
@@ -121,6 +122,7 @@ struct CreateGame: View {
                                         }.disabled(createData.name == ""))
                 .sheet(isPresented: $isCreatingPlayer) {
                     CreateEditPlayer(onPlayer: self.addPlayer, editingPlayer: nil)
+                        .environmentObject(settings)
                 }
                 .navigationTitle("Create Game")
             }
