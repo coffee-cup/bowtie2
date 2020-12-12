@@ -36,26 +36,39 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    NavigationLink(destination:Text("hello")) {
-                        Text("About")
+                    Button(action: {
+                        print("Premium")
+                    }) {
+                        Text("Support the Developer")
                     }
                 }
                 
                 Section {
-                    Button(action: {
-                        print("Premium")
-                    }) {
-                        Text("Get Premium")
+                    NavigationLink(destination:Text("hello")) {
+                        Text("About")
                     }
-
+                    
                     Button(action: {
-                        print("boop")
+                        self.openFeedback()
                     }) {
-                        Text("Restore purchase")
+                        Text("Feedback")
                     }
                 }
             }
             .navigationTitle("Settings")
+        }
+    }
+    
+    private func openFeedback() {
+        let subject = "Bowtie Feedback"
+        let to = "jakerunzer@gmail.com"
+        
+        let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        
+        let url = URL(string: "mailto:\(to)?subject=\(subjectEncoded)")
+    
+        if let url = url {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 }
