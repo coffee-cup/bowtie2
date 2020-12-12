@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ThemeSelect: View {
+struct ThemeSelectView: View {
     @EnvironmentObject var settings: UserSettings
     
     var body: some View {
@@ -18,7 +18,7 @@ struct ThemeSelect: View {
                 }) {
                     HStack {
                         Text("\(theme.name)")
-                            .font(.system(size: 28, weight: .bold))
+                            .font(.system(size: 22, weight: .bold))
                             .foregroundColor(.white)
                             .padding(.all)
                         
@@ -42,10 +42,10 @@ struct ThemeSelect: View {
     }
 }
 
-struct ThemeSelect_Previews: PreviewProvider {
+struct ThemeSelectView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ThemeSelect()
+            ThemeSelectView()
                 .environmentObject(UserSettings())
         }
     }

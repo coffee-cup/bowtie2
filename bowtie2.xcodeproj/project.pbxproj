@@ -11,7 +11,7 @@
 		B72DC117256A776100DF28F1 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC116256A776100DF28F1 /* Number.swift */; };
 		B72DC11C256AEB5E00DF28F1 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC11B256AEB5E00DF28F1 /* Theme.swift */; };
 		B72DC121256AF1C000DF28F1 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC120256AF1C000DF28F1 /* View.swift */; };
-		B73FD0C3257DFAFC00810010 /* ThemeSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73FD0C2257DFAFC00810010 /* ThemeSelect.swift */; };
+		B73FD0C3257DFAFC00810010 /* ThemeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73FD0C2257DFAFC00810010 /* ThemeSelectView.swift */; };
 		B73FD0CD257E01A200810010 /* CodableUnitPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73FD0CC257E01A200810010 /* CodableUnitPoint.swift */; };
 		B752066B25737C7C00555390 /* ScoreHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B752066A25737C7C00555390 /* ScoreHistoryView.swift */; };
 		B75206702574BD5E00555390 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B752066F2574BD5E00555390 /* GameSettings.swift */; };
@@ -32,6 +32,10 @@
 		B781BA40256114F4008EB298 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA3F256114F4008EB298 /* AppView.swift */; };
 		B781BA4825611518008EB298 /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA4725611518008EB298 /* GamesListView.swift */; };
 		B781BA4D25611521008EB298 /* PlayersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA4C25611521008EB298 /* PlayersListView.swift */; };
+		B7B1CC5C2585485B000ACCE3 /* xmas-red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1CC592585485B000ACCE3 /* xmas-red@2x.png */; };
+		B7B1CC5D2585485B000ACCE3 /* xmas-red.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1CC5A2585485B000ACCE3 /* xmas-red.png */; };
+		B7B1CC5E2585485B000ACCE3 /* xmas-red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1CC5B2585485B000ACCE3 /* xmas-red@3x.png */; };
+		B7B1CC6C25854B39000ACCE3 /* AppIconSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B1CC6B25854B39000ACCE3 /* AppIconSelectView.swift */; };
 		B7B2503B256120B200C82EC6 /* CreateEditPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B2503A256120B200C82EC6 /* CreateEditPlayer.swift */; };
 		B7B250432561269B00C82EC6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B250422561269B00C82EC6 /* Color.swift */; };
 		B7B25048256126CD00C82EC6 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B25047256126CD00C82EC6 /* Date.swift */; };
@@ -71,7 +75,7 @@
 		B72DC116256A776100DF28F1 /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
 		B72DC11B256AEB5E00DF28F1 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B72DC120256AF1C000DF28F1 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		B73FD0C2257DFAFC00810010 /* ThemeSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSelect.swift; sourceTree = "<group>"; };
+		B73FD0C2257DFAFC00810010 /* ThemeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSelectView.swift; sourceTree = "<group>"; };
 		B73FD0CC257E01A200810010 /* CodableUnitPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUnitPoint.swift; sourceTree = "<group>"; };
 		B752066A25737C7C00555390 /* ScoreHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreHistoryView.swift; sourceTree = "<group>"; };
 		B752066F2574BD5E00555390 /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
@@ -99,6 +103,10 @@
 		B781BA3F256114F4008EB298 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		B781BA4725611518008EB298 /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
 		B781BA4C25611521008EB298 /* PlayersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersListView.swift; sourceTree = "<group>"; };
+		B7B1CC592585485B000ACCE3 /* xmas-red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red@2x.png"; sourceTree = "<group>"; };
+		B7B1CC5A2585485B000ACCE3 /* xmas-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red.png"; sourceTree = "<group>"; };
+		B7B1CC5B2585485B000ACCE3 /* xmas-red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red@3x.png"; sourceTree = "<group>"; };
+		B7B1CC6B25854B39000ACCE3 /* AppIconSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconSelectView.swift; sourceTree = "<group>"; };
 		B7B2503A256120B200C82EC6 /* CreateEditPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEditPlayer.swift; sourceTree = "<group>"; };
 		B7B250422561269B00C82EC6 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B7B25047256126CD00C82EC6 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -166,6 +174,7 @@
 		B781B9FE2560F5E0008EB298 /* bowtie2 */ = {
 			isa = PBXGroup;
 			children = (
+				B7B1CC5825854841000ACCE3 /* app-icons */,
 				B7C130FA25611D4000EE6601 /* models */,
 				B7C130F125611C5200EE6601 /* extensions */,
 				B781BA5125611627008EB298 /* views */,
@@ -238,9 +247,20 @@
 				B7659F84257CB85E00CA139E /* GraphView.swift */,
 				B7659F89257CC22900CA139E /* GameGraph.swift */,
 				B7659F8E257DAA6B00CA139E /* SettingsView.swift */,
-				B73FD0C2257DFAFC00810010 /* ThemeSelect.swift */,
+				B73FD0C2257DFAFC00810010 /* ThemeSelectView.swift */,
+				B7B1CC6B25854B39000ACCE3 /* AppIconSelectView.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		B7B1CC5825854841000ACCE3 /* app-icons */ = {
+			isa = PBXGroup;
+			children = (
+				B7B1CC5A2585485B000ACCE3 /* xmas-red.png */,
+				B7B1CC592585485B000ACCE3 /* xmas-red@2x.png */,
+				B7B1CC5B2585485B000ACCE3 /* xmas-red@3x.png */,
+			);
+			path = "app-icons";
 			sourceTree = "<group>";
 		};
 		B7C130F125611C5200EE6601 /* extensions */ = {
@@ -370,8 +390,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7B1CC5E2585485B000ACCE3 /* xmas-red@3x.png in Resources */,
+				B7B1CC5D2585485B000ACCE3 /* xmas-red.png in Resources */,
 				B781BA072560F5E2008EB298 /* Preview Assets.xcassets in Resources */,
 				B781BA042560F5E2008EB298 /* Assets.xcassets in Resources */,
+				B7B1CC5C2585485B000ACCE3 /* xmas-red@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,12 +424,13 @@
 				B75206702574BD5E00555390 /* GameSettings.swift in Sources */,
 				B7F82AC125625A8C00C7B221 /* CreateGame.swift in Sources */,
 				B75206752574C40C00555390 /* Binding.swift in Sources */,
-				B73FD0C3257DFAFC00810010 /* ThemeSelect.swift in Sources */,
+				B73FD0C3257DFAFC00810010 /* ThemeSelectView.swift in Sources */,
 				B7659F85257CB85E00CA139E /* GraphView.swift in Sources */,
 				B7659F8A257CC22900CA139E /* GameGraph.swift in Sources */,
 				B781BA0C2560F5E2008EB298 /* bowtie2.xcdatamodeld in Sources */,
 				B73FD0CD257E01A200810010 /* CodableUnitPoint.swift in Sources */,
 				B781BA092560F5E2008EB298 /* Persistence.swift in Sources */,
+				B7B1CC6C25854B39000ACCE3 /* AppIconSelectView.swift in Sources */,
 				B7F82ABC256258EA00C7B221 /* Array.swift in Sources */,
 				B7659F94257DE9AB00CA139E /* UserSettings.swift in Sources */,
 				B72DC112256A68F100DF28F1 /* EnterScoreView.swift in Sources */,

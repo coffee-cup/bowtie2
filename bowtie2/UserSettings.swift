@@ -54,6 +54,19 @@ struct PListUserDefault<T> where T:Codable {
 
 final class UserSettings: ObservableObject {
     let objectWillChange = PassthroughSubject<Void, Never>()
+    var appIcon: String {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
+    init() {
+        self.appIcon = "primary"
+    }
+    
+    init(appIcon: String) {
+        self.appIcon = appIcon
+    }
 
     @UserDefault("showGraph", defaultValue: true)
     var showGraph: Bool {

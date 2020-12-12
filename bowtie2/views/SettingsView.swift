@@ -20,7 +20,7 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    NavigationLink(destination: ThemeSelect()) {
+                    NavigationLink(destination: ThemeSelectView()) {
                         HStack {
                             RoundedRectangle(cornerRadius: 4, style: .continuous)
                                 .fill(settings.theme.gradient)
@@ -30,7 +30,7 @@ struct SettingsView: View {
                         }
                     }
                     
-                    NavigationLink(destination:Text("hello")) {
+                    NavigationLink(destination: AppIconSelectView()) {
                         Text("App icon")
                     }
                 }
