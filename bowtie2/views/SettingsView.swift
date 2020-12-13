@@ -44,7 +44,7 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    NavigationLink(destination:Text("hello")) {
+                    NavigationLink(destination: AboutView()) {
                         Text("About")
                     }
                     

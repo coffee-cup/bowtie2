@@ -32,6 +32,7 @@
 		B781BA40256114F4008EB298 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA3F256114F4008EB298 /* AppView.swift */; };
 		B781BA4825611518008EB298 /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA4725611518008EB298 /* GamesListView.swift */; };
 		B781BA4D25611521008EB298 /* PlayersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA4C25611521008EB298 /* PlayersListView.swift */; };
+		B791991D2586944600865BCB /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B791991C2586944600865BCB /* AboutView.swift */; };
 		B7B1CC5C2585485B000ACCE3 /* xmas-red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1CC592585485B000ACCE3 /* xmas-red@2x.png */; };
 		B7B1CC5D2585485B000ACCE3 /* xmas-red.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1CC5A2585485B000ACCE3 /* xmas-red.png */; };
 		B7B1CC5E2585485B000ACCE3 /* xmas-red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1CC5B2585485B000ACCE3 /* xmas-red@3x.png */; };
@@ -103,6 +104,7 @@
 		B781BA3F256114F4008EB298 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		B781BA4725611518008EB298 /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
 		B781BA4C25611521008EB298 /* PlayersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersListView.swift; sourceTree = "<group>"; };
+		B791991C2586944600865BCB /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		B7B1CC592585485B000ACCE3 /* xmas-red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red@2x.png"; sourceTree = "<group>"; };
 		B7B1CC5A2585485B000ACCE3 /* xmas-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red.png"; sourceTree = "<group>"; };
 		B7B1CC5B2585485B000ACCE3 /* xmas-red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red@3x.png"; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				B7659F8E257DAA6B00CA139E /* SettingsView.swift */,
 				B73FD0C2257DFAFC00810010 /* ThemeSelectView.swift */,
 				B7B1CC6B25854B39000ACCE3 /* AppIconSelectView.swift */,
+				B791991C2586944600865BCB /* AboutView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				B72DC11C256AEB5E00DF28F1 /* Theme.swift in Sources */,
 				B781BA4D25611521008EB298 /* PlayersListView.swift in Sources */,
 				B7C1310125611D4D00EE6601 /* Player+CoreDataClass.swift in Sources */,
+				B791991D2586944600865BCB /* AboutView.swift in Sources */,
 				B7D339082569AD6F00ADBEFF /* GameView.swift in Sources */,
 				B72DC117256A776100DF28F1 /* Number.swift in Sources */,
 				B7659F8F257DAA6B00CA139E /* SettingsView.swift in Sources */,
