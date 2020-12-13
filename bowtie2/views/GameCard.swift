@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameCard: View {
-    @ObservedObject var game: Game
+    var game: Game
     @EnvironmentObject var settings: UserSettings
     
     var body: some View {

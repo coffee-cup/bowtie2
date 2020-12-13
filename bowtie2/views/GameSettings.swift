@@ -11,6 +11,7 @@ struct GameSettings: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @ObservedObject var game: Game
+    @State var name = ""
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -19,7 +20,9 @@ struct GameSettings: View {
                     .font(.caption)
                     .foregroundColor(Color(.label))
 
-                TextField("Game Name", text: Binding($game.name, ""))
+                TextField("Game Name", text: $name, onCommit: {
+                    self.saveGame()
+                })
                     .padding(.all)
                     .background(Color(.tertiarySystemFill))
                     .cornerRadius(4)
@@ -52,6 +55,9 @@ struct GameSettings: View {
         }
         .navigationTitle("Game Settings")
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .onAppear {
+            self.name = game.wrappedName
+        }
         .onDisappear {
             self.saveGame()
         }
@@ -85,6 +91,7 @@ struct GameSettings: View {
     
     private func saveGame() {
         do {
+            game.name = self.name
             viewContext.refresh(game, mergeChanges: true)
             try viewContext.save()
         } catch {

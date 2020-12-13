@@ -65,7 +65,7 @@ extension Game {
     }
     
     public var wrappedName: String {
-        return name ?? "Unnamed"
+        return name ?? ""
     }
     
     public var wrappedCreated: Date {
