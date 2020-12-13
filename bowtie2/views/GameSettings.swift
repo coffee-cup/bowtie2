@@ -14,27 +14,14 @@ struct GameSettings: View {
     @State var name = ""
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            VStack(alignment: .leading){
-                Text("Game Name")
-                    .font(.caption)
-                    .foregroundColor(Color(.label))
-
+        Form {
+            Section(header: Text("Game Name")) {
                 TextField("Game Name", text: $name, onCommit: {
                     self.saveGame()
                 })
-                    .padding(.all)
-                    .background(Color(.tertiarySystemFill))
-                    .cornerRadius(4)
-                
             }
-            .padding()
             
-            VStack(alignment: .leading) {
-                    Text("Winner")
-                        .font(.caption)
-                        .foregroundColor(Color(.label))
-
+            Section(header: Text("Winner")) {
                 Picker(selection:
                         Binding(
                             get: { game.winnerSort },
@@ -49,9 +36,6 @@ struct GameSettings: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }
-            .padding()
-            
-            Spacer()
         }
         .navigationTitle("Game Settings")
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -61,32 +45,6 @@ struct GameSettings: View {
         .onDisappear {
             self.saveGame()
         }
-        
-//        VStack {
-//                Section(header: Text("Game Name")) {
-//                    TextField("Name", text: Binding($game.name, ""), onCommit: {})
-//                }
-//
-//                Section(header: Text("Winner")) {
-//                    Picker(selection:
-//                            Binding(
-//                                get: { game.winnerSort },
-//                                set: { value in
-//                                    self.game.winnerSort = value
-//                                }
-//                            ),
-//                           label: Text("Winner sort order")) {
-//                        ForEach(WinnerSort.allCases, id: \.self.rawValue) { value in
-//                            Text(value.stringValue).tag(value)
-//                        }
-//                    }
-//                    .pickerStyle(SegmentedPickerStyle())
-//            }
-//            .navigationTitle("Game Settings")
-//        }
-//        .onDisappear {
-//            self.saveGame()
-//        }
     }
     
     private func saveGame() {
