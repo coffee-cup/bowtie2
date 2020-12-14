@@ -92,7 +92,15 @@ struct EnterScoreView: View {
                         CalcButton(text: "9", onTap: { self.addValue(digit: 9)})
                     }
                     LazyVGrid(columns: columns, spacing: 0) {
-                        CalcButton(text: "C", onTap: { self.clearScore() })
+                        Button(action: {
+                            self.deleteValue()
+                        }) {
+                            Image(systemName: "delete.left")
+                                .foregroundColor(.primary)
+                                .font(.system(size: 24))
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        }
+                        
                         CalcButton(text: "0", onTap: { self.addValue(digit: 0)})
                         
                         Button(action: {

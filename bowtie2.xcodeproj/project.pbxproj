@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B72BD54E25874BCB00F5CB85 /* NumberTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72BD54D25874BCB00F5CB85 /* NumberTest.swift */; };
 		B72DC112256A68F100DF28F1 /* EnterScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC111256A68F100DF28F1 /* EnterScoreView.swift */; };
 		B72DC117256A776100DF28F1 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC116256A776100DF28F1 /* Number.swift */; };
 		B72DC11C256AEB5E00DF28F1 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC11B256AEB5E00DF28F1 /* Theme.swift */; };
@@ -73,6 +74,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B72BD54D25874BCB00F5CB85 /* NumberTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTest.swift; sourceTree = "<group>"; };
 		B72DC111256A68F100DF28F1 /* EnterScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterScoreView.swift; sourceTree = "<group>"; };
 		B72DC116256A776100DF28F1 /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
 		B72DC11B256AEB5E00DF28F1 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			children = (
 				B781BA162560F5E2008EB298 /* bowtie2Tests.swift */,
 				B781BA182560F5E2008EB298 /* Info.plist */,
+				B72BD54D25874BCB00F5CB85 /* NumberTest.swift */,
 			);
 			path = bowtie2Tests;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B72BD54E25874BCB00F5CB85 /* NumberTest.swift in Sources */,
 				B781BA172560F5E2008EB298 /* bowtie2Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
