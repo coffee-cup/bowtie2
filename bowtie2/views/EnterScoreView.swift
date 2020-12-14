@@ -133,5 +133,6 @@ struct EnterScoreView: View {
 struct EnterScoreView_Previews: PreviewProvider {
     static var previews: some View {
         EnterScoreView(playerScore: PlayerScore.scoresForGame(context: PersistenceController.preview.container.viewContext, name: "Blitz")[0], addScore: nil)
+            .environmentObject(UserSettings())
     }
 }
