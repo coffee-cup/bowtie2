@@ -71,45 +71,33 @@ struct CreateGame: View {
     @State var isCreatingPlayer = false
     
     var body: some View {
-        ModalView {
-            NavigationView {
-                VStack(alignment: .leading, spacing: 20) {
-                    VStack(alignment: .leading){
-                        Text("Game Name")
-                            .font(.caption)
-                            .foregroundColor(Color(.label))
-                        
-                        TextField("Game", text: $createData.name)
-                            .padding(.all)
-                            .background(Color(.tertiarySystemFill))
-                            .cornerRadius(4)
-                        
-                    }
-                    .padding()
+        NavigationView {
+            ZStack {
+                Form {
                     
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text("Who's Playing")
-                                .font(.caption)
-                                .foregroundColor(Color(.label))
-                            
-                            Spacer()
-                            
-                            Button(action: {
-                                self.isCreatingPlayer.toggle()
-                            }, label: {
-                                Image(systemName: "plus")
-                            }).padding(.horizontal)
-                        }.padding(.horizontal)
+                    Section(header: Text("Game Name")) {
+                        TextField("Game", text: $createData.name)
+                    }
+                    
+                    Section(header: HStack {
+                        Text("Who's playing")
                         
+                        Spacer()
+                        
+                        Button(action: {
+                            self.isCreatingPlayer.toggle()
+                        }, label: {
+                            Image(systemName: "plus")
+                                .foregroundColor(Color.blue)
+                        }).padding(.horizontal)
+                    }) {
                         List {
                             ForEach(players, id: \.self) { player in
                                 PlayerItem(colour: player.wrappedColor, name: player.wrappedName, isSelected: self.createData.getSelected(id: player.id))
                             }
                         }
-                        .listStyle(PlainListStyle())
+                        //                        .listStyle(PlainListStyle())
                     }
-                    .padding(.vertical)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 .navigationBarItems(leading:
@@ -125,7 +113,18 @@ struct CreateGame: View {
                         .environmentObject(settings)
                 }
                 .navigationTitle("Create Game")
+                
+                VStack {
+                    Indicator()
+                        .padding(.top)
+                    Spacer()
+                }
+                .frame(maxHeight: .infinity)
+                .offset(y: -110)
             }
+        }
+        .onTapGesture {
+            self.hideKeyboard()
         }
     }
     
