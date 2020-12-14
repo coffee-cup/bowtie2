@@ -19,7 +19,8 @@ struct PremiumView: View {
                     HStack {
                         Text("💅").font(.system(size: 32))
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("Cosmetic Customization").fontWeight(.bold)
+                            Text("Cosmetic Customization")
+                                .fontWeight(.bold)
                             Text("Additional themes and app icons")
                                 .fixedSize(horizontal: false, vertical: true)
                                 .font(.system(size: 14))
@@ -43,6 +44,8 @@ struct PremiumView: View {
                 }
                 .padding(.vertical, 40)
                 
+                Spacer()
+                
                 Button(action: {
                     print("purchase")
                 }) {
@@ -54,17 +57,27 @@ struct PremiumView: View {
                 .font(.system(size: 22, weight: .bold))
                 .background(settings.theme.gradient)
                 .cornerRadius(40)
-                
-                Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             .padding()
+        }
+        .onAppear {
+            self.loadProducts()
         }
         .navigationTitle("Bowtie Premium")
         .navigationBarItems(trailing:
                                 Button("Restore") {
                                     print("restore!")
                                 })
+    }
+    
+    private func loadProducts() {
+        BowtieProducts.store.requestProducts { success, products in
+            if success {
+              print("PRODUCTS")
+              print(products)
+            }
+        }
     }
 }
 

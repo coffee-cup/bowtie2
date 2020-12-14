@@ -34,6 +34,9 @@
 		B781BA4D25611521008EB298 /* PlayersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA4C25611521008EB298 /* PlayersListView.swift */; };
 		B791991D2586944600865BCB /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B791991C2586944600865BCB /* AboutView.swift */; };
 		B79199222586E6B900865BCB /* PremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79199212586E6B900865BCB /* PremiumView.swift */; };
+		B79199272586F55F00865BCB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79199262586F55F00865BCB /* StoreKit.framework */; };
+		B79199292586F6C400865BCB /* BowtieProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79199282586F6C400865BCB /* BowtieProducts.swift */; };
+		B791992E2586F76F00865BCB /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B791992D2586F76F00865BCB /* IAPHelper.swift */; };
 		B7B1CC5C2585485B000ACCE3 /* xmas-red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1CC592585485B000ACCE3 /* xmas-red@2x.png */; };
 		B7B1CC5D2585485B000ACCE3 /* xmas-red.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1CC5A2585485B000ACCE3 /* xmas-red.png */; };
 		B7B1CC5E2585485B000ACCE3 /* xmas-red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1CC5B2585485B000ACCE3 /* xmas-red@3x.png */; };
@@ -107,6 +110,9 @@
 		B781BA4C25611521008EB298 /* PlayersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersListView.swift; sourceTree = "<group>"; };
 		B791991C2586944600865BCB /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		B79199212586E6B900865BCB /* PremiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumView.swift; sourceTree = "<group>"; };
+		B79199262586F55F00865BCB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B79199282586F6C400865BCB /* BowtieProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowtieProducts.swift; sourceTree = "<group>"; };
+		B791992D2586F76F00865BCB /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		B7B1CC592585485B000ACCE3 /* xmas-red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red@2x.png"; sourceTree = "<group>"; };
 		B7B1CC5A2585485B000ACCE3 /* xmas-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red.png"; sourceTree = "<group>"; };
 		B7B1CC5B2585485B000ACCE3 /* xmas-red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red@3x.png"; sourceTree = "<group>"; };
@@ -134,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B781BA38256100D6008EB298 /* CloudKit.framework in Frameworks */,
+				B79199272586F55F00865BCB /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +200,8 @@
 				B72DC11B256AEB5E00DF28F1 /* Theme.swift */,
 				B7659F93257DE9AB00CA139E /* UserSettings.swift */,
 				B73FD0CC257E01A200810010 /* CodableUnitPoint.swift */,
+				B79199282586F6C400865BCB /* BowtieProducts.swift */,
+				B791992D2586F76F00865BCB /* IAPHelper.swift */,
 			);
 			path = bowtie2;
 			sourceTree = "<group>";
@@ -226,6 +235,7 @@
 		B781BA36256100D6008EB298 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B79199262586F55F00865BCB /* StoreKit.framework */,
 				B781BA37256100D6008EB298 /* CloudKit.framework */,
 			);
 			name = Frameworks;
@@ -445,6 +455,7 @@
 				B7B2504D256126E000C82EC6 /* String.swift in Sources */,
 				B72DC121256AF1C000DF28F1 /* View.swift in Sources */,
 				B7D3390D2569DAB300ADBEFF /* PlayerScoreCard.swift in Sources */,
+				B79199292586F6C400865BCB /* BowtieProducts.swift in Sources */,
 				B7B2505B2561AC9800C82EC6 /* PlayerCard.swift in Sources */,
 				B781BA022560F5E0008EB298 /* ContentView.swift in Sources */,
 				B7CCE949257630BE00C3129B /* Indicator.swift in Sources */,
@@ -452,6 +463,7 @@
 				B781BA40256114F4008EB298 /* AppView.swift in Sources */,
 				B72DC11C256AEB5E00DF28F1 /* Theme.swift in Sources */,
 				B781BA4D25611521008EB298 /* PlayersListView.swift in Sources */,
+				B791992E2586F76F00865BCB /* IAPHelper.swift in Sources */,
 				B7C1310125611D4D00EE6601 /* Player+CoreDataClass.swift in Sources */,
 				B791991D2586944600865BCB /* AboutView.swift in Sources */,
 				B7D339082569AD6F00ADBEFF /* GameView.swift in Sources */,
