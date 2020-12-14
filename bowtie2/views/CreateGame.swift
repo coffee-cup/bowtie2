@@ -10,16 +10,12 @@ import SwiftUI
 class CreateGameData: ObservableObject {
     @Published var name = ""
     @Published var addedPlayers: [ObjectIdentifier:Bool] = [:]
-    @State var numPlayersAdded = 0
     
     func getSelected(id: ObjectIdentifier) -> Binding<Bool> {
         let binding = Binding<Bool>(get: {
             return self.addedPlayers[id] ?? false
         }, set: { newValue in
             self.addedPlayers[id] = newValue
-            
-            let t = self.addedPlayers.values.reduce(0, { num, v in num + (v ? 1 : 0) })
-            self.numPlayersAdded = t
         })
         
         return binding
@@ -27,6 +23,10 @@ class CreateGameData: ObservableObject {
     
     func selectPlayer(id: ObjectIdentifier) {
         self.addedPlayers[id] = true
+    }
+    
+    var numPlayersAdded: Int {
+        addedPlayers.values.reduce(0, { num, v in num + (v ? 1 : 0) })
     }
 }
 
@@ -96,7 +96,6 @@ struct CreateGame: View {
                                 PlayerItem(colour: player.wrappedColor, name: player.wrappedName, isSelected: self.createData.getSelected(id: player.id))
                             }
                         }
-                        //                        .listStyle(PlainListStyle())
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -107,7 +106,7 @@ struct CreateGame: View {
                                     trailing:
                                         Button("Create") {
                                             self.createGame()
-                                        }.disabled(createData.name == ""))
+                                        }.disabled(createData.name == "" || createData.numPlayersAdded == 0))
                 .sheet(isPresented: $isCreatingPlayer) {
                     CreateEditPlayer(onPlayer: self.addPlayer, editingPlayer: nil)
                         .environmentObject(settings)
