@@ -7,6 +7,18 @@
 
 import Foundation
 
+extension StringProtocol  {
+    var digits: [Int] { compactMap(\.wholeNumberValue) }
+}   
+
+extension LosslessStringConvertible {
+    var string: String { .init(self) }
+}
+
+extension Numeric where Self: LosslessStringConvertible {
+    var digits: [Int] { string.digits }
+}
+
 extension Int {
     static func sumDigits(digits: [Self]) -> Self {
         var n = 0;
@@ -24,28 +36,17 @@ extension Int {
             return Array(repeating: self, count: toPower).reduce(1, *)
         }
     
-    func digits(radix: Self = 10) -> [Self] {
-        sequence(state: self) { quotient in
-            guard quotient > 0
-            else { return nil }
-            
-            let division = quotient.quotientAndRemainder(dividingBy: radix)
-            quotient = division.quotient
-            return division.remainder
-        }
-        .reversed()
-    }
-    
     func addDigit(digit: Int) -> Self {
-        var digits = self.digits()
+        var digits = self.digits
         digits.append(digit)
         digits = digits.reversed()
         return Self.sumDigits(digits: digits)
     }
     
     func removeDigit() -> Self {
-        var digits = self.digits()
+        var digits = self.digits
         digits.popLast()
+        digits = digits.reversed()
         return Self.sumDigits(digits: digits)
     }
 }

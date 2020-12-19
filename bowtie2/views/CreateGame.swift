@@ -10,16 +10,12 @@ import SwiftUI
 class CreateGameData: ObservableObject {
     @Published var name = ""
     @Published var addedPlayers: [ObjectIdentifier:Bool] = [:]
-    @State var numPlayersAdded = 0
     
     func getSelected(id: ObjectIdentifier) -> Binding<Bool> {
         let binding = Binding<Bool>(get: {
             return self.addedPlayers[id] ?? false
         }, set: { newValue in
             self.addedPlayers[id] = newValue
-            
-            let t = self.addedPlayers.values.reduce(0, { num, v in num + (v ? 1 : 0) })
-            self.numPlayersAdded = t
         })
         
         return binding
@@ -27,6 +23,10 @@ class CreateGameData: ObservableObject {
     
     func selectPlayer(id: ObjectIdentifier) {
         self.addedPlayers[id] = true
+    }
+    
+    var numPlayersAdded: Int {
+        addedPlayers.values.reduce(0, { num, v in num + (v ? 1 : 0) })
     }
 }
 
@@ -71,45 +71,32 @@ struct CreateGame: View {
     @State var isCreatingPlayer = false
     
     var body: some View {
-        ModalView {
-            NavigationView {
-                VStack(alignment: .leading, spacing: 20) {
-                    VStack(alignment: .leading){
-                        Text("Game Name")
-                            .font(.caption)
-                            .foregroundColor(Color(.label))
-                        
-                        TextField("Game", text: $createData.name)
-                            .padding(.all)
-                            .background(Color(.tertiarySystemFill))
-                            .cornerRadius(4)
-                        
-                    }
-                    .padding()
+        NavigationView {
+            ZStack {
+                Form {
                     
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text("Who's Playing")
-                                .font(.caption)
-                                .foregroundColor(Color(.label))
-                            
-                            Spacer()
-                            
-                            Button(action: {
-                                self.isCreatingPlayer.toggle()
-                            }, label: {
-                                Image(systemName: "plus")
-                            }).padding(.horizontal)
-                        }.padding(.horizontal)
+                    Section(header: Text("Game Name")) {
+                        TextField("Game", text: $createData.name)
+                    }
+                    
+                    Section(header: HStack {
+                        Text("Who's playing")
                         
+                        Spacer()
+                        
+                        Button(action: {
+                            self.isCreatingPlayer.toggle()
+                        }, label: {
+                            Image(systemName: "plus")
+                                .foregroundColor(Color.blue)
+                        }).padding(.horizontal)
+                    }) {
                         List {
                             ForEach(players, id: \.self) { player in
                                 PlayerItem(colour: player.wrappedColor, name: player.wrappedName, isSelected: self.createData.getSelected(id: player.id))
                             }
                         }
-                        .listStyle(PlainListStyle())
                     }
-                    .padding(.vertical)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 .navigationBarItems(leading:
@@ -119,13 +106,24 @@ struct CreateGame: View {
                                     trailing:
                                         Button("Create") {
                                             self.createGame()
-                                        }.disabled(createData.name == ""))
+                                        }.disabled(createData.name == "" || createData.numPlayersAdded == 0))
                 .sheet(isPresented: $isCreatingPlayer) {
                     CreateEditPlayer(onPlayer: self.addPlayer, editingPlayer: nil)
                         .environmentObject(settings)
                 }
                 .navigationTitle("Create Game")
+                
+                VStack {
+                    Indicator()
+                        .padding(.top)
+                    Spacer()
+                }
+                .frame(maxHeight: .infinity)
+                .offset(y: -110)
             }
+        }
+        .onTapGesture {
+            self.hideKeyboard()
         }
     }
     

@@ -9,20 +9,30 @@ import SwiftUI
 
 struct ScoreHistoryView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @ObservedObject var playerScore: PlayerScore
     
     var body: some View {
-        VStack {
-            Text("Score history for \(playerScore.player?.wrappedName ?? "No name"    )")
-                .font(.callout)
-                .padding(.top, 32)
-            
-            List {
-                ForEach(playerScore.wrappedHistory.reversed(), id: \.self) { item in
-                    Text("\(item)")
+        ModalView {
+            VStack {
+                Text("Score history for \(playerScore.player?.wrappedName ?? "No name"    )")
+                    .font(.callout)
+                    .padding(.top, 32)
+                
+                if playerScore.wrappedHistory.count == 0 {
+                    Text("No scores entered so far")
+                        .fontWeight(.bold)
+                        .padding()
+                } else {
+                    List {
+                        ForEach(playerScore.wrappedHistory.reversed(), id: \.self) { item in
+                            Text("\(item)")
+                        }
+                        .onDelete(perform: deleteItems)
+                    }
                 }
-                .onDelete(perform: deleteItems)
+                
+                Spacer()
             }
         }
     }
@@ -36,9 +46,9 @@ struct ScoreHistoryView: View {
             if let game = playerScore.game {
                 viewContext.refresh(game, mergeChanges: true)
             }
-
+            
             viewContext.refresh(playerScore, mergeChanges: true)
-
+            
             do {
                 try viewContext.save()
             } catch {
