@@ -6,19 +6,22 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct PremiumView: View {
     @EnvironmentObject var settings: UserSettings
     
-    @State var price = "$1.99"
+    @State private var price = "$2.99"
+    @State private var product: SKProduct?
     
     var body: some View {
         ZStack {
-            ConfettiView( confetti: [
-                .text("🎉"),
-//                .shape(.circle, UIColor(Color.blue)),
-//                .shape(.triangle),
-            ])
+            if settings.hasPremium {
+                ConfettiView( confetti: [
+                    .text("🎉"),
+                    .text("✨")
+                ])
+            }
             
             VStack(alignment: .leading) {
                 Text("✨").font(.system(size: 80))
@@ -54,22 +57,35 @@ struct PremiumView: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    print("purchase")
-                }) {
-                    Text("Get Premium")
+                if settings.hasPremium {
+                    Text("Thanks for supporting Bowtie!")
+                        .font(.system(size: 22, weight: .bold))
+                        .multilineTextAlignment(.center)
+                        .gradientForeground(gradient: settings.theme.gradient)
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical)
+                } else if IAPHelper.canMakePayments() {
+                    Button(action: {
+                        self.purchase()
+                    }) {
+                        Text("Get Premium")
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical)
+                    }
+                    .foregroundColor(.white)
+                    .font(.system(size: 22, weight: .bold))
+                    .background(settings.theme.gradient)
+                    .cornerRadius(40)
+                    
+                    Text("One time payment of \(price)")
+                        .font(.footnote)
+                        .foregroundColor(Color(.secondaryLabel))
+                        .frame(maxWidth: .infinity)
+                } else {
+                    Text("Not Available")
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor((Color(.secondaryLabel)))
                 }
-                .foregroundColor(.white)
-                .font(.system(size: 22, weight: .bold))
-                .background(settings.theme.gradient)
-                .cornerRadius(40)
-                
-                Text("One time payment of \(price)")
-                    .font(.caption)
-                    .foregroundColor(Color(.secondaryLabel))
-                    .frame(maxWidth: .infinity)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             .padding()
@@ -80,8 +96,20 @@ struct PremiumView: View {
         .navigationTitle("Bowtie Premium")
         .navigationBarItems(trailing:
                                 Button("Restore") {
-                                    print("restore!")
+                                    self.restore()
                                 })
+    }
+    
+    private func purchase() {
+        guard let premium = self.product else {
+            return
+        }
+        
+        BowtieProducts.store.buyProduct(premium)
+    }
+    
+    private func restore() {
+        BowtieProducts.store.restorePurchases()
     }
     
     private func loadProducts() {
@@ -96,12 +124,8 @@ struct PremiumView: View {
                 return
             }
             
-            price = premium.localizedPrice
-            
-            //            if success {
-            //              print("PRODUCTS")
-            //              print(products)
-            //            }
+            self.product = premium
+            self.price = premium.localizedPrice
         }
     }
 }

@@ -10,12 +10,26 @@ import SwiftUI
 @main
 struct bowtie2App: App {
     let persistenceController = PersistenceController.shared
-
+    let settings = UserSettings(appIcon: UIApplication.shared.alternateIconName ?? "primary")
+    
     var body: some Scene {
         WindowGroup {
             AppView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(UserSettings(appIcon: UIApplication.shared.alternateIconName ?? "primary"))
+                .environmentObject(settings)
+                .onReceive(.IAPHelperPurchaseNotification) { notification in
+                    guard let productID = notification.object as? String else {
+                        return
+                    }
+                    
+                    self.handlePurchaseNotification(productID: productID)
+                }
+        }
+    }
+    
+    func handlePurchaseNotification(productID: String) {
+        if productID == BowtieProducts.Premium {
+            settings.hasPremium = true
         }
     }
 }

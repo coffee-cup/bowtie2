@@ -9,17 +9,17 @@ import SwiftUI
 import UIKit
 
 public struct ConfettiView: UIViewRepresentable {
-
+    
     private var confetti = [Confetti]()
-
+    
     public init(confetti: [Confetti]) {
         self.confetti = confetti
     }
-
+    
     public func makeUIView(context: Context) -> UIConfettiView {
         return UIConfettiView()
     }
-
+    
     public func updateUIView(_ uiView: UIConfettiView, context: Context) {
         uiView.emit(with: confetti)
     }
@@ -28,21 +28,21 @@ public struct ConfettiView: UIViewRepresentable {
 public enum Confetti {
     /// Confetti shapes
     public enum Shape {
-
+        
         case circle
         case triangle
         case square
-
+        
         // A custom shape.
         case custom(CGPath)
     }
-
+    
     /// A shape with a color.
     case shape(Shape, UIColor=UIColor.random)
-
+    
     /// An image with a tint color.
     case image(UIImage, UIColor=UIColor.random)
-
+    
     /// A string of characters.
     case text(String)
 }
@@ -50,7 +50,7 @@ public enum Confetti {
 
 /// The UIView Confetti Emitter
 public final class UIConfettiView: UIView {
-
+    
     func emit(with contents: [Confetti]) {
         let layer = Layer()
         layer.configure(with: contents)
@@ -60,30 +60,32 @@ public final class UIConfettiView: UIView {
         layer.emitterShape = .line
         self.layer.addSublayer(layer)
     }
-
+    
 }
 
 /// shapes, images, text to be emitted as confetti
 fileprivate final class Layer: CAEmitterLayer {
-     func configure(with contents: [Confetti]) {
+    func configure(with contents: [Confetti]) {
         emitterCells = contents.map { content in
             let cell = CAEmitterCell()
-
-            cell.birthRate = 50.0
-            cell.lifetime = 10.0
-            cell.velocity = CGFloat(cell.birthRate * cell.lifetime)
-            cell.velocityRange = cell.velocity / 2
-            cell.emissionLongitude = .pi
-            cell.emissionRange = .pi / 4
-            cell.spinRange = .pi * 8
-            cell.scaleRange = 0.65
-            cell.scale = 1.0 - cell.scaleRange
+            
+            cell.birthRate = 3
+            cell.lifetime = 40.0
+            cell.lifetimeRange = 0
+            cell.velocity = 200
+            cell.velocityRange = 50
+            cell.emissionLongitude = CGFloat.pi
+            cell.emissionRange = CGFloat.pi / 4
+            cell.spin = 2
+            cell.spinRange = 3
+            cell.scaleRange = 0.3
+            cell.scaleSpeed = -0.05
             cell.contents = content.image.cgImage
-
+            
             if let color = content.color {
                 cell.color = color.cgColor
             }
-
+            
             return cell
         }
     }
@@ -102,7 +104,7 @@ fileprivate extension Confetti.Shape {
                 CGPoint(x: rect.minX, y: rect.maxY),
                 CGPoint(x: rect.midX, y: 0)
             ])
-
+            
             return path
         case .square:
             return CGPath(rect: rect, transform: nil)
@@ -110,7 +112,7 @@ fileprivate extension Confetti.Shape {
             return path
         }
     }
-
+    
     func image(with color: UIColor) -> UIImage {
         let rect = CGRect(origin: .zero, size: CGSize(width: 12.0, height: 12.0))
         return UIGraphicsImageRenderer(size: rect.size).image { context in
@@ -131,7 +133,7 @@ fileprivate extension Confetti {
             return nil
         }
     }
-
+    
     var image: UIImage {
         switch self {
         case let .shape(shape, _):
@@ -142,7 +144,7 @@ fileprivate extension Confetti {
             let defaultAttributes: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 16.0)
             ]
-
+            
             return NSAttributedString(string: "\(string)", attributes: defaultAttributes).image()
         }
     }
@@ -164,5 +166,5 @@ fileprivate extension UIColor
         let brightness : CGFloat = CGFloat(arc4random() % 128) / 256 + 0.5 // from 0.5 to 1.0 to stay away from black
         return UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
     }
-
+    
 }

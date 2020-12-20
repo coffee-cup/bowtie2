@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 @propertyWrapper
 struct UserDefault<T> {
@@ -55,9 +56,7 @@ struct PListUserDefault<T> where T:Codable {
 final class UserSettings: ObservableObject {
     let objectWillChange = PassthroughSubject<Void, Never>()
     var appIcon: String {
-        willSet {
-            objectWillChange.send()
-        }
+        willSet { objectWillChange.send() }
     }
     
     init() {
@@ -68,18 +67,12 @@ final class UserSettings: ObservableObject {
         self.appIcon = appIcon
     }
 
-    @UserDefault("showGraph", defaultValue: true)
-    var showGraph: Bool {
-        willSet {
-            objectWillChange.send()
-        }
+    @AppStorage("showGraph") var showGraph = true {
+        willSet { objectWillChange.send() }
     }
     
-    @UserDefault(BowtieProducts.Premium, defaultValue: false)
-    var hasPremium: Bool {
-        willSet {
-            objectWillChange.send()
-        }
+    @AppStorage(BowtieProducts.Premium) var hasPremium = false {
+        willSet { objectWillChange.send() }
     }
     
     @PListUserDefault("theme", defaultValue: themes[0])

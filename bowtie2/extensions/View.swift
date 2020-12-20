@@ -28,4 +28,13 @@ extension View {
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
+    
+    func onReceive(_ name: Notification.Name,
+                   center: NotificationCenter = .default,
+                   object: AnyObject? = nil,
+                   perform action: @escaping (Notification) -> Void) -> some View {
+        self.onReceive(
+            center.publisher(for: name, object: object), perform: action
+        )
+    }
 }
