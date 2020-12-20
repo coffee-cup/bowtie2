@@ -21,6 +21,87 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
+
+			<key>xmas-green</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>xmas-green</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+
+			<key>winter</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>winter</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+
+			<key>atlas</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>atlas</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+
+			<key>cherryblossoms</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>cherryblossoms</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+
+			<key>earth</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>earth</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+
+			<key>greenish</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>greenish</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+
+			<key>sunrise</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>sunrise</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+
+			<key>timber</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>timber</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+
 		</dict>
 		<key>CFBundlePrimaryIcon</key>
 		<dict>

@@ -7,17 +7,6 @@
 
 import SwiftUI
 
-struct AppIcon {
-    var name: String
-    var filename: String
-    var requiresPremium: Bool
-}
-
-var icons: [AppIcon] = [
-    AppIcon(name: "Default", filename: "primary", requiresPremium: false),
-    AppIcon(name: "XMas Red", filename: "xmas-red", requiresPremium: true),
-]
-
 struct AppIconView: View {
     @EnvironmentObject var settings: UserSettings
     
@@ -26,8 +15,8 @@ struct AppIconView: View {
     var body: some View {
         HStack(spacing: 20) {
             Image(icon.filename)
-                .resizable().frame(width: 60, height: 60)
-                .cornerRadius(10.5)
+                .resizable().frame(width: 80, height: 80)
+                .cornerRadius(18)
             
             Text(icon.name)
                 .foregroundColor(.primary)
@@ -46,7 +35,6 @@ struct AppIconView: View {
                     .padding(.horizontal, 20)
             }
         }
-        .padding(.horizontal)
     }
 }
 
@@ -56,28 +44,30 @@ struct AppIconSelectView: View {
     
     var body: some View {
         ScrollView {
-            if UIApplication.shared.supportsAlternateIcons {
-                ForEach(icons, id: \.name) { icon in
-                    Button(action: {
-                        if icon.filename == settings.appIcon {
-                            return
+            VStack {
+                if UIApplication.shared.supportsAlternateIcons {
+                    ForEach(icons, id: \.name) { icon in
+                        Button(action: {
+                            if icon.filename == settings.appIcon {
+                                return
+                            }
+                            
+                            if !icon.requiresPremium || settings.hasPremium {
+                                self.setAppIcon(icon: icon)
+                            } else {
+                                self.showPremiumView = true
+                            }
+                        }) {
+                            AppIconView(icon: icon)
                         }
-                        
-                        if !icon.requiresPremium || settings.hasPremium {
-                            self.setAppIcon(icon: icon)
-                        } else {
-                            self.showPremiumView = true
-                        }
-                    }) {
-                        AppIconView(icon: icon)
                     }
+                    
+                } else {
+                    Text("Alternate app icons not supported")
                 }
-                
-            } else {
-                Text("Alternate app icons not supported")
-            }
+            }.padding(.all)
         }
-        .navigationTitle("Themes")
+        .navigationTitle("App Icons")
         .sheet(isPresented: $showPremiumView, content: {
             PremiumView()
                 .environmentObject(settings)
@@ -86,6 +76,7 @@ struct AppIconSelectView: View {
     
     private func setAppIcon(icon: AppIcon) {
         let altName = icon.filename == "primary" ? nil : icon.filename
+        
         UIApplication.shared.setAlternateIconName(altName) { error in
             if error == nil {
                 settings.appIcon = icon.filename
@@ -96,7 +87,9 @@ struct AppIconSelectView: View {
 
 struct AppIconSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        AppIconSelectView()
-            .environmentObject(UserSettings())
+        NavigationView {
+            AppIconSelectView()
+                .environmentObject(UserSettings())
+        }
     }
 }

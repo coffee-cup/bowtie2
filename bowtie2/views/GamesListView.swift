@@ -49,7 +49,7 @@ struct GamesListView: View {
                         }
                     }
                 }
-                .padding(.horizontal)
+                .padding(.all)
             }
             .navigationBarTitle("Games", displayMode: .large)
             .toolbar {

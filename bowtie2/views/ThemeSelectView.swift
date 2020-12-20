@@ -36,7 +36,6 @@ fileprivate struct ThemeItemView: View {
         .background(theme.gradient)
         .frame(maxWidth: .infinity)
         .cornerRadius(10)
-        .padding(.horizontal)
     }
 }
 
@@ -62,7 +61,7 @@ struct ThemeSelectView: View {
                         ThemeItemView(theme: theme)
                     }
                 }
-            }
+            }.padding(.all)
         }
         .navigationTitle("Themes")
         .sheet(isPresented: $showPremiumView, content: {
