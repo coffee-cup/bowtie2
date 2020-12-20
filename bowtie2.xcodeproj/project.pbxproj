@@ -251,28 +251,28 @@
 		B781BA5125611627008EB298 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				B791991C2586944600865BCB /* AboutView.swift */,
+				B7B1CC6B25854B39000ACCE3 /* AppIconSelectView.swift */,
 				B781BA3F256114F4008EB298 /* AppView.swift */,
+				B760DEF7258EEC3300F1970A /* ConfettiView.swift */,
 				B7B2503A256120B200C82EC6 /* CreateEditPlayer.swift */,
 				B7F82AC025625A8C00C7B221 /* CreateGame.swift */,
+				B72DC111256A68F100DF28F1 /* EnterScoreView.swift */,
 				B7F82AB62562406600C7B221 /* GameCard.swift */,
+				B7659F89257CC22900CA139E /* GameGraph.swift */,
+				B752066F2574BD5E00555390 /* GameSettings.swift */,
 				B781BA4725611518008EB298 /* GamesListView.swift */,
 				B7D339072569AD6F00ADBEFF /* GameView.swift */,
+				B7659F84257CB85E00CA139E /* GraphView.swift */,
+				B7CCE948257630BE00C3129B /* Indicator.swift */,
+				B7CCE94D25763B2B00C3129B /* ModalView.swift */,
 				B7B2505A2561AC9800C82EC6 /* PlayerCard.swift */,
 				B7D3390C2569DAB300ADBEFF /* PlayerScoreCard.swift */,
 				B781BA4C25611521008EB298 /* PlayersListView.swift */,
-				B72DC111256A68F100DF28F1 /* EnterScoreView.swift */,
+				B79199212586E6B900865BCB /* PremiumView.swift */,
 				B752066A25737C7C00555390 /* ScoreHistoryView.swift */,
-				B752066F2574BD5E00555390 /* GameSettings.swift */,
-				B7CCE948257630BE00C3129B /* Indicator.swift */,
-				B7CCE94D25763B2B00C3129B /* ModalView.swift */,
-				B7659F84257CB85E00CA139E /* GraphView.swift */,
-				B7659F89257CC22900CA139E /* GameGraph.swift */,
 				B7659F8E257DAA6B00CA139E /* SettingsView.swift */,
 				B73FD0C2257DFAFC00810010 /* ThemeSelectView.swift */,
-				B7B1CC6B25854B39000ACCE3 /* AppIconSelectView.swift */,
-				B791991C2586944600865BCB /* AboutView.swift */,
-				B79199212586E6B900865BCB /* PremiumView.swift */,
-				B760DEF7258EEC3300F1970A /* ConfettiView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";

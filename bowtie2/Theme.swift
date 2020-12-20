@@ -12,12 +12,14 @@ struct Theme: Codable {
     var colours: [String]
     var startPoint: CodableUnitPoint
     var endPoint: CodableUnitPoint
+    var requiresPremium: Bool = true
     
-    init(name: String, colours: [String], start: UnitPoint, end: UnitPoint) {
+    init(name: String, colours: [String], start: UnitPoint, end: UnitPoint, requiresPremium: Bool = true) {
         self.name = name
         self.colours = colours
         self.startPoint = CodableUnitPoint(from: start)
         self.endPoint = CodableUnitPoint(from: end)
+        self.requiresPremium = requiresPremium
     }
 }
 
@@ -28,8 +30,8 @@ extension Theme {
 }
 
 let themes: [Theme] = [
-    Theme(name: "Default", colours: ["FFA07A", "FF1493"], start: .topLeading, end: .bottomTrailing),
-    Theme(name: "Christmas", colours: ["EC1F2B", "28E326"], start: .topLeading, end: .bottomTrailing),
+    Theme(name: "Default", colours: ["FFA07A", "FF1493"], start: .topLeading, end: .bottomTrailing, requiresPremium: false),
+    Theme(name: "Christmas", colours: ["EC1F2B", "28E326"], start: .topLeading, end: .bottomTrailing, requiresPremium: false),
     Theme(name: "Atlas", colours: ["FEAC5E", "C779D0", "4BC0C8"], start: .topLeading, end: .bottomTrailing),
     Theme(name: "Timber", colours: ["fc00ff", "00dbde"], start: .topLeading, end: .bottomTrailing),
     Theme(name: "Earch", colours: ["20BF55", "01BAEF"], start: .topLeading, end: .bottomTrailing),

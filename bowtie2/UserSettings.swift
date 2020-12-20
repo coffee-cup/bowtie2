@@ -77,8 +77,6 @@ final class UserSettings: ObservableObject {
     
     @PListUserDefault("theme", defaultValue: themes[0])
     var theme: Theme {
-        willSet {
-            objectWillChange.send()
-        }
+        willSet { objectWillChange.send() }
     }
 }
