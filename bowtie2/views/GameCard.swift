@@ -13,14 +13,23 @@ struct GameCard: View {
     
     var body: some View {
         HStack(spacing: 16) {
-            Text(game.winner?.wrappedName[0] ?? "🎀")
-                .foregroundColor(.white)
-                .font(.system(size: 48, weight: .bold))
-                .padding()
-                .frame(width: 100, height: 100)
-                .if(game.winner == nil) { $0.background(settings.theme.gradient) }
-                .if(game.winner != nil) { $0.background(Color(hex: game.winner?.wrappedColor ?? "#000000")) }
             
+            if game.winner != nil {
+                Text(game.winner?.wrappedName[0] ?? "🎀")
+                    .foregroundColor(.white)
+                    .font(.system(size: 48, weight: .bold))
+                    .padding()
+                    .frame(width: 100, height: 100)
+                    .if(game.winner == nil) { $0.background(settings.theme.gradient) }
+                    .if(game.winner != nil) { $0.background(Color(hex: game.winner?.wrappedColor ?? "#000000")) }
+            } else {
+                ZStack {
+                    Image("bowtie").resizable().frame(width: 80, height: 80)
+                }
+                .frame(width: 100, height: 100)
+                .background(settings.theme.gradient)
+            }
+
             HStack {
                 VStack(alignment: .leading, spacing: 0) {
                     Text(game.wrappedName)
@@ -53,7 +62,8 @@ struct GameCard: View {
 
 struct GameCard_Previews: PreviewProvider {
     static var previews: some View {
-        GameCard(game: Game.gameByName(context: PersistenceController.preview.container.viewContext, name: "Blitz")!)
+        GameCard(game: Game.gameByName(context: PersistenceController.preview.container.viewContext, name: "Tie")!)
+            .environmentObject(UserSettings())
             .padding(.horizontal)
     }
 }

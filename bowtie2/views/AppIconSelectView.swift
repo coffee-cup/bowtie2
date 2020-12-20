@@ -16,7 +16,7 @@ struct AppIconView: View {
         HStack(spacing: 20) {
             Image(icon.filename)
                 .resizable().frame(width: 80, height: 80)
-                .cornerRadius(18)
+                .cornerRadius(14)
             
             Text(icon.name)
                 .foregroundColor(.primary)

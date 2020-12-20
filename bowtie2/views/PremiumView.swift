@@ -63,6 +63,7 @@ struct PremiumView: View {
                         .multilineTextAlignment(.center)
                         .gradientForeground(gradient: settings.theme.gradient)
                         .frame(maxWidth: .infinity)
+                        .padding(.vertical)
                 } else if IAPHelper.canMakePayments() {
                     Button(action: {
                         self.purchase()

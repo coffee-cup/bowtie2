@@ -41,6 +41,10 @@ struct PersistenceController {
         PlayerScore.createPlayerScore(context: viewContext, game: g4, player: aleesha, history: [1])
         PlayerScore.createPlayerScore(context: viewContext, game: g4, player: jake, history: [1])
         
+        let g5 = Game.createGame(context: viewContext, name: "Tie")
+        PlayerScore.createPlayerScore(context: viewContext, game: g5, player: aleesha, history: [1])
+        PlayerScore.createPlayerScore(context: viewContext, game: g5, player: jake, history: [1])
+        
         Game.createGame(context: viewContext, name: "No Players")
         
         do {
