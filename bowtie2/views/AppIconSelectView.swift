@@ -10,51 +10,78 @@ import SwiftUI
 struct AppIcon {
     var name: String
     var filename: String
+    var requiresPremium: Bool
 }
 
 var icons: [AppIcon] = [
-    AppIcon(name: "Default", filename: "primary"),
-    AppIcon(name: "XMas Red", filename: "xmas-red")
+    AppIcon(name: "Default", filename: "primary", requiresPremium: false),
+    AppIcon(name: "XMas Red", filename: "xmas-red", requiresPremium: true),
 ]
+
+struct AppIconView: View {
+    @EnvironmentObject var settings: UserSettings
+    
+    @State var icon: AppIcon
+    
+    var body: some View {
+        HStack(spacing: 20) {
+            Image(icon.filename)
+                .resizable().frame(width: 60, height: 60)
+                .cornerRadius(10.5)
+            
+            Text(icon.name)
+                .foregroundColor(.primary)
+            
+            Spacer()
+            
+            if settings.appIcon == icon.filename {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundColor(.primary)
+                    .font(.title)
+                    .padding(.horizontal)
+            } else if icon.requiresPremium && !settings.hasPremium {
+                Image(systemName: "lock.fill")
+                    .foregroundColor(.primary)
+                    .font(.title2)
+                    .padding(.horizontal, 20)
+            }
+        }
+        .padding(.horizontal)
+    }
+}
 
 struct AppIconSelectView: View {
     @EnvironmentObject var settings: UserSettings
+    @State var showPremiumView: Bool = false
     
     var body: some View {
         ScrollView {
             if UIApplication.shared.supportsAlternateIcons {
-                
                 ForEach(icons, id: \.name) { icon in
                     Button(action: {
-                        self.setAppIcon(icon: icon)
-                    }) {
-                        HStack(spacing: 20) {
-                            Image(icon.filename)
-                                .resizable().frame(width: 60, height: 60)
-                                .cornerRadius(10.5)
-                            
-                            Text(icon.name)
-                                .foregroundColor(.primary)
-                            
-                            Spacer()
-                            
-                            if settings.appIcon == icon.filename {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.primary)
-                                    .font(.title)
-                                    .padding(.horizontal)
-                            }
+                        if icon.filename == settings.appIcon {
+                            return
                         }
-                        .padding(.horizontal)
+                        
+                        if !icon.requiresPremium || settings.hasPremium {
+                            self.setAppIcon(icon: icon)
+                        } else {
+                            self.showPremiumView = true
+                        }
+                    }) {
+                        AppIconView(icon: icon)
                     }
                 }
                 
             } else {
                 Text("Alternate app icons not supported")
             }
-        }.navigationTitle("Themes")
-        
-        
+        }
+        .navigationTitle("Themes")
+        .sheet(isPresented: $showPremiumView, content: {
+            PremiumView()
+                .environmentObject(settings)
+        })
     }
     
     private func setAppIcon(icon: AppIcon) {

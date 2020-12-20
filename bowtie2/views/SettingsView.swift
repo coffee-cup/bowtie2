@@ -37,7 +37,7 @@ struct SettingsView: View {
                 
                 Section {
                     NavigationLink(destination: PremiumView()) {
-                        Text("Support the Developer")
+                        Text("Premium")
                     }
                 }
                 
