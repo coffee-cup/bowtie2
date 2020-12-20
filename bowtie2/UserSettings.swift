@@ -75,6 +75,13 @@ final class UserSettings: ObservableObject {
         }
     }
     
+    @UserDefault(BowtieProducts.Premium, defaultValue: false)
+    var hasPremium: Bool {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
     @PListUserDefault("theme", defaultValue: themes[0])
     var theme: Theme {
         willSet {

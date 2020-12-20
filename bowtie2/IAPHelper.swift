@@ -84,7 +84,7 @@ extension IAPHelper: SKProductsRequestDelegate {
     print(response.products.count)
 
     for p in products {
-      print("Found product: \(p.productIdentifier) \(p.localizedTitle) \(p.price.floatValue)")
+        print("Found product: \(p.productIdentifier) \(p.localizedTitle) \(p.localizedPrice)")
     }
   }
 

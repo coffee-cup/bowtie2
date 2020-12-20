@@ -17,6 +17,7 @@
 		B752066B25737C7C00555390 /* ScoreHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B752066A25737C7C00555390 /* ScoreHistoryView.swift */; };
 		B75206702574BD5E00555390 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B752066F2574BD5E00555390 /* GameSettings.swift */; };
 		B75206752574C40C00555390 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75206742574C40C00555390 /* Binding.swift */; };
+		B760DEF8258EEC3300F1970A /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B760DEF7258EEC3300F1970A /* ConfettiView.swift */; };
 		B7659F85257CB85E00CA139E /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7659F84257CB85E00CA139E /* GraphView.swift */; };
 		B7659F8A257CC22900CA139E /* GameGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7659F89257CC22900CA139E /* GameGraph.swift */; };
 		B7659F8F257DAA6B00CA139E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7659F8E257DAA6B00CA139E /* SettingsView.swift */; };
@@ -38,6 +39,7 @@
 		B79199272586F55F00865BCB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79199262586F55F00865BCB /* StoreKit.framework */; };
 		B79199292586F6C400865BCB /* BowtieProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79199282586F6C400865BCB /* BowtieProducts.swift */; };
 		B791992E2586F76F00865BCB /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B791992D2586F76F00865BCB /* IAPHelper.swift */; };
+		B7B0A4B2258EBF550068D810 /* SKProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B0A4B1258EBF550068D810 /* SKProduct.swift */; };
 		B7B1CC5C2585485B000ACCE3 /* xmas-red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1CC592585485B000ACCE3 /* xmas-red@2x.png */; };
 		B7B1CC5D2585485B000ACCE3 /* xmas-red.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1CC5A2585485B000ACCE3 /* xmas-red.png */; };
 		B7B1CC5E2585485B000ACCE3 /* xmas-red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1CC5B2585485B000ACCE3 /* xmas-red@3x.png */; };
@@ -87,6 +89,7 @@
 		B752066A25737C7C00555390 /* ScoreHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreHistoryView.swift; sourceTree = "<group>"; };
 		B752066F2574BD5E00555390 /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		B75206742574C40C00555390 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
+		B760DEF7258EEC3300F1970A /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		B7659F84257CB85E00CA139E /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		B7659F89257CC22900CA139E /* GameGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGraph.swift; sourceTree = "<group>"; };
 		B7659F8E257DAA6B00CA139E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -115,6 +118,7 @@
 		B79199262586F55F00865BCB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B79199282586F6C400865BCB /* BowtieProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowtieProducts.swift; sourceTree = "<group>"; };
 		B791992D2586F76F00865BCB /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		B7B0A4B1258EBF550068D810 /* SKProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKProduct.swift; sourceTree = "<group>"; };
 		B7B1CC592585485B000ACCE3 /* xmas-red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red@2x.png"; sourceTree = "<group>"; };
 		B7B1CC5A2585485B000ACCE3 /* xmas-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red.png"; sourceTree = "<group>"; };
 		B7B1CC5B2585485B000ACCE3 /* xmas-red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red@3x.png"; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 				B7B1CC6B25854B39000ACCE3 /* AppIconSelectView.swift */,
 				B791991C2586944600865BCB /* AboutView.swift */,
 				B79199212586E6B900865BCB /* PremiumView.swift */,
+				B760DEF7258EEC3300F1970A /* ConfettiView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 				B72DC116256A776100DF28F1 /* Number.swift */,
 				B72DC120256AF1C000DF28F1 /* View.swift */,
 				B75206742574C40C00555390 /* Binding.swift */,
+				B7B0A4B1258EBF550068D810 /* SKProduct.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -438,6 +444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B760DEF8258EEC3300F1970A /* ConfettiView.swift in Sources */,
 				B781BA4825611518008EB298 /* GamesListView.swift in Sources */,
 				B752066B25737C7C00555390 /* ScoreHistoryView.swift in Sources */,
 				B75206702574BD5E00555390 /* GameSettings.swift in Sources */,
@@ -471,6 +478,7 @@
 				B791991D2586944600865BCB /* AboutView.swift in Sources */,
 				B7D339082569AD6F00ADBEFF /* GameView.swift in Sources */,
 				B72DC117256A776100DF28F1 /* Number.swift in Sources */,
+				B7B0A4B2258EBF550068D810 /* SKProduct.swift in Sources */,
 				B7659F8F257DAA6B00CA139E /* SettingsView.swift in Sources */,
 				B781BA002560F5E0008EB298 /* bowtie2App.swift in Sources */,
 				B7C130FF25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift in Sources */,
