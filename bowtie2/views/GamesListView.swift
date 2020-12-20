@@ -17,6 +17,9 @@ struct GamesListView: View {
     private var games: FetchedResults<Game>
     
     @State var isCreating = false
+    @State var isDeleting = false
+    
+    @State private var deletingGame: Game? = nil
     
     var body: some View {
         NavigationView {
@@ -37,15 +40,14 @@ struct GamesListView: View {
                             }
                             
                             Button(action: {
-                                self.deleteGame(game: game)
+                                self.deletingGame = game
+                                self.isDeleting = true
                             }) {
                                 HStack {
                                     Text("Delete Game")
                                     Image(systemName: "trash")
                                 }
                             }
-                            
-                            
                         }
                     }
                 }
@@ -61,7 +63,16 @@ struct GamesListView: View {
             }
             .sheet(isPresented: $isCreating) {
                 CreateGame()
+
             }
+            .alert(isPresented: $isDeleting) {
+                        Alert(title: Text("Are you sure you want to delete this?"),
+                              primaryButton: .destructive(Text("Delete")) {
+                                if let game = self.deletingGame {
+                                    self.deleteGame(game: game)
+                                }
+                        }, secondaryButton: .cancel())
+                    }
         }
     }
     
