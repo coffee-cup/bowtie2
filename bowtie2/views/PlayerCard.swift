@@ -24,7 +24,7 @@ struct PlayerCard: View {
             }
             .padding(.all)
         }
-        .frame(height: 120)
+        .frame(height: 100)
         .cornerRadius(24)
 //        .shadow(color: Color(hex: colour), radius: 4)
     }
