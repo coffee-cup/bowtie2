@@ -10,6 +10,8 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var settings: UserSettings
     
+    @State var isShowingPremium = false
+    
     var body: some View {
         NavigationView {
             Form {
@@ -36,8 +38,12 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    NavigationLink(destination: PremiumView()) {
-                        Text("Premium")
+                    Button(action: {
+                        self.isShowingPremium = true
+                    }) {
+                        HStack {
+                            Text("✨ Premium ✨")
+                        }
                     }
                 }
                 
@@ -53,8 +59,14 @@ struct SettingsView: View {
                     }
                 }
             }
+            .sheet(isPresented: $isShowingPremium, content: presentSheet)
             .navigationTitle("Settings")
         }
+    }
+    
+    @ViewBuilder
+    private func presentSheet() -> some View {
+        PremiumView().environmentObject(settings)
     }
     
     private func openFeedback() {

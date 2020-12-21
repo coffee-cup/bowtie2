@@ -18,7 +18,6 @@ extension SKProduct {
         if self.price == 0.00 {
             return "Get"
         } else {
-            print(self.priceLocale)
             let formatter = SKProduct.formatter
             formatter.locale = self.priceLocale
 

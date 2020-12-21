@@ -9,12 +9,14 @@ import SwiftUI
 import StoreKit
 
 struct PremiumView: View {
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var settings: UserSettings
     
     @State private var price = "$2.99"
     @State private var product: SKProduct?
     
     var body: some View {
+        //        NavigationView {
         ZStack {
             if settings.hasPremium {
                 ConfettiView( confetti: [
@@ -23,8 +25,37 @@ struct PremiumView: View {
                 ])
             }
             
-            VStack(alignment: .leading) {
-                Text("✨").font(.system(size: 80))
+            VStack {
+                HStack {
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("Close")
+                            .fontWeight(.medium)
+                    }
+                    
+                    Spacer()
+                    
+                    if !settings.hasPremium {
+                        Button(action: {
+                            self.restore()
+                        }) {
+                            Text("Restore")
+                                .fontWeight(.medium)
+                        }
+                    }
+                }.padding(.all)
+                
+                Text("✨ Bowtie Premium ✨")
+                    .font(.system(size: 32, weight: .bold))
+                    .padding(.top)
+                
+                Text("The core features of Bowtie will always remain free and without ads")
+                    .font(.system(size: 14))
+                    .foregroundColor(Color(.secondaryLabel))
+                    .multilineTextAlignment(.center)
+                    .padding(.vertical)
+                    .frame(maxWidth: 250)
                 
                 VStack(alignment: .leading, spacing: 20) {
                     HStack {
@@ -34,7 +65,7 @@ struct PremiumView: View {
                                 .fontWeight(.bold)
                             Text("Additional themes and app icons")
                                 .fixedSize(horizontal: false, vertical: true)
-                                .font(.system(size: 14))
+                                .font(.system(size: 16))
                                 .foregroundColor(Color(.secondaryLabel))
                                 .lineLimit(nil)
                         }
@@ -46,14 +77,14 @@ struct PremiumView: View {
                             Text("Support").fontWeight(.bold)
                             Text("Support the developer and show appreciation of the app")
                                 .fixedSize(horizontal: false, vertical: true)
-                                .font(.system(size: 14))
+                                .font(.system(size: 16))
                                 .foregroundColor(Color(.secondaryLabel))
                                 .lineLimit(nil)
                         }
                         .padding(.leading)
                     }
                 }
-                .padding(.vertical, 40)
+                .padding(.vertical)
                 
                 Spacer()
                 
@@ -90,15 +121,16 @@ struct PremiumView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             .padding()
+            //            }
+            .onAppear {
+                self.loadProducts()
+            }
+            .navigationBarTitle("Bowtie Premium", displayMode: .inline)
+            .navigationBarItems(trailing:
+                                    Button("Restore") {
+                                        self.restore()
+                                    })
         }
-        .onAppear {
-            self.loadProducts()
-        }
-        .navigationTitle("Bowtie Premium")
-        .navigationBarItems(trailing:
-                                Button("Restore") {
-                                    self.restore()
-                                })
     }
     
     private func purchase() {
@@ -133,9 +165,7 @@ struct PremiumView: View {
 
 struct PremiumView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            PremiumView()
-                .environmentObject(UserSettings())
-        }
+        PremiumView()
+            .environmentObject(UserSettings())
     }
 }
