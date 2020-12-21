@@ -36,7 +36,7 @@ struct PlayersListView: View {
     
     var body: some View {
         NavigationView {
-            if players.count != 0 {
+            if players.count == 0 {
                 VStack {
                     Spacer()
                     

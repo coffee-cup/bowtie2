@@ -13,7 +13,7 @@ struct PlayerWheel: View {
     
     var body: some View {
         VStack {
-            ColorPicker("Choose color for player", selection: $colour, supportsOpacity: false)
+            ColorPicker("Choose Colour for Player", selection: $colour, supportsOpacity: false)
                 .scaleEffect(CGSize(width: 5, height: 5))
                 .labelsHidden()
                 .position(x: boundingSize / 2, y: boundingSize / 2)

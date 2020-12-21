@@ -17,7 +17,7 @@ struct ModalView<Content: View>: View {
     var body: some View {
         VStack(spacing: 0) {
             Indicator()
-                .padding(.vertical)
+                .padding(.bottom)
             
             self.content
         }

@@ -71,12 +71,8 @@ struct EnterScoreView: View {
         Array(repeating: .init(.flexible(), spacing: 0), count: 3)
     
     var body: some View {
-        ModalView {
+        NavigationView {
             VStack {
-                Text("Enter score for \(playerScore.player?.wrappedName ?? "No name"    )")
-                    .font(.callout)
-                    .padding(.top, 32)
-                
                 ScoreView(score: score, isNegative: $isNegative)
                 
                 VStack(spacing: 0) {
@@ -110,12 +106,12 @@ struct EnterScoreView: View {
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
                             HStack {
-                            Text("Go")
-                                .foregroundColor(.white).bold()
-                                .frame(maxWidth: 44, maxHeight: 44)
-                                .padding(.all)
-                                .background(settings.theme.gradient)
-                                .cornerRadius(44)
+                                Text("Go")
+                                    .foregroundColor(.white).bold()
+                                    .frame(maxWidth: 44, maxHeight: 44)
+                                    .padding(.all)
+                                    .background(settings.theme.gradient)
+                                    .cornerRadius(44)
                             }
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
@@ -125,6 +121,11 @@ struct EnterScoreView: View {
                 
                 Spacer(minLength: 20)
             }
+            .navigationBarTitle("Enter score for \(playerScore.player?.wrappedName ?? "No name"    )", displayMode: .inline)
+            .navigationBarItems(leading:
+                                    Button("Close") {
+                                        self.presentationMode.wrappedValue.dismiss()
+                                    })
             .padding(.horizontal)
             .frame(maxHeight: .infinity)
         }

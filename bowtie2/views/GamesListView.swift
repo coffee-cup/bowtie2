@@ -57,9 +57,7 @@ struct GamesListView: View {
                 .frame(maxHeight: .infinity)
                 .padding(.all)
                 .navigationTitle("Games")
-                .sheet(isPresented: $isCreating) {
-                    CreateGame()
-                }
+                .sheet(isPresented: $isCreating, content: presentSheet)
             } else {
                 ScrollView {
                     LazyVStack(spacing: 10) {
@@ -99,9 +97,7 @@ struct GamesListView: View {
                         Label("Create Game", systemImage: "plus")
                     }
                 }
-                .sheet(isPresented: $isCreating) {
-                    CreateGame()
-                }
+                .sheet(isPresented: $isCreating, content: presentSheet)
                 .alert(isPresented: $isDeleting) {
                     Alert(title: Text("Are you sure you want to delete this?"),
                           primaryButton: .destructive(Text("Delete")) {
@@ -111,10 +107,12 @@ struct GamesListView: View {
                           }, secondaryButton: .cancel())
                 }
             }
-            
-            
-            
         }
+    }
+    
+    @ViewBuilder
+    private func presentSheet() -> some View {
+        CreateGame().environmentObject(settings)
     }
     
     private func deleteGame(game: Game) {

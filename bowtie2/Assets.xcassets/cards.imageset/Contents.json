@@ -3,6 +3,16 @@
     {
       "filename" : "cards.pdf",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "noun_Cards_2061453 1.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {

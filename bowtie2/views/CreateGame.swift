@@ -65,6 +65,7 @@ struct CreateGame: View {
     @FetchRequest(
         entity: Player.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Player.created, ascending: false)],
+        predicate: NSPredicate(format: "hasBeenDeleted == %@", false),
         animation: .default)
     private var players: FetchedResults<Player>
     
@@ -82,16 +83,26 @@ struct CreateGame: View {
                     
                     Spacer()
                     
-                    Button(action: {
-                        self.isCreatingPlayer.toggle()
-                    }, label: {
-                        Image(systemName: "plus")
-                            .foregroundColor(Color.blue)
-                    }).padding(.horizontal)
+                    if players.count > 0 {
+                        Button(action: {
+                            self.isCreatingPlayer.toggle()
+                        }, label: {
+                            Image(systemName: "plus")
+                                .foregroundColor(Color.blue)
+                        }).padding(.horizontal)
+                    }
                 }) {
-                    List {
-                        ForEach(players, id: \.self) { player in
-                            PlayerItem(colour: player.wrappedColor, name: player.wrappedName, isSelected: self.createData.getSelected(id: player.id))
+                    if players.count == 0 {
+                        Button(action: {
+                            self.isCreatingPlayer.toggle()
+                        }) {
+                            Text("Create player")
+                        }
+                    } else {
+                        List {
+                            ForEach(players, id: \.self) { player in
+                                PlayerItem(colour: player.wrappedColor, name: player.wrappedName, isSelected: self.createData.getSelected(id: player.id))
+                            }
                         }
                     }
                 }
@@ -110,9 +121,6 @@ struct CreateGame: View {
                     .environmentObject(settings)
             }
             .navigationBarTitle("Create Game", displayMode: .inline)
-        }
-        .onTapGesture {
-            self.hideKeyboard()
         }
     }
     
