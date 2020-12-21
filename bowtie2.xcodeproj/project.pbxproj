@@ -77,6 +77,9 @@
 		B7C1310125611D4D00EE6601 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */; };
 		B7C1311125611FBB00EE6601 /* Game+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */; };
 		B7C1B4EB259072270087FB74 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C1B4EA259072270087FB74 /* WelcomeView.swift */; };
+		B7C1B4F825909C860087FB74 /* classic.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C1B4F525909C860087FB74 /* classic.png */; };
+		B7C1B4F925909C860087FB74 /* classic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C1B4F625909C860087FB74 /* classic@2x.png */; };
+		B7C1B4FA25909C860087FB74 /* classic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C1B4F725909C860087FB74 /* classic@3x.png */; };
 		B7CCE949257630BE00C3129B /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CCE948257630BE00C3129B /* Indicator.swift */; };
 		B7CCE94E25763B2B00C3129B /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CCE94D25763B2B00C3129B /* ModalView.swift */; };
 		B7D339082569AD6F00ADBEFF /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D339072569AD6F00ADBEFF /* GameView.swift */; };
@@ -181,6 +184,9 @@
 		B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7C1B4EA259072270087FB74 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		B7C1B4F525909C860087FB74 /* classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classic.png; sourceTree = "<group>"; };
+		B7C1B4F625909C860087FB74 /* classic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "classic@2x.png"; sourceTree = "<group>"; };
+		B7C1B4F725909C860087FB74 /* classic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "classic@3x.png"; sourceTree = "<group>"; };
 		B7CCE948257630BE00C3129B /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		B7CCE94D25763B2B00C3129B /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		B7D339072569AD6F00ADBEFF /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -331,6 +337,9 @@
 		B7B1CC5825854841000ACCE3 /* app-icons */ = {
 			isa = PBXGroup;
 			children = (
+				B7C1B4F525909C860087FB74 /* classic.png */,
+				B7C1B4F625909C860087FB74 /* classic@2x.png */,
+				B7C1B4F725909C860087FB74 /* classic@3x.png */,
 				B72403392590083600F0E153 /* atlas.png */,
 				B72403302590083500F0E153 /* atlas@2x.png */,
 				B72403362590083600F0E153 /* atlas@3x.png */,
@@ -494,6 +503,7 @@
 				B72403632590083700F0E153 /* winter.png in Resources */,
 				B724034F2590083700F0E153 /* cherryblossoms@3x.png in Resources */,
 				B72403542590083700F0E153 /* atlas.png in Resources */,
+				B7C1B4F925909C860087FB74 /* classic@2x.png in Resources */,
 				B72403512590083700F0E153 /* atlas@3x.png in Resources */,
 				B724034D2590083700F0E153 /* earth@3x.png in Resources */,
 				B72403642590083700F0E153 /* xmas-red@3x.png in Resources */,
@@ -503,11 +513,13 @@
 				B72403622590083700F0E153 /* xmas-green.png in Resources */,
 				B72403532590083700F0E153 /* xmas-red.png in Resources */,
 				B72403602590083700F0E153 /* cherryblossoms@2x.png in Resources */,
+				B7C1B4FA25909C860087FB74 /* classic@3x.png in Resources */,
 				B724035B2590083700F0E153 /* greenish@3x.png in Resources */,
 				B724035F2590083700F0E153 /* greenish@2x.png in Resources */,
 				B72403592590083700F0E153 /* winter@2x.png in Resources */,
 				B724035D2590083700F0E153 /* cherryblossoms.png in Resources */,
 				B724034B2590083700F0E153 /* atlas@2x.png in Resources */,
+				B7C1B4F825909C860087FB74 /* classic.png in Resources */,
 				B72403522590083700F0E153 /* winter@3x.png in Resources */,
 				B72403552590083700F0E153 /* xmas-green@2x.png in Resources */,
 				B781BA042560F5E2008EB298 /* Assets.xcassets in Resources */,
@@ -745,7 +757,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bowtie2/bowtie2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"bowtie2/Preview Content\"";
 				DEVELOPMENT_TEAM = 4TPDCY22V9;
 				ENABLE_PREVIEWS = YES;
@@ -769,7 +781,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bowtie2/bowtie2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"bowtie2/Preview Content\"";
 				DEVELOPMENT_TEAM = 4TPDCY22V9;
 				ENABLE_PREVIEWS = YES;
