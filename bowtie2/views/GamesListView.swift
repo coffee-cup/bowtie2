@@ -59,7 +59,6 @@ struct GamesListView: View {
                 .navigationTitle("Games")
                 .sheet(isPresented: $isCreating) {
                     CreateGame()
-                    
                 }
             } else {
                 ScrollView {
@@ -102,7 +101,6 @@ struct GamesListView: View {
                 }
                 .sheet(isPresented: $isCreating) {
                     CreateGame()
-                    
                 }
                 .alert(isPresented: $isDeleting) {
                     Alert(title: Text("Are you sure you want to delete this?"),

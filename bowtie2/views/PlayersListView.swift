@@ -20,6 +20,7 @@ class PlayersListSheetState: Identifiable {
 
 struct PlayersListView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var settings: UserSettings
     
     @FetchRequest(
         entity: Player.entity(),
@@ -35,41 +36,78 @@ struct PlayersListView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(players, id: \.self) { player in
-                        PlayerCard(name: player.wrappedName, colour: player.wrappedColor)
-                            .contextMenu {
-                                Button(action: {
-                                    self.deletePlayer(player: player)
-                                }) {
-                                    HStack {
-                                        Text("Delete Player")
-                                        Image(systemName: "trash")
+            if players.count != 0 {
+                VStack {
+                    Spacer()
+                    
+                    Text("No players yet")
+                    
+                    Image("cards")
+                        .resizable()
+                        .frame(width: 180.0)
+                        .aspectRatio(contentMode: .fit)
+                        
+                    Spacer()
+                    
+                    Button(action: {
+                        self.sheetState = PlayersListSheetState(editing: nil)
+                    }) {
+                        Text("Create Player")
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical)
+                    }
+                    .foregroundColor(.white)
+                    .font(.system(size: 22, weight: .bold))
+                    .background(settings.theme.gradient)
+                    .cornerRadius(40)
+                    .padding(.top)
+                    
+                    Text("Reuse players between games")
+                        .font(.footnote)
+                        .foregroundColor(Color(.secondaryLabel))
+                }
+                .frame(maxHeight: .infinity)
+                .padding(.all)
+                .navigationTitle("Games")
+                .sheet(item: $sheetState, content: presentSheet)
+            } else {
+                ScrollView {
+                    LazyVGrid(columns: columns) {
+                        ForEach(players, id: \.self) { player in
+                            PlayerCard(name: player.wrappedName, colour: player.wrappedColor)
+                                .contextMenu {
+                                    Button(action: {
+                                        self.deletePlayer(player: player)
+                                    }) {
+                                        HStack {
+                                            Text("Delete Player")
+                                            Image(systemName: "trash")
+                                        }
                                     }
                                 }
-                            }
-                            .onTapGesture(count: 1, perform: {
-                                self.sheetState = PlayersListSheetState(editing: player)
-                            })
+                                .onTapGesture(count: 1, perform: {
+                                    self.sheetState = PlayersListSheetState(editing: player)
+                                })
+                        }
                     }
                 }
-            }
-            .padding(.horizontal)
-            .navigationTitle("Players")
-            .toolbar {
-                Button(action: {
-                    self.sheetState = PlayersListSheetState(editing: nil)
-                }) {
-                    Label("Add Player", systemImage: "plus")
+                .padding(.horizontal)
+                .navigationTitle("Players")
+                .toolbar {
+                    Button(action: {
+                        self.sheetState = PlayersListSheetState(editing: nil)
+                    }) {
+                        Label("Add Player", systemImage: "plus")
+                    }
                 }
-            }
-            .sheet(item: $sheetState, onDismiss: {
-                self.sheetState = nil
-            }) { item in
-                CreateEditPlayer(onPlayer: onPlayer(name:colour:), editingPlayer: item.editingPlayer)
+                .sheet(item: $sheetState, content: presentSheet)
             }
         }
+    }
+    
+    @ViewBuilder
+    private func presentSheet(for sheet: PlayersListSheetState) -> some View {
+        CreateEditPlayer(onPlayer: onPlayer(name:colour:), editingPlayer: sheet.editingPlayer)
     }
     
     private func onPlayer(name: String, colour: String) {
@@ -106,6 +144,8 @@ struct PlayersListView: View {
 
 struct PlayersView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayersListView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        PlayersListView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(UserSettings())
     }
 }
