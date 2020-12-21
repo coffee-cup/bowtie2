@@ -28,13 +28,17 @@ struct GamesListView: View {
                 VStack {
                     Spacer()
                     
-                    Text("No games yet")
-                    
-                    Image("cards")
-                        .resizable()
-                        .frame(width: 180.0)
-                        .aspectRatio(contentMode: .fit)
+                    VStack {
+                        Text("No games yet")
+                            .padding(.bottom)
                         
+                        Image("cards")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 180.0)
+                    }
+                    .offset(y: -20)
+                    
                     Spacer()
                     
                     Button(action: {

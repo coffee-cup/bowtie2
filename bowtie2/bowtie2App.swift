@@ -12,6 +12,8 @@ struct bowtie2App: App {
     let persistenceController = PersistenceController.shared
     let settings = UserSettings(appIcon: UIApplication.shared.alternateIconName ?? "primary")
     
+    @State private var showWelcome = false
+    
     var body: some Scene {
         WindowGroup {
             AppView()
@@ -23,6 +25,14 @@ struct bowtie2App: App {
                     }
                     
                     self.handlePurchaseNotification(productID: productID)
+                }
+                .sheet(isPresented: $showWelcome, onDismiss: {
+                    settings.showWelcome = false
+                }) {
+                    WelcomeView().environmentObject(settings)
+                }
+                .onAppear {
+                    self.showWelcome = settings.showWelcome
                 }
         }
     }

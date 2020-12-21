@@ -40,12 +40,16 @@ struct PlayersListView: View {
                 VStack {
                     Spacer()
                     
-                    Text("No players yet")
-                    
-                    Image("cards")
-                        .resizable()
-                        .frame(width: 180.0)
-                        .aspectRatio(contentMode: .fit)
+                    VStack {
+                        Text("No players yet")
+                            .padding(.bottom)
+                        
+                        Image("cards")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 180.0)
+                    }
+                    .offset(y: -20)
                         
                     Spacer()
                     

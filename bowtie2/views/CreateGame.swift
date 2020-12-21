@@ -75,7 +75,7 @@ struct CreateGame: View {
         NavigationView {
             Form {
                 Section(header: Text("Game Name").padding(.top)) {
-                    TextField("Game", text: $createData.name)
+                    TextField("Canasta", text: $createData.name)
                 }
                 
                 Section(header: HStack {
@@ -88,6 +88,7 @@ struct CreateGame: View {
                             self.isCreatingPlayer.toggle()
                         }, label: {
                             Image(systemName: "plus")
+                                .font(.system(size: 18))
                                 .foregroundColor(Color.blue)
                         }).padding(.horizontal)
                     }

@@ -59,32 +59,33 @@ struct PremiumView: View {
                 
                 VStack(alignment: .leading, spacing: 20) {
                     HStack {
-                        Text("💅").font(.system(size: 32))
+                        Text("💅")
+                            .font(.system(size: 36))
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Cosmetic Customization")
                                 .fontWeight(.bold)
                             Text("Additional themes and app icons")
                                 .fixedSize(horizontal: false, vertical: true)
-                                .font(.system(size: 16))
+                                .font(.system(size: 16, weight: .medium))
                                 .foregroundColor(Color(.secondaryLabel))
                                 .lineLimit(nil)
                         }
                         .padding(.leading)
                     }
                     HStack {
-                        Text("♥️").font(.system(size: 32))
+                        Text("♥️").font(.system(size: 36))
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Support").fontWeight(.bold)
                             Text("Support the developer and show appreciation of the app")
                                 .fixedSize(horizontal: false, vertical: true)
-                                .font(.system(size: 16))
+                                .font(.system(size: 16, weight: .medium))
                                 .foregroundColor(Color(.secondaryLabel))
                                 .lineLimit(nil)
                         }
                         .padding(.leading)
                     }
                 }
-                .padding(.vertical)
+                .padding(.vertical, 40)
                 
                 Spacer()
                 
@@ -118,6 +119,8 @@ struct PremiumView: View {
                         .frame(maxWidth: .infinity)
                         .foregroundColor((Color(.secondaryLabel)))
                 }
+                
+//                Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             .padding()

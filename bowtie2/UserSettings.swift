@@ -66,6 +66,10 @@ final class UserSettings: ObservableObject {
     init(appIcon: String) {
         self.appIcon = appIcon
     }
+    
+    @AppStorage("showWelcome") var showWelcome = true {
+        willSet { objectWillChange.send() }
+    }
 
     @AppStorage("showGraph") var showGraph = true {
         willSet { objectWillChange.send() }
