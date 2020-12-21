@@ -72,55 +72,44 @@ struct CreateGame: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                Form {
+            Form {
+                Section(header: Text("Game Name").padding(.top)) {
+                    TextField("Game", text: $createData.name)
+                }
+                
+                Section(header: HStack {
+                    Text("Who's playing")
                     
-                    Section(header: Text("Game Name")) {
-                        TextField("Game", text: $createData.name)
-                    }
+                    Spacer()
                     
-                    Section(header: HStack {
-                        Text("Who's playing")
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            self.isCreatingPlayer.toggle()
-                        }, label: {
-                            Image(systemName: "plus")
-                                .foregroundColor(Color.blue)
-                        }).padding(.horizontal)
-                    }) {
-                        List {
-                            ForEach(players, id: \.self) { player in
-                                PlayerItem(colour: player.wrappedColor, name: player.wrappedName, isSelected: self.createData.getSelected(id: player.id))
-                            }
+                    Button(action: {
+                        self.isCreatingPlayer.toggle()
+                    }, label: {
+                        Image(systemName: "plus")
+                            .foregroundColor(Color.blue)
+                    }).padding(.horizontal)
+                }) {
+                    List {
+                        ForEach(players, id: \.self) { player in
+                            PlayerItem(colour: player.wrappedColor, name: player.wrappedName, isSelected: self.createData.getSelected(id: player.id))
                         }
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                .navigationBarItems(leading:
-                                        Button("Close") {
-                                            self.presentationMode.wrappedValue.dismiss()
-                                        },
-                                    trailing:
-                                        Button("Create") {
-                                            self.createGame()
-                                        }.disabled(createData.name == "" || createData.numPlayersAdded == 0))
-                .sheet(isPresented: $isCreatingPlayer) {
-                    CreateEditPlayer(onPlayer: self.addPlayer, editingPlayer: nil)
-                        .environmentObject(settings)
-                }
-                .navigationTitle("Create Game")
-                
-                VStack {
-                    Indicator()
-                        .padding(.top)
-                    Spacer()
-                }
-                .frame(maxHeight: .infinity)
-                .offset(y: -110)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            .navigationBarItems(leading:
+                                    Button("Close") {
+                                        self.presentationMode.wrappedValue.dismiss()
+                                    },
+                                trailing:
+                                    Button("Create") {
+                                        self.createGame()
+                                    }.disabled(createData.name == "" || createData.numPlayersAdded == 0))
+            .sheet(isPresented: $isCreatingPlayer) {
+                CreateEditPlayer(onPlayer: self.addPlayer, editingPlayer: nil)
+                    .environmentObject(settings)
+            }
+            .navigationBarTitle("Create Game", displayMode: .inline)
         }
         .onTapGesture {
             self.hideKeyboard()

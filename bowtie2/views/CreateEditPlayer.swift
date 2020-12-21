@@ -34,46 +34,40 @@ struct CreateEditPlayer: View {
     @State private var colour: Color = Color(hex: "FF1493")
     
     var body: some View {
-        ModalView {
-            NavigationView {
-                VStack {
+        NavigationView {
+            Form {
+                Section(header: Text("Colour").padding(.top)) {
                     VStack {
                         PlayerWheel(colour: $colour)
-                            .padding(.bottom)
-                        
-                        TextField("Player name", text: $name)
-                            .padding(.all)
-                            .multilineTextAlignment(.center)
-                            .font(.title2)
-                            .background(Color(.tertiarySystemFill))
-                            .cornerRadius(10)
                     }
-                    .padding(.vertical, 20)
-                    
-                    Spacer()
+                    .padding(.vertical)
+                    .frame(maxWidth: .infinity)
                 }
-                .padding(.horizontal)
-                .navigationTitle(title)
-                .navigationBarItems(leading:
-                                        Button("Close") {
-                                            self.presentationMode.wrappedValue.dismiss()
-                                        },
-                                    trailing:
-                                        Button(createText) {
-                                            if let onPlayer = onPlayer {
-                                                onPlayer(name, colour.toHex(alpha: false))
-                                            }
-                                            self.presentationMode.wrappedValue.dismiss()
-                                        }.disabled(name == ""))
-                .onAppear(perform: {
-                    if let player = editingPlayer {
-                        title = "Edit Player"
-                        createText = "Save"
-                        name = player.name!
-                        colour = Color(hex: player.colour!)
-                    }
-                })
+                
+                Section(header: Text("Name")) {
+                    TextField("Player name", text: $name)
+                }
             }
+            .navigationBarTitle(title, displayMode: .inline)
+            .navigationBarItems(leading:
+                                    Button("Close") {
+                                        self.presentationMode.wrappedValue.dismiss()
+                                    },
+                                trailing:
+                                    Button(createText) {
+                                        if let onPlayer = onPlayer {
+                                            onPlayer(name, colour.toHex(alpha: false))
+                                        }
+                                        self.presentationMode.wrappedValue.dismiss()
+                                    }.disabled(name == ""))
+            .onAppear(perform: {
+                if let player = editingPlayer {
+                    title = "Edit Player"
+                    createText = "Save"
+                    name = player.name!
+                    colour = Color(hex: player.colour!)
+                }
+            })
         }
     }
 }

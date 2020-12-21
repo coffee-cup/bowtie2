@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GamesListView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var settings: UserSettings
     
     @FetchRequest(
         entity: Game.entity(),
@@ -23,56 +24,98 @@ struct GamesListView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVStack(spacing: 10) {
-                    ForEach(games, id: \.self) { game in
-                        NavigationLink(destination: GameView(game: game)) {
-                            GameCard(game: game)
-                        }
-                        .contextMenu {
-                            Button(action: {
-                                self.duplicateGame(game: game)
-                            }) {
-                                HStack {
-                                    Text("Duplicate Game")
-                                    Image(systemName: "doc.on.doc")
-                                }
-                            }
-                            
-                            Button(action: {
-                                self.deletingGame = game
-                                self.isDeleting = true
-                            }) {
-                                HStack {
-                                    Text("Delete Game")
-                                    Image(systemName: "trash")
-                                }
-                            }
-                        }
+            if games.count == 0 {
+                VStack {
+                    Spacer()
+                    
+                    Text("No games yet")
+                    
+                    Image("cards")
+                        .resizable()
+                        .frame(width: 180.0)
+                        .aspectRatio(contentMode: .fit)
+                        
+                    Spacer()
+                    
+                    Button(action: {
+                        self.isCreating = true
+                    }) {
+                        Text("Create First Game")
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical)
                     }
+                    .foregroundColor(.white)
+                    .font(.system(size: 22, weight: .bold))
+                    .background(settings.theme.gradient)
+                    .cornerRadius(40)
+                    .padding(.top)
+                    
+                    Text("Tuck in to a game of cards")
+                        .font(.footnote)
+                        .foregroundColor(Color(.secondaryLabel))
                 }
+                .frame(maxHeight: .infinity)
                 .padding(.all)
-            }
-            .navigationBarTitle("Games", displayMode: .large)
-            .toolbar {
-                Button(action: {
-                    self.isCreating = true
-                }) {
-                    Label("Create Game", systemImage: "plus")
+                .navigationTitle("Games")
+                .sheet(isPresented: $isCreating) {
+                    CreateGame()
+                    
+                }
+            } else {
+                ScrollView {
+                    LazyVStack(spacing: 10) {
+                        ForEach(games, id: \.self) { game in
+                            NavigationLink(destination: GameView(game: game)) {
+                                GameCard(game: game)
+                            }
+                            .contextMenu {
+                                Button(action: {
+                                    self.duplicateGame(game: game)
+                                }) {
+                                    HStack {
+                                        Text("Duplicate Game")
+                                        Image(systemName: "doc.on.doc")
+                                    }
+                                }
+                                
+                                Button(action: {
+                                    self.deletingGame = game
+                                    self.isDeleting = true
+                                }) {
+                                    HStack {
+                                        Text("Delete Game")
+                                        Image(systemName: "trash")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .padding(.all)
+                }
+                .navigationTitle("Games")
+                .toolbar {
+                    Button(action: {
+                        self.isCreating = true
+                    }) {
+                        Label("Create Game", systemImage: "plus")
+                    }
+                }
+                .sheet(isPresented: $isCreating) {
+                    CreateGame()
+                    
+                }
+                .alert(isPresented: $isDeleting) {
+                    Alert(title: Text("Are you sure you want to delete this?"),
+                          primaryButton: .destructive(Text("Delete")) {
+                            if let game = self.deletingGame {
+                                self.deleteGame(game: game)
+                            }
+                          }, secondaryButton: .cancel())
                 }
             }
-            .sheet(isPresented: $isCreating) {
-                CreateGame()
-
-            }
-            .alert(isPresented: $isDeleting) {
-                        Alert(title: Text("Are you sure you want to delete this?"),
-                              primaryButton: .destructive(Text("Delete")) {
-                                if let game = self.deletingGame {
-                                    self.deleteGame(game: game)
-                                }
-                        }, secondaryButton: .cancel())
-                    }
+            
+            
+            
         }
     }
     
@@ -106,6 +149,8 @@ struct GamesListView: View {
 
 struct GamesView_Previews: PreviewProvider {
     static var previews: some View {
-        GamesListView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        GamesListView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(UserSettings())
     }
 }

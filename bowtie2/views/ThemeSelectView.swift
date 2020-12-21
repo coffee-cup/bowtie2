@@ -45,7 +45,7 @@ struct ThemeSelectView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 6) {
+            VStack(spacing: 8) {
                 ForEach(themes, id: \.name) { theme in
                     Button(action: {
                         if theme.name == settings.theme.name {

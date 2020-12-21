@@ -8,32 +8,41 @@
 import SwiftUI
 
 struct ScoreHistoryView: View {
+    @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
     
     @ObservedObject var playerScore: PlayerScore
     
+    @State private var title = "Score history"
+    
     var body: some View {
-        ModalView {
-            VStack {
-                Text("Score history for \(playerScore.player?.wrappedName ?? "No name"    )")
-                    .font(.callout)
-                    .padding(.top, 32)
-                
-                if playerScore.wrappedHistory.count == 0 {
-                    Text("No scores entered so far")
-                        .fontWeight(.bold)
-                        .padding()
-                } else {
-                    List {
-                        ForEach(playerScore.wrappedHistory.reversed(), id: \.self) { item in
-                            Text("\(item)")
-                        }
-                        .onDelete(perform: deleteItems)
+        NavigationView {
+            if playerScore.wrappedHistory.count == 0 {
+                Text("No scores entered so far")
+                    .fontWeight(.bold)
+                    .padding()
+                    .navigationBarTitle(title, displayMode: .inline)
+                    .navigationBarItems(leading:
+                                            Button("Done") {
+                                                self.presentationMode.wrappedValue.dismiss()
+                                            })
+            } else {
+                List {
+                    ForEach(playerScore.wrappedHistory.reversed(), id: \.self) { item in
+                        Text("\(item)")
                     }
+                    .onDelete(perform: deleteItems)
                 }
-                
-                Spacer()
+                .navigationBarTitle(title, displayMode: .inline)
+                .navigationBarItems(leading:
+                                        Button("Done") {
+                                            self.presentationMode.wrappedValue.dismiss()
+                                        })
             }
+            
+        }
+        .onAppear {
+            self.title = "Score history for \(playerScore.player?.wrappedName ?? "No name"    )"
         }
     }
     
