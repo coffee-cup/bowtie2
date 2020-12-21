@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AboutView: View {
+    @EnvironmentObject var settings: UserSettings
+    
     var version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     
     var body: some View {
@@ -29,7 +31,8 @@ struct AboutView: View {
             
             Link("Made with ♥️ by Jake", destination: URL(string: "https://jakerunzer.com?ref=bowtie")!)
                 .font(.system(size: 14))
-                .foregroundColor(.primary)
+                .gradientForeground(gradient: settings.theme.gradient)
+//                .foregroundColor(.primary)
                 .padding()
         }
     }
@@ -38,5 +41,6 @@ struct AboutView: View {
 struct AboutView_Previews: PreviewProvider {
     static var previews: some View {
         AboutView()
+            .environmentObject(UserSettings())
     }
 }
