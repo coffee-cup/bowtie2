@@ -62,4 +62,5 @@ var icons: [AppIcon] = [
     AppIcon(name: "Greenish", filename: "greenish", requiresPremium: true),
     AppIcon(name: "Sunrise", filename: "sunrise", requiresPremium: true),
     AppIcon(name: "Cherryblossoms", filename: "cherryblossoms", requiresPremium: true),
+    AppIcon(name: "Classic", filename: "classic", requiresPremium: true),
 ]

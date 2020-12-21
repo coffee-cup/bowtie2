@@ -93,6 +93,15 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
+			<key>classic</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>classic</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
 		</dict>
 		<key>CFBundlePrimaryIcon</key>
 		<dict>
