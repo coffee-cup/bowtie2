@@ -95,7 +95,7 @@ struct PlayersListView: View {
                         }
                     }
                 }
-                .padding(.horizontal)
+                .padding(.horizontal).padding(.bottom)
                 .navigationTitle("Players")
                 .toolbar {
                     Button(action: {

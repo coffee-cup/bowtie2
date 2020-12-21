@@ -91,7 +91,7 @@ struct GamesListView: View {
                             }
                         }
                     }
-                    .padding(.all)
+                    .padding(.horizontal).padding(.bottom)
                 }
                 .navigationTitle("Games")
                 .toolbar {

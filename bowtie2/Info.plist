@@ -12,36 +12,6 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>xmas-red</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>xmas-red</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
-
-			<key>xmas-green</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>xmas-green</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
-
-			<key>winter</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>winter</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
-
 			<key>atlas</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
@@ -51,7 +21,6 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-
 			<key>cherryblossoms</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
@@ -61,7 +30,6 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-
 			<key>earth</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
@@ -71,7 +39,6 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-
 			<key>greenish</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
@@ -81,7 +48,6 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-
 			<key>sunrise</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
@@ -91,7 +57,6 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-
 			<key>timber</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
@@ -101,7 +66,33 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-
+			<key>winter</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>winter</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>xmas-green</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>xmas-green</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>xmas-red</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>xmas-red</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
 		</dict>
 		<key>CFBundlePrimaryIcon</key>
 		<dict>
