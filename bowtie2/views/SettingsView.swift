@@ -62,6 +62,7 @@ struct SettingsView: View {
             .sheet(isPresented: $isShowingPremium, content: presentSheet)
             .navigationTitle("Settings")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     @ViewBuilder

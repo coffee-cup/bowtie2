@@ -112,6 +112,7 @@ struct GamesListView: View {
                 }
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     @ViewBuilder

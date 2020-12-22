@@ -69,6 +69,7 @@ struct CreateEditPlayer: View {
                 }
             })
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

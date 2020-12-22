@@ -123,6 +123,7 @@ struct CreateGame: View {
             }
             .navigationBarTitle("Create Game", displayMode: .inline)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     private func addPlayer(name: String, colour: String) {

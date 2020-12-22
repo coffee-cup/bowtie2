@@ -107,6 +107,7 @@ struct PlayersListView: View {
                 .sheet(item: $sheetState, content: presentSheet)
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     @ViewBuilder
