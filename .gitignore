@@ -1,4 +1,3 @@
-
 # Created by https://www.toptal.com/developers/gitignore/api/swift,macos,xcode
 # Edit at https://www.toptal.com/developers/gitignore?templates=swift,macos,xcode
 
@@ -134,3 +133,14 @@ iOSInjectionProject/
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,macos,xcode
 
+# fastlane specific
+**/fastlane/report.xml
+
+# deliver temporary files
+**/fastlane/Preview.html
+
+# snapshot generated screenshots
+**/fastlane/screenshots
+
+# scan temporary files
+**/fastlane/test_output
