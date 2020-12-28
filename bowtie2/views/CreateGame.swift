@@ -51,7 +51,7 @@ struct PlayerItem: View {
                 .fill(Color(hex: colour))
                 .frame(width: 32, height: 32)
         }
-        .padding(.vertical, 6)
+        .padding(.vertical, 2)
     }
 }
 

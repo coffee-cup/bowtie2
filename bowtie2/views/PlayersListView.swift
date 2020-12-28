@@ -24,7 +24,7 @@ struct PlayersListView: View {
     
     @FetchRequest(
         entity: Player.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Player.created, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Player.name, ascending: true)],
         predicate: NSPredicate(format: "hasBeenDeleted == %@", false),
         animation: .default)
     private var players: FetchedResults<Player>

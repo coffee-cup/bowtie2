@@ -83,9 +83,11 @@ extension Game {
     
     public var sortedScoresArray: [PlayerScore] {
         let set = playerScores as? Set<PlayerScore> ?? []
-        return set.sorted {
+        return set.sorted(by: {
+            $0.player!.wrappedName < $1.player!.wrappedName
+        }).sorted(by: {
             $0.currentScore > $1.currentScore
-        }
+        })
     }
     
     public var scoresArray: [PlayerScore] {
