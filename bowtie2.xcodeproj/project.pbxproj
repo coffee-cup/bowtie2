@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -84,6 +84,7 @@
 		B7CCE94E25763B2B00C3129B /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CCE94D25763B2B00C3129B /* ModalView.swift */; };
 		B7D339082569AD6F00ADBEFF /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D339072569AD6F00ADBEFF /* GameView.swift */; };
 		B7D3390D2569DAB300ADBEFF /* PlayerScoreCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3390C2569DAB300ADBEFF /* PlayerScoreCard.swift */; };
+		B7DA7F5D259A833F0095D06D /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = B7DA7F5C259A833F0095D06D /* Sentry */; };
 		B7F82AB72562406600C7B221 /* GameCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F82AB62562406600C7B221 /* GameCard.swift */; };
 		B7F82ABC256258EA00C7B221 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F82ABB256258EA00C7B221 /* Array.swift */; };
 		B7F82AC125625A8C00C7B221 /* CreateGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F82AC025625A8C00C7B221 /* CreateGame.swift */; };
@@ -203,6 +204,7 @@
 			files = (
 				B781BA38256100D6008EB298 /* CloudKit.framework in Frameworks */,
 				B79199272586F55F00865BCB /* StoreKit.framework in Frameworks */,
+				B7DA7F5D259A833F0095D06D /* Sentry in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,8 +379,8 @@
 				B7B250422561269B00C82EC6 /* Color.swift */,
 				B7B25047256126CD00C82EC6 /* Date.swift */,
 				B7B2504C256126E000C82EC6 /* String.swift */,
-				B7F82ABB256258EA00C7B221 /* Array.swift */,
 				B72DC116256A776100DF28F1 /* Number.swift */,
+				B7F82ABB256258EA00C7B221 /* Array.swift */,
 				B72DC120256AF1C000DF28F1 /* View.swift */,
 				B75206742574C40C00555390 /* Binding.swift */,
 				B7B0A4B1258EBF550068D810 /* SKProduct.swift */,
@@ -412,6 +414,9 @@
 			dependencies = (
 			);
 			name = bowtie2;
+			packageProductDependencies = (
+				B7DA7F5C259A833F0095D06D /* Sentry */,
+			);
 			productName = bowtie2;
 			productReference = B781B9FC2560F5E0008EB298 /* bowtie2.app */;
 			productType = "com.apple.product-type.application";
@@ -483,6 +488,9 @@
 				Base,
 			);
 			mainGroup = B781B9F32560F5E0008EB298;
+			packageReferences = (
+				B7DA7F5B259A833F0095D06D /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
+			);
 			productRefGroup = B781B9FD2560F5E0008EB298 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -924,6 +932,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B7DA7F5B259A833F0095D06D /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getsentry/sentry-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.12;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B7DA7F5C259A833F0095D06D /* Sentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B7DA7F5B259A833F0095D06D /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = Sentry;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B781BA0A2560F5E2008EB298 /* bowtie2.xcdatamodeld */ = {

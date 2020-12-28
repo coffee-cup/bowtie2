@@ -144,3 +144,6 @@ iOSInjectionProject/
 
 # scan temporary files
 **/fastlane/test_output
+
+# secrets
+.env

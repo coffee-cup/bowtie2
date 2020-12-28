@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Sentry
 
 @main
 struct bowtie2App: App {
@@ -33,7 +34,15 @@ struct bowtie2App: App {
                 }
                 .onAppear {
                     self.showWelcome = settings.showWelcome
+                    self.configureSentry()
                 }
+        }
+    }
+    
+    func configureSentry() {
+        SentrySDK.start { options in
+            options.dsn = "https://2a1698cfb0264c09864f8301cc70503f@o372154.ingest.sentry.io/5573188"
+//            options.debug = true // Enabled debug when first installing is always helpful
         }
     }
     
