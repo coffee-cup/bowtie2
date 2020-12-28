@@ -71,12 +71,7 @@ struct SettingsView: View {
     }
     
     private func openFeedback() {
-        let subject = "Bowtie Feedback"
-        let to = "jakerunzer@gmail.com"
-        
-        let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        
-        let url = URL(string: "mailto:\(to)?subject=\(subjectEncoded)")
+        let url = URL(string: "https://bowtie.cards/feedback")
     
         if let url = url {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
