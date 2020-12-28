@@ -41,7 +41,7 @@ extension Game {
     static func createGameWithPlayers(context: NSManagedObjectContext, name: String, players: [Player]) -> Game {
         let game = Game.createGame(context: context, name: name)
 
-        // Create player scores for each playexzr
+        // Create player scores for each player
         players.forEach({ player in
             context.refresh(player, mergeChanges: true)
             PlayerScore.createPlayerScore(context: context, game: game, player: player)
@@ -78,7 +78,6 @@ extension Game {
         }
         set {
             self.winnerSortValue = newValue.rawValue
-            print("VALUE \(newValue.rawValue)")
         }
     }
     

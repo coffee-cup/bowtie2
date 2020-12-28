@@ -48,14 +48,12 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    NavigationLink(destination: AboutView()) {
-                        Text("About")
-                    }
+                    Link("About", destination: URL(string: "https://bowtie.cards/about?ref=app")!)
                     
-                    Button(action: {
-                        self.openFeedback()
-                    }) {
-                        Text("Feedback")
+                    Link("Feedback", destination: URL(string: "https://bowtie.cards/feedback?ref=app")!)
+                    
+                    NavigationLink(destination: VersionView()) {
+                        Text("Version")
                     }
                 }
             }
@@ -68,14 +66,6 @@ struct SettingsView: View {
     @ViewBuilder
     private func presentSheet() -> some View {
         PremiumView().environmentObject(settings)
-    }
-    
-    private func openFeedback() {
-        let url = URL(string: "https://bowtie.cards/feedback")
-    
-        if let url = url {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
     }
 }
 

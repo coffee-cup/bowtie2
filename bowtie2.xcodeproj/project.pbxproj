@@ -61,7 +61,7 @@
 		B781BA40256114F4008EB298 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA3F256114F4008EB298 /* AppView.swift */; };
 		B781BA4825611518008EB298 /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA4725611518008EB298 /* GamesListView.swift */; };
 		B781BA4D25611521008EB298 /* PlayersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA4C25611521008EB298 /* PlayersListView.swift */; };
-		B791991D2586944600865BCB /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B791991C2586944600865BCB /* AboutView.swift */; };
+		B791991D2586944600865BCB /* VersionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B791991C2586944600865BCB /* VersionView.swift */; };
 		B79199222586E6B900865BCB /* PremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79199212586E6B900865BCB /* PremiumView.swift */; };
 		B79199272586F55F00865BCB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79199262586F55F00865BCB /* StoreKit.framework */; };
 		B79199292586F6C400865BCB /* BowtieProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79199282586F6C400865BCB /* BowtieProducts.swift */; };
@@ -169,7 +169,7 @@
 		B781BA3F256114F4008EB298 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		B781BA4725611518008EB298 /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
 		B781BA4C25611521008EB298 /* PlayersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersListView.swift; sourceTree = "<group>"; };
-		B791991C2586944600865BCB /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		B791991C2586944600865BCB /* VersionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionView.swift; sourceTree = "<group>"; };
 		B79199212586E6B900865BCB /* PremiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumView.swift; sourceTree = "<group>"; };
 		B79199262586F55F00865BCB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B79199282586F6C400865BCB /* BowtieProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowtieProducts.swift; sourceTree = "<group>"; };
@@ -309,7 +309,7 @@
 		B781BA5125611627008EB298 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				B791991C2586944600865BCB /* AboutView.swift */,
+				B791991C2586944600865BCB /* VersionView.swift */,
 				B7B1CC6B25854B39000ACCE3 /* AppIconSelectView.swift */,
 				B781BA3F256114F4008EB298 /* AppView.swift */,
 				B760DEF7258EEC3300F1970A /* ConfettiView.swift */,
@@ -595,7 +595,7 @@
 				B781BA4D25611521008EB298 /* PlayersListView.swift in Sources */,
 				B791992E2586F76F00865BCB /* IAPHelper.swift in Sources */,
 				B7C1310125611D4D00EE6601 /* Player+CoreDataClass.swift in Sources */,
-				B791991D2586944600865BCB /* AboutView.swift in Sources */,
+				B791991D2586944600865BCB /* VersionView.swift in Sources */,
 				B7D339082569AD6F00ADBEFF /* GameView.swift in Sources */,
 				B72DC117256A776100DF28F1 /* Number.swift in Sources */,
 				B7B0A4B2258EBF550068D810 /* SKProduct.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AboutView: View {
+struct VersionView: View {
     @EnvironmentObject var settings: UserSettings
     
     var version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
@@ -24,8 +24,9 @@ struct AboutView: View {
             
             Text("Bowtie").fontWeight(.bold)
             Text("Version \(version ?? "unknown")")
-                .font(.caption2)
+                .font(.caption)
                 .foregroundColor(Color(.secondaryLabel))
+                .padding(.top, 1)
             
             Spacer()
             
@@ -38,9 +39,9 @@ struct AboutView: View {
     }
 }
 
-struct AboutView_Previews: PreviewProvider {
+struct VersionView_Previews: PreviewProvider {
     static var previews: some View {
-        AboutView()
+        VersionView()
             .environmentObject(UserSettings())
     }
 }
