@@ -39,6 +39,7 @@
 		B72DC117256A776100DF28F1 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC116256A776100DF28F1 /* Number.swift */; };
 		B72DC11C256AEB5E00DF28F1 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC11B256AEB5E00DF28F1 /* Theme.swift */; };
 		B72DC121256AF1C000DF28F1 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC120256AF1C000DF28F1 /* View.swift */; };
+		B73A09C6259AB17300C45C33 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73A09C5259AB17300C45C33 /* ColorPickerView.swift */; };
 		B73FD0C3257DFAFC00810010 /* ThemeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73FD0C2257DFAFC00810010 /* ThemeSelectView.swift */; };
 		B73FD0CD257E01A200810010 /* CodableUnitPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73FD0CC257E01A200810010 /* CodableUnitPoint.swift */; };
 		B752066B25737C7C00555390 /* ScoreHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B752066A25737C7C00555390 /* ScoreHistoryView.swift */; };
@@ -140,6 +141,7 @@
 		B72DC116256A776100DF28F1 /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
 		B72DC11B256AEB5E00DF28F1 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B72DC120256AF1C000DF28F1 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		B73A09C5259AB17300C45C33 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		B73FD0C2257DFAFC00810010 /* ThemeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSelectView.swift; sourceTree = "<group>"; };
 		B73FD0CC257E01A200810010 /* CodableUnitPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUnitPoint.swift; sourceTree = "<group>"; };
 		B752066A25737C7C00555390 /* ScoreHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreHistoryView.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				B7659F8E257DAA6B00CA139E /* SettingsView.swift */,
 				B73FD0C2257DFAFC00810010 /* ThemeSelectView.swift */,
 				B7C1B4EA259072270087FB74 /* WelcomeView.swift */,
+				B73A09C5259AB17300C45C33 /* ColorPickerView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				B781BA002560F5E0008EB298 /* bowtie2App.swift in Sources */,
 				B7C130FF25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift in Sources */,
 				B7F82AB72562406600C7B221 /* GameCard.swift in Sources */,
+				B73A09C6259AB17300C45C33 /* ColorPickerView.swift in Sources */,
 				B7B25048256126CD00C82EC6 /* Date.swift in Sources */,
 				B7CCE94E25763B2B00C3129B /* ModalView.swift in Sources */,
 				B7B2503B256120B200C82EC6 /* CreateEditPlayer.swift in Sources */,

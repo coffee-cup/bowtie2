@@ -1,0 +1,85 @@
+//
+//  ColorPickerView.swift
+//  bowtie2
+//
+//  Created by Jake Runzer on 2020-12-28.
+//
+
+import SwiftUI
+
+struct ColorPickerViewRepresentable: UIViewControllerRepresentable {
+    @Binding var colour: Color
+    
+    class Coordinator: NSObject, UINavigationControllerDelegate, UIColorPickerViewControllerDelegate {
+        var parent: ColorPickerViewRepresentable
+        
+        init(_ parent: ColorPickerViewRepresentable) {
+            self.parent = parent
+        }
+        
+        func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+            self.parent.colour = Color(viewController.selectedColor.cgColor)
+        }
+        
+        func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+            print("DID FINISH")
+        }
+    }
+    
+    typealias UIViewControllerType = UIColorPickerViewController
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ColorPickerViewRepresentable>) -> UIColorPickerViewController {
+        let picker = UIColorPickerViewController()
+        
+        picker.selectedColor = colour.uiColor()
+        picker.delegate = context.coordinator
+        picker.supportsAlpha = false
+        
+        return picker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIColorPickerViewController, context: Context) {
+        // code
+    }
+}
+
+struct ColorPickerView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
+    @Binding var colour: Color
+    
+    var body: some View {
+        ZStack {
+            ColorPickerViewRepresentable(colour: $colour)
+            
+            VStack(alignment: .trailing) {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "xmark.circle")
+                            .resizable()
+                            .frame(width: 22, height: 22)
+                            .foregroundColor(.primary)
+                            .padding()
+                    }
+                }
+                Spacer()
+            }
+            .frame(maxWidth: .infinity)
+        }
+    }
+}
+
+struct ColorPickerView_Previews: PreviewProvider {
+    @State static var colour: Color = Color.blue
+    
+    static var previews: some View {
+        ColorPickerView(colour: $colour)
+    }
+}

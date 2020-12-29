@@ -6,10 +6,18 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct PlayerWheel: View {
     @Binding var colour: Color
     var boundingSize: CGFloat = 140.0
+    
+    var tap: some Gesture {
+        TapGesture(count: 1)
+            .onEnded { _ in
+                print("boop")
+            }
+    }
     
     var body: some View {
         VStack {
@@ -19,6 +27,7 @@ struct PlayerWheel: View {
                 .position(x: boundingSize / 2, y: boundingSize / 2)
         }
         .frame(width: boundingSize, height: boundingSize)
+        //        .highPriorityGesture(tap)
     }
 }
 
@@ -32,16 +41,24 @@ struct CreateEditPlayer: View {
     @State private var name: String = ""
     @State private var createText: String = "Create"
     @State private var colour: Color = Color(hex: "FF1493")
+    @State private var showColourPicker = false
     
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Colour").padding(.top)) {
-                    VStack {
-                        PlayerWheel(colour: $colour)
+                    Button(action: {
+                        self.showColourPicker = true
+                    }) {
+                        HStack {
+                            Spacer()
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(colour)
+                                .frame(width: 100, height: 100)
+                            Spacer()
+                        }
+                        .padding(.vertical)
                     }
-                    .padding(.vertical)
-                    .frame(maxWidth: .infinity)
                 }
                 
                 Section(header: Text("Name")) {
@@ -70,6 +87,9 @@ struct CreateEditPlayer: View {
             })
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .sheet(isPresented: $showColourPicker, content: {
+            ColorPickerView(colour: $colour)
+        })
     }
 }
 

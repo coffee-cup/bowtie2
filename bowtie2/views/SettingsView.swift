@@ -48,9 +48,9 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    Link("About", destination: URL(string: "https://bowtie.cards/about?ref=app")!)
+                    Link("About", destination: URL(string: "https://bowtie.cards/about?ref=bowtie")!)
                     
-                    Link("Feedback", destination: URL(string: "https://bowtie.cards/feedback?ref=app")!)
+                    Link("Feedback", destination: URL(string: "https://bowtie.cards/feedback?ref=bowtie")!)
                     
                     NavigationLink(destination: VersionView()) {
                         Text("Version")
