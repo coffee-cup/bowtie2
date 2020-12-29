@@ -181,9 +181,9 @@
 		B7B25047256126CD00C82EC6 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		B7B2504C256126E000C82EC6 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		B7B2505A2561AC9800C82EC6 /* PlayerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCard.swift; sourceTree = "<group>"; };
-		B7C130FB25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerScore+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B7C130FB25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PlayerScore+CoreDataClass.swift"; path = "bowtie2/models/PlayerScore+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Player+CoreDataClass.swift"; path = "bowtie2/models/Player+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Game+CoreDataClass.swift"; path = "bowtie2/models/Game+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7C1B4EA259072270087FB74 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		B7C1B4F525909C860087FB74 /* classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classic.png; sourceTree = "<group>"; };
 		B7C1B4F625909C860087FB74 /* classic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "classic@2x.png"; sourceTree = "<group>"; };
@@ -391,9 +391,9 @@
 		B7C130FA25611D4000EE6601 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */,
 				B7C130FB25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift */,
 				B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */,
+				B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
