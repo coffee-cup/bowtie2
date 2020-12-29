@@ -62,10 +62,8 @@ struct ColorPickerView: View {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }) {
-                        Image(systemName: "xmark.circle")
-                            .resizable()
-                            .frame(width: 22, height: 22)
-                            .foregroundColor(.primary)
+                        Text("Done")
+                            .fontWeight(.semibold)
                             .padding()
                     }
                 }
