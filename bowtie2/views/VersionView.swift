@@ -32,7 +32,7 @@ struct VersionView: View {
             
             Link("Made with ♥️ by Jake", destination: URL(string: "https://jakerunzer.com?ref=bowtie")!)
                 .font(.system(size: 14))
-                .gradientForeground(gradient: settings.theme.gradient)
+                .foregroundColor(Color(hex: "#FF1493"))
                 .padding()
         }
     }
