@@ -31,14 +31,13 @@ struct ScoreView: View {
     
     var body: some View {
         ZStack {
-            Text("\(score)")
+            Text(String(score))
                 .font(.system(size: 140, weight: .bold))
                 .padding(.vertical)
                 .gradientForeground(gradient: settings.theme.gradient)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                //                .background(Color.yellow)
                 .padding(.leading, 70)
             
             HStack {
