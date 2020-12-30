@@ -20,13 +20,14 @@ struct PlayerCard: View {
                 
                 Text(name)
                     .font(.system(size: 28, weight: .bold))
+                    .minimumScaleFactor(0.6)
+                    .lineLimit(2)
                     .foregroundColor(Color.white)
             }
             .padding(.all)
         }
         .frame(height: 100)
         .cornerRadius(24)
-//        .shadow(color: Color(hex: colour), radius: 4)
     }
 }
 

@@ -52,12 +52,12 @@ struct CreateEditPlayer: View {
                     }) {
                         HStack {
                             Spacer()
-                            RoundedRectangle(cornerRadius: 16)
+                            RoundedRectangle(cornerRadius: 20)
                                 .fill(colour)
                                 .frame(width: 100, height: 100)
                             Spacer()
                         }
-                        .padding(.vertical)
+                        .padding(.vertical, 4)
                     }
                 }
                 
