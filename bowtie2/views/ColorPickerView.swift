@@ -22,7 +22,7 @@ struct ColorPickerViewRepresentable: UIViewControllerRepresentable {
         }
         
         func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-            print("DID FINISH")
+//            print("DID FINISH")
         }
     }
     
@@ -35,7 +35,7 @@ struct ColorPickerViewRepresentable: UIViewControllerRepresentable {
     func makeUIViewController(context: UIViewControllerRepresentableContext<ColorPickerViewRepresentable>) -> UIColorPickerViewController {
         let picker = UIColorPickerViewController()
         
-        picker.selectedColor = colour.uiColor()
+        picker.selectedColor = UIColor(colour)
         picker.delegate = context.coordinator
         picker.supportsAlpha = false
         

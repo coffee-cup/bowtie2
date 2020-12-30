@@ -64,7 +64,7 @@ struct CreateGame: View {
     
     @FetchRequest(
         entity: Player.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Player.created, ascending: false)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Player.name, ascending: false)],
         predicate: NSPredicate(format: "hasBeenDeleted == %@", false),
         animation: .default)
     private var players: FetchedResults<Player>

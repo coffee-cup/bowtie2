@@ -74,7 +74,7 @@ struct CreateEditPlayer: View {
                                 trailing:
                                     Button(createText) {
                                         if let onPlayer = onPlayer {
-                                            onPlayer(name, colour.toHex(alpha: false))
+                                            onPlayer(name, colour.hexString)
                                         }
                                         self.presentationMode.wrappedValue.dismiss()
                                     }.disabled(name == ""))
@@ -97,6 +97,5 @@ struct CreateEditPlayer: View {
 struct CreateEditPlayer_Previews: PreviewProvider {
     static var previews: some View {
         CreateEditPlayer(onPlayer: nil, editingPlayer: nil)
-        
     }
 }

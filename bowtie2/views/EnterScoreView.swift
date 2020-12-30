@@ -120,7 +120,7 @@ struct EnterScoreView: View {
                 
                 Spacer(minLength: 20)
             }
-            .navigationBarTitle("Enter score for \(playerScore.player?.wrappedName ?? "No name"    )", displayMode: .inline)
+            .navigationBarTitle("Enter Score for \(playerScore.player?.wrappedName ?? "No Name"    )", displayMode: .inline)
             .navigationBarItems(leading:
                                     Button("Close") {
                                         self.presentationMode.wrappedValue.dismiss()
