@@ -34,12 +34,13 @@
 		B72403632590083700F0E153 /* winter.png in Resources */ = {isa = PBXBuildFile; fileRef = B72403482590083700F0E153 /* winter.png */; };
 		B72403642590083700F0E153 /* xmas-red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B72403492590083700F0E153 /* xmas-red@3x.png */; };
 		B72403652590083700F0E153 /* xmas-red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B724034A2590083700F0E153 /* xmas-red@2x.png */; };
-		B72BD54E25874BCB00F5CB85 /* NumberTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72BD54D25874BCB00F5CB85 /* NumberTest.swift */; };
+		B72BD54E25874BCB00F5CB85 /* NumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72BD54D25874BCB00F5CB85 /* NumberTests.swift */; };
 		B72DC112256A68F100DF28F1 /* EnterScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC111256A68F100DF28F1 /* EnterScoreView.swift */; };
 		B72DC117256A776100DF28F1 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC116256A776100DF28F1 /* Number.swift */; };
 		B72DC11C256AEB5E00DF28F1 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC11B256AEB5E00DF28F1 /* Theme.swift */; };
 		B72DC121256AF1C000DF28F1 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC120256AF1C000DF28F1 /* View.swift */; };
 		B73A09C6259AB17300C45C33 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73A09C5259AB17300C45C33 /* ColorPickerView.swift */; };
+		B73A09CE259C756200C45C33 /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73A09CD259C756200C45C33 /* ColorTests.swift */; };
 		B73FD0C3257DFAFC00810010 /* ThemeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73FD0C2257DFAFC00810010 /* ThemeSelectView.swift */; };
 		B73FD0CD257E01A200810010 /* CodableUnitPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73FD0CC257E01A200810010 /* CodableUnitPoint.swift */; };
 		B752066B25737C7C00555390 /* ScoreHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B752066A25737C7C00555390 /* ScoreHistoryView.swift */; };
@@ -136,12 +137,13 @@
 		B72403482590083700F0E153 /* winter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = winter.png; sourceTree = "<group>"; };
 		B72403492590083700F0E153 /* xmas-red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red@3x.png"; sourceTree = "<group>"; };
 		B724034A2590083700F0E153 /* xmas-red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red@2x.png"; sourceTree = "<group>"; };
-		B72BD54D25874BCB00F5CB85 /* NumberTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTest.swift; sourceTree = "<group>"; };
+		B72BD54D25874BCB00F5CB85 /* NumberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTests.swift; sourceTree = "<group>"; };
 		B72DC111256A68F100DF28F1 /* EnterScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterScoreView.swift; sourceTree = "<group>"; };
 		B72DC116256A776100DF28F1 /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
 		B72DC11B256AEB5E00DF28F1 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B72DC120256AF1C000DF28F1 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		B73A09C5259AB17300C45C33 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		B73A09CD259C756200C45C33 /* ColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
 		B73FD0C2257DFAFC00810010 /* ThemeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSelectView.swift; sourceTree = "<group>"; };
 		B73FD0CC257E01A200810010 /* CodableUnitPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUnitPoint.swift; sourceTree = "<group>"; };
 		B752066A25737C7C00555390 /* ScoreHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreHistoryView.swift; sourceTree = "<group>"; };
@@ -285,7 +287,8 @@
 			children = (
 				B781BA162560F5E2008EB298 /* bowtie2Tests.swift */,
 				B781BA182560F5E2008EB298 /* Info.plist */,
-				B72BD54D25874BCB00F5CB85 /* NumberTest.swift */,
+				B72BD54D25874BCB00F5CB85 /* NumberTests.swift */,
+				B73A09CD259C756200C45C33 /* ColorTests.swift */,
 			);
 			path = bowtie2Tests;
 			sourceTree = "<group>";
@@ -617,7 +620,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B72BD54E25874BCB00F5CB85 /* NumberTest.swift in Sources */,
+				B72BD54E25874BCB00F5CB85 /* NumberTests.swift in Sources */,
+				B73A09CE259C756200C45C33 /* ColorTests.swift in Sources */,
 				B781BA172560F5E2008EB298 /* bowtie2Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

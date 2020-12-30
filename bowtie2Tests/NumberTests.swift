@@ -8,7 +8,7 @@
 import XCTest
 @testable import bowtie2
 
-class NumberTest: XCTestCase {
+class NumberTests: XCTestCase {
     func testDigits() throws {
         XCTAssertEqual(0.digits, [0])
         XCTAssertEqual(1.digits, [1])

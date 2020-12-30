@@ -40,21 +40,28 @@ extension Color {
         )
     }
     
-    func toComponents() -> (red: CGFloat, green: CGFloat, blue: CGFloat, opacity: CGFloat) {
+    func toComponents() -> (red: Int, green: Int, blue: Int, opacity: Int) {
         let components = UIColor(self).cgColor.components!
-        return (components[0], components[1], components[2], components[3])
+            
+        let r = (Int)(round(components[0] * 255))
+        let g = (Int)(round(components[1] * 255))
+        let b = (Int)(round(components[2] * 255))
+        let a = (Int)(round(components[3] * 255))
+        
+        return (r, g, b, a)
     }
     
     var hexString: String {
         let (r, g, b, a) = self.toComponents()
-        let rgb: Int = (Int)(round(r * 255)) << 16 | (Int)(round(g * 255)) << 8 | (Int)(round(b * 255)) << 0
+//        let rgb: Int = (Int)(r) << 16 | (Int)(round(g * 255)) << 8 | (Int)(round(b * 255)) << 0
+        let rgb: Int = r << 16 | g << 8 | b << 0
         
         return String(format: "#%06x", rgb)
     }
     
 //    func toHex(alpha: Bool = false) -> String {
 //        let (r, g, b, a) = self.toComponents()
-//        
+//
 //        if alpha {
 //            return String(format: "#%02X%02X%02X%02X",
 //                          Int(round(r * 255)), Int(round(g * 255)),
@@ -65,19 +72,19 @@ extension Color {
 //        }
 //    }
     
-    func lighter(by percentage: CGFloat = 30.0) -> Color {
-        return self.adjust(by: abs(percentage) )
-    }
+//    func lighter(by percentage: CGFloat = 30.0) -> Color {
+//        return self.adjust(by: abs(percentage) )
+//    }
+//    
+//    func darker(by percentage: CGFloat = 30.0) -> Color {
+//        return self.adjust(by: -1 * abs(percentage) )
+//    }
     
-    func darker(by percentage: CGFloat = 30.0) -> Color {
-        return self.adjust(by: -1 * abs(percentage) )
-    }
-    
-    func adjust(by percentage: CGFloat = 30.0) -> Color {
-        let components = self.toComponents()
-        return Color(red: min(Double(components.red + percentage/100), 1.0),
-                     green: min(Double(components.green + percentage/100), 1.0),
-                     blue: min(Double(components.blue + percentage/100), 1.0),
-                     opacity: Double(components.opacity))
-    }
+//    func adjust(by percentage: CGFloat = 30.0) -> Color {
+//        let components = self.toComponents()
+//        return Color(red: min(Double(components.red + percentage/100), 1.0),
+//                     green: min(Double(components.green + percentage/100), 1.0),
+//                     blue: min(Double(components.blue + percentage/100), 1.0),
+//                     opacity: Double(components.opacity))
+//    }
 }
