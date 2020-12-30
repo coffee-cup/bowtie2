@@ -52,7 +52,6 @@
 		B7659F8F257DAA6B00CA139E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7659F8E257DAA6B00CA139E /* SettingsView.swift */; };
 		B7659F94257DE9AB00CA139E /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7659F93257DE9AB00CA139E /* UserSettings.swift */; };
 		B781BA002560F5E0008EB298 /* bowtie2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781B9FF2560F5E0008EB298 /* bowtie2App.swift */; };
-		B781BA022560F5E0008EB298 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA012560F5E0008EB298 /* ContentView.swift */; };
 		B781BA042560F5E2008EB298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B781BA032560F5E2008EB298 /* Assets.xcassets */; };
 		B781BA072560F5E2008EB298 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B781BA062560F5E2008EB298 /* Preview Assets.xcassets */; };
 		B781BA092560F5E2008EB298 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA082560F5E2008EB298 /* Persistence.swift */; };
@@ -156,7 +155,6 @@
 		B7659F93257DE9AB00CA139E /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		B781B9FC2560F5E0008EB298 /* bowtie2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bowtie2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B781B9FF2560F5E0008EB298 /* bowtie2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bowtie2App.swift; sourceTree = "<group>"; };
-		B781BA012560F5E0008EB298 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B781BA032560F5E2008EB298 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B781BA062560F5E2008EB298 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B781BA082560F5E2008EB298 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -259,7 +257,6 @@
 				B781BA5125611627008EB298 /* views */,
 				B781BA32256100D4008EB298 /* bowtie2.entitlements */,
 				B781B9FF2560F5E0008EB298 /* bowtie2App.swift */,
-				B781BA012560F5E0008EB298 /* ContentView.swift */,
 				B781BA032560F5E2008EB298 /* Assets.xcassets */,
 				B781BA082560F5E2008EB298 /* Persistence.swift */,
 				B781BA0D2560F5E2008EB298 /* Info.plist */,
@@ -593,7 +590,6 @@
 				B7D3390D2569DAB300ADBEFF /* PlayerScoreCard.swift in Sources */,
 				B79199292586F6C400865BCB /* BowtieProducts.swift in Sources */,
 				B7B2505B2561AC9800C82EC6 /* PlayerCard.swift in Sources */,
-				B781BA022560F5E0008EB298 /* ContentView.swift in Sources */,
 				B7CCE949257630BE00C3129B /* Indicator.swift in Sources */,
 				B7B250432561269B00C82EC6 /* Color.swift in Sources */,
 				B781BA40256114F4008EB298 /* AppView.swift in Sources */,

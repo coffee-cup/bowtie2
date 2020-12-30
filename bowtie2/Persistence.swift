@@ -13,11 +13,7 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-        }
-        
+
         let jake = Player.createPlayer(context: viewContext, name: "Jake", colour: "FF00FF")
         let aleesha = Player.createPlayer(context: viewContext, name: "Aleesha", colour: "f5b041 ")
         let gab = Player.createPlayer(context: viewContext, name: "Gab", colour: "00CED1")

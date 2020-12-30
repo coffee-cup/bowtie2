@@ -6,9 +6,6 @@
         <attribute name="winnerSortValue" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="playerScores" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlayerScore" inverseName="game" inverseEntity="PlayerScore"/>
     </entity>
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-    </entity>
     <entity name="Player" representedClassName="Player" syncable="YES" codeGenerationType="category">
         <attribute name="colour" attributeType="String" defaultValueString="000000" customClassName="UIColor"/>
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -23,7 +20,6 @@
     </entity>
     <elements>
         <element name="Game" positionX="206.443115234375" positionY="-297.8959655761719" width="128" height="89"/>
-        <element name="Item" positionX="142.9830932617188" positionY="-440.3352355957031" width="128" height="44"/>
         <element name="Player" positionX="-17.52392578125" positionY="-189.6279296875" width="128" height="104"/>
         <element name="PlayerScore" positionX="219.8523559570312" positionY="-113.0895080566406" width="128" height="74"/>
     </elements>
