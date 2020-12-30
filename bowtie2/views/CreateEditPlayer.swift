@@ -55,6 +55,7 @@ struct CreateEditPlayer: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(colour)
                                 .frame(width: 100, height: 100)
+                                .shadow(color: colour.opacity(0.86), radius: 8, x: 0, y: 0)
                             Spacer()
                         }
                         .padding(.vertical, 4)
