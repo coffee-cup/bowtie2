@@ -37,24 +37,25 @@ struct GameView: View {
     var body: some View {
         ScrollView {
             ForEach(game.scoresArray, id: \.self) { score in
-                PlayerScoreCard(name: score.player!.wrappedName,
-                                colour: score.player!.wrappedColor,
-                                score: score.currentScore,
-                                numTurns: score.history!.count,
-                                maxScoresGame: game.maxNumberOfEntries)
-                    .contextMenu {
-                        Button(action: {
-                            sheetState = GameViewSheetState.viewHistory(for: score)
-                        }) {
-                            HStack {
-                                Text("View History")
-                                Image(systemName: "archivebox")
+                Button(action: {
+                    sheetState = GameViewSheetState.addingScore(for: score)
+                }) {
+                    PlayerScoreCard(name: score.player!.wrappedName,
+                                    colour: score.player!.wrappedColor,
+                                    score: score.currentScore,
+                                    numTurns: score.history!.count,
+                                    maxScoresGame: game.maxNumberOfEntries)
+                        .contextMenu {
+                            Button(action: {
+                                sheetState = GameViewSheetState.viewHistory(for: score)
+                            }) {
+                                HStack {
+                                    Text("View History")
+                                    Image(systemName: "archivebox")
+                                }
                             }
                         }
-                    }
-                    .onTapGesture(count: 1, perform: {
-                        sheetState = GameViewSheetState.addingScore(for: score)
-                    })
+                }
             }
             .padding(.horizontal)
             

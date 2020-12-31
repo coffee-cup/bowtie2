@@ -50,7 +50,7 @@ struct PlayersListView: View {
                             .frame(width: 180.0)
                     }
                     .offset(y: -20)
-                        
+                    
                     Spacer()
                     
                     Button(action: {
@@ -78,20 +78,21 @@ struct PlayersListView: View {
                 ScrollView {
                     LazyVGrid(columns: columns) {
                         ForEach(players, id: \.self) { player in
-                            PlayerCard(name: player.wrappedName, colour: player.wrappedColor)
-                                .contextMenu {
-                                    Button(action: {
-                                        self.deletePlayer(player: player)
-                                    }) {
-                                        HStack {
-                                            Text("Delete Player")
-                                            Image(systemName: "trash")
+                            Button(action: {
+                                self.sheetState = PlayersListSheetState(editing: player)
+                            }) {
+                                PlayerCard(name: player.wrappedName, colour: player.wrappedColor)
+                                    .contextMenu {
+                                        Button(action: {
+                                            self.deletePlayer(player: player)
+                                        }) {
+                                            HStack {
+                                                Text("Delete Player")
+                                                Image(systemName: "trash")
+                                            }
                                         }
                                     }
-                                }
-                                .onTapGesture(count: 1, perform: {
-                                    self.sheetState = PlayersListSheetState(editing: player)
-                                })
+                            }
                         }
                     }
                 }
