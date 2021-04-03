@@ -82,16 +82,16 @@ struct PlayersListView: View {
                                 self.sheetState = PlayersListSheetState(editing: player)
                             }) {
                                 PlayerCard(name: player.wrappedName, colour: player.wrappedColor)
-                                    .contextMenu {
-                                        Button(action: {
-                                            self.deletePlayer(player: player)
-                                        }) {
-                                            HStack {
-                                                Text("Delete Player")
-                                                Image(systemName: "trash")
-                                            }
-                                        }
+                            }
+                            .contextMenu {
+                                Button(action: {
+                                    self.deletePlayer(player: player)
+                                }) {
+                                    HStack {
+                                        Text("Delete Player")
+                                        Image(systemName: "trash")
                                     }
+                                }
                             }
                         }
                     }

@@ -45,16 +45,16 @@ struct GameView: View {
                                     score: score.currentScore,
                                     numTurns: score.history!.count,
                                     maxScoresGame: game.maxNumberOfEntries)
-                        .contextMenu {
-                            Button(action: {
-                                sheetState = GameViewSheetState.viewHistory(for: score)
-                            }) {
-                                HStack {
-                                    Text("View History")
-                                    Image(systemName: "archivebox")
-                                }
-                            }
+                }
+                .contextMenu {
+                    Button(action: {
+                        sheetState = GameViewSheetState.viewHistory(for: score)
+                    }) {
+                        HStack {
+                            Text("View History")
+                            Image(systemName: "archivebox")
                         }
+                    }
                 }
             }
             .padding(.horizontal)
