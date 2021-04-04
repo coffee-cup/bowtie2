@@ -37,13 +37,11 @@ struct AppIcon {
 
 let themes: [Theme] = [
     Theme(name: "Default", colours: ["FFA07A", "FF1493"], start: .topLeading, end: .bottomTrailing, requiresPremium: false),
-    Theme(name: "Holiday Red", colours: ["E50010", "FF3D4B"], start: .topLeading, end: .bottomTrailing, requiresPremium: false),
-    Theme(name: "Holiday Green", colours: ["00873E", "04BA57"], start: .topLeading, end: .bottomTrailing, requiresPremium: false),
+    Theme(name: "Cherryblossoms", colours: ["FBD3E9", "BB377D"], start: .topLeading, end: .bottomTrailing, requiresPremium: false),
     Theme(name: "Atlas", colours: ["FEAC5E", "C779D0", "35E7F3"], start: .topLeading, end: .bottomTrailing),
     Theme(name: "Timber", colours: ["fc00ff", "00dbde"], start: .topLeading, end: .bottomTrailing),
     Theme(name: "Earth", colours: ["20BF55", "01BAEF"], start: .topLeading, end: .bottomTrailing),
     Theme(name: "Sunrise", colours: ["FF5F6D", "FFC371"], start: .topLeading, end: .bottomTrailing),
-    Theme(name: "Cherryblossoms", colours: ["FBD3E9", "BB377D"], start: .topLeading, end: .bottomTrailing),
     Theme(name: "Rose Water", colours: ["E55D87", "5FC3E4"], start: .topLeading, end: .bottomTrailing),
     Theme(name: "Peach", colours: ["ED4264", "FFEDBC"], start: .topLeading, end: .bottomTrailing),
     Theme(name: "Instagram", colours: ["833ab4", "fd1d1d", "fcb045"], start: .topLeading, end: .bottomTrailing),
@@ -53,14 +51,12 @@ let themes: [Theme] = [
 
 var icons: [AppIcon] = [
     AppIcon(name: "Default", filename: "primary", requiresPremium: false),
-    AppIcon(name: "Holiday Red", filename: "xmas-red", requiresPremium: false),
-    AppIcon(name: "Holiday Green", filename: "xmas-green", requiresPremium: false),
+    AppIcon(name: "Cherryblossoms", filename: "cherryblossoms", requiresPremium: false),
     AppIcon(name: "Winter", filename: "winter", requiresPremium: true),
     AppIcon(name: "Atlas", filename: "atlas", requiresPremium: true),
     AppIcon(name: "Timber", filename: "timber", requiresPremium: true),
     AppIcon(name: "Earth", filename: "earth", requiresPremium: true),
     AppIcon(name: "Greenish", filename: "greenish", requiresPremium: true),
     AppIcon(name: "Sunrise", filename: "sunrise", requiresPremium: true),
-    AppIcon(name: "Cherryblossoms", filename: "cherryblossoms", requiresPremium: true),
     AppIcon(name: "Classic", filename: "classic", requiresPremium: true),
 ]
