@@ -88,7 +88,7 @@ struct CreateEditPlayer: View {
             })
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .sheet(isPresented: $showColourPicker, content: {
+        .popover(isPresented: $showColourPicker, content: {
             ColorPickerView(colour: $colour)
         })
     }
