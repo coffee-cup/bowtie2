@@ -116,7 +116,7 @@ struct CreateGame: View {
                             ForEach(filteredPlayers, id: \.self) { player in
                                 PlayerItem(colour: player.wrappedColor, name: player.wrappedName, isSelected: self.createData.getSelected(id: player.id))
                             }
-                        }
+                        }.searchable(text: $searchText)
                     }
                 }
             }
@@ -135,7 +135,6 @@ struct CreateGame: View {
             }
             .navigationBarTitle("Create Game", displayMode: .inline)
         }
-        .searchable(text: $searchText)
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
