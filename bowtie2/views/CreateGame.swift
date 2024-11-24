@@ -71,6 +71,18 @@ struct CreateGame: View {
     
     @State var isCreatingPlayer = false
     
+    @State private var searchText = ""
+
+    private var filteredPlayers: [Player] {
+        if searchText.isEmpty {
+            Array(players)
+          } else {
+              players.filter {
+                  (player: Player) in player.name!.lowercased().contains(searchText.lowercased())
+              }
+          }
+      }
+
     var body: some View {
         NavigationView {
             Form {
@@ -101,7 +113,7 @@ struct CreateGame: View {
                         }
                     } else {
                         List {
-                            ForEach(players, id: \.self) { player in
+                            ForEach(filteredPlayers, id: \.self) { player in
                                 PlayerItem(colour: player.wrappedColor, name: player.wrappedName, isSelected: self.createData.getSelected(id: player.id))
                             }
                         }
@@ -123,6 +135,7 @@ struct CreateGame: View {
             }
             .navigationBarTitle("Create Game", displayMode: .inline)
         }
+        .searchable(text: $searchText)
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
