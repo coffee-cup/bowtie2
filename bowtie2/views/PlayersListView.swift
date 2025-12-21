@@ -34,7 +34,20 @@ struct PlayersListView: View {
 
     var columns: [GridItem] =
         Array(repeating: .init(.flexible()), count: 2)
-    
+
+    private var sortedPlayers: [Player] {
+        if settings.playerSortOrder == PlayerSortOrder.recentlyUsed.rawValue {
+            return players.sorted { p1, p2 in
+                switch (p1.lastGameDate, p2.lastGameDate) {
+                case let (d1?, d2?): return d1 > d2
+                case (nil, _): return false
+                case (_, nil): return true
+                }
+            }
+        }
+        return players.sorted { ($0.name ?? "").localizedCaseInsensitiveCompare($1.name ?? "") == .orderedAscending }
+    }
+
     var body: some View {
         NavigationStack {
             if players.count == 0 {
@@ -78,7 +91,7 @@ struct PlayersListView: View {
             } else {
                 ScrollView {
                     LazyVGrid(columns: columns) {
-                        ForEach(players, id: \.self) { player in
+                        ForEach(sortedPlayers, id: \.self) { player in
                             Button(action: {
                                 self.sheetState = PlayersListSheetState(editing: player)
                             }) {
