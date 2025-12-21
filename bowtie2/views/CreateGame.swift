@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CreateGame: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var settings: UserSettings
     
@@ -43,7 +43,7 @@ struct CreateGame: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section(header: Text("Game Name").padding(.top)) {
                     TextField("Canasta", text: $createData.name)
@@ -80,21 +80,26 @@ struct CreateGame: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-            .navigationBarItems(leading:
-                                    Button("Close") {
-                                        self.presentationMode.wrappedValue.dismiss()
-                                    },
-                                trailing:
-                                    Button("Create") {
-                                        self.createGame()
-                                    }.disabled(createData.name == "" || createData.numPlayersAdded == 0))
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Close") {
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Create") {
+                        self.createGame()
+                    }
+                    .disabled(createData.name == "" || createData.numPlayersAdded == 0)
+                }
+            }
             .sheet(isPresented: $isCreatingPlayer) {
                 CreateEditPlayer(onPlayer: self.addPlayer, editingPlayer: nil)
                     .environmentObject(settings)
             }
-            .navigationBarTitle("Create Game", displayMode: .inline)
+            .navigationTitle("Create Game")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     private func addPlayer(name: String, colour: String) {
@@ -123,7 +128,7 @@ struct CreateGame: View {
             
             try viewContext.save()
             
-            self.presentationMode.wrappedValue.dismiss()
+            dismiss()
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

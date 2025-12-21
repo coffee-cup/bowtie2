@@ -48,19 +48,19 @@ struct ColorPickerViewRepresentable: UIViewControllerRepresentable {
 }
 
 struct ColorPickerView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
+    @Environment(\.dismiss) var dismiss
+
     @Binding var colour: Color
-    
+
     var body: some View {
         ZStack {
             ColorPickerViewRepresentable(colour: $colour)
-            
+
             VStack(alignment: .trailing) {
                 HStack {
                     Spacer()
                     Button(action: {
-                        presentationMode.wrappedValue.dismiss()
+                        dismiss()
                     }) {
                         Text("Done")
                             .fontWeight(.semibold)

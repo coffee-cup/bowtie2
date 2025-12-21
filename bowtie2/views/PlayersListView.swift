@@ -35,7 +35,7 @@ struct PlayersListView: View {
         Array(repeating: .init(.flexible()), count: 2)
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             if players.count == 0 {
                 VStack {
                     Spacer()
@@ -84,13 +84,8 @@ struct PlayersListView: View {
                                 PlayerCard(name: player.wrappedName, colour: player.wrappedColor)
                             }
                             .contextMenu {
-                                Button(action: {
+                                Button("Delete Player", role: .destructive) {
                                     self.deletePlayer(player: player)
-                                }) {
-                                    HStack {
-                                        Text("Delete Player")
-                                        Image(systemName: "trash")
-                                    }
                                 }
                             }
                         }
@@ -108,7 +103,6 @@ struct PlayersListView: View {
                 .sheet(item: $sheetState, content: presentSheet)
             }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     @ViewBuilder

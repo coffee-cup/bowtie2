@@ -32,7 +32,7 @@ struct PlayerWheel: View {
 }
 
 struct CreateEditPlayer: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     
     let onPlayer: ((_ name: String, _ colour: String) -> ())?
     let editingPlayer: Player?
@@ -44,7 +44,7 @@ struct CreateEditPlayer: View {
     @State private var showColourPicker = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section(header: Text("Colour").padding(.top)) {
                     Button(action: {
@@ -66,18 +66,24 @@ struct CreateEditPlayer: View {
                     TextField("Player name", text: $name)
                 }
             }
-            .navigationBarTitle(title, displayMode: .inline)
-            .navigationBarItems(leading:
-                                    Button("Close") {
-                                        self.presentationMode.wrappedValue.dismiss()
-                                    },
-                                trailing:
-                                    Button(createText) {
-                                        if let onPlayer = onPlayer {
-                                            onPlayer(name, colour.hexString)
-                                        }
-                                        self.presentationMode.wrappedValue.dismiss()
-                                    }.disabled(name == ""))
+            .navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Close") {
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(createText) {
+                        if let onPlayer = onPlayer {
+                            onPlayer(name, colour.hexString)
+                        }
+                        dismiss()
+                    }
+                    .disabled(name == "")
+                }
+            }
             .onAppear(perform: {
                 if let player = editingPlayer {
                     title = "Edit Player"
@@ -87,7 +93,6 @@ struct CreateEditPlayer: View {
                 }
             })
         }
-        .navigationViewStyle(StackNavigationViewStyle())
         .popover(isPresented: $showColourPicker, content: {
             ColorPickerView(colour: $colour)
         })
