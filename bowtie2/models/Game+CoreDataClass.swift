@@ -49,7 +49,20 @@ extension Game {
         
         return game
     }
-    
+
+    func addPlayers(context: NSManagedObjectContext, players: [Player]) {
+        players.forEach { player in
+            context.refresh(player, mergeChanges: true)
+            PlayerScore.createPlayerScore(context: context, game: self, player: player)
+        }
+    }
+
+    func removePlayer(context: NSManagedObjectContext, player: Player) {
+        if let playerScore = scoresArray.first(where: { $0.player?.id == player.id }) {
+            context.delete(playerScore)
+        }
+    }
+
     static func duplicateGame(context: NSManagedObjectContext, gameToDuplicate: Game) -> Game {
         let players = gameToDuplicate.scoresArray.map({ score in score.player }).filter({ player in player != nil }) as! [Player]
         let game = Game.createGameWithPlayers(context: context, name: gameToDuplicate.wrappedName, players: players)
