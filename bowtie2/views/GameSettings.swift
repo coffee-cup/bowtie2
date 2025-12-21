@@ -10,6 +10,7 @@ import SwiftUI
 struct AddPlayersToGame: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var settings: UserSettings
 
     @ObservedObject var game: Game
     @StateObject var selectionData = PlayerSelectionData()
@@ -29,9 +30,21 @@ struct AddPlayersToGame: View {
     }
 
     private var sortedPlayers: [Player] {
-        let existing = allPlayers.filter { existingPlayerIds.contains($0.id) }
-        let available = allPlayers.filter { !existingPlayerIds.contains($0.id) }
-        let combined = Array(existing) + Array(available)
+        let sortPlayers: ([Player]) -> [Player] = { players in
+            if settings.playerSortOrder == PlayerSortOrder.recentlyUsed.rawValue {
+                return players.sorted { p1, p2 in
+                    switch (p1.lastGameDate, p2.lastGameDate) {
+                    case let (d1?, d2?): return d1 > d2
+                    case (nil, _): return false
+                    case (_, nil): return true
+                    }
+                }
+            }
+            return players.sorted { ($0.name ?? "").localizedCaseInsensitiveCompare($1.name ?? "") == .orderedAscending }
+        }
+        let existing = sortPlayers(allPlayers.filter { existingPlayerIds.contains($0.id) })
+        let available = sortPlayers(allPlayers.filter { !existingPlayerIds.contains($0.id) })
+        let combined = existing + available
         if searchText.isEmpty {
             return combined
         }
@@ -126,7 +139,8 @@ struct AddPlayersToGame: View {
 
 struct GameSettings: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @EnvironmentObject var settings: UserSettings
+
     @ObservedObject var game: Game
     @State var name = ""
     @State var isAddingPlayers = false
@@ -169,6 +183,7 @@ struct GameSettings: View {
         .sheet(isPresented: $isAddingPlayers) {
             AddPlayersToGame(game: game)
                 .environment(\.managedObjectContext, viewContext)
+                .environmentObject(settings)
         }
         .navigationTitle("Game Settings")
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -198,6 +213,7 @@ struct GameSettings_Previews: PreviewProvider {
             GameSettings(game:
                             Game.gameByName(context: PersistenceController.preview.container.viewContext, name: "Blitz")!)
                 .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                .environmentObject(UserSettings())
         }
     }
 }

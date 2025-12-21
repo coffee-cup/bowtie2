@@ -67,6 +67,7 @@ struct ColorPickerView: View {
                             .padding()
                     }
                 }
+                .padding(.top)
                 Spacer()
             }
             .frame(maxWidth: .infinity)

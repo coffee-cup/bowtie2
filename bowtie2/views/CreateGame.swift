@@ -26,14 +26,21 @@ struct CreateGame: View {
     @State private var searchText = ""
 
     private var filteredPlayers: [Player] {
-        if searchText.isEmpty {
-            Array(players)
-          } else {
-              players.filter {
-                  (player: Player) in player.name!.lowercased().contains(searchText.lowercased())
-              }
-          }
-      }
+        let base = searchText.isEmpty
+            ? Array(players)
+            : players.filter { $0.name!.lowercased().contains(searchText.lowercased()) }
+
+        if settings.playerSortOrder == PlayerSortOrder.recentlyUsed.rawValue {
+            return base.sorted { p1, p2 in
+                switch (p1.lastGameDate, p2.lastGameDate) {
+                case let (d1?, d2?): return d1 > d2
+                case (nil, _): return false
+                case (_, nil): return true
+                }
+            }
+        }
+        return base.sorted { ($0.name ?? "").localizedCaseInsensitiveCompare($1.name ?? "") == .orderedAscending }
+    }
 
     var body: some View {
         NavigationView {

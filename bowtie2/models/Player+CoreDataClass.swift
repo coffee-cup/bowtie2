@@ -41,6 +41,10 @@ extension Player {
     var wrappedCreated: Date {
         created ?? Date()
     }
+
+    var lastGameDate: Date? {
+        scoresArray.compactMap { $0.game?.wrappedCreated }.max()
+    }
     
     func update(context: NSManagedObjectContext, name: String, colour: String) {
         self.name = name
