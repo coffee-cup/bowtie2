@@ -30,10 +30,24 @@ struct PlayersListView: View {
     private var players: FetchedResults<Player>
     
     @State private var sheetState: PlayersListSheetState? = nil
-    
+    @State private var playerToDelete: Player? = nil
+
     var columns: [GridItem] =
         Array(repeating: .init(.flexible()), count: 2)
-    
+
+    private var sortedPlayers: [Player] {
+        if settings.playerSortOrder == PlayerSortOrder.recentlyUsed.rawValue {
+            return players.sorted { p1, p2 in
+                switch (p1.lastGameDate, p2.lastGameDate) {
+                case let (d1?, d2?): return d1 > d2
+                case (nil, _): return false
+                case (_, nil): return true
+                }
+            }
+        }
+        return players.sorted { ($0.name ?? "").localizedCaseInsensitiveCompare($1.name ?? "") == .orderedAscending }
+    }
+
     var body: some View {
         NavigationStack {
             if players.count == 0 {
@@ -77,7 +91,7 @@ struct PlayersListView: View {
             } else {
                 ScrollView {
                     LazyVGrid(columns: columns) {
-                        ForEach(players, id: \.self) { player in
+                        ForEach(sortedPlayers, id: \.self) { player in
                             Button(action: {
                                 self.sheetState = PlayersListSheetState(editing: player)
                             }) {
@@ -85,7 +99,7 @@ struct PlayersListView: View {
                             }
                             .contextMenu {
                                 Button("Delete Player", role: .destructive) {
-                                    self.deletePlayer(player: player)
+                                    self.playerToDelete = player
                                 }
                             }
                         }
@@ -101,6 +115,34 @@ struct PlayersListView: View {
                     }
                 }
                 .sheet(item: $sheetState, content: presentSheet)
+                .alert(
+                    "Delete \(playerToDelete?.wrappedName ?? "Player")?",
+                    isPresented: Binding(
+                        get: { playerToDelete != nil },
+                        set: { if !$0 { playerToDelete = nil } }
+                    )
+                ) {
+                    Button("Cancel", role: .cancel) {
+                        playerToDelete = nil
+                    }
+                    Button("Delete", role: .destructive) {
+                        if let player = playerToDelete {
+                            deletePlayer(player: player)
+                            playerToDelete = nil
+                        }
+                    }
+                } message: {
+                    if let player = playerToDelete {
+                        let gameCount = Set(player.scoresArray.compactMap { $0.game }).count
+                        if gameCount == 0 {
+                            Text("This player is not in any games.")
+                        } else if gameCount == 1 {
+                            Text("This player is in 1 game.")
+                        } else {
+                            Text("This player is in \(gameCount) games.")
+                        }
+                    }
+                }
             }
         }
     }

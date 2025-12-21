@@ -51,7 +51,10 @@ extension Game {
     }
 
     func addPlayers(context: NSManagedObjectContext, players: [Player]) {
+        let existingPlayerIds = Set(scoresArray.compactMap { $0.player?.objectID })
+
         players.forEach { player in
+            guard !existingPlayerIds.contains(player.objectID) else { return }
             context.refresh(player, mergeChanges: true)
             PlayerScore.createPlayerScore(context: context, game: self, player: player)
         }
