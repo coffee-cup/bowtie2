@@ -23,7 +23,7 @@ struct GamesListView: View {
     @State private var deletingGame: Game? = nil
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             if games.count == 0 {
                 VStack {
                     Spacer()
@@ -79,14 +79,9 @@ struct GamesListView: View {
                                     }
                                 }
                                 
-                                Button(action: {
+                                Button("Delete Game", role: .destructive) {
                                     self.deletingGame = game
                                     self.isDeleting = true
-                                }) {
-                                    HStack {
-                                        Text("Delete Game")
-                                        Image(systemName: "trash")
-                                    }
                                 }
                             }
                         }
@@ -102,17 +97,16 @@ struct GamesListView: View {
                     }
                 }
                 .sheet(isPresented: $isCreating, content: presentSheet)
-                .alert(isPresented: $isDeleting) {
-                    Alert(title: Text("Are you sure you want to delete this?"),
-                          primaryButton: .destructive(Text("Delete")) {
-                            if let game = self.deletingGame {
-                                self.deleteGame(game: game)
-                            }
-                          }, secondaryButton: .cancel())
+                .alert("Delete this game?", isPresented: $isDeleting) {
+                    Button("Delete", role: .destructive) {
+                        if let game = self.deletingGame {
+                            self.deleteGame(game: game)
+                        }
+                    }
+                    Button("Cancel", role: .cancel) {}
                 }
             }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     @ViewBuilder
