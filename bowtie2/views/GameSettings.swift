@@ -12,7 +12,7 @@ struct AddPlayersToGame: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var game: Game
-    @StateObject var selectionData = CreateGameData()
+    @StateObject var selectionData = PlayerSelectionData()
 
     @FetchRequest(
         entity: Player.entity(),
@@ -67,7 +67,7 @@ struct AddPlayersToGame: View {
                 } else {
                     List {
                         ForEach(sortedPlayers, id: \.self) { player in
-                            PlayerItem(
+                            PlayerSelectionItem(
                                 colour: player.wrappedColor,
                                 name: player.wrappedName,
                                 isSelected: selectionData.getSelected(id: player.id)
