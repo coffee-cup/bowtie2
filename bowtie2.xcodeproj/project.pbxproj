@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2B3E0EB72EF86D0F004609BE /* PlayerSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E0EB62EF86D0F004609BE /* PlayerSelection.swift */; };
+		2B3E0EB92EF88C74004609BE /* bowtie-glass.icon in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E0EB82EF88C74004609BE /* bowtie-glass.icon */; };
 		B724034B2590083700F0E153 /* atlas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B72403302590083500F0E153 /* atlas@2x.png */; };
 		B724034C2590083700F0E153 /* earth.png in Resources */ = {isa = PBXBuildFile; fileRef = B72403312590083500F0E153 /* earth.png */; };
 		B724034D2590083700F0E153 /* earth@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B72403322590083500F0E153 /* earth@3x.png */; };
@@ -110,6 +111,7 @@
 
 /* Begin PBXFileReference section */
 		2B3E0EB62EF86D0F004609BE /* PlayerSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSelection.swift; sourceTree = "<group>"; };
+		2B3E0EB82EF88C74004609BE /* bowtie-glass.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "bowtie-glass.icon"; sourceTree = "<group>"; };
 		B72403302590083500F0E153 /* atlas@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "atlas@2x.png"; sourceTree = "<group>"; };
 		B72403312590083500F0E153 /* earth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = earth.png; sourceTree = "<group>"; };
 		B72403322590083500F0E153 /* earth@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "earth@3x.png"; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 				B72403382590083600F0E153 /* xmas-red.png */,
 				B724034A2590083700F0E153 /* xmas-red@2x.png */,
 				B72403492590083700F0E153 /* xmas-red@3x.png */,
+				2B3E0EB82EF88C74004609BE /* bowtie-glass.icon */,
 			);
 			path = "app-icons";
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				B72403592590083700F0E153 /* winter@2x.png in Resources */,
 				B724035D2590083700F0E153 /* cherryblossoms.png in Resources */,
 				B724034B2590083700F0E153 /* atlas@2x.png in Resources */,
+				2B3E0EB92EF88C74004609BE /* bowtie-glass.icon in Resources */,
 				B7C1B4F825909C860087FB74 /* classic.png in Resources */,
 				B72403522590083700F0E153 /* winter@3x.png in Resources */,
 				B72403552590083700F0E153 /* xmas-green@2x.png in Resources */,
@@ -765,11 +769,12 @@
 		B781BA272560F5E2008EB298 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "bowtie-glass";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = bowtie2/bowtie2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "\"bowtie2/Preview Content\"";
 				DEVELOPMENT_TEAM = 4TPDCY22V9;
 				ENABLE_PREVIEWS = YES;
@@ -792,11 +797,12 @@
 		B781BA282560F5E2008EB298 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "bowtie-glass";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = bowtie2/bowtie2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "\"bowtie2/Preview Content\"";
 				DEVELOPMENT_TEAM = 4TPDCY22V9;
 				ENABLE_PREVIEWS = YES;
