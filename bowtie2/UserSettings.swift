@@ -53,6 +53,18 @@ struct PListUserDefault<T> where T:Codable {
     }
 }
 
+enum PlayerSortOrder: String, CaseIterable {
+    case recentlyUsed = "recentlyUsed"
+    case alphabetical = "alphabetical"
+
+    var displayName: String {
+        switch self {
+        case .alphabetical: return "Alphabetical"
+        case .recentlyUsed: return "Recently Used"
+        }
+    }
+}
+
 final class UserSettings: ObservableObject {
     let objectWillChange = PassthroughSubject<Void, Never>()
     var appIcon: String {
@@ -81,6 +93,10 @@ final class UserSettings: ObservableObject {
     
     @PListUserDefault("theme", defaultValue: themes[0])
     var theme: Theme {
+        willSet { objectWillChange.send() }
+    }
+
+    @AppStorage("playerSortOrder") var playerSortOrder: String = PlayerSortOrder.recentlyUsed.rawValue {
         willSet { objectWillChange.send() }
     }
 }

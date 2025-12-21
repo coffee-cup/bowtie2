@@ -19,6 +19,12 @@ struct SettingsView: View {
                     Toggle(isOn: $settings.showGraph) {
                         Text("Show graph")
                     }
+
+                    Picker("Player sort", selection: $settings.playerSortOrder) {
+                        ForEach(PlayerSortOrder.allCases, id: \.rawValue) { order in
+                            Text(order.displayName).tag(order.rawValue)
+                        }
+                    }
                 }
                 
                 Section {
