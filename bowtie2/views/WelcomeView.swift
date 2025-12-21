@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var settings: UserSettings
     
     var body: some View {
@@ -93,7 +93,7 @@ struct WelcomeView: View {
     
     private func getStarted() {
         settings.showWelcome = false
-        self.presentationMode.wrappedValue.dismiss()
+        dismiss()
     }
 }
 

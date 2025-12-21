@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ScoreHistoryView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) private var viewContext
     
     @ObservedObject var playerScore: PlayerScore
@@ -16,30 +16,30 @@ struct ScoreHistoryView: View {
     @State private var title = "Score history"
     
     var body: some View {
-        NavigationView {
-            if playerScore.wrappedHistory.count == 0 {
-                Text("No scores entered so far")
-                    .fontWeight(.bold)
-                    .padding()
-                    .navigationBarTitle(title, displayMode: .inline)
-                    .navigationBarItems(leading:
-                                            Button("Done") {
-                                                self.presentationMode.wrappedValue.dismiss()
-                                            })
-            } else {
-                List {
-                    ForEach(playerScore.wrappedHistory.reversed(), id: \.self) { item in
-                        Text("\(item)")
+        NavigationStack {
+            Group {
+                if playerScore.wrappedHistory.count == 0 {
+                    Text("No scores entered so far")
+                        .fontWeight(.bold)
+                        .padding()
+                } else {
+                    List {
+                        ForEach(playerScore.wrappedHistory.reversed(), id: \.self) { item in
+                            Text("\(item)")
+                        }
+                        .onDelete(perform: deleteItems)
                     }
-                    .onDelete(perform: deleteItems)
                 }
-                .navigationBarTitle(title, displayMode: .inline)
-                .navigationBarItems(leading:
-                                        Button("Done") {
-                                            self.presentationMode.wrappedValue.dismiss()
-                                        })
             }
-            
+            .navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                }
+            }
         }
         .onAppear {
             self.title = "Score history for \(playerScore.player?.wrappedName ?? "No name"    )"

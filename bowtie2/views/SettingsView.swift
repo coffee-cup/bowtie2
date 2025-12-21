@@ -13,7 +13,7 @@ struct SettingsView: View {
     @State var isShowingPremium = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section {
                     Toggle(isOn: $settings.showGraph) {
@@ -66,7 +66,6 @@ struct SettingsView: View {
             .sheet(isPresented: $isShowingPremium, content: presentSheet)
             .navigationTitle("Settings")
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     @ViewBuilder

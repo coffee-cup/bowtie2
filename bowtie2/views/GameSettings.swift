@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddPlayersToGame: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var settings: UserSettings
 
@@ -72,7 +72,7 @@ struct AddPlayersToGame: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 if allPlayers.isEmpty {
                     Text("No players available")
@@ -89,19 +89,25 @@ struct AddPlayersToGame: View {
                     }.searchable(text: $searchText)
                 }
             }
-            .navigationBarItems(
-                leading: Button("Cancel") {
-                    presentationMode.wrappedValue.dismiss()
-                },
-                trailing: Button("Save") {
-                    if !playersToRemove.isEmpty {
-                        showRemoveConfirmation = true
-                    } else {
-                        saveChanges()
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        dismiss()
                     }
-                }.disabled(!hasChanges)
-            )
-            .navigationBarTitle("Players", displayMode: .inline)
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save") {
+                        if !playersToRemove.isEmpty {
+                            showRemoveConfirmation = true
+                        } else {
+                            saveChanges()
+                        }
+                    }
+                    .disabled(!hasChanges)
+                }
+            }
+            .navigationTitle("Players")
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 for id in existingPlayerIds {
                     selectionData.selectPlayer(id: id)
@@ -116,7 +122,6 @@ struct AddPlayersToGame: View {
                 Text("Removing players will delete their score history for this game.")
             }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 
     private func saveChanges() {
@@ -133,7 +138,7 @@ struct AddPlayersToGame: View {
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
 
-        presentationMode.wrappedValue.dismiss()
+        dismiss()
     }
 }
 

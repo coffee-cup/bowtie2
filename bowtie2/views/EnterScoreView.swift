@@ -56,7 +56,7 @@ struct ScoreView: View {
 }
 
 struct EnterScoreView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var settings: UserSettings
     
@@ -70,7 +70,7 @@ struct EnterScoreView: View {
         Array(repeating: .init(.flexible(), spacing: 0), count: 3)
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 ScoreView(score: score, isNegative: $isNegative)
                 
@@ -102,7 +102,7 @@ struct EnterScoreView: View {
                             if let addScore = self.addScore {
                                 addScore(playerScore, (isNegative ? -1 : 1) * score)
                             }
-                            self.presentationMode.wrappedValue.dismiss()
+                            dismiss()
                         }) {
                             HStack {
                                 Text("Go")
@@ -120,11 +120,15 @@ struct EnterScoreView: View {
                 
                 Spacer(minLength: 20)
             }
-            .navigationBarTitle("Enter Score for \(playerScore.player?.wrappedName ?? "No Name"    )", displayMode: .inline)
-            .navigationBarItems(leading:
-                                    Button("Close") {
-                                        self.presentationMode.wrappedValue.dismiss()
-                                    })
+            .navigationTitle("Enter Score for \(playerScore.player?.wrappedName ?? "No Name")")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Close") {
+                        dismiss()
+                    }
+                }
+            }
             .padding(.horizontal)
             .frame(maxHeight: .infinity)
         }

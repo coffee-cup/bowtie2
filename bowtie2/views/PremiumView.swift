@@ -9,7 +9,7 @@ import SwiftUI
 import StoreKit
 
 struct PremiumView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var settings: UserSettings
     
     @State private var price = "$2.99"
@@ -28,7 +28,7 @@ struct PremiumView: View {
             VStack {
                 HStack {
                     Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
+                        dismiss()
                     }) {
                         Text("Close")
                             .fontWeight(.medium)
@@ -128,11 +128,6 @@ struct PremiumView: View {
             .onAppear {
                 self.loadProducts()
             }
-            .navigationBarTitle("Bowtie Premium", displayMode: .inline)
-            .navigationBarItems(trailing:
-                                    Button("Restore") {
-                                        self.restore()
-                                    })
         }
     }
     
