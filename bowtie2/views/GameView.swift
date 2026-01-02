@@ -33,6 +33,7 @@ struct GameView: View {
     @ObservedObject var game: Game
     @State private var addingScore: PlayerScore? = nil
     @State private var sheetState: GameViewSheetState? = nil
+    @State private var liveActivityActive = false
     
     var body: some View {
         ScrollView {
@@ -69,13 +70,48 @@ struct GameView: View {
         }
         .navigationBarTitle(game.wrappedName, displayMode: .large)
         .toolbar {
-            NavigationLink(
-                destination: GameSettings(game: game),
-                label: {
-                    Label("Game settings", systemImage: "gearshape")
-                })
+            ToolbarItem(placement: .topBarTrailing) {
+                if LiveActivityManager.shared.isSupported {
+                    Button {
+                        Task {
+                            if liveActivityActive {
+                                await LiveActivityManager.shared.end()
+                                liveActivityActive = false
+                            } else {
+                                try? await LiveActivityManager.shared.start(game: game)
+                                liveActivityActive = true
+                            }
+                        }
+                    } label: {
+                        Image(systemName: liveActivityActive ? "livephoto" : "livephoto.slash")
+                    }
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink(
+                    destination: GameSettings(game: game),
+                    label: {
+                        Label("Game settings", systemImage: "gearshape")
+                    })
+            }
         }
         .sheet(item: $sheetState, content: presentSheet)
+        .onAppear {
+            if settings.liveActivitiesEnabled && LiveActivityManager.shared.isSupported {
+                Task {
+                    try? await LiveActivityManager.shared.start(game: game)
+                    liveActivityActive = true
+                }
+            }
+        }
+        .onDisappear {
+            if liveActivityActive {
+                Task {
+                    await LiveActivityManager.shared.end()
+                    liveActivityActive = false
+                }
+            }
+        }
     }
     
     @ViewBuilder
@@ -91,18 +127,24 @@ struct GameView: View {
     private func addScore(playerScore: PlayerScore, score: Int) {
         do {
             let currentPlayerScore = viewContext.object(with: playerScore.objectID) as! PlayerScore
-            
+
             if currentPlayerScore.history == nil {
                 currentPlayerScore.history = []
             }
-            
+
             currentPlayerScore.history?.append(score)
-            
+
             viewContext.refresh(currentPlayerScore, mergeChanges: true)
             viewContext.refresh(currentPlayerScore.game!, mergeChanges: true)
             viewContext.refresh(currentPlayerScore.player!, mergeChanges: true)
-            
+
             try viewContext.save()
+
+            if liveActivityActive {
+                Task {
+                    await LiveActivityManager.shared.update(game: game)
+                }
+            }
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

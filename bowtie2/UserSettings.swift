@@ -99,4 +99,8 @@ final class UserSettings: ObservableObject {
     @AppStorage("playerSortOrder") var playerSortOrder: String = PlayerSortOrder.recentlyUsed.rawValue {
         willSet { objectWillChange.send() }
     }
+
+    @AppStorage("liveActivitiesEnabled") var liveActivitiesEnabled = false {
+        willSet { objectWillChange.send() }
+    }
 }
