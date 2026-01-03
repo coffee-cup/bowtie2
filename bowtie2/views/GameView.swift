@@ -85,9 +85,6 @@ struct GameView: View {
             }
             UIApplication.shared.isIdleTimerDisabled = game.keepScreenAwake
         }
-        .onDisappear {
-            UIApplication.shared.isIdleTimerDisabled = false
-        }
         .onChange(of: game.keepScreenAwake) { newValue in
             UIApplication.shared.isIdleTimerDisabled = newValue
         }

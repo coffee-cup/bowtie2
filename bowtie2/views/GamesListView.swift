@@ -64,6 +64,7 @@ struct GamesListView: View {
                 .sheet(isPresented: $isCreating, content: presentSheet)
                 .onAppear {
                     Task { await LiveActivityManager.shared.end() }
+                    UIApplication.shared.isIdleTimerDisabled = false
                 }
             } else {
                 ScrollView {
@@ -110,6 +111,7 @@ struct GamesListView: View {
                 }
                 .onAppear {
                     Task { await LiveActivityManager.shared.end() }
+                    UIApplication.shared.isIdleTimerDisabled = false
                 }
             }
         }

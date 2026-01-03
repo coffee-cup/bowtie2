@@ -185,17 +185,15 @@ struct GameSettings: View {
                 .pickerStyle(SegmentedPickerStyle())
             }
 
-            Section {
+            Section("Display") {
                 Toggle(isOn: Binding(
                     get: { game.keepScreenAwake },
                     set: { game.keepScreenAwake = $0 }
                 )) {
                     Text("Keep Screen Awake")
                 }
-            }
 
-            if LiveActivityManager.shared.isSupported && settings.liveActivitiesEnabled {
-                Section {
+                if LiveActivityManager.shared.isSupported && settings.liveActivitiesEnabled {
                     Toggle(isOn: Binding(
                         get: { game.liveActivityEnabled },
                         set: { newValue in
