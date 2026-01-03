@@ -14,6 +14,10 @@ iOS score-keeping app for tracking games with multiple players.
 
 SwiftUI + CoreData with CloudKit sync. Minimum iOS 16.6.
 
-## Important
+## Build
 
-- Don't run xcodebuild manually. the user will do that and share any relevant output
+Run after making big changes to verify syntax/compilation:
+
+```bash
+xcodebuild -scheme bowtie2 -destination 'generic/platform=iOS' build CODE_SIGNING_ALLOWED=NO
+```
