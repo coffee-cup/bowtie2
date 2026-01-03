@@ -147,7 +147,6 @@ struct GameSettings: View {
     @EnvironmentObject var settings: UserSettings
 
     @ObservedObject var game: Game
-    @Binding var liveActivityEnabled: Bool
     @State var name = ""
     @State var isAddingPlayers = false
 
@@ -197,7 +196,19 @@ struct GameSettings: View {
 
             if LiveActivityManager.shared.isSupported && settings.liveActivitiesEnabled {
                 Section {
-                    Toggle(isOn: $liveActivityEnabled) {
+                    Toggle(isOn: Binding(
+                        get: { game.liveActivityEnabled },
+                        set: { newValue in
+                            game.liveActivityEnabled = newValue
+                            Task {
+                                if newValue {
+                                    try? await LiveActivityManager.shared.start(game: game)
+                                } else {
+                                    await LiveActivityManager.shared.end()
+                                }
+                            }
+                        }
+                    )) {
                         Text("Live Activity")
                     }
                 }
@@ -234,8 +245,7 @@ struct GameSettings_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             GameSettings(
-                game: Game.gameByName(context: PersistenceController.preview.container.viewContext, name: "Blitz")!,
-                liveActivityEnabled: .constant(false)
+                game: Game.gameByName(context: PersistenceController.preview.container.viewContext, name: "Blitz")!
             )
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(UserSettings())

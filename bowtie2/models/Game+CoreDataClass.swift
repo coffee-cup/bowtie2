@@ -71,6 +71,7 @@ extension Game {
         let game = Game.createGameWithPlayers(context: context, name: gameToDuplicate.wrappedName, players: players)
         game.winnerSort = gameToDuplicate.winnerSort
         game.keepScreenAwake = gameToDuplicate.keepScreenAwake
+        game.liveActivityEnabled = gameToDuplicate.liveActivityEnabled
         return game
     }
     

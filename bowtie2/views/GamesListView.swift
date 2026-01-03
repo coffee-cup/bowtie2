@@ -62,6 +62,9 @@ struct GamesListView: View {
                 .padding(.all)
                 .navigationTitle("Games")
                 .sheet(isPresented: $isCreating, content: presentSheet)
+                .onAppear {
+                    Task { await LiveActivityManager.shared.end() }
+                }
             } else {
                 ScrollView {
                     LazyVStack(spacing: 10) {
@@ -104,6 +107,9 @@ struct GamesListView: View {
                         }
                     }
                     Button("Cancel", role: .cancel) {}
+                }
+                .onAppear {
+                    Task { await LiveActivityManager.shared.end() }
                 }
             }
         }

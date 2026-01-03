@@ -34,7 +34,6 @@ struct GameView: View {
     @ObservedObject var game: Game
     @State private var addingScore: PlayerScore? = nil
     @State private var sheetState: GameViewSheetState? = nil
-    @State private var liveActivityActive = false
     
     var body: some View {
         ScrollView {
@@ -72,29 +71,21 @@ struct GameView: View {
         .navigationBarTitle(game.wrappedName, displayMode: .large)
         .toolbar {
             NavigationLink(
-                destination: GameSettings(game: game, liveActivityEnabled: $liveActivityActive),
+                destination: GameSettings(game: game),
                 label: {
                     Label("Game settings", systemImage: "gearshape")
                 })
         }
-        .onChange(of: liveActivityActive) { newValue in
-            Task {
-                if newValue {
-                    try? await LiveActivityManager.shared.start(game: game)
-                } else {
-                    await LiveActivityManager.shared.end()
-                }
-            }
-        }
         .sheet(item: $sheetState, content: presentSheet)
         .onAppear {
-            if settings.liveActivitiesEnabled && LiveActivityManager.shared.isSupported {
-                liveActivityActive = true
+            if settings.liveActivitiesEnabled && game.liveActivityEnabled {
+                Task {
+                    try? await LiveActivityManager.shared.start(game: game)
+                }
             }
             UIApplication.shared.isIdleTimerDisabled = game.keepScreenAwake
         }
         .onDisappear {
-            liveActivityActive = false
             UIApplication.shared.isIdleTimerDisabled = false
         }
         .onChange(of: game.keepScreenAwake) { newValue in
@@ -128,7 +119,7 @@ struct GameView: View {
 
             try viewContext.save()
 
-            if liveActivityActive {
+            if LiveActivityManager.shared.isRunning {
                 Task {
                     await LiveActivityManager.shared.update(game: game)
                 }
