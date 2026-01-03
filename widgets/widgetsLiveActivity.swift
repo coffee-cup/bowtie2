@@ -96,6 +96,7 @@ struct PlayerScoreRow: View {
         HStack(spacing: 8) {
             ForEach(displayConfig.visible, id: \.self) { player in
                 PlayerScoreItem(player: player)
+                    .frame(maxWidth: .infinity)
             }
 
             if let last = displayConfig.lastPlayer {
@@ -103,9 +104,8 @@ struct PlayerScoreRow: View {
                     .font(.title3)
                     .foregroundStyle(.secondary)
                 PlayerScoreItem(player: last)
+                    .frame(maxWidth: .infinity)
             }
-
-            Spacer()
         }
     }
 }
@@ -121,7 +121,7 @@ struct PlayerScoreItem: View {
                 .foregroundStyle(.white)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
-                .padding(.horizontal, 8)
+                .frame(maxWidth: .infinity)
                 .padding(.vertical, 4)
                 .background(Color(hex: player.colorHex))
                 .clipShape(RoundedRectangle(cornerRadius: 6))
