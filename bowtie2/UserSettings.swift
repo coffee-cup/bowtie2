@@ -100,7 +100,7 @@ final class UserSettings: ObservableObject {
         willSet { objectWillChange.send() }
     }
 
-    @AppStorage("liveActivitiesEnabled") var liveActivitiesEnabled = false {
+    @AppStorage("liveActivitiesEnabled") var liveActivitiesEnabled = true {
         willSet { objectWillChange.send() }
     }
 }

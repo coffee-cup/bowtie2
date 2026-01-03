@@ -12,5 +12,7 @@ struct GameActivityAttributes: ActivityAttributes {
 
     struct ContentState: Codable, Hashable {
         let players: [PlayerData]
+        let totalPlayers: Int
+        let roundCount: Int
     }
 }

@@ -71,7 +71,7 @@ final class LiveActivityManager: ObservableObject {
     }
 
     private func contentState(from game: Game) -> GameActivityAttributes.ContentState {
-        let top4 = game.scoresArray.prefix(4).compactMap { score -> PlayerData? in
+        let allPlayers = game.scoresArray.compactMap { score -> PlayerData? in
             guard let player = score.player else { return nil }
             return PlayerData(
                 name: player.wrappedName,
@@ -80,6 +80,10 @@ final class LiveActivityManager: ObservableObject {
             )
         }
 
-        return GameActivityAttributes.ContentState(players: Array(top4))
+        return GameActivityAttributes.ContentState(
+            players: allPlayers,
+            totalPlayers: game.scoresArray.count,
+            roundCount: game.maxNumberOfEntries
+        )
     }
 }

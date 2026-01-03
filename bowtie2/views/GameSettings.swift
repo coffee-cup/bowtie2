@@ -147,18 +147,30 @@ struct GameSettings: View {
     @EnvironmentObject var settings: UserSettings
 
     @ObservedObject var game: Game
+    @Binding var liveActivityEnabled: Bool
     @State var name = ""
     @State var isAddingPlayers = false
 
     var body: some View {
         Form {
-            Section(header: Text("Game Name")) {
+            Section {
                 TextField("Game Name", text: $name, onCommit: {
                     self.saveGame()
                 })
             }
-            
-            Section(header: Text("Winner")) {
+
+            Section("Players") {
+                HStack {
+                    Text("\(game.scoresArray.count) players")
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Button("Edit") {
+                        isAddingPlayers = true
+                    }
+                }
+            }
+
+            Section("Scoring") {
                 Picker(selection:
                         Binding(
                             get: { game.winnerSort },
@@ -166,7 +178,7 @@ struct GameSettings: View {
                                 self.game.winnerSort = value
                             }
                         ),
-                       label: Text("Winner sort order")) {
+                       label: Text("Winner has")) {
                     ForEach(WinnerSort.allCases, id: \.self.rawValue) { value in
                         Text(value.stringValue).tag(value)
                     }
@@ -174,13 +186,10 @@ struct GameSettings: View {
                 .pickerStyle(SegmentedPickerStyle())
             }
 
-            Section(header: Text("Players")) {
-                HStack {
-                    Text("\(game.scoresArray.count) players")
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    Button("Edit Players") {
-                        isAddingPlayers = true
+            if LiveActivityManager.shared.isSupported && settings.liveActivitiesEnabled {
+                Section {
+                    Toggle(isOn: $liveActivityEnabled) {
+                        Text("Live Activity")
                     }
                 }
             }
@@ -215,10 +224,12 @@ struct GameSettings: View {
 struct GameSettings_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            GameSettings(game:
-                            Game.gameByName(context: PersistenceController.preview.container.viewContext, name: "Blitz")!)
-                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-                .environmentObject(UserSettings())
+            GameSettings(
+                game: Game.gameByName(context: PersistenceController.preview.container.viewContext, name: "Blitz")!,
+                liveActivityEnabled: .constant(false)
+            )
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(UserSettings())
         }
     }
 }

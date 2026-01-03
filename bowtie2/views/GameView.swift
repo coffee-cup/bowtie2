@@ -70,47 +70,29 @@ struct GameView: View {
         }
         .navigationBarTitle(game.wrappedName, displayMode: .large)
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                if LiveActivityManager.shared.isSupported {
-                    Button {
-                        Task {
-                            if liveActivityActive {
-                                await LiveActivityManager.shared.end()
-                                liveActivityActive = false
-                            } else {
-                                try? await LiveActivityManager.shared.start(game: game)
-                                liveActivityActive = true
-                            }
-                        }
-                    } label: {
-                        Image(systemName: liveActivityActive ? "livephoto" : "livephoto.slash")
-                    }
+            NavigationLink(
+                destination: GameSettings(game: game, liveActivityEnabled: $liveActivityActive),
+                label: {
+                    Label("Game settings", systemImage: "gearshape")
+                })
+        }
+        .onChange(of: liveActivityActive) { newValue in
+            Task {
+                if newValue {
+                    try? await LiveActivityManager.shared.start(game: game)
+                } else {
+                    await LiveActivityManager.shared.end()
                 }
-            }
-            ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink(
-                    destination: GameSettings(game: game),
-                    label: {
-                        Label("Game settings", systemImage: "gearshape")
-                    })
             }
         }
         .sheet(item: $sheetState, content: presentSheet)
         .onAppear {
             if settings.liveActivitiesEnabled && LiveActivityManager.shared.isSupported {
-                Task {
-                    try? await LiveActivityManager.shared.start(game: game)
-                    liveActivityActive = true
-                }
+                liveActivityActive = true
             }
         }
         .onDisappear {
-            if liveActivityActive {
-                Task {
-                    await LiveActivityManager.shared.end()
-                    liveActivityActive = false
-                }
-            }
+            liveActivityActive = false
         }
     }
     
