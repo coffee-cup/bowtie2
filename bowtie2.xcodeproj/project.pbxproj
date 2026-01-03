@@ -291,6 +291,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B549A152F089BAF00D75B03 /* activity */ = {
+			isa = PBXGroup;
+			children = (
+				2B5499FF2F082B9600D75B03 /* LiveActivityManager.swift */,
+				2B5499FE2F082B9600D75B03 /* GameActivityAttributes.swift */,
+			);
+			path = activity;
+			sourceTree = "<group>";
+		};
 		B781B9F32560F5E0008EB298 = {
 			isa = PBXGroup;
 			children = (
@@ -318,8 +327,7 @@
 		B781B9FE2560F5E0008EB298 /* bowtie2 */ = {
 			isa = PBXGroup;
 			children = (
-				2B5499FE2F082B9600D75B03 /* GameActivityAttributes.swift */,
-				2B5499FF2F082B9600D75B03 /* LiveActivityManager.swift */,
+				2B549A152F089BAF00D75B03 /* activity */,
 				B7B1CC5825854841000ACCE3 /* app-icons */,
 				B7C130FA25611D4000EE6601 /* models */,
 				B7C130F125611C5200EE6601 /* extensions */,

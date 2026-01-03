@@ -8,23 +8,26 @@ struct GameLiveActivity: Widget {
             LockScreenView(context: context)
         } dynamicIsland: { context in
             DynamicIsland {
-                DynamicIslandExpandedRegion(.leading) {
-                    ExpandedPlayersView(players: context.state.players, totalPlayers: context.state.totalPlayers)
-                }
-                DynamicIslandExpandedRegion(.trailing) {
-                    VStack {
-                        Text("\(context.state.roundCount)")
-                            .font(.title3)
-                            .fontWeight(.bold)
-                        Text("rounds")
-                            .font(.caption2)
+                DynamicIslandExpandedRegion(.center) {
+                    HStack {
+                        Text(context.attributes.gameName)
+                            .font(.caption)
+                        Spacer()
+                        Text("\(context.state.roundCount) rounds")
+                            .font(.caption)
                             .foregroundStyle(.secondary)
                     }
+                    .padding(.horizontal, 8)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text(context.attributes.gameName)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                    let players = context.state.players
+                    ViewThatFits(in: .horizontal) {
+                        PlayerScoreRow(players: players, maxVisible: players.count)
+                        PlayerScoreRow(players: players, maxVisible: 5)
+                        PlayerScoreRow(players: players, maxVisible: 4)
+                        PlayerScoreRow(players: players, maxVisible: 3)
+                    }
+                    .padding(.horizontal, 8)
                 }
             } compactLeading: {
                 if let leader = context.state.players.first {
@@ -50,16 +53,6 @@ struct GameLiveActivity: Widget {
 struct LockScreenView: View {
     let context: ActivityViewContext<GameActivityAttributes>
 
-    private var displayPlayers: (visible: [PlayerData], hasMore: Bool, lastPlayer: PlayerData?) {
-        let all = context.state.players
-        if all.count <= 4 {
-            return (all, false, nil)
-        }
-        let visible = Array(all.prefix(3))
-        let last = all.last
-        return (visible, true, last)
-    }
-
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
@@ -73,22 +66,13 @@ struct LockScreenView: View {
                     .foregroundStyle(.secondary)
             }
 
-            HStack(spacing: 16) {
-                ForEach(Array(displayPlayers.visible.enumerated()), id: \.element) { _, player in
-                    PlayerScoreItem(player: player)
-                }
-
-                if displayPlayers.hasMore {
-                    Text("···")
-                        .font(.title3)
-                        .foregroundStyle(.secondary)
-
-                    if let last = displayPlayers.lastPlayer {
-                        PlayerScoreItem(player: last)
-                    }
-                }
-
-                Spacer()
+            let players = context.state.players
+            ViewThatFits(in: .horizontal) {
+                PlayerScoreRow(players: players, maxVisible: players.count)
+                PlayerScoreRow(players: players, maxVisible: 5)
+                PlayerScoreRow(players: players, maxVisible: 4)
+                PlayerScoreRow(players: players, maxVisible: 3)
+                PlayerScoreRow(players: players, maxVisible: 2)
             }
         }
         .padding()
@@ -96,15 +80,51 @@ struct LockScreenView: View {
     }
 }
 
+struct PlayerScoreRow: View {
+    let players: [PlayerData]
+    let maxVisible: Int
+
+    private var displayConfig: (visible: [PlayerData], lastPlayer: PlayerData?) {
+        if players.count <= maxVisible {
+            return (players, nil)
+        }
+        let visible = Array(players.prefix(maxVisible - 1))
+        return (visible, players.last)
+    }
+
+    var body: some View {
+        HStack(spacing: 8) {
+            ForEach(displayConfig.visible, id: \.self) { player in
+                PlayerScoreItem(player: player)
+            }
+
+            if let last = displayConfig.lastPlayer {
+                Text("···")
+                    .font(.title3)
+                    .foregroundStyle(.secondary)
+                PlayerScoreItem(player: last)
+            }
+
+            Spacer()
+        }
+    }
+}
+
 struct PlayerScoreItem: View {
     let player: PlayerData
 
     var body: some View {
-        VStack(spacing: 2) {
+        VStack(spacing: 4) {
             Text("\(player.score)")
                 .font(.title2)
                 .fontWeight(.bold)
-                .foregroundStyle(Color(hex: player.colorHex))
+                .foregroundStyle(.white)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Color(hex: player.colorHex))
+                .clipShape(RoundedRectangle(cornerRadius: 6))
 
             Text(player.name)
                 .font(.caption2)
@@ -119,32 +139,42 @@ struct ExpandedPlayersView: View {
     let players: [PlayerData]
     let totalPlayers: Int
 
-    private var displayPlayers: (visible: [PlayerData], hasMore: Bool, lastPlayer: PlayerData?) {
-        if players.count <= 4 {
-            return (players, false, nil)
+    var body: some View {
+        ViewThatFits(in: .vertical) {
+            ExpandedPlayersList(players: players, maxVisible: players.count)
+            ExpandedPlayersList(players: players, maxVisible: 5)
+            ExpandedPlayersList(players: players, maxVisible: 4)
+            ExpandedPlayersList(players: players, maxVisible: 3)
         }
-        let visible = Array(players.prefix(3))
-        let last = players.last
-        return (visible, true, last)
+    }
+}
+
+struct ExpandedPlayersList: View {
+    let players: [PlayerData]
+    let maxVisible: Int
+
+    private var displayConfig: (visible: [PlayerData], lastPlayer: PlayerData?) {
+        if players.count <= maxVisible {
+            return (players, nil)
+        }
+        let visible = Array(players.prefix(maxVisible - 1))
+        return (visible, players.last)
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 3) {
-            ForEach(Array(displayPlayers.visible.enumerated()), id: \.element) { _, player in
+            ForEach(displayConfig.visible, id: \.self) { player in
                 PlayerRow(player: player)
             }
 
-            if displayPlayers.hasMore {
+            if let last = displayConfig.lastPlayer {
                 HStack(spacing: 6) {
                     Text("···")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                     Spacer()
                 }
-
-                if let last = displayPlayers.lastPlayer {
-                    PlayerRow(player: last)
-                }
+                PlayerRow(player: last)
             }
         }
     }
@@ -155,16 +185,20 @@ struct PlayerRow: View {
 
     var body: some View {
         HStack(spacing: 6) {
-            Circle()
-                .fill(Color(hex: player.colorHex))
-                .frame(width: 8, height: 8)
+            Text("\(player.score)")
+                .font(.caption)
+                .fontWeight(.bold)
+                .foregroundStyle(.white)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 2)
+                .background(Color(hex: player.colorHex))
+                .clipShape(RoundedRectangle(cornerRadius: 4))
             Text(player.name)
                 .font(.caption)
                 .lineLimit(1)
             Spacer()
-            Text("\(player.score)")
-                .font(.caption)
-                .fontWeight(.semibold)
         }
     }
 }
@@ -179,6 +213,8 @@ struct PlayerRow: View {
             PlayerData(name: "Charlie", colorHex: "3357FF", score: 35),
             PlayerData(name: "Diana", colorHex: "FF33F5", score: 30),
             PlayerData(name: "Eve", colorHex: "33FFF5", score: 25),
+            PlayerData(name: "Eve", colorHex: "33FFF5", score: 25),
+            PlayerData(name: "Eve", colorHex: "33FFF5", score: 25), 
         ],
         totalPlayers: 5,
         roundCount: 12
