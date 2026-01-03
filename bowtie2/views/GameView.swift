@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 fileprivate class GameViewSheetState: Identifiable {
     var addingScore: PlayerScore?
@@ -90,9 +91,14 @@ struct GameView: View {
             if settings.liveActivitiesEnabled && LiveActivityManager.shared.isSupported {
                 liveActivityActive = true
             }
+            UIApplication.shared.isIdleTimerDisabled = game.keepScreenAwake
         }
         .onDisappear {
             liveActivityActive = false
+            UIApplication.shared.isIdleTimerDisabled = false
+        }
+        .onChange(of: game.keepScreenAwake) { newValue in
+            UIApplication.shared.isIdleTimerDisabled = newValue
         }
     }
     

@@ -70,6 +70,7 @@ extension Game {
         let players = gameToDuplicate.scoresArray.map({ score in score.player }).filter({ player in player != nil }) as! [Player]
         let game = Game.createGameWithPlayers(context: context, name: gameToDuplicate.wrappedName, players: players)
         game.winnerSort = gameToDuplicate.winnerSort
+        game.keepScreenAwake = gameToDuplicate.keepScreenAwake
         return game
     }
     
