@@ -29,8 +29,9 @@ fileprivate class GameViewSheetState: Identifiable {
 
 struct GameView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.scenePhase) private var scenePhase
     @EnvironmentObject var settings: UserSettings
-    
+
     @ObservedObject var game: Game
     @State private var addingScore: PlayerScore? = nil
     @State private var sheetState: GameViewSheetState? = nil
@@ -87,6 +88,19 @@ struct GameView: View {
         }
         .onChange(of: game.keepScreenAwake) { newValue in
             UIApplication.shared.isIdleTimerDisabled = newValue
+        }
+        .onChange(of: scenePhase) { newPhase in
+            guard settings.liveActivitiesEnabled && game.liveActivityEnabled else { return }
+            Task {
+                switch newPhase {
+                case .background:
+                    await LiveActivityManager.shared.endWithDelayedDismissal()
+                case .active:
+                    try? await LiveActivityManager.shared.start(game: game)
+                default:
+                    break
+                }
+            }
         }
     }
     
