@@ -100,9 +100,15 @@ struct PlayerScoreRow: View {
             }
 
             if let last = displayConfig.lastPlayer {
-                Text("···")
-                    .font(.title3)
-                    .foregroundStyle(.secondary)
+                VStack(spacing: 4) {
+                    Text("···")
+                        .font(.title3)
+                        .foregroundStyle(.secondary)
+                        .frame(minHeight: 28)
+                        .padding(.vertical, 4)
+                    Text(" ")
+                        .font(.caption2)
+                }
                 PlayerScoreItem(player: last)
                     .frame(maxWidth: .infinity)
             }
@@ -121,7 +127,8 @@ struct PlayerScoreItem: View {
                 .foregroundStyle(.white)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity, minHeight: 28)
+                .padding(.horizontal, 2)
                 .padding(.vertical, 4)
                 .background(Color(hex: player.colorHex))
                 .clipShape(RoundedRectangle(cornerRadius: 6))
@@ -141,7 +148,7 @@ struct PlayerScoreItem: View {
     GameActivityAttributes.ContentState(
         players: [
             PlayerData(name: "Alice", colorHex: "FF5733", score: 4200000),
-            PlayerData(name: "Bob", colorHex: "33FF57", score: 38),
+            PlayerData(name: "Bob", colorHex: "33FF57", score: -1123),
             PlayerData(name: "Charlie", colorHex: "3357FF", score: 35),
             PlayerData(name: "Diana", colorHex: "FF33F5", score: 30),
             PlayerData(name: "Eve", colorHex: "33FFF5", score: 25),
