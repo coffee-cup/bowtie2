@@ -20,6 +20,11 @@ struct CreateGame: View {
         predicate: NSPredicate(format: "hasBeenDeleted == %@", false),
         animation: .default)
     private var players: FetchedResults<Player>
+
+    @FetchRequest(
+        entity: Game.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Game.created, ascending: false)])
+    private var games: FetchedResults<Game>
     
     @State var isCreatingPlayer = false
     
@@ -42,11 +47,53 @@ struct CreateGame: View {
         return base.sorted { ($0.name ?? "").localizedCaseInsensitiveCompare($1.name ?? "") == .orderedAscending }
     }
 
+    private var suggestedNames: [String] {
+        var nameData: [String: (count: Int, lastUsed: Date, displayName: String)] = [:]
+
+        for game in games {
+            let name = game.wrappedName.trimmingCharacters(in: .whitespaces)
+            guard !name.isEmpty else { continue }
+            let key = name.lowercased()
+
+            if let existing = nameData[key] {
+                nameData[key] = (existing.count + 1, max(existing.lastUsed, game.wrappedCreated), existing.displayName)
+            } else {
+                nameData[key] = (1, game.wrappedCreated, name)
+            }
+        }
+
+        let now = Date()
+        let scored = nameData.values.map { data -> (String, Double) in
+            let daysAgo = now.timeIntervalSince(data.lastUsed) / 86400
+            let recencyBonus = max(0, 30 - daysAgo)
+            let score = Double(data.count) * 10 + recencyBonus
+            return (data.displayName, score)
+        }
+
+        return scored
+            .sorted { $0.1 > $1.1 }
+            .prefix(8)
+            .map { $0.0 }
+    }
+
     var body: some View {
         NavigationStack {
             Form {
                 Section(header: Text("Game Name").padding(.top)) {
-                    TextField("Canasta", text: $createData.name)
+                    HStack {
+                        TextField("Canasta", text: $createData.name)
+
+                        if !suggestedNames.isEmpty {
+                            Menu {
+                                ForEach(suggestedNames, id: \.self) { name in
+                                    Button(name) { createData.name = name }
+                                }
+                            } label: {
+                                Image(systemName: "chevron.down")
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
                 }
                 
                 Section(header: HStack {
@@ -138,8 +185,8 @@ struct CreateGame: View {
 
 struct CreateGame_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            CreateGame().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        }
+        CreateGame()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(UserSettings())
     }
 }
