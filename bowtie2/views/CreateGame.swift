@@ -91,7 +91,10 @@ struct CreateGame: View {
                             } label: {
                                 Image(systemName: "chevron.down")
                                     .foregroundColor(.secondary)
+                                    .padding(12)
+                                    .contentShape(Rectangle())
                             }
+                            .padding(-12)
                         }
                     }
                 }
