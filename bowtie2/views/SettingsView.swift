@@ -20,6 +20,10 @@ struct SettingsView: View {
                         Text("Show graph")
                     }
 
+                    Toggle(isOn: $settings.liveActivitiesEnabled) {
+                        Text("Live Activities")
+                    }
+
                     Picker("Player sort", selection: $settings.playerSortOrder) {
                         ForEach(PlayerSortOrder.allCases, id: \.rawValue) { order in
                             Text(order.displayName).tag(order.rawValue)

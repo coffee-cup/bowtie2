@@ -62,6 +62,12 @@ struct GamesListView: View {
                 .padding(.all)
                 .navigationTitle("Games")
                 .sheet(isPresented: $isCreating, content: presentSheet)
+                .onAppear {
+                    if #available(iOS 26, *) {
+                        Task { await LiveActivityManager.shared.end() }
+                    }
+                    UIApplication.shared.isIdleTimerDisabled = false
+                }
             } else {
                 ScrollView {
                     LazyVStack(spacing: 10) {
@@ -104,6 +110,12 @@ struct GamesListView: View {
                         }
                     }
                     Button("Cancel", role: .cancel) {}
+                }
+                .onAppear {
+                    if #available(iOS 26, *) {
+                        Task { await LiveActivityManager.shared.end() }
+                    }
+                    UIApplication.shared.isIdleTimerDisabled = false
                 }
             }
         }

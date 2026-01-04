@@ -152,13 +152,24 @@ struct GameSettings: View {
 
     var body: some View {
         Form {
-            Section(header: Text("Game Name")) {
+            Section {
                 TextField("Game Name", text: $name, onCommit: {
                     self.saveGame()
                 })
             }
-            
-            Section(header: Text("Winner")) {
+
+            Section("Players") {
+                HStack {
+                    Text("\(game.scoresArray.count) players")
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Button("Edit") {
+                        isAddingPlayers = true
+                    }
+                }
+            }
+
+            Section("Scoring") {
                 Picker(selection:
                         Binding(
                             get: { game.winnerSort },
@@ -166,7 +177,7 @@ struct GameSettings: View {
                                 self.game.winnerSort = value
                             }
                         ),
-                       label: Text("Winner sort order")) {
+                       label: Text("Winner has")) {
                     ForEach(WinnerSort.allCases, id: \.self.rawValue) { value in
                         Text(value.stringValue).tag(value)
                     }
@@ -174,13 +185,29 @@ struct GameSettings: View {
                 .pickerStyle(SegmentedPickerStyle())
             }
 
-            Section(header: Text("Players")) {
-                HStack {
-                    Text("\(game.scoresArray.count) players")
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    Button("Edit Players") {
-                        isAddingPlayers = true
+            Section("Display") {
+                Toggle(isOn: Binding(
+                    get: { game.keepScreenAwake },
+                    set: { game.keepScreenAwake = $0 }
+                )) {
+                    Text("Keep Screen Awake")
+                }
+
+                if #available(iOS 26, *), LiveActivityManager.shared.isSupported && settings.liveActivitiesEnabled {
+                    Toggle(isOn: Binding(
+                        get: { game.liveActivityEnabled },
+                        set: { newValue in
+                            game.liveActivityEnabled = newValue
+                            Task {
+                                if newValue {
+                                    try? await LiveActivityManager.shared.start(game: game)
+                                } else {
+                                    await LiveActivityManager.shared.end()
+                                }
+                            }
+                        }
+                    )) {
+                        Text("Live Activity")
                     }
                 }
             }
@@ -215,10 +242,11 @@ struct GameSettings: View {
 struct GameSettings_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            GameSettings(game:
-                            Game.gameByName(context: PersistenceController.preview.container.viewContext, name: "Blitz")!)
-                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-                .environmentObject(UserSettings())
+            GameSettings(
+                game: Game.gameByName(context: PersistenceController.preview.container.viewContext, name: "Blitz")!
+            )
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(UserSettings())
         }
     }
 }

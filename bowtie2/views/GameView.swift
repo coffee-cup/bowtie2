@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 fileprivate class GameViewSheetState: Identifiable {
     var addingScore: PlayerScore?
@@ -28,8 +29,9 @@ fileprivate class GameViewSheetState: Identifiable {
 
 struct GameView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.scenePhase) private var scenePhase
     @EnvironmentObject var settings: UserSettings
-    
+
     @ObservedObject var game: Game
     @State private var addingScore: PlayerScore? = nil
     @State private var sheetState: GameViewSheetState? = nil
@@ -76,6 +78,32 @@ struct GameView: View {
                 })
         }
         .sheet(item: $sheetState, content: presentSheet)
+        .onAppear {
+            UIApplication.shared.isIdleTimerDisabled = game.keepScreenAwake
+            if #available(iOS 26, *), settings.liveActivitiesEnabled && game.liveActivityEnabled {
+                Task {
+                    try? await LiveActivityManager.shared.start(game: game)
+                }
+            }
+        }
+        .onChange(of: game.keepScreenAwake) { newValue in
+            UIApplication.shared.isIdleTimerDisabled = newValue
+        }
+        .onChange(of: scenePhase) { newPhase in
+            if #available(iOS 26, *) {
+                guard settings.liveActivitiesEnabled && game.liveActivityEnabled else { return }
+                Task {
+                    switch newPhase {
+                    case .background:
+                        await LiveActivityManager.shared.endWithDelayedDismissal(game: game)
+                    case .active:
+                        try? await LiveActivityManager.shared.start(game: game)
+                    default:
+                        break
+                    }
+                }
+            }
+        }
     }
     
     @ViewBuilder
@@ -91,18 +119,24 @@ struct GameView: View {
     private func addScore(playerScore: PlayerScore, score: Int) {
         do {
             let currentPlayerScore = viewContext.object(with: playerScore.objectID) as! PlayerScore
-            
+
             if currentPlayerScore.history == nil {
                 currentPlayerScore.history = []
             }
-            
+
             currentPlayerScore.history?.append(score)
-            
+
             viewContext.refresh(currentPlayerScore, mergeChanges: true)
             viewContext.refresh(currentPlayerScore.game!, mergeChanges: true)
             viewContext.refresh(currentPlayerScore.player!, mergeChanges: true)
-            
+
             try viewContext.save()
+
+            if #available(iOS 26, *), LiveActivityManager.shared.isRunning {
+                Task {
+                    await LiveActivityManager.shared.update(game: game)
+                }
+            }
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
