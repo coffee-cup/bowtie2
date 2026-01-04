@@ -63,7 +63,9 @@ struct GamesListView: View {
                 .navigationTitle("Games")
                 .sheet(isPresented: $isCreating, content: presentSheet)
                 .onAppear {
-                    Task { await LiveActivityManager.shared.end() }
+                    if #available(iOS 26, *) {
+                        Task { await LiveActivityManager.shared.end() }
+                    }
                     UIApplication.shared.isIdleTimerDisabled = false
                 }
             } else {
@@ -110,7 +112,9 @@ struct GamesListView: View {
                     Button("Cancel", role: .cancel) {}
                 }
                 .onAppear {
-                    Task { await LiveActivityManager.shared.end() }
+                    if #available(iOS 26, *) {
+                        Task { await LiveActivityManager.shared.end() }
+                    }
                     UIApplication.shared.isIdleTimerDisabled = false
                 }
             }

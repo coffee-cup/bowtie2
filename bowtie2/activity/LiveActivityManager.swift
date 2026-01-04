@@ -62,10 +62,12 @@ final class LiveActivityManager: ObservableObject {
         isRunning = false
     }
 
-    func endWithDelayedDismissal(delay: TimeInterval = 30 * 60) async {
+    func endWithDelayedDismissal(game: Game, delay: TimeInterval = 30 * 60) async {
         guard let activity = currentActivity else { return }
 
-        await activity.end(nil, dismissalPolicy: .after(Date().addingTimeInterval(delay)))
+        let state = contentState(from: game)
+        let content = ActivityContent(state: state, staleDate: nil, relevanceScore: 0)
+        await activity.end(content, dismissalPolicy: .after(Date().addingTimeInterval(delay)))
         currentActivity = nil
         isRunning = false
     }

@@ -193,7 +193,7 @@ struct GameSettings: View {
                     Text("Keep Screen Awake")
                 }
 
-                if LiveActivityManager.shared.isSupported && settings.liveActivitiesEnabled {
+                if #available(iOS 26, *), LiveActivityManager.shared.isSupported && settings.liveActivitiesEnabled {
                     Toggle(isOn: Binding(
                         get: { game.liveActivityEnabled },
                         set: { newValue in

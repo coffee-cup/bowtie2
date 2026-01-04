@@ -135,86 +135,16 @@ struct PlayerScoreItem: View {
     }
 }
 
-struct ExpandedPlayersView: View {
-    let players: [PlayerData]
-    let totalPlayers: Int
-
-    var body: some View {
-        ViewThatFits(in: .vertical) {
-            ExpandedPlayersList(players: players, maxVisible: players.count)
-            ExpandedPlayersList(players: players, maxVisible: 5)
-            ExpandedPlayersList(players: players, maxVisible: 4)
-            ExpandedPlayersList(players: players, maxVisible: 3)
-        }
-    }
-}
-
-struct ExpandedPlayersList: View {
-    let players: [PlayerData]
-    let maxVisible: Int
-
-    private var displayConfig: (visible: [PlayerData], lastPlayer: PlayerData?) {
-        if players.count <= maxVisible {
-            return (players, nil)
-        }
-        let visible = Array(players.prefix(maxVisible - 1))
-        return (visible, players.last)
-    }
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 3) {
-            ForEach(displayConfig.visible, id: \.self) { player in
-                PlayerRow(player: player)
-            }
-
-            if let last = displayConfig.lastPlayer {
-                HStack(spacing: 6) {
-                    Text("···")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    Spacer()
-                }
-                PlayerRow(player: last)
-            }
-        }
-    }
-}
-
-struct PlayerRow: View {
-    let player: PlayerData
-
-    var body: some View {
-        HStack(spacing: 6) {
-            Text("\(player.score)")
-                .font(.caption)
-                .fontWeight(.bold)
-                .foregroundStyle(.white)
-                .lineLimit(1)
-                .minimumScaleFactor(0.5)
-                .padding(.horizontal, 6)
-                .padding(.vertical, 2)
-                .background(Color(hex: player.colorHex))
-                .clipShape(RoundedRectangle(cornerRadius: 4))
-            Text(player.name)
-                .font(.caption)
-                .lineLimit(1)
-            Spacer()
-        }
-    }
-}
-
 #Preview("Notification", as: .content, using: GameActivityAttributes(gameName: "Catan")) {
     GameLiveActivity()
 } contentStates: {
     GameActivityAttributes.ContentState(
         players: [
-            PlayerData(name: "Alice", colorHex: "FF5733", score: 42),
+            PlayerData(name: "Alice", colorHex: "FF5733", score: 4200000),
             PlayerData(name: "Bob", colorHex: "33FF57", score: 38),
             PlayerData(name: "Charlie", colorHex: "3357FF", score: 35),
             PlayerData(name: "Diana", colorHex: "FF33F5", score: 30),
             PlayerData(name: "Eve", colorHex: "33FFF5", score: 25),
-            PlayerData(name: "Eve", colorHex: "33FFF5", score: 25),
-            PlayerData(name: "Eve", colorHex: "33FFF5", score: 25), 
         ],
         totalPlayers: 5,
         roundCount: 12

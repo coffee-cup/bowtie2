@@ -79,26 +79,28 @@ struct GameView: View {
         }
         .sheet(item: $sheetState, content: presentSheet)
         .onAppear {
-            if settings.liveActivitiesEnabled && game.liveActivityEnabled {
+            UIApplication.shared.isIdleTimerDisabled = game.keepScreenAwake
+            if #available(iOS 26, *), settings.liveActivitiesEnabled && game.liveActivityEnabled {
                 Task {
                     try? await LiveActivityManager.shared.start(game: game)
                 }
             }
-            UIApplication.shared.isIdleTimerDisabled = game.keepScreenAwake
         }
         .onChange(of: game.keepScreenAwake) { newValue in
             UIApplication.shared.isIdleTimerDisabled = newValue
         }
         .onChange(of: scenePhase) { newPhase in
-            guard settings.liveActivitiesEnabled && game.liveActivityEnabled else { return }
-            Task {
-                switch newPhase {
-                case .background:
-                    await LiveActivityManager.shared.endWithDelayedDismissal()
-                case .active:
-                    try? await LiveActivityManager.shared.start(game: game)
-                default:
-                    break
+            if #available(iOS 26, *) {
+                guard settings.liveActivitiesEnabled && game.liveActivityEnabled else { return }
+                Task {
+                    switch newPhase {
+                    case .background:
+                        await LiveActivityManager.shared.endWithDelayedDismissal(game: game)
+                    case .active:
+                        try? await LiveActivityManager.shared.start(game: game)
+                    default:
+                        break
+                    }
                 }
             }
         }
@@ -130,7 +132,7 @@ struct GameView: View {
 
             try viewContext.save()
 
-            if LiveActivityManager.shared.isRunning {
+            if #available(iOS 26, *), LiveActivityManager.shared.isRunning {
                 Task {
                     await LiveActivityManager.shared.update(game: game)
                 }
