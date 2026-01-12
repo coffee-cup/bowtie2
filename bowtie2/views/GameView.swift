@@ -29,7 +29,6 @@ fileprivate class GameViewSheetState: Identifiable {
 
 struct GameView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.scenePhase) private var scenePhase
     @EnvironmentObject var settings: UserSettings
 
     @ObservedObject var game: Game
@@ -88,21 +87,6 @@ struct GameView: View {
         }
         .onChange(of: game.keepScreenAwake) { newValue in
             UIApplication.shared.isIdleTimerDisabled = newValue
-        }
-        .onChange(of: scenePhase) { newPhase in
-            if #available(iOS 26, *) {
-                guard settings.liveActivitiesEnabled && game.liveActivityEnabled else { return }
-                Task {
-                    switch newPhase {
-                    case .background:
-                        await LiveActivityManager.shared.endWithDelayedDismissal(game: game)
-                    case .active:
-                        try? await LiveActivityManager.shared.start(game: game)
-                    default:
-                        break
-                    }
-                }
-            }
         }
     }
     
