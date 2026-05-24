@@ -14,6 +14,7 @@ public class PlayerScore: NSManagedObject {
 }
 
 extension PlayerScore {
+    @discardableResult
     static func createPlayerScore(context: NSManagedObjectContext, game: Game, player: Player, history: [Int] = []) -> PlayerScore {
         let newScore = PlayerScore(context: context)
         newScore.game = game

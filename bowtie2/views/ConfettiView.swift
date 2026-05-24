@@ -158,7 +158,7 @@ fileprivate extension NSAttributedString {
     }
 }
 
-fileprivate extension UIColor
+extension UIColor
 {
     public class var random: UIColor {
         let hue : CGFloat = CGFloat(arc4random() % 256) / 256 // use 256 to get full range from 0.0 to 1.0

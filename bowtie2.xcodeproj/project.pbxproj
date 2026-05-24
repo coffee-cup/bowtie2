@@ -45,6 +45,8 @@
 		B72403642590083700F0E153 /* xmas-red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B72403492590083700F0E153 /* xmas-red@3x.png */; };
 		B72403652590083700F0E153 /* xmas-red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B724034A2590083700F0E153 /* xmas-red@2x.png */; };
 		B72BD54E25874BCB00F5CB85 /* NumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72BD54D25874BCB00F5CB85 /* NumberTests.swift */; };
+		2B0C1A022F12100000C1A001 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C1A012F12100000C1A001 /* GameTests.swift */; };
+		2B0C1A042F12100000C1A001 /* PlayerScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C1A032F12100000C1A001 /* PlayerScoreTests.swift */; };
 		B72DC112256A68F100DF28F1 /* EnterScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC111256A68F100DF28F1 /* EnterScoreView.swift */; };
 		B72DC117256A776100DF28F1 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC116256A776100DF28F1 /* Number.swift */; };
 		B72DC11C256AEB5E00DF28F1 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC11B256AEB5E00DF28F1 /* Theme.swift */; };
@@ -175,6 +177,8 @@
 		B72403492590083700F0E153 /* xmas-red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red@3x.png"; sourceTree = "<group>"; };
 		B724034A2590083700F0E153 /* xmas-red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red@2x.png"; sourceTree = "<group>"; };
 		B72BD54D25874BCB00F5CB85 /* NumberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTests.swift; sourceTree = "<group>"; };
+		2B0C1A012F12100000C1A001 /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
+		2B0C1A032F12100000C1A001 /* PlayerScoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreTests.swift; sourceTree = "<group>"; };
 		B72DC111256A68F100DF28F1 /* EnterScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterScoreView.swift; sourceTree = "<group>"; };
 		B72DC116256A776100DF28F1 /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
 		B72DC11B256AEB5E00DF28F1 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -373,6 +377,8 @@
 				B781BA182560F5E2008EB298 /* Info.plist */,
 				B72BD54D25874BCB00F5CB85 /* NumberTests.swift */,
 				B73A09CD259C756200C45C33 /* ColorTests.swift */,
+				2B0C1A012F12100000C1A001 /* GameTests.swift */,
+				2B0C1A032F12100000C1A001 /* PlayerScoreTests.swift */,
 			);
 			path = bowtie2Tests;
 			sourceTree = "<group>";
@@ -755,6 +761,8 @@
 			files = (
 				B72BD54E25874BCB00F5CB85 /* NumberTests.swift in Sources */,
 				B73A09CE259C756200C45C33 /* ColorTests.swift in Sources */,
+				2B0C1A022F12100000C1A001 /* GameTests.swift in Sources */,
+				2B0C1A042F12100000C1A001 /* PlayerScoreTests.swift in Sources */,
 				B781BA172560F5E2008EB298 /* bowtie2Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -797,7 +805,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = widgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 4TPDCY22V9;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -812,7 +820,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jakerunzer.bowtie2.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -835,7 +843,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = widgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 4TPDCY22V9;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -850,7 +858,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jakerunzer.bowtie2.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

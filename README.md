@@ -1,5 +1,7 @@
 # Bowtie
 
+[![CI](https://github.com/coffee-cup/bowtie2/actions/workflows/ci.yml/badge.svg)](https://github.com/coffee-cup/bowtie2/actions/workflows/ci.yml)
+
 Score keeping iOS app made with SwiftUI
 
 ![](https://bowtie.cards/og.png)
