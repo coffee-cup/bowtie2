@@ -45,7 +45,7 @@ extension Int {
     
     func removeDigit() -> Self {
         var digits = self.digits
-        digits.popLast()
+        _ = digits.popLast()
         digits = digits.reversed()
         return Self.sumDigits(digits: digits)
     }

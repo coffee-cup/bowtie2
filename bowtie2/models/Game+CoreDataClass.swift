@@ -28,6 +28,7 @@ public class Game: NSManagedObject {
 }
 
 extension Game {
+    @discardableResult
     static func createGame(context: NSManagedObjectContext, name: String) -> Game {
         let newGame = Game(context: context)
         newGame.name = name
@@ -38,6 +39,7 @@ extension Game {
         return newGame
     }
     
+    @discardableResult
     static func createGameWithPlayers(context: NSManagedObjectContext, name: String, players: [Player]) -> Game {
         let game = Game.createGame(context: context, name: name)
 
@@ -66,6 +68,7 @@ extension Game {
         }
     }
 
+    @discardableResult
     static func duplicateGame(context: NSManagedObjectContext, gameToDuplicate: Game) -> Game {
         let players = gameToDuplicate.scoresArray.map({ score in score.player }).filter({ player in player != nil }) as! [Player]
         let game = Game.createGameWithPlayers(context: context, name: gameToDuplicate.wrappedName, players: players)

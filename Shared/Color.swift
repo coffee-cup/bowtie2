@@ -52,7 +52,7 @@ extension Color {
     }
     
     var hexString: String {
-        let (r, g, b, a) = self.toComponents()
+        let (r, g, b, _) = self.toComponents()
 //        let rgb: Int = (Int)(r) << 16 | (Int)(round(g * 255)) << 8 | (Int)(round(b * 255)) << 0
         let rgb: Int = r << 16 | g << 8 | b << 0
         
