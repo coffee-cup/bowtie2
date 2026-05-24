@@ -20,7 +20,15 @@ struct SettingsView: View {
                         Text("Show graph")
                     }
 
-                    Toggle(isOn: $settings.liveActivitiesEnabled) {
+                    Toggle(isOn: Binding(
+                        get: { settings.liveActivitiesEnabled },
+                        set: { newValue in
+                            settings.liveActivitiesEnabled = newValue
+                            Task {
+                                await LiveActivityManager.shared.reconcileGameContext(settingsEnabled: newValue)
+                            }
+                        }
+                    )) {
                         Text("Live Activities")
                     }
 

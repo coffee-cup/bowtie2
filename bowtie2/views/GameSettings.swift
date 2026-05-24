@@ -133,6 +133,7 @@ struct AddPlayersToGame: View {
 
         do {
             try viewContext.save()
+            Task { await LiveActivityManager.shared.update(game: game) }
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
@@ -175,6 +176,7 @@ struct GameSettings: View {
                             get: { game.winnerSort },
                             set: { value in
                                 self.game.winnerSort = value
+                                self.saveGame()
                             }
                         ),
                        label: Text("Winner has")) {
@@ -193,18 +195,12 @@ struct GameSettings: View {
                     Text("Keep Screen Awake")
                 }
 
-                if #available(iOS 26, *), LiveActivityManager.shared.isSupported && settings.liveActivitiesEnabled {
+                if LiveActivityManager.shared.isSupported && settings.liveActivitiesEnabled {
                     Toggle(isOn: Binding(
                         get: { game.liveActivityEnabled },
                         set: { newValue in
                             game.liveActivityEnabled = newValue
-                            Task {
-                                if newValue {
-                                    try? await LiveActivityManager.shared.start(game: game)
-                                } else {
-                                    await LiveActivityManager.shared.end()
-                                }
-                            }
+                            saveGame()
                         }
                     )) {
                         Text("Live Activity")
@@ -212,7 +208,7 @@ struct GameSettings: View {
                 }
             }
         }
-        .sheet(isPresented: $isAddingPlayers) {
+        .sheet(isPresented: $isAddingPlayers, onDismiss: refreshLiveActivity) {
             AddPlayersToGame(game: game)
                 .environment(\.managedObjectContext, viewContext)
                 .environmentObject(settings)
@@ -232,9 +228,16 @@ struct GameSettings: View {
             game.name = self.name
             viewContext.refresh(game, mergeChanges: true)
             try viewContext.save()
+            refreshLiveActivity()
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+    
+    private func refreshLiveActivity() {
+        Task {
+            await LiveActivityManager.shared.reconcileGameContext(settingsEnabled: settings.liveActivitiesEnabled)
         }
     }
 }
