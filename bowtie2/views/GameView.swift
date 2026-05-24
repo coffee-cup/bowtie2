@@ -107,7 +107,7 @@ struct GameView: View {
             await LiveActivityManager.shared.activateGameContext(game: game, settingsEnabled: settings.liveActivitiesEnabled)
         }
     }
-    
+
     private func addScore(playerScore: PlayerScore, score: Int) {
         do {
             let currentPlayerScore = viewContext.object(with: playerScore.objectID) as! PlayerScore

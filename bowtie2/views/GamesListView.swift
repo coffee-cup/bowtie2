@@ -120,7 +120,7 @@ struct GamesListView: View {
     private func endGameContext() {
         Task { await LiveActivityManager.shared.clearGameContext() }
     }
-    
+
     @ViewBuilder
     private func presentSheet() -> some View {
         CreateGame().environmentObject(settings)

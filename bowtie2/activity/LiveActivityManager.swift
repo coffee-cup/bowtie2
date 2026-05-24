@@ -14,6 +14,7 @@ final class LiveActivityManager: ObservableObject {
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.jakerunzer.bowtie2", category: "LiveActivity")
     private var desiredGame: Game?
     private var isGameContextVisible = false
+    private var settingsAllowsLiveActivities = true
     private var activityStateTask: Task<Void, Never>?
     private var observedActivityID: String?
 
@@ -34,11 +35,13 @@ final class LiveActivityManager: ObservableObject {
     func activateGameContext(game: Game, settingsEnabled: Bool) async {
         desiredGame = game
         isGameContextVisible = true
+        settingsAllowsLiveActivities = settingsEnabled
         await reconcileGameContext(settingsEnabled: settingsEnabled)
     }
 
     func restoreGameContext(settingsEnabled: Bool) async {
         isGameContextVisible = desiredGame != nil
+        settingsAllowsLiveActivities = settingsEnabled
         await reconcileGameContext(settingsEnabled: settingsEnabled)
     }
 
@@ -54,10 +57,10 @@ final class LiveActivityManager: ObservableObject {
     }
 
     func reconcileGameContext(settingsEnabled: Bool) async {
-        guard isGameContextVisible,
-              settingsEnabled,
-              let game = desiredGame,
-              game.liveActivityEnabled else {
+        settingsAllowsLiveActivities = settingsEnabled
+
+        guard let game = desiredGame,
+              canRunLiveActivity(for: game) else {
             await endAll()
             return
         }
@@ -72,10 +75,16 @@ final class LiveActivityManager: ObservableObject {
     func start(game: Game) async throws {
         desiredGame = game
         isGameContextVisible = true
+        settingsAllowsLiveActivities = true
         try await ensureStarted(game: game)
     }
 
     func ensureStarted(game: Game) async throws {
+        guard canRunLiveActivity(for: game) else {
+            await endAll()
+            return
+        }
+
         guard isSupported else {
             logger.info("Live Activities are disabled by the system")
             await endAll()
@@ -106,6 +115,12 @@ final class LiveActivityManager: ObservableObject {
         }
 
         let gameID = game.liveActivityID
+
+        guard canRunLiveActivity(for: game) else {
+            await end(activities: Activity<GameActivityAttributes>.activities.filter { $0.attributes.gameID == gameID })
+            return
+        }
+
         let activity = currentActivity?.attributes.gameID == gameID
             ? currentActivity
             : Activity<GameActivityAttributes>.activities.first { $0.attributes.gameID == gameID }
@@ -171,6 +186,13 @@ final class LiveActivityManager: ObservableObject {
             totalPlayers: game.scoresArray.count,
             roundCount: game.maxNumberOfEntries
         )
+    }
+
+    private func canRunLiveActivity(for game: Game) -> Bool {
+        isGameContextVisible
+            && settingsAllowsLiveActivities
+            && desiredGame?.liveActivityID == game.liveActivityID
+            && game.liveActivityEnabled
     }
 
     private func requestActivity(game: Game) throws -> Activity<GameActivityAttributes> {
@@ -253,7 +275,7 @@ final class LiveActivityManager: ObservableObject {
                     self.logger.info("Live Activity state changed: \(String(describing: state), privacy: .public)")
 
                     switch state {
-                    case .active, .stale:
+                    case .active, .stale, .pending:
                         if self.currentActivity?.id == activity.id {
                             self.isRunning = true
                         }

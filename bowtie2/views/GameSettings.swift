@@ -222,7 +222,7 @@ struct GameSettings: View {
             self.saveGame()
         }
     }
-    
+
     private func saveGame() {
         do {
             game.name = self.name
@@ -234,7 +234,7 @@ struct GameSettings: View {
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
-    
+
     private func refreshLiveActivity() {
         Task {
             await LiveActivityManager.shared.reconcileGameContext(settingsEnabled: settings.liveActivitiesEnabled)
