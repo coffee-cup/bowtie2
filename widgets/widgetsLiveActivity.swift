@@ -142,7 +142,7 @@ struct PlayerScoreItem: View {
     }
 }
 
-#Preview("Notification", as: .content, using: GameActivityAttributes(gameName: "Catan")) {
+#Preview("Notification", as: .content, using: GameActivityAttributes(gameID: "preview-game", gameName: "Catan")) {
     GameLiveActivity()
 } contentStates: {
     GameActivityAttributes.ContentState(

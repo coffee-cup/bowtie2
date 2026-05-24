@@ -5,29 +5,49 @@
 //  Created by Jake Runzer on 2020-11-14.
 //
 
+import CoreData
 import XCTest
 @testable import bowtie2
 
 class bowtie2Tests: XCTestCase {
+    var context: NSManagedObjectContext!
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
+        super.setUp()
+        context = PersistenceController(inMemory: true).container.viewContext
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    @MainActor
+    func testLiveActivityContentStateUsesCurrentGameScores() throws {
+        let game = Game.createGame(context: context, name: "Test")
+        let alice = Player.createPlayer(context: context, name: "Alice", colour: "FF0000")
+        let bob = Player.createPlayer(context: context, name: "Bob", colour: "00FF00")
+
+        _ = PlayerScore.createPlayerScore(context: context, game: game, player: alice, history: [10, 20])
+        _ = PlayerScore.createPlayerScore(context: context, game: game, player: bob, history: [5])
+
+        let state = LiveActivityManager.contentState(from: game)
+
+        XCTAssertEqual(state.totalPlayers, 2)
+        XCTAssertEqual(state.roundCount, 2)
+        XCTAssertEqual(state.players.map(\.name), ["Alice", "Bob"])
+        XCTAssertEqual(state.players.map(\.colorHex), ["FF0000", "00FF00"])
+        XCTAssertEqual(state.players.map(\.score), [30, 5])
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+    @MainActor
+    func testLiveActivityContentStateFollowsLowestScoreSort() throws {
+        let game = Game.createGame(context: context, name: "Test")
+        game.winnerSort = .scoreLowest
+        let alice = Player.createPlayer(context: context, name: "Alice", colour: "FF0000")
+        let bob = Player.createPlayer(context: context, name: "Bob", colour: "00FF00")
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+        _ = PlayerScore.createPlayerScore(context: context, game: game, player: alice, history: [10, 20])
+        _ = PlayerScore.createPlayerScore(context: context, game: game, player: bob, history: [5])
 
+        let state = LiveActivityManager.contentState(from: game)
+
+        XCTAssertEqual(state.players.map(\.name), ["Bob", "Alice"])
+        XCTAssertEqual(state.players.map(\.score), [5, 30])
+    }
 }

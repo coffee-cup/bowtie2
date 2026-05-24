@@ -90,6 +90,10 @@ extension Game {
     public var wrappedCreated: Date {
         return created ?? Date()
     }
+
+    public var liveActivityID: String {
+        return objectID.uriRepresentation().absoluteString
+    }
     
     public var winnerSort: WinnerSort {
         get {

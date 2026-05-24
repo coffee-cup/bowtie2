@@ -8,6 +8,7 @@ struct PlayerData: Codable, Hashable {
 }
 
 struct GameActivityAttributes: ActivityAttributes {
+    let gameID: String
     let gameName: String
 
     struct ContentState: Codable, Hashable {

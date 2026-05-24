@@ -79,14 +79,16 @@ struct GameView: View {
         .sheet(item: $sheetState, content: presentSheet)
         .onAppear {
             UIApplication.shared.isIdleTimerDisabled = game.keepScreenAwake
-            if #available(iOS 26, *), settings.liveActivitiesEnabled && game.liveActivityEnabled {
-                Task {
-                    try? await LiveActivityManager.shared.start(game: game)
-                }
-            }
+            startLiveActivityIfNeeded()
         }
         .onChange(of: game.keepScreenAwake) { newValue in
             UIApplication.shared.isIdleTimerDisabled = newValue
+        }
+        .onChange(of: settings.liveActivitiesEnabled) { _ in
+            startLiveActivityIfNeeded()
+        }
+        .onChange(of: game.liveActivityEnabled) { _ in
+            startLiveActivityIfNeeded()
         }
     }
     
@@ -100,6 +102,12 @@ struct GameView: View {
         }
     }
     
+    private func startLiveActivityIfNeeded() {
+        Task {
+            await LiveActivityManager.shared.activateGameContext(game: game, settingsEnabled: settings.liveActivitiesEnabled)
+        }
+    }
+
     private func addScore(playerScore: PlayerScore, score: Int) {
         do {
             let currentPlayerScore = viewContext.object(with: playerScore.objectID) as! PlayerScore
@@ -116,7 +124,7 @@ struct GameView: View {
 
             try viewContext.save()
 
-            if #available(iOS 26, *), LiveActivityManager.shared.isRunning {
+            if settings.liveActivitiesEnabled && game.liveActivityEnabled {
                 Task {
                     await LiveActivityManager.shared.update(game: game)
                 }
