@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0C1A022F12100000C1A001 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C1A012F12100000C1A001 /* GameTests.swift */; };
+		2B0C1A042F12100000C1A001 /* PlayerScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C1A032F12100000C1A001 /* PlayerScoreTests.swift */; };
 		2B3E0EB72EF86D0F004609BE /* PlayerSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E0EB62EF86D0F004609BE /* PlayerSelection.swift */; };
 		2B3E0EB92EF88C74004609BE /* bowtie-glass.icon in Resources */ = {isa = PBXBuildFile; fileRef = 2B3E0EB82EF88C74004609BE /* bowtie-glass.icon */; };
 		2B5499DD2F08275200D75B03 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B5499DC2F08275200D75B03 /* WidgetKit.framework */; };
@@ -45,8 +47,6 @@
 		B72403642590083700F0E153 /* xmas-red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B72403492590083700F0E153 /* xmas-red@3x.png */; };
 		B72403652590083700F0E153 /* xmas-red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B724034A2590083700F0E153 /* xmas-red@2x.png */; };
 		B72BD54E25874BCB00F5CB85 /* NumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72BD54D25874BCB00F5CB85 /* NumberTests.swift */; };
-		2B0C1A022F12100000C1A001 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C1A012F12100000C1A001 /* GameTests.swift */; };
-		2B0C1A042F12100000C1A001 /* PlayerScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C1A032F12100000C1A001 /* PlayerScoreTests.swift */; };
 		B72DC112256A68F100DF28F1 /* EnterScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC111256A68F100DF28F1 /* EnterScoreView.swift */; };
 		B72DC117256A776100DF28F1 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC116256A776100DF28F1 /* Number.swift */; };
 		B72DC11C256AEB5E00DF28F1 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DC11B256AEB5E00DF28F1 /* Theme.swift */; };
@@ -140,6 +140,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2B0C1A012F12100000C1A001 /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
+		2B0C1A032F12100000C1A001 /* PlayerScoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreTests.swift; sourceTree = "<group>"; };
 		2B3E0EB62EF86D0F004609BE /* PlayerSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSelection.swift; sourceTree = "<group>"; };
 		2B3E0EB82EF88C74004609BE /* bowtie-glass.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "bowtie-glass.icon"; sourceTree = "<group>"; };
 		2B5499DB2F08275200D75B03 /* widgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,8 +179,6 @@
 		B72403492590083700F0E153 /* xmas-red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red@3x.png"; sourceTree = "<group>"; };
 		B724034A2590083700F0E153 /* xmas-red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmas-red@2x.png"; sourceTree = "<group>"; };
 		B72BD54D25874BCB00F5CB85 /* NumberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTests.swift; sourceTree = "<group>"; };
-		2B0C1A012F12100000C1A001 /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
-		2B0C1A032F12100000C1A001 /* PlayerScoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreTests.swift; sourceTree = "<group>"; };
 		B72DC111256A68F100DF28F1 /* EnterScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterScoreView.swift; sourceTree = "<group>"; };
 		B72DC116256A776100DF28F1 /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
 		B72DC11B256AEB5E00DF28F1 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -995,7 +995,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = bowtie2/bowtie2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_ASSET_PATHS = "\"bowtie2/Preview Content\"";
 				DEVELOPMENT_TEAM = 4TPDCY22V9;
 				ENABLE_PREVIEWS = YES;
@@ -1007,7 +1007,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jakerunzer.bowtie2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1023,7 +1023,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = bowtie2/bowtie2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_ASSET_PATHS = "\"bowtie2/Preview Content\"";
 				DEVELOPMENT_TEAM = 4TPDCY22V9;
 				ENABLE_PREVIEWS = YES;
@@ -1035,7 +1035,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jakerunzer.bowtie2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
