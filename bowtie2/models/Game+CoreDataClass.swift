@@ -12,13 +12,27 @@ import CoreData
 public enum WinnerSort: Int16, Equatable, CaseIterable {
     case scoreHighest = 0
     case scoreLowest = 1
-    
+
     var stringValue: String {
         switch self {
         case .scoreHighest:
             return "Has Most Points"
         case.scoreLowest:
             return "Has Fewest Points"
+        }
+    }
+}
+
+public enum PlayerSort: Int16, Equatable, CaseIterable {
+    case winning = 0
+    case alphabetical = 1
+
+    var stringValue: String {
+        switch self {
+        case .winning:
+            return "Winning"
+        case .alphabetical:
+            return "Alphabetical"
         }
     }
 }
@@ -35,7 +49,8 @@ extension Game {
         newGame.created = Date()
         newGame.playerScores = NSSet()
         newGame.winnerSortValue = WinnerSort.scoreHighest.rawValue
-        
+        newGame.playerSortValue = PlayerSort.winning.rawValue
+
         return newGame
     }
     
@@ -73,6 +88,7 @@ extension Game {
         let players = gameToDuplicate.scoresArray.map({ score in score.player }).filter({ player in player != nil }) as! [Player]
         let game = Game.createGameWithPlayers(context: context, name: gameToDuplicate.wrappedName, players: players)
         game.winnerSort = gameToDuplicate.winnerSort
+        game.playerSort = gameToDuplicate.playerSort
         game.keepScreenAwake = gameToDuplicate.keepScreenAwake
         game.liveActivityEnabled = gameToDuplicate.liveActivityEnabled
         return game
@@ -106,7 +122,16 @@ extension Game {
             self.winnerSortValue = newValue.rawValue
         }
     }
-    
+
+    public var playerSort: PlayerSort {
+        get {
+            return PlayerSort(rawValue: playerSortValue) ?? .winning
+        }
+        set {
+            self.playerSortValue = newValue.rawValue
+        }
+    }
+
     public var sortedScoresArray: [PlayerScore] {
         let set = playerScores as? Set<PlayerScore> ?? []
         return set.sorted(by: {
@@ -115,13 +140,32 @@ extension Game {
             $0.currentScore > $1.currentScore
         })
     }
-    
-    public var scoresArray: [PlayerScore] {
+
+    // Players ordered by score, with the winner first (respecting winnerSort).
+    public var winnerSortedScoresArray: [PlayerScore] {
         switch winnerSort {
         case .scoreHighest:
             return sortedScoresArray
         case.scoreLowest:
             return sortedScoresArray.reversed()
+        }
+    }
+
+    // Players ordered alphabetically by name.
+    public var alphabeticalScoresArray: [PlayerScore] {
+        let set = playerScores as? Set<PlayerScore> ?? []
+        return set.sorted(by: {
+            ($0.player?.wrappedName ?? "").localizedCaseInsensitiveCompare($1.player?.wrappedName ?? "") == .orderedAscending
+        })
+    }
+
+    // Display order for the game, controlled by the playerSort setting.
+    public var scoresArray: [PlayerScore] {
+        switch playerSort {
+        case .winning:
+            return winnerSortedScoresArray
+        case .alphabetical:
+            return alphabeticalScoresArray
         }
     }
     
@@ -136,15 +180,16 @@ extension Game {
     }
     
     public var winner: Player? {
-        if scoresArray.count <= 0 {
+        let scores = winnerSortedScoresArray
+        if scores.count <= 0 {
             return nil
         }
-        
+
         if isTie {
             return nil
         }
-        
-        return scoresArray[0].player
+
+        return scores[0].player
     }
     
     public var maxNumberOfEntries: Int {

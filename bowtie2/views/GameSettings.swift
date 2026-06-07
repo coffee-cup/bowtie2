@@ -185,6 +185,21 @@ struct GameSettings: View {
                     }
                 }
                 .pickerStyle(SegmentedPickerStyle())
+
+                Picker(selection:
+                        Binding(
+                            get: { game.playerSort },
+                            set: { value in
+                                self.game.playerSort = value
+                                self.saveGame()
+                            }
+                        ),
+                       label: Text("Sort players by")) {
+                    ForEach(PlayerSort.allCases, id: \.self.rawValue) { value in
+                        Text(value.stringValue).tag(value)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
             }
 
             Section("Display") {
