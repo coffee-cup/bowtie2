@@ -21,6 +21,8 @@ struct CalcButton: View {
                 .padding(.vertical, 28)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .accessibilityLabel(text)
+        .accessibilityIdentifier("score.key.\(text)")
     }
 }
 
@@ -64,6 +66,7 @@ struct EnterScoreView: View {
     
     @State var score: Int = 0
     @State var isNegative = false
+    @State private var isShowingCalculator = false
     let addScore: ((_ playerScore: PlayerScore, _ score: Int) -> ())?
     
     var columns: [GridItem] =
@@ -128,9 +131,22 @@ struct EnterScoreView: View {
                         dismiss()
                     }
                 }
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        isShowingCalculator = true
+                    } label: {
+                        Label("Calculator", systemImage: "plus.forwardslash.minus")
+                    }
+                }
             }
             .padding(.horizontal)
             .frame(maxHeight: .infinity)
+        }
+        .sheet(isPresented: $isShowingCalculator) {
+            ScoreCalculatorView(initialValue: signedScore) { result in
+                applyCalculatorResult(result)
+            }
+            .environmentObject(settings)
         }
     }
     
@@ -144,6 +160,16 @@ struct EnterScoreView: View {
     
     private func clearScore() {
         score = 0
+    }
+
+    private var signedScore: Int {
+        isNegative ? -score : score
+    }
+
+    private func applyCalculatorResult(_ result: Int) {
+        guard result != .min else { return }
+        isNegative = result < 0
+        score = abs(result)
     }
 }
 
