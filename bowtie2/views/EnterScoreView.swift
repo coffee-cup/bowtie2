@@ -9,7 +9,21 @@ import SwiftUI
 
 struct CalcButton: View {
     var text: String
+    var accessibilityLabel: String?
+    var accessibilityIdentifier: String
     var onTap: () -> ()
+
+    init(
+        text: String,
+        accessibilityLabel: String? = nil,
+        accessibilityIdentifier: String? = nil,
+        onTap: @escaping () -> ()
+    ) {
+        self.text = text
+        self.accessibilityLabel = accessibilityLabel
+        self.accessibilityIdentifier = accessibilityIdentifier ?? "score.key.\(text)"
+        self.onTap = onTap
+    }
     
     var body: some View {
         Button(action: {
@@ -21,7 +35,35 @@ struct CalcButton: View {
                 .padding(.vertical, 28)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .accessibilityLabel(accessibilityLabel ?? text)
+        .accessibilityIdentifier(accessibilityIdentifier)
     }
+}
+
+struct ScoreActionButton: View {
+    let title: String
+    var isDisabled = false
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .foregroundColor(.white)
+                .bold()
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .frame(width: 44, height: 44)
+                .padding()
+                .background(settings.theme.gradient)
+                .clipShape(Circle())
+                .opacity(isDisabled ? 0.35 : 1)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .disabled(isDisabled)
+        .accessibilityLabel(title)
+    }
+
+    @EnvironmentObject private var settings: UserSettings
 }
 
 struct ScoreView: View {
@@ -64,6 +106,7 @@ struct EnterScoreView: View {
     
     @State var score: Int = 0
     @State var isNegative = false
+    @State private var isShowingCalculator = false
     let addScore: ((_ playerScore: PlayerScore, _ score: Int) -> ())?
     
     var columns: [GridItem] =
@@ -98,21 +141,11 @@ struct EnterScoreView: View {
                         
                         CalcButton(text: "0", onTap: { self.addValue(digit: 0)})
                         
-                        Button(action: {
+                        ScoreActionButton(title: "Go") {
                             if let addScore = self.addScore {
                                 addScore(playerScore, (isNegative ? -1 : 1) * score)
                             }
                             dismiss()
-                        }) {
-                            HStack {
-                                Text("Go")
-                                    .foregroundColor(.white).bold()
-                                    .frame(maxWidth: 44, maxHeight: 44)
-                                    .padding(.all)
-                                    .background(settings.theme.gradient)
-                                    .cornerRadius(44)
-                            }
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
                     }
                     .padding(.bottom)
@@ -128,9 +161,22 @@ struct EnterScoreView: View {
                         dismiss()
                     }
                 }
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        isShowingCalculator = true
+                    } label: {
+                        Label("Calculator", systemImage: "plus.forwardslash.minus")
+                    }
+                }
             }
             .padding(.horizontal)
             .frame(maxHeight: .infinity)
+        }
+        .sheet(isPresented: $isShowingCalculator) {
+            ScoreCalculatorView(initialValue: signedScore) { result in
+                applyCalculatorResult(result)
+            }
+            .environmentObject(settings)
         }
     }
     
@@ -144,6 +190,16 @@ struct EnterScoreView: View {
     
     private func clearScore() {
         score = 0
+    }
+
+    private var signedScore: Int {
+        isNegative ? -score : score
+    }
+
+    private func applyCalculatorResult(_ result: Int) {
+        guard result != .min else { return }
+        isNegative = result < 0
+        score = abs(result)
     }
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BCA1C022F5F100000C1A001 /* ScoreCalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCA1C012F5F100000C1A001 /* ScoreCalculatorView.swift */; };
+		2BCA1C042F5F100000C1A001 /* ScoreCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCA1C032F5F100000C1A001 /* ScoreCalculatorTests.swift */; };
 		2B0C1A022F12100000C1A001 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C1A012F12100000C1A001 /* GameTests.swift */; };
 		2B0C1A042F12100000C1A001 /* PlayerScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C1A032F12100000C1A001 /* PlayerScoreTests.swift */; };
 		2B3E0EB72EF86D0F004609BE /* PlayerSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3E0EB62EF86D0F004609BE /* PlayerSelection.swift */; };
@@ -140,6 +142,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2BCA1C012F5F100000C1A001 /* ScoreCalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCalculatorView.swift; sourceTree = "<group>"; };
+		2BCA1C032F5F100000C1A001 /* ScoreCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCalculatorTests.swift; sourceTree = "<group>"; };
 		2B0C1A012F12100000C1A001 /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		2B0C1A032F12100000C1A001 /* PlayerScoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreTests.swift; sourceTree = "<group>"; };
 		2B3E0EB62EF86D0F004609BE /* PlayerSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSelection.swift; sourceTree = "<group>"; };
@@ -373,6 +377,7 @@
 		B781BA152560F5E2008EB298 /* bowtie2Tests */ = {
 			isa = PBXGroup;
 			children = (
+				2BCA1C032F5F100000C1A001 /* ScoreCalculatorTests.swift */,
 				B781BA162560F5E2008EB298 /* bowtie2Tests.swift */,
 				B781BA182560F5E2008EB298 /* Info.plist */,
 				B72BD54D25874BCB00F5CB85 /* NumberTests.swift */,
@@ -407,6 +412,7 @@
 		B781BA5125611627008EB298 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				2BCA1C012F5F100000C1A001 /* ScoreCalculatorView.swift */,
 				2B3E0EB62EF86D0F004609BE /* PlayerSelection.swift */,
 				B791991C2586944600865BCB /* VersionView.swift */,
 				B7B1CC6B25854B39000ACCE3 /* AppIconSelectView.swift */,
@@ -706,6 +712,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BCA1C022F5F100000C1A001 /* ScoreCalculatorView.swift in Sources */,
 				B760DEF8258EEC3300F1970A /* ConfettiView.swift in Sources */,
 				B7C1B4EB259072270087FB74 /* WelcomeView.swift in Sources */,
 				B781BA4825611518008EB298 /* GamesListView.swift in Sources */,
@@ -759,6 +766,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BCA1C042F5F100000C1A001 /* ScoreCalculatorTests.swift in Sources */,
 				B72BD54E25874BCB00F5CB85 /* NumberTests.swift in Sources */,
 				B73A09CE259C756200C45C33 /* ColorTests.swift in Sources */,
 				2B0C1A022F12100000C1A001 /* GameTests.swift in Sources */,
