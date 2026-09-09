@@ -9,21 +9,7 @@ import SwiftUI
 
 struct CalcButton: View {
     var text: String
-    var accessibilityLabel: String?
-    var accessibilityIdentifier: String
     var onTap: () -> ()
-
-    init(
-        text: String,
-        accessibilityLabel: String? = nil,
-        accessibilityIdentifier: String? = nil,
-        onTap: @escaping () -> ()
-    ) {
-        self.text = text
-        self.accessibilityLabel = accessibilityLabel
-        self.accessibilityIdentifier = accessibilityIdentifier ?? "score.key.\(text)"
-        self.onTap = onTap
-    }
     
     var body: some View {
         Button(action: {
@@ -35,35 +21,9 @@ struct CalcButton: View {
                 .padding(.vertical, 28)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .accessibilityLabel(accessibilityLabel ?? text)
-        .accessibilityIdentifier(accessibilityIdentifier)
+        .accessibilityLabel(text)
+        .accessibilityIdentifier("score.key.\(text)")
     }
-}
-
-struct ScoreActionButton: View {
-    let title: String
-    var isDisabled = false
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            Text(title)
-                .foregroundColor(.white)
-                .bold()
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
-                .frame(width: 44, height: 44)
-                .padding()
-                .background(settings.theme.gradient)
-                .clipShape(Circle())
-                .opacity(isDisabled ? 0.35 : 1)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-        .disabled(isDisabled)
-        .accessibilityLabel(title)
-    }
-
-    @EnvironmentObject private var settings: UserSettings
 }
 
 struct ScoreView: View {
@@ -141,11 +101,21 @@ struct EnterScoreView: View {
                         
                         CalcButton(text: "0", onTap: { self.addValue(digit: 0)})
                         
-                        ScoreActionButton(title: "Go") {
+                        Button(action: {
                             if let addScore = self.addScore {
                                 addScore(playerScore, (isNegative ? -1 : 1) * score)
                             }
                             dismiss()
+                        }) {
+                            HStack {
+                                Text("Go")
+                                    .foregroundColor(.white).bold()
+                                    .frame(maxWidth: 44, maxHeight: 44)
+                                    .padding(.all)
+                                    .background(settings.theme.gradient)
+                                    .cornerRadius(44)
+                            }
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
                     }
                     .padding(.bottom)

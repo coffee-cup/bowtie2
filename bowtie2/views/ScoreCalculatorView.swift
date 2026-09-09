@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct ScoreCalculator {
-    enum Operation: Equatable {
+    enum Operation {
         case add
         case subtract
 
@@ -20,11 +20,11 @@ struct ScoreCalculator {
         }
     }
 
-    private(set) var operands: [Int]
-    private(set) var operations: [Operation] = []
-    private(set) var currentOperand: Int?
-    private(set) var accumulatedValue: Int
-    private(set) var isEnteringInitialValue = false
+    private var operands: [Int]
+    private var operations: [Operation] = []
+    private var currentOperand: Int?
+    private var accumulatedValue: Int
+    private var isEnteringInitialValue = false
 
     init(initialValue: Int) {
         operands = [initialValue]
@@ -72,6 +72,10 @@ struct ScoreCalculator {
             return
         }
 
+        if currentOperand == nil, operations.count < operands.count {
+            guard beginEditingLastOperand() else { return }
+        }
+
         let existingValue = currentOperand ?? 0
         guard let newValue = append(digit, to: existingValue) else { return }
         currentOperand = newValue
@@ -92,27 +96,22 @@ struct ScoreCalculator {
     }
 
     mutating func deleteDigit() {
-        if let currentOperand {
-            if currentOperand < 10 {
-                self.currentOperand = nil
-            } else {
-                self.currentOperand = currentOperand / 10
-            }
+        if currentOperand != nil {
+            deleteCurrentDigit()
             return
         }
 
         if !operations.isEmpty, operations.count == operands.count {
             operations.removeLast()
+            if operations.isEmpty {
+                isEnteringInitialValue = true
+            }
             return
         }
 
         if operands.count > 1 {
-            let previousOperands = Array(operands.dropLast())
-            guard let previousValue = accumulatedResult(for: previousOperands) else { return }
-
-            currentOperand = operands.removeLast()
-            accumulatedValue = previousValue
-            deleteDigit()
+            guard beginEditingLastOperand() else { return }
+            deleteCurrentDigit()
             return
         }
 
@@ -127,10 +126,30 @@ struct ScoreCalculator {
 
     private func append(_ digit: Int, to value: Int) -> Int? {
         let (shiftedValue, multiplyOverflow) = value.multipliedReportingOverflow(by: 10)
-        let (newValue, addOverflow) = shiftedValue.addingReportingOverflow(digit)
+        let calculation = value < 0
+            ? shiftedValue.subtractingReportingOverflow(digit)
+            : shiftedValue.addingReportingOverflow(digit)
 
-        guard !multiplyOverflow, !addOverflow else { return nil }
-        return newValue
+        guard !multiplyOverflow, !calculation.overflow else { return nil }
+        return calculation.partialValue
+    }
+
+    private mutating func beginEditingLastOperand() -> Bool {
+        guard operands.count > 1 else { return false }
+
+        let previousOperands = Array(operands.dropLast())
+        guard let previousValue = accumulatedResult(for: previousOperands) else {
+            return false
+        }
+
+        currentOperand = operands.removeLast()
+        accumulatedValue = previousValue
+        return true
+    }
+
+    private mutating func deleteCurrentDigit() {
+        guard let currentOperand else { return }
+        self.currentOperand = currentOperand < 10 ? nil : currentOperand / 10
     }
 
     private func accumulatedResult(for values: [Int]) -> Int? {

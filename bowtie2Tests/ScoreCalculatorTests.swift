@@ -100,6 +100,30 @@ final class ScoreCalculatorTests: XCTestCase {
         XCTAssertEqual(calculator.result, 16)
     }
 
+    func testEnteringDigitAfterDeletingOperatorContinuesPreviousOperand() {
+        var calculator = ScoreCalculator(initialValue: 14)
+
+        calculator.enterOperation(.add)
+        calculator.enterDigit(2)
+        calculator.enterDigit(3)
+        calculator.enterOperation(.subtract)
+        calculator.deleteDigit()
+        calculator.enterDigit(4)
+
+        XCTAssertEqual(calculator.expression, "14 + 234")
+        XCTAssertEqual(calculator.result, 248)
+    }
+
+    func testEnteringDigitAfterDeletingNegativeInitialValuePreservesSign() {
+        var calculator = ScoreCalculator(initialValue: -14)
+
+        calculator.deleteDigit()
+        calculator.enterDigit(2)
+
+        XCTAssertEqual(calculator.expression, "-12")
+        XCTAssertEqual(calculator.result, -12)
+    }
+
     func testClearResetsEntireExpression() {
         var calculator = ScoreCalculator(initialValue: -4)
 

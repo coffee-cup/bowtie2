@@ -107,6 +107,10 @@ class bowtie2UITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Expression 14 + 23 −"].waitForExistence(timeout: 2))
         app.buttons["calculator.key.delete"].tap()
         XCTAssertTrue(app.staticTexts["Expression 14 + 23"].waitForExistence(timeout: 2))
+        app.buttons["calculator.key.4"].tap()
+        XCTAssertTrue(app.staticTexts["Expression 14 + 234"].waitForExistence(timeout: 2))
+        app.buttons["calculator.key.delete"].tap()
+        XCTAssertTrue(app.staticTexts["Expression 14 + 23"].waitForExistence(timeout: 2))
         app.buttons["calculator.key.delete"].tap()
         XCTAssertTrue(app.staticTexts["Expression 14 + 2"].waitForExistence(timeout: 2))
 
