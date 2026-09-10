@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B0A710052F90100000000001 /* PlayerOrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A710042F90100000000001 /* PlayerOrderTests.swift */; };
+		B0A710022F90100000000001 /* Game+PlayerOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A710012F90100000000001 /* Game+PlayerOrder.swift */; };
 		2BCA1C022F5F100000C1A001 /* ScoreCalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCA1C012F5F100000C1A001 /* ScoreCalculatorView.swift */; };
 		2BCA1C042F5F100000C1A001 /* ScoreCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCA1C032F5F100000C1A001 /* ScoreCalculatorTests.swift */; };
 		2B0C1A022F12100000C1A001 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C1A012F12100000C1A001 /* GameTests.swift */; };
@@ -142,6 +144,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B0A710042F90100000000001 /* PlayerOrderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerOrderTests.swift; sourceTree = "<group>"; };
+		B0A710012F90100000000001 /* Game+PlayerOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+PlayerOrder.swift"; sourceTree = "<group>"; };
+		B0A710032F90100000000001 /* bowtie2PlayerOrder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = bowtie2PlayerOrder.xcdatamodel; sourceTree = "<group>"; };
 		2BCA1C012F5F100000C1A001 /* ScoreCalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCalculatorView.swift; sourceTree = "<group>"; };
 		2BCA1C032F5F100000C1A001 /* ScoreCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCalculatorTests.swift; sourceTree = "<group>"; };
 		2B0C1A012F12100000C1A001 /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
@@ -383,6 +388,7 @@
 				B72BD54D25874BCB00F5CB85 /* NumberTests.swift */,
 				B73A09CD259C756200C45C33 /* ColorTests.swift */,
 				2B0C1A012F12100000C1A001 /* GameTests.swift */,
+				B0A710042F90100000000001 /* PlayerOrderTests.swift */,
 				2B0C1A032F12100000C1A001 /* PlayerScoreTests.swift */,
 			);
 			path = bowtie2Tests;
@@ -500,6 +506,7 @@
 				B7C130FB25611D4D00EE6601 /* PlayerScore+CoreDataClass.swift */,
 				B7C130FD25611D4D00EE6601 /* Player+CoreDataClass.swift */,
 				B7C1310F25611FBB00EE6601 /* Game+CoreDataClass.swift */,
+				B0A710012F90100000000001 /* Game+PlayerOrder.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -733,6 +740,7 @@
 				B7659F94257DE9AB00CA139E /* UserSettings.swift in Sources */,
 				B72DC112256A68F100DF28F1 /* EnterScoreView.swift in Sources */,
 				B7C1311125611FBB00EE6601 /* Game+CoreDataClass.swift in Sources */,
+				B0A710022F90100000000001 /* Game+PlayerOrder.swift in Sources */,
 				B7B2504D256126E000C82EC6 /* String.swift in Sources */,
 				B72DC121256AF1C000DF28F1 /* View.swift in Sources */,
 				B7D3390D2569DAB300ADBEFF /* PlayerScoreCard.swift in Sources */,
@@ -770,6 +778,7 @@
 				B72BD54E25874BCB00F5CB85 /* NumberTests.swift in Sources */,
 				B73A09CE259C756200C45C33 /* ColorTests.swift in Sources */,
 				2B0C1A022F12100000C1A001 /* GameTests.swift in Sources */,
+				B0A710052F90100000000001 /* PlayerOrderTests.swift in Sources */,
 				2B0C1A042F12100000C1A001 /* PlayerScoreTests.swift in Sources */,
 				B781BA172560F5E2008EB298 /* bowtie2Tests.swift in Sources */,
 			);
@@ -1190,8 +1199,9 @@
 			isa = XCVersionGroup;
 			children = (
 				B781BA0B2560F5E2008EB298 /* bowtie2.xcdatamodel */,
+				B0A710032F90100000000001 /* bowtie2PlayerOrder.xcdatamodel */,
 			);
-			currentVersion = B781BA0B2560F5E2008EB298 /* bowtie2.xcdatamodel */;
+			currentVersion = B0A710032F90100000000001 /* bowtie2PlayerOrder.xcdatamodel */;
 			path = bowtie2.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

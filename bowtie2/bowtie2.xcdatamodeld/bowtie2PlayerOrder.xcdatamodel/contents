@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Game" representedClassName="Game" syncable="YES" codeGenerationType="category">
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="keepScreenAwake" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="liveActivityEnabled" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString="&lt;empty&gt;"/>
+        <attribute name="playerOrderValue" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="winnerSortValue" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="playerScores" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlayerScore" inverseName="game" inverseEntity="PlayerScore"/>
+    </entity>
+    <entity name="Player" representedClassName="Player" syncable="YES" codeGenerationType="category">
+        <attribute name="colour" attributeType="String" defaultValueString="000000" customClassName="UIColor"/>
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="hasBeenDeleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="scores" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlayerScore" inverseName="player" inverseEntity="PlayerScore"/>
+    </entity>
+    <entity name="PlayerScore" representedClassName="PlayerScore" syncable="YES" codeGenerationType="category">
+        <attribute name="manualPosition" optional="YES" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="orderingID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="history" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Int]"/>
+        <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="playerScores" inverseEntity="Game"/>
+        <relationship name="player" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="scores" inverseEntity="Player"/>
+    </entity>
+    <elements>
+        <element name="Game" positionX="206.443115234375" positionY="-297.8959655761719" width="128" height="89"/>
+        <element name="Player" positionX="-17.52392578125" positionY="-189.6279296875" width="128" height="104"/>
+        <element name="PlayerScore" positionX="219.8523559570312" positionY="-113.0895080566406" width="128" height="74"/>
+    </elements>
+</model>

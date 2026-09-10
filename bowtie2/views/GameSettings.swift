@@ -150,6 +150,8 @@ struct GameSettings: View {
     @ObservedObject var game: Game
     @State var name = ""
     @State var isAddingPlayers = false
+    @State private var failedPlayerOrder: PlayerOrder?
+    @State private var showPlayerOrderError = false
 
     var body: some View {
         Form {
@@ -188,6 +190,17 @@ struct GameSettings: View {
             }
 
             Section("Display") {
+                Picker("Player Order", selection: Binding(
+                    get: { game.playerOrder },
+                    set: { savePlayerOrder($0) }
+                )) {
+                    ForEach(PlayerOrder.allCases, id: \.self) { order in
+                        Text(order.title).tag(order)
+                    }
+                }
+                .pickerStyle(.menu)
+                .accessibilityIdentifier("playerOrder.picker")
+
                 Toggle(isOn: Binding(
                     get: { game.keepScreenAwake },
                     set: { game.keepScreenAwake = $0 }
@@ -208,6 +221,14 @@ struct GameSettings: View {
                 }
             }
         }
+        .alert("Couldn't Save Player Order", isPresented: $showPlayerOrderError) {
+            Button("Retry") {
+                if let failedPlayerOrder = failedPlayerOrder { savePlayerOrder(failedPlayerOrder) }
+            }
+            Button("Cancel", role: .cancel) { failedPlayerOrder = nil }
+        } message: {
+            Text("Your saved order hasn't changed. Try saving again.")
+        }
         .sheet(isPresented: $isAddingPlayers, onDismiss: refreshLiveActivity) {
             AddPlayersToGame(game: game)
                 .environment(\.managedObjectContext, viewContext)
@@ -220,6 +241,16 @@ struct GameSettings: View {
         }
         .onDisappear {
             self.saveGame()
+        }
+    }
+
+    private func savePlayerOrder(_ order: PlayerOrder) {
+        do {
+            try game.savePlayerOrder(order)
+            failedPlayerOrder = nil
+        } catch {
+            failedPlayerOrder = order
+            showPlayerOrderError = true
         }
     }
 
