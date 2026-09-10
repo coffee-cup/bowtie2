@@ -134,6 +134,144 @@ class bowtie2UITests: XCTestCase {
         add(returnedValueScreenshot)
     }
 
+    func testManualPlayerOrderDragSaveCancelAndReopen() throws {
+        let app = XCUIApplication()
+        app.launch()
+        if app.buttons["Get Started"].waitForExistence(timeout: 2) {
+            app.buttons["Get Started"].tap()
+        }
+
+        let suffix = String(UUID().uuidString.prefix(4))
+        let names = ["Ava", "Ben", "Cal"].map { "\($0) \(suffix)" }
+        let gameName = "Order \(suffix)"
+        for name in names {
+            app.tabBars.buttons["Players"].tap()
+            let firstPlayer = app.buttons["Create Player"]
+            if firstPlayer.exists { firstPlayer.tap() }
+            else { app.buttons["Add Player"].tap() }
+            let field = app.textFields["Player name"]
+            XCTAssertTrue(field.waitForExistence(timeout: 3))
+            field.tap()
+            field.typeText(name)
+            app.buttons["Create"].tap()
+        }
+
+        app.tabBars.buttons["Games"].tap()
+        if app.buttons["Create First Game"].exists { app.buttons["Create First Game"].tap() }
+        else { app.buttons["Create Game"].tap() }
+        let gameField = app.textFields["Canasta"]
+        XCTAssertTrue(gameField.waitForExistence(timeout: 3))
+        gameField.tap()
+        gameField.typeText(gameName + "\n")
+        for name in names {
+            let toggle = app.switches["Include player \(name)"]
+            for _ in 0..<8 where !toggle.isHittable {
+                app.swipeUp()
+            }
+            XCTAssertTrue(toggle.waitForExistence(timeout: 3))
+            toggle.tap()
+        }
+        app.buttons["Create"].tap()
+        XCTAssertTrue(app.staticTexts[gameName].waitForExistence(timeout: 3))
+        app.staticTexts[gameName].tap()
+
+        assertScoreboardOrder(names, in: app)
+        XCTAssertFalse(app.buttons["playerOrder.reorder"].exists)
+        selectPlayerOrder("Manual", in: app)
+        enterPlayerReorder(in: app)
+        for _ in 0..<3 {
+            dragPlayer(names[2], before: names[0], in: app)
+            dragPlayer(names[1], before: names[2], in: app)
+            dragPlayer(names[0], before: names[1], in: app)
+        }
+        app.buttons["Cancel"].tap()
+        assertScoreboardOrder(names, in: app)
+
+        enterPlayerReorder(in: app)
+        dragPlayer(names[2], before: names[0], in: app)
+        dragPlayer(names[1], before: names[2], in: app)
+        attachScreenshot(app, name: "Player order while dragging")
+        app.buttons["playerOrder.save"].tap()
+        let manual = [names[1], names[2], names[0]]
+        assertScoreboardOrder(manual, in: app)
+
+        app.buttons["scorePlayer.\(names[0])"].tap()
+        XCTAssertTrue(app.buttons["score.key.9"].waitForExistence(timeout: 3))
+        app.buttons["score.key.9"].tap()
+        app.buttons["Go"].tap()
+        assertScoreboardOrder(manual, in: app)
+        attachScreenshot(app, name: "Manual scoreboard after scoring")
+
+        selectPlayerOrder("By Score", in: app)
+        XCTAssertFalse(app.buttons["playerOrder.reorder"].exists)
+        assertScoreboardOrder(names, in: app)
+        selectPlayerOrder("Manual", in: app)
+        assertScoreboardOrder(manual, in: app)
+
+        app.terminate()
+        app.launch()
+        app.tabBars.buttons["Games"].tap()
+        XCTAssertTrue(app.staticTexts[gameName].waitForExistence(timeout: 3))
+        app.staticTexts[gameName].tap()
+        assertScoreboardOrder(manual, in: app)
+
+        app.terminate()
+        app.launchArguments += ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+        app.launch()
+        app.tabBars.buttons["Games"].tap()
+        XCTAssertTrue(app.staticTexts[gameName].waitForExistence(timeout: 3))
+        app.staticTexts[gameName].tap()
+        enterPlayerReorder(in: app)
+        XCTAssertTrue(app.buttons["playerOrder.save"].isHittable)
+        attachScreenshot(app, name: "Player order at largest accessibility text size")
+        app.buttons["Cancel"].tap()
+    }
+
+    private func enterPlayerReorder(in app: XCUIApplication) {
+        XCTAssertTrue(app.buttons["playerOrder.reorder"].waitForExistence(timeout: 3))
+        app.buttons["playerOrder.reorder"].tap()
+        XCTAssertTrue(app.buttons["playerOrder.save"].waitForExistence(timeout: 3))
+    }
+
+    private func selectPlayerOrder(_ order: String, in app: XCUIApplication) {
+        app.buttons["game.settings"].tap()
+        let picker = app.buttons["playerOrder.picker"]
+        XCTAssertTrue(picker.waitForExistence(timeout: 3))
+        picker.tap()
+        app.buttons[order].tap()
+        attachScreenshot(app, name: "Player order in Game Settings")
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        XCTAssertTrue(app.buttons["game.settings"].waitForExistence(timeout: 3))
+    }
+
+    private func dragPlayer(_ name: String, before target: String, in app: XCUIApplication) {
+        let sourceCell = app.cells.containing(.any, identifier: "reorderPlayer.\(name)").firstMatch
+        let targetCell = app.cells.containing(.any, identifier: "reorderPlayer.\(target)").firstMatch
+        XCTAssertTrue(sourceCell.exists)
+        XCTAssertTrue(targetCell.exists)
+        sourceCell.coordinate(withNormalizedOffset: CGVector(dx: 0.94, dy: 0.5))
+            .press(forDuration: 0.1,
+                   thenDragTo: targetCell.coordinate(withNormalizedOffset: CGVector(dx: 0.94, dy: 0.5)),
+                   withVelocity: .slow,
+                   thenHoldForDuration: 0.1)
+        XCTAssertLessThan(sourceCell.frame.midY, targetCell.frame.midY)
+    }
+
+    private func assertScoreboardOrder(_ names: [String], in app: XCUIApplication, file: StaticString = #filePath, line: UInt = #line) {
+        let cards = names.map { app.buttons["scorePlayer.\($0)"] }
+        for card in cards { XCTAssertTrue(card.waitForExistence(timeout: 3), file: file, line: line) }
+        for index in 1..<cards.count {
+            XCTAssertLessThan(cards[index - 1].frame.midY, cards[index].frame.midY, file: file, line: line)
+        }
+    }
+
+    private func attachScreenshot(_ app: XCUIApplication, name: String) {
+        let attachment = XCTAttachment(screenshot: app.screenshot())
+        attachment.name = name
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
             // This measures how long it takes to launch your application.

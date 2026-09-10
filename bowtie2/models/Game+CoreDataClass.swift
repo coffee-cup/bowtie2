@@ -53,10 +53,10 @@ extension Game {
     }
 
     func addPlayers(context: NSManagedObjectContext, players: [Player]) {
-        let existingPlayerIds = Set(scoresArray.compactMap { $0.player?.objectID })
+        var existingPlayerIds = Set(scoresArray.compactMap { $0.player?.objectID })
 
-        players.forEach { player in
-            guard !existingPlayerIds.contains(player.objectID) else { return }
+        players.sorted(by: Player.playerOrderPrecedes).forEach { player in
+            guard existingPlayerIds.insert(player.objectID).inserted else { return }
             context.refresh(player, mergeChanges: true)
             PlayerScore.createPlayerScore(context: context, game: self, player: player)
         }
@@ -70,8 +70,17 @@ extension Game {
 
     @discardableResult
     static func duplicateGame(context: NSManagedObjectContext, gameToDuplicate: Game) -> Game {
-        let players = gameToDuplicate.scoresArray.map({ score in score.player }).filter({ player in player != nil }) as! [Player]
-        let game = Game.createGameWithPlayers(context: context, name: gameToDuplicate.wrappedName, players: players)
+        let sourceScores = gameToDuplicate.initialPlayerOrder
+        let game = Game.createGame(context: context, name: gameToDuplicate.wrappedName)
+        let copiedScores = sourceScores.compactMap { source -> PlayerScore? in
+            guard let player = source.player else { return nil }
+            context.refresh(player, mergeChanges: true)
+            return PlayerScore.createPlayerScore(context: context, game: game, player: player)
+        }
+        if gameToDuplicate.hasManualPlayerOrder {
+            game.assignManualPlayerOrder(copiedScores)
+        }
+        game.playerOrder = gameToDuplicate.playerOrder
         game.winnerSort = gameToDuplicate.winnerSort
         game.keepScreenAwake = gameToDuplicate.keepScreenAwake
         game.liveActivityEnabled = gameToDuplicate.liveActivityEnabled
@@ -108,8 +117,11 @@ extension Game {
     }
     
     public var sortedScoresArray: [PlayerScore] {
-        let set = playerScores as? Set<PlayerScore> ?? []
-        return set.sorted(by: {
+        highestScores(from: activePlayerScores)
+    }
+
+    private func highestScores(from scores: [PlayerScore]) -> [PlayerScore] {
+        return scores.sorted(by: {
             $0.player?.wrappedName ?? "" < $1.player?.wrappedName ?? ""
         }).sorted(by: {
             $0.currentScore > $1.currentScore
@@ -117,11 +129,16 @@ extension Game {
     }
     
     public var scoresArray: [PlayerScore] {
+        rankedScores(from: activePlayerScores)
+    }
+
+    func rankedScores(from scores: [PlayerScore]) -> [PlayerScore] {
+        let sorted = highestScores(from: scores)
         switch winnerSort {
         case .scoreHighest:
-            return sortedScoresArray
+            return sorted
         case.scoreLowest:
-            return sortedScoresArray.reversed()
+            return sorted.reversed()
         }
     }
     
