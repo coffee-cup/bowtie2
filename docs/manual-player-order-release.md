@@ -24,9 +24,8 @@ Before distributing this model through TestFlight or the App Store:
    fields using [Apple's schema deployment procedure](https://developer.apple.com/documentation/cloudkit/deploying-an-icloud-container-s-schema).
    Verify production contains the fields before releasing the app.
 
-Local validation cannot substitute for these checks. This implementation session
-had no CloudKit management token and only one connected physical device, so no
-production schema deployment or live two-device sync validation was performed.
+Local tests do not verify the production schema or live two-device sync.
+Complete these checks before distributing the app update.
 
 ## Local validation
 
@@ -41,11 +40,7 @@ accessibility-text screenshots. It also verifies that the reorder toolbar button
 appears only in Manual mode.
 
 The editor uses UIKit's native editable table with SwiftUI row content through
-`UIHostingConfiguration` (iOS 16+). The table owns drag handles, row movement,
-animations, and accessibility. A move updates the local draft without reloading
+`UIHostingConfiguration`, available on iOS 16 and later. The table owns drag
+handles, row movement, animations, and accessibility. A move updates the local draft without reloading
 the table. Membership changes are reconciled separately from dragging, and
 persistence happens only on Save.
-
-Rapid consecutive gestures reproduced a missed second drag in SwiftUI's `List`,
-including its automatic `editActions: .move` implementation. The native table
-avoids that SwiftUI list behavior without custom gestures or animation delays.
