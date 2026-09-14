@@ -89,10 +89,18 @@ class bowtie2UITests: XCTestCase {
 
         app.buttons["Calculator"].tap()
 
-        XCTAssertTrue(app.staticTexts["Expression 0"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.navigationBars["Calculate Score"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["0"].exists)
+        XCTAssertFalse(app.staticTexts["Expression 0"].exists)
+
+        let emptyCalculatorScreenshot = XCTAttachment(screenshot: app.screenshot())
+        emptyCalculatorScreenshot.name = "Calculator layout without duplicate history"
+        emptyCalculatorScreenshot.lifetime = .keepAlways
+        add(emptyCalculatorScreenshot)
+
         app.buttons["calculator.key.1"].tap()
-        XCTAssertTrue(app.staticTexts["Expression 1"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["1"].exists)
+        XCTAssertFalse(app.staticTexts["Expression 1"].exists)
         app.buttons["calculator.key.4"].tap()
         app.buttons["calculator.key.add"].tap()
         app.buttons["calculator.key.2"].tap()

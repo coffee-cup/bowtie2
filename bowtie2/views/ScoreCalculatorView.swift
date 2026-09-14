@@ -279,14 +279,6 @@ struct ScoreCalculatorView: View {
         VStack(spacing: keySpacing) {
             HStack(spacing: keySpacing) {
                 CalculatorKeyButton(
-                    title: "AC",
-                    accessibilityLabel: "Clear",
-                    accessibilityIdentifier: "calculator.key.clear"
-                ) {
-                    calculator.clear()
-                }
-
-                CalculatorKeyButton(
                     title: "",
                     systemImage: "delete.left",
                     accessibilityLabel: "Delete digit",
@@ -296,21 +288,21 @@ struct ScoreCalculatorView: View {
                 }
 
                 CalculatorKeyButton(
+                    title: "AC",
+                    accessibilityLabel: "Clear",
+                    accessibilityIdentifier: "calculator.key.clear",
+                    width: keySize * 2 + keySpacing
+                ) {
+                    calculator.clear()
+                }
+
+                CalculatorKeyButton(
                     title: "−",
                     accessibilityLabel: "Subtract",
                     accessibilityIdentifier: "calculator.key.subtract",
                     isThemed: true
                 ) {
                     calculator.enterOperation(.subtract)
-                }
-
-                CalculatorKeyButton(
-                    title: "+",
-                    accessibilityLabel: "Add",
-                    accessibilityIdentifier: "calculator.key.add",
-                    isThemed: true
-                ) {
-                    calculator.enterOperation(.add)
                 }
             }
 
@@ -341,9 +333,14 @@ struct ScoreCalculatorView: View {
                 }
 
                 VStack(spacing: keySpacing) {
-                    Color.clear
-                        .frame(width: keySize, height: keySize)
-                        .accessibilityHidden(true)
+                    CalculatorKeyButton(
+                        title: "+",
+                        accessibilityLabel: "Add",
+                        accessibilityIdentifier: "calculator.key.add",
+                        isThemed: true
+                    ) {
+                        calculator.enterOperation(.add)
+                    }
 
                     CalculatorKeyButton(
                         title: "=",
@@ -366,15 +363,18 @@ struct ScoreCalculatorView: View {
     }
 
     private var calculatorDisplay: some View {
-        VStack(spacing: 4) {
-            Text(calculator.expression)
+        let showsExpression = calculator.expression != calculator.result.map(String.init)
+
+        return VStack(spacing: 4) {
+            Text(showsExpression ? calculator.expression : " ")
                 .font(.headline)
                 .foregroundStyle(.secondary)
                 .monospacedDigit()
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
                 .frame(maxWidth: .infinity, alignment: .trailing)
-                .accessibilityLabel("Expression \(calculator.expression)")
+                .accessibilityLabel(showsExpression ? "Expression \(calculator.expression)" : "")
+                .accessibilityHidden(!showsExpression)
 
             Text(calculator.result.map(String.init) ?? "Too large")
                 .font(.system(size: 120, weight: .bold))
