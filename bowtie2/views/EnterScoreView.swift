@@ -135,7 +135,7 @@ struct EnterScoreView: View {
                     Button {
                         isShowingCalculator = true
                     } label: {
-                        Label("Calculator", systemImage: "plus.forwardslash.minus")
+                        Label("Calculator", image: "ScoreCalculator")
                     }
                 }
             }
