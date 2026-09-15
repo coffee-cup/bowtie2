@@ -16,6 +16,11 @@ update_fastlane
 default_platform(:ios)
 
 platform :ios do
+  desc "Generate App Store screenshots with matching artwork for iPhone and iPad"
+  lane :screenshots do
+    sh("python3", File.expand_path("../scripts/app-store-screenshots.py", __dir__))
+  end
+
   desc "Push a new beta build to TestFlight"
   lane :beta do
     increment_build_number(xcodeproj: "bowtie2.xcodeproj")

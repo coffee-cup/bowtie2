@@ -15,3 +15,7 @@ Score keeping iOS app made with SwiftUI
 - Custom colour for each player
 - Graph scores throughout a game
 - History for all your previous games
+
+## App Store screenshots
+
+Run `python3 scripts/app-store-screenshots.py` to capture and render the four App Store images for iPhone and iPad. See [the screenshot guide](media/app-store/README.md) for setup, artwork settings, and export locations.

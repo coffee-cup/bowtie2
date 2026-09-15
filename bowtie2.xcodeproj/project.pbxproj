@@ -71,9 +71,11 @@
 		B781BA042560F5E2008EB298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B781BA032560F5E2008EB298 /* Assets.xcassets */; };
 		B781BA072560F5E2008EB298 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B781BA062560F5E2008EB298 /* Preview Assets.xcassets */; };
 		B781BA092560F5E2008EB298 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA082560F5E2008EB298 /* Persistence.swift */; };
+		BA5700022FF0000000000001 /* ScreenshotFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5700012FF0000000000001 /* ScreenshotFixture.swift */; };
 		B781BA0C2560F5E2008EB298 /* bowtie2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B781BA0A2560F5E2008EB298 /* bowtie2.xcdatamodeld */; };
 		B781BA172560F5E2008EB298 /* bowtie2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA162560F5E2008EB298 /* bowtie2Tests.swift */; };
 		B781BA222560F5E2008EB298 /* bowtie2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA212560F5E2008EB298 /* bowtie2UITests.swift */; };
+		BA5700042FF0000000000001 /* AppStoreScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5700032FF0000000000001 /* AppStoreScreenshotTests.swift */; };
 		B781BA38256100D6008EB298 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B781BA37256100D6008EB298 /* CloudKit.framework */; };
 		B781BA40256114F4008EB298 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA3F256114F4008EB298 /* AppView.swift */; };
 		B781BA4825611518008EB298 /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B781BA4725611518008EB298 /* GamesListView.swift */; };
@@ -239,6 +241,7 @@
 		B781BA032560F5E2008EB298 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B781BA062560F5E2008EB298 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B781BA082560F5E2008EB298 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		BA5700012FF0000000000001 /* ScreenshotFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotFixture.swift; sourceTree = "<group>"; };
 		B781BA0B2560F5E2008EB298 /* bowtie2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = bowtie2.xcdatamodel; sourceTree = "<group>"; };
 		B781BA0D2560F5E2008EB298 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B781BA122560F5E2008EB298 /* bowtie2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bowtie2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -246,6 +249,7 @@
 		B781BA182560F5E2008EB298 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B781BA1D2560F5E2008EB298 /* bowtie2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bowtie2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B781BA212560F5E2008EB298 /* bowtie2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bowtie2UITests.swift; sourceTree = "<group>"; };
+		BA5700032FF0000000000001 /* AppStoreScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreScreenshotTests.swift; sourceTree = "<group>"; };
 		B781BA232560F5E2008EB298 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B781BA32256100D4008EB298 /* bowtie2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bowtie2.entitlements; sourceTree = "<group>"; };
 		B781BA37256100D6008EB298 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -419,6 +423,7 @@
 				B781B9FF2560F5E0008EB298 /* bowtie2App.swift */,
 				B781BA032560F5E2008EB298 /* Assets.xcassets */,
 				B781BA082560F5E2008EB298 /* Persistence.swift */,
+				BA5700012FF0000000000001 /* ScreenshotFixture.swift */,
 				B781BA0D2560F5E2008EB298 /* Info.plist */,
 				B781BA0A2560F5E2008EB298 /* bowtie2.xcdatamodeld */,
 				B781BA052560F5E2008EB298 /* Preview Content */,
@@ -458,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				B781BA212560F5E2008EB298 /* bowtie2UITests.swift */,
+				BA5700032FF0000000000001 /* AppStoreScreenshotTests.swift */,
 				B781BA232560F5E2008EB298 /* Info.plist */,
 			);
 			path = bowtie2UITests;
@@ -853,6 +859,7 @@
 				B781BA0C2560F5E2008EB298 /* bowtie2.xcdatamodeld in Sources */,
 				B73FD0CD257E01A200810010 /* CodableUnitPoint.swift in Sources */,
 				B781BA092560F5E2008EB298 /* Persistence.swift in Sources */,
+				BA5700022FF0000000000001 /* ScreenshotFixture.swift in Sources */,
 				B7B1CC6C25854B39000ACCE3 /* AppIconSelectView.swift in Sources */,
 				B79199222586E6B900865BCB /* PremiumView.swift in Sources */,
 				B7F82ABC256258EA00C7B221 /* Array.swift in Sources */,
@@ -909,6 +916,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B781BA222560F5E2008EB298 /* bowtie2UITests.swift in Sources */,
+				BA5700042FF0000000000001 /* AppStoreScreenshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

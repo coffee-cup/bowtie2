@@ -147,3 +147,6 @@ iOSInjectionProject/
 
 # secrets
 .env
+
+# Local Python script caches
+__pycache__/

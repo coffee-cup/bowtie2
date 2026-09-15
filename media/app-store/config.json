@@ -1,0 +1,48 @@
+{
+  "locale": "en-US",
+  "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-26-5",
+  "devices": [
+    {
+      "id": "iphone-6.9",
+      "name": "iPhone 17 Pro Max",
+      "deviceType": "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max",
+      "width": 1320,
+      "height": 2868,
+      "frame": "iphone"
+    },
+    {
+      "id": "ipad-13",
+      "name": "iPad Pro 13-inch (M5)",
+      "deviceType": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M5-12GB",
+      "width": 2064,
+      "height": 2752,
+      "frame": "ipad"
+    }
+  ],
+  "screens": [
+    {
+      "id": "01-leaderboard",
+      "headline": "Leaderboard for\nEach Card Game",
+      "gradient": ["FF7781", "FF3D8C"],
+      "reference": "01-leaderboard.png"
+    },
+    {
+      "id": "02-score-entry",
+      "headline": "Enter Scores for\nEvery Player",
+      "gradient": ["F2747E", "FABBA2"],
+      "reference": "02-score-entry.png"
+    },
+    {
+      "id": "03-games",
+      "headline": "Keep Track of\nPrevious Games",
+      "gradient": ["E8A6CA", "CE649C"],
+      "reference": "03-games.png"
+    },
+    {
+      "id": "04-create-game",
+      "headline": "Quick Game\nCreation",
+      "gradient": ["00AEFF", "008AFF"],
+      "reference": "04-create-game.png"
+    }
+  ]
+}

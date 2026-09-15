@@ -56,8 +56,12 @@ struct PersistenceController {
 
     let container: NSPersistentCloudKitContainer
 
-    init(inMemory: Bool = false) {
+    init(inMemory: Bool = false, cloudSyncEnabled: Bool = true) {
         container = NSPersistentCloudKitContainer(name: "bowtie2")
+
+        if !cloudSyncEnabled {
+            container.persistentStoreDescriptions.forEach { $0.cloudKitContainerOptions = nil }
+        }
         
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
