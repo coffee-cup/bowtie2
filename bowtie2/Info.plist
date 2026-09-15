@@ -121,7 +121,8 @@
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>atlas</string>
+					<string>atlas-ipad</string>
+					<string>atlas-ipad-pro</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -130,7 +131,8 @@
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>cherryblossoms</string>
+					<string>cherryblossoms-ipad</string>
+					<string>cherryblossoms-ipad-pro</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -139,7 +141,8 @@
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>classic</string>
+					<string>classic-ipad</string>
+					<string>classic-ipad-pro</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -148,7 +151,8 @@
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>earth</string>
+					<string>earth-ipad</string>
+					<string>earth-ipad-pro</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -157,7 +161,8 @@
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>greenish</string>
+					<string>greenish-ipad</string>
+					<string>greenish-ipad-pro</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -166,7 +171,8 @@
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>sunrise</string>
+					<string>sunrise-ipad</string>
+					<string>sunrise-ipad-pro</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -175,7 +181,8 @@
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>timber</string>
+					<string>timber-ipad</string>
+					<string>timber-ipad-pro</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -184,7 +191,8 @@
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>winter</string>
+					<string>winter-ipad</string>
+					<string>winter-ipad-pro</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -193,7 +201,8 @@
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>xmas-green</string>
+					<string>xmas-green-ipad</string>
+					<string>xmas-green-ipad-pro</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -202,7 +211,8 @@
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>xmas-red</string>
+					<string>xmas-red-ipad</string>
+					<string>xmas-red-ipad-pro</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
