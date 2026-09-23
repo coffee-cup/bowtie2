@@ -1,0 +1,4 @@
+interface:
+  display_name: "Verify Bowtie"
+  short_description: "Exercise Bowtie on an isolated iOS simulator"
+  default_prompt: "Use $verify-bowtie to verify the changed Bowtie user flows and retain screenshots and test evidence."

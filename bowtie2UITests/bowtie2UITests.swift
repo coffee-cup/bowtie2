@@ -33,6 +33,7 @@ class bowtie2UITests: XCTestCase {
 
     func testScoreCalculatorReturnsResultToScoreEntry() throws {
         let app = XCUIApplication()
+        app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
         app.launch()
 
         if app.buttons["Get Started"].waitForExistence(timeout: 2) {
@@ -140,6 +141,31 @@ class bowtie2UITests: XCTestCase {
         returnedValueScreenshot.name = "Calculated score returned to score entry"
         returnedValueScreenshot.lifetime = .keepAlways
         add(returnedValueScreenshot)
+
+        XCTContext.runActivity(named: "Commit the calculated score and reopen the saved game") { _ in
+            app.buttons["Go"].tap()
+            XCTAssertTrue(app.buttons["scorePlayer.\(playerName)"].waitForExistence(timeout: 5))
+            XCTAssertTrue(app.staticTexts["29"].exists)
+            attachScreenshot(app, name: "Calculated score committed to scoreboard")
+
+            app.terminate()
+            app.launch()
+            app.tabBars.buttons["Games"].tap()
+            XCTAssertTrue(app.staticTexts[gameName].waitForExistence(timeout: 5))
+            app.staticTexts[gameName].tap()
+            let savedPlayer = app.buttons["scorePlayer.\(playerName)"]
+            XCTAssertTrue(savedPlayer.waitForExistence(timeout: 5))
+            XCTAssertTrue(app.staticTexts["29"].exists)
+            attachScreenshot(app, name: "Saved score after app relaunch")
+
+            savedPlayer.press(forDuration: 1)
+            XCTAssertTrue(app.buttons["View History"].waitForExistence(timeout: 5))
+            app.buttons["View History"].tap()
+            XCTAssertTrue(app.navigationBars["Score history for \(playerName)"].waitForExistence(timeout: 5))
+            XCTAssertEqual(app.cells.count, 1)
+            XCTAssertTrue(app.cells.staticTexts["29"].exists)
+            attachScreenshot(app, name: "Saved score independently visible in history")
+        }
     }
 
     func testManualPlayerOrderDragSaveCancelAndReopen() throws {
