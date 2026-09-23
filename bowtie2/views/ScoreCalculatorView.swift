@@ -59,6 +59,19 @@ struct ScoreCalculator {
         result != nil
     }
 
+    var pendingOperation: Operation? {
+        guard currentOperand == nil, operations.count == operands.count else { return nil }
+        return operations.last
+    }
+
+    var activeOperand: Int? {
+        if let currentOperand { return currentOperand }
+        if operations.isEmpty {
+            return isEnteringInitialValue ? accumulatedValue : nil
+        }
+        return operations.count < operands.count ? operands.last : nil
+    }
+
     mutating func enterDigit(_ digit: Int) {
         guard (0...9).contains(digit) else { return }
 
@@ -191,6 +204,7 @@ private struct CalculatorKeyButton: View {
     var width: CGFloat = 76
     var height: CGFloat = 76
     var isThemed = false
+    var isSelected = false
     var isDisabled = false
     let action: () -> Void
 
@@ -221,6 +235,7 @@ private struct CalculatorKeyButton: View {
         .disabled(isDisabled)
         .accessibilityLabel(accessibilityLabel)
         .accessibilityIdentifier(accessibilityIdentifier)
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 
     @ViewBuilder
@@ -300,7 +315,8 @@ struct ScoreCalculatorView: View {
                     title: "−",
                     accessibilityLabel: "Subtract",
                     accessibilityIdentifier: "calculator.key.subtract",
-                    isThemed: true
+                    isThemed: true,
+                    isSelected: calculator.pendingOperation == .subtract
                 ) {
                     calculator.enterOperation(.subtract)
                 }
@@ -337,7 +353,8 @@ struct ScoreCalculatorView: View {
                         title: "+",
                         accessibilityLabel: "Add",
                         accessibilityIdentifier: "calculator.key.add",
-                        isThemed: true
+                        isThemed: true,
+                        isSelected: calculator.pendingOperation == .add
                     ) {
                         calculator.enterOperation(.add)
                     }
@@ -366,9 +383,8 @@ struct ScoreCalculatorView: View {
         let showsExpression = calculator.expression != calculator.result.map(String.init)
 
         return VStack(spacing: 4) {
-            Text(showsExpression ? calculator.expression : " ")
+            (showsExpression ? expressionText : Text(" "))
                 .font(.headline)
-                .foregroundStyle(.secondary)
                 .monospacedDigit()
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
@@ -388,6 +404,18 @@ struct ScoreCalculatorView: View {
         }
         .frame(maxWidth: 340)
         .frame(maxWidth: .infinity, alignment: .trailing)
+    }
+
+    private var expressionText: Text {
+        guard let activeInput = calculator.pendingOperation?.symbol
+            ?? calculator.activeOperand.map(String.init) else {
+            return Text(calculator.expression).foregroundColor(.secondary)
+        }
+
+        let prefix = String(calculator.expression.dropLast(activeInput.count))
+        let entryColor = Color(hex: settings.theme.colours.last ?? "FF1493")
+        return Text(prefix).foregroundColor(.secondary)
+            + Text(activeInput).foregroundColor(entryColor)
     }
 }
 

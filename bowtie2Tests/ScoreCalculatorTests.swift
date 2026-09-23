@@ -7,6 +7,45 @@ import XCTest
 @testable import bowtie2
 
 final class ScoreCalculatorTests: XCTestCase {
+    func testInputHighlightFollowsOperatorEntryAndCorrections() {
+        var calculator = ScoreCalculator(initialValue: 9)
+        XCTAssertNil(calculator.pendingOperation)
+        XCTAssertNil(calculator.activeOperand)
+
+        calculator.enterOperation(.add)
+        XCTAssertEqual(calculator.pendingOperation, .add)
+        XCTAssertNil(calculator.activeOperand)
+
+        calculator.enterOperation(.subtract)
+        XCTAssertEqual(calculator.pendingOperation, .subtract)
+
+        calculator.enterDigit(6)
+        XCTAssertNil(calculator.pendingOperation)
+        XCTAssertEqual(calculator.activeOperand, 6)
+
+        calculator.enterDigit(8)
+        XCTAssertEqual(calculator.activeOperand, 68)
+        XCTAssertEqual(calculator.expression, "9 − 68")
+
+        calculator.enterOperation(.add)
+        XCTAssertEqual(calculator.pendingOperation, .add)
+        XCTAssertNil(calculator.activeOperand)
+
+        calculator.deleteDigit()
+        XCTAssertNil(calculator.pendingOperation)
+        XCTAssertEqual(calculator.activeOperand, 68)
+
+        calculator.deleteDigit()
+        XCTAssertEqual(calculator.activeOperand, 6)
+        calculator.deleteDigit()
+        XCTAssertNil(calculator.activeOperand)
+        XCTAssertEqual(calculator.pendingOperation, .subtract)
+
+        calculator.clear()
+        XCTAssertNil(calculator.pendingOperation)
+        XCTAssertNil(calculator.activeOperand)
+    }
+
     func testFirstDigitReplacesInitialDisplayValue() {
         var calculator = ScoreCalculator(initialValue: 14)
 
