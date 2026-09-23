@@ -5,6 +5,7 @@
 
 import SwiftUI
 
+@MainActor
 class PlayerSelectionData: ObservableObject {
     @Published var name = ""
     @Published var addedPlayers: [ObjectIdentifier:Bool] = [:]

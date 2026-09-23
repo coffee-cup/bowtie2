@@ -1,34 +1,31 @@
-fastlane documentation
-================
-# Installation
+# Fastlane
 
-Make sure you have the latest version of the Xcode command line tools installed:
+Run commands from the repository root with Ruby 3.2 or newer and Bundler 4.0.20. See [release tooling](../README.md#release-tooling) for installation. Use the versions in `Gemfile.lock`; lanes do not update dependencies automatically.
 
-```
-xcode-select --install
+```sh
+bundle exec fastlane lanes
 ```
 
-Install _fastlane_ using
-```
-[sudo] gem install fastlane -NV
-```
-or alternatively using `brew install fastlane`
+## Screenshots
 
-# Available Actions
-## iOS
-### ios beta
+```sh
+bundle exec fastlane ios screenshots
 ```
-fastlane ios beta
-```
-Push a new beta build to TestFlight
-### ios upload_symbols
-```
-fastlane ios upload_symbols
-```
-Upload symbols to sentry
 
-----
+Capture and render the iPhone and iPad App Store artwork.
 
-This README.md is auto-generated and will be re-generated every time [fastlane](https://fastlane.tools) is run.
-More information about fastlane can be found on [fastlane.tools](https://fastlane.tools).
-The documentation of fastlane can be found on [docs.fastlane.tools](https://docs.fastlane.tools).
+## TestFlight
+
+```sh
+bundle exec fastlane ios beta
+```
+
+Select Xcode 27 and configure Apple credentials first. This lane increments the build number, archives Bowtie and uploads it to TestFlight.
+
+## Debug symbols
+
+```sh
+bundle exec fastlane ios upload_symbols
+```
+
+Download available App Store debug symbols and upload those files to Sentry using the configured Apple and Sentry credentials.

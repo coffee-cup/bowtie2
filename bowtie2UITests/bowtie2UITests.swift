@@ -7,9 +7,10 @@
 
 import XCTest
 
+@MainActor
 class bowtie2UITests: XCTestCase {
 
-    override func setUpWithError() throws {
+    override func setUp() async throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
         // In UI tests it is usually best to stop immediately when a failure occurs.
@@ -166,6 +167,153 @@ class bowtie2UITests: XCTestCase {
             XCTAssertTrue(app.cells.staticTexts["29"].exists)
             attachScreenshot(app, name: "Saved score independently visible in history")
         }
+
+        XCTContext.runActivity(named: "Cancel an entry, save a negative turn, and undo through history") { _ in
+            app.buttons["Done"].tap()
+            let card = app.buttons["scorePlayer.\(playerName)"]
+            card.tap()
+            app.buttons["score.key.9"].tap()
+            app.buttons["Close"].tap()
+            XCTAssertTrue(card.waitForExistence(timeout: 5))
+            XCTAssertTrue(app.staticTexts["29"].exists)
+
+            card.tap()
+            app.buttons["score.key.1"].tap()
+            app.buttons["score.key.0"].tap()
+            app.buttons["score.negative"].tap()
+            app.buttons["Go"].tap()
+            XCTAssertTrue(card.waitForExistence(timeout: 5))
+            XCTAssertTrue(app.staticTexts["19"].exists)
+            XCTAssertTrue(app.otherElements["game.graph"].exists)
+            attachScreenshot(app, name: "Graph after positive and negative turns")
+
+            app.terminate()
+            app.launch()
+            app.tabBars.buttons["Games"].tap()
+            XCTAssertTrue(app.staticTexts[gameName].waitForExistence(timeout: 5))
+            app.staticTexts[gameName].tap()
+            XCTAssertTrue(card.waitForExistence(timeout: 5))
+            XCTAssertTrue(app.staticTexts["19"].exists)
+            card.press(forDuration: 1)
+            app.buttons["View History"].tap()
+            XCTAssertTrue(app.navigationBars["Score history for \(playerName)"].waitForExistence(timeout: 5))
+            XCTAssertEqual(app.cells.count, 2)
+            let negativeTurn = app.cells.containing(.staticText, identifier: "-10").firstMatch
+            XCTAssertTrue(negativeTurn.exists)
+            negativeTurn.swipeLeft()
+            app.buttons["Delete"].tap()
+            XCTAssertEqual(app.cells.count, 1)
+            XCTAssertTrue(app.cells.staticTexts["29"].exists)
+            app.buttons["Done"].tap()
+            XCTAssertTrue(app.staticTexts["29"].waitForExistence(timeout: 5))
+            XCTAssertFalse(app.otherElements["game.graph"].exists)
+
+            app.terminate()
+            app.launch()
+            app.tabBars.buttons["Games"].tap()
+            XCTAssertTrue(app.staticTexts[gameName].waitForExistence(timeout: 5))
+            app.staticTexts[gameName].tap()
+            XCTAssertTrue(card.waitForExistence(timeout: 5))
+            XCTAssertTrue(app.staticTexts["29"].exists)
+            card.press(forDuration: 1)
+            app.buttons["View History"].tap()
+            XCTAssertTrue(app.navigationBars["Score history for \(playerName)"].waitForExistence(timeout: 5))
+            XCTAssertEqual(app.cells.count, 1)
+            XCTAssertTrue(app.cells.staticTexts["29"].exists)
+            attachScreenshot(app, name: "History deletion persists after relaunch")
+        }
+    }
+
+    func testAppearancePreferencesPersistAfterRelaunch() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+        app.launch()
+        if app.buttons["Get Started"].waitForExistence(timeout: 2) {
+            app.buttons["Get Started"].tap()
+        }
+        app.tabBars.buttons["Settings"].tap()
+
+        for name in ["Show graph", "Live Activities"] {
+            let toggle = app.switches[name]
+            XCTAssertTrue(toggle.waitForExistence(timeout: 5))
+            // iOS 27 exposes the labelled row and its interactive switch separately.
+            if toggle.value as? String == "1" { toggle.switches.firstMatch.tap() }
+            XCTAssertEqual(toggle.value as? String, "0")
+        }
+
+        app.buttons["Theme"].tap()
+        let theme = app.buttons["theme.Cherryblossoms"]
+        XCTAssertTrue(theme.waitForExistence(timeout: 5))
+        theme.tap()
+        XCTAssertEqual(theme.value as? String, "Selected")
+        attachScreenshot(app, name: "Selected free theme")
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+
+        app.terminate()
+        app.launch()
+        app.tabBars.buttons["Settings"].tap()
+        for name in ["Show graph", "Live Activities"] {
+            XCTAssertEqual(app.switches[name].value as? String, "0")
+        }
+        app.buttons["Theme"].tap()
+        XCTAssertTrue(theme.waitForExistence(timeout: 5))
+        XCTAssertEqual(theme.value as? String, "Selected")
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.buttons["✨ Premium ✨"].tap()
+        XCTAssertTrue(app.staticTexts["✨ Bowtie Premium ✨"].waitForExistence(timeout: 5))
+        app.buttons["Close"].tap()
+        XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 5))
+
+        // Leave shared normal-launch tests with their default graph/activity preferences.
+        for name in ["Show graph", "Live Activities"] {
+            app.switches[name].switches.firstMatch.tap()
+        }
+    }
+
+    func testAlternateAppIconPersistsAfterRelaunch() throws {
+        #if targetEnvironment(simulator)
+        let os = ProcessInfo.processInfo.operatingSystemVersion
+        // Reproduced with both the pre-upgrade app and Swift 6; keep device coverage available.
+        try XCTSkipIf(
+            (os.majorVersion == 26 && os.minorVersion == 5 && os.patchVersion == 0)
+                || (os.majorVersion == 27 && os.minorVersion == 0 && os.patchVersion == 0),
+            "Alternate-icon requests do not complete on these simulator runtimes. Verify on a physical device."
+        )
+        #endif
+        let app = XCUIApplication()
+        app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+        app.launch()
+        if app.buttons["Get Started"].waitForExistence(timeout: 2) {
+            app.buttons["Get Started"].tap()
+        }
+        app.tabBars.buttons["Settings"].tap()
+        app.buttons["App icon"].tap()
+        let icon = app.buttons["appIcon.cherryblossoms"]
+        XCTAssertTrue(icon.waitForExistence(timeout: 5))
+        icon.tap()
+        attachScreenshot(app, name: "After alternate icon request")
+        let iconSelected = NSPredicate(format: "value == %@", "Selected")
+        expectation(for: iconSelected, evaluatedWith: icon)
+        waitForExpectations(timeout: 60)
+        if app.alerts.buttons["OK"].waitForExistence(timeout: 2) {
+            app.alerts.buttons["OK"].tap()
+        }
+        attachScreenshot(app, name: "Selected alternate app icon")
+        XCUIDevice.shared.press(.home)
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        if springboard.alerts.buttons["OK"].waitForExistence(timeout: 2) {
+            springboard.alerts.buttons["OK"].tap()
+        }
+        XCTAssertTrue(springboard.icons["Bowtie"].waitForExistence(timeout: 5))
+        attachScreenshot(springboard, name: "Alternate Bowtie icon on Home Screen")
+
+        app.terminate()
+        app.launch()
+        app.tabBars.buttons["Settings"].tap()
+        app.buttons["App icon"].tap()
+        XCTAssertTrue(icon.waitForExistence(timeout: 5))
+        XCTAssertEqual(icon.value as? String, "Selected")
+        attachScreenshot(app, name: "Alternate icon restored after relaunch")
     }
 
     func testManualPlayerOrderDragSaveCancelAndReopen() throws {

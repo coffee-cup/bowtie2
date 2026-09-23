@@ -309,7 +309,7 @@ private struct PlayerOrderRow: View {
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView{
+        NavigationStack{
             GameView(game: Game.gameByName(context: PersistenceController.preview.container.viewContext, name: "Blitz")!)
                 .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
                 .environmentObject(UserSettings())

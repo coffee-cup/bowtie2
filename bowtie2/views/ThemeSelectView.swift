@@ -60,6 +60,8 @@ struct ThemeSelectView: View {
                     }) {
                         ThemeItemView(theme: theme)
                     }
+                    .accessibilityIdentifier("theme.\(theme.name)")
+                    .accessibilityValue(settings.theme.name == theme.name ? "Selected" : "")
                 }
             }.padding(.all)
         }
@@ -73,7 +75,7 @@ struct ThemeSelectView: View {
 
 struct ThemeSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             ThemeSelectView()
                 .environmentObject(UserSettings())
         }

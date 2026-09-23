@@ -10,9 +10,6 @@
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 
-# Uncomment the line if you want fastlane to automatically update itself
-update_fastlane
-
 default_platform(:ios)
 
 platform :ios do
@@ -31,9 +28,10 @@ platform :ios do
   desc "Upload symbols to sentry"
   lane :upload_symbols do
     download_dsyms # this is the important part
-    sentry_upload_dsym(
+    sentry_debug_files_upload(
       org_slug: "jake-org",
       project_slug: "bowtie",
+      path: lane_context[SharedValues::DSYM_PATHS],
     )
   end
 end

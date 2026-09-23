@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Theme: Codable {
+struct Theme: Codable, Sendable {
     var name: String
     var colours: [String]
     var startPoint: CodableUnitPoint
@@ -29,7 +29,7 @@ extension Theme {
     }
 }
 
-struct AppIcon {
+struct AppIcon: Sendable {
     var name: String
     var filename: String
     var requiresPremium: Bool
@@ -49,7 +49,7 @@ let themes: [Theme] = [
 //    Theme(name: "Rainbow", colours: ["9400D3", "4B0082", "0000FF", "00FF00", "FFFF00", "FF7F00", "FF0000"], start: .topLeading, end: .bottomTrailing),
 ]
 
-var icons: [AppIcon] = [
+let icons: [AppIcon] = [
     AppIcon(name: "Default", filename: "primary", requiresPremium: false),
     AppIcon(name: "Cherryblossoms", filename: "cherryblossoms", requiresPremium: false),
     AppIcon(name: "Winter", filename: "winter", requiresPremium: true),

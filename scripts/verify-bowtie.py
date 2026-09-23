@@ -109,6 +109,7 @@ def main():
                        "-destination", f"platform=iOS Simulator,id={device_id}",
                        "-derivedDataPath", derived, "-resultBundlePath", result,
                        "-parallel-testing-enabled", "NO", "-test-timeouts-enabled", "YES",
+                       "-collect-test-diagnostics", "never",
                        "-default-test-execution-time-allowance", "240",
                        "CODE_SIGNING_ALLOWED=NO", "COMPILER_INDEX_STORE_ENABLE=NO"]
             command += [f"-only-testing:{test}" for test in tests]

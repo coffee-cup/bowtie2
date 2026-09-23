@@ -60,6 +60,8 @@ struct AppIconSelectView: View {
                         }) {
                             AppIconView(icon: icon)
                         }
+                        .accessibilityIdentifier("appIcon.\(icon.filename)")
+                        .accessibilityValue(settings.appIcon == icon.filename ? "Selected" : "")
                     }
                     
                 } else {
@@ -78,7 +80,8 @@ struct AppIconSelectView: View {
         let altName = icon.filename == "primary" ? nil : icon.filename
         
         UIApplication.shared.setAlternateIconName(altName) { error in
-            if error == nil {
+            guard error == nil else { return }
+            Task { @MainActor in
                 settings.appIcon = icon.filename
             }
         }
@@ -87,7 +90,7 @@ struct AppIconSelectView: View {
 
 struct AppIconSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             AppIconSelectView()
                 .environmentObject(UserSettings())
         }

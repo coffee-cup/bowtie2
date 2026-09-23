@@ -5,6 +5,7 @@
 //  Created by Jake Runzer on 2020-11-15.
 //
 
+import CoreData
 import SwiftUI
 
 struct GamesListView: View {

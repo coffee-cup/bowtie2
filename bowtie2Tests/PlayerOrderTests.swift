@@ -28,7 +28,7 @@ final class PlayerOrderTests: XCTestCase {
         )
         let result = OrderTestContext(concurrencyType: .mainQueueConcurrencyType)
         result.persistentStoreCoordinator = coordinator
-        result.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
+        result.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
         return result
     }
 

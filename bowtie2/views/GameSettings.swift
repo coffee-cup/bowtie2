@@ -5,6 +5,7 @@
 //  Created by Jake Runzer on 2020-11-29.
 //
 
+import CoreData
 import SwiftUI
 
 struct AddPlayersToGame: View {
@@ -275,7 +276,7 @@ struct GameSettings: View {
 
 struct GameSettings_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             GameSettings(
                 game: Game.gameByName(context: PersistenceController.preview.container.viewContext, name: "Blitz")!
             )

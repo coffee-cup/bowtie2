@@ -5,6 +5,7 @@
 //  Created by Jake Runzer on 2020-11-22.
 //
 
+import CoreData
 import SwiftUI
 
 struct CalcButton: View {
@@ -51,6 +52,9 @@ struct ScoreView: View {
                         .if(isNegative) { $0.gradientForeground(gradient: settings.theme.gradient) }
                         .if(!isNegative) { $0.foregroundColor(Color(.tertiarySystemFill)) }
                 }
+                .accessibilityLabel("Negative score")
+                .accessibilityValue(isNegative ? "On" : "Off")
+                .accessibilityIdentifier("score.negative")
                 Spacer()
             }
         }

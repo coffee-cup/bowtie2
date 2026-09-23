@@ -1,4 +1,6 @@
-import ActivityKit
+// ActivityKit's Activity reference has no Sendable conformance in the iOS 27 SDK.
+// Keep ownership on MainActor while calling its asynchronous update/end APIs.
+@preconcurrency import ActivityKit
 import Foundation
 import OSLog
 

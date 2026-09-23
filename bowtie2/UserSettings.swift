@@ -65,11 +65,9 @@ enum PlayerSortOrder: String, CaseIterable {
     }
 }
 
+@MainActor
 final class UserSettings: ObservableObject {
-    let objectWillChange = PassthroughSubject<Void, Never>()
-    var appIcon: String {
-        willSet { objectWillChange.send() }
-    }
+    @Published var appIcon: String
     
     init() {
         self.appIcon = "primary"
