@@ -5,6 +5,7 @@
 //  Created by Jake Runzer on 2020-11-28.
 //
 
+import CoreData
 import SwiftUI
 
 struct ScoreHistoryView: View {

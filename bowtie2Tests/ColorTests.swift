@@ -10,6 +10,26 @@ import SwiftUI
 @testable import bowtie2
 
 class ColorTests: XCTestCase {
+    func testStoredThemeRemainsCompatibleWithLegacyPropertyList() throws {
+        let legacy: [String: Any] = [
+            "name": "Cherryblossoms",
+            "colours": ["FBD3E9", "BB377D"],
+            "startPoint": ["x": 0.0, "y": 0.0],
+            "endPoint": ["x": 1.0, "y": 1.0],
+            "requiresPremium": false
+        ]
+        let data = try PropertyListSerialization.data(fromPropertyList: legacy, format: .binary, options: 0)
+        let theme = try PropertyListDecoder().decode(Theme.self, from: data)
+        XCTAssertEqual(theme.name, "Cherryblossoms")
+        XCTAssertEqual(theme.startPoint.unitPoint, .topLeading)
+        XCTAssertEqual(theme.endPoint.unitPoint, .bottomTrailing)
+        XCTAssertFalse(theme.requiresPremium)
+
+        let encoded = try PropertyListEncoder().encode(theme)
+        let persisted = try XCTUnwrap(PropertyListSerialization.propertyList(from: encoded, format: nil) as? NSDictionary)
+        XCTAssertEqual(persisted, legacy as NSDictionary)
+    }
+
     func testColorFromHex() throws {
         let c1 = Color(hex: "ff0000")
         XCTAssertEqual(c1.toComponents().red, 255)
@@ -33,4 +53,3 @@ class ColorTests: XCTestCase {
         XCTAssertEqual(Color(hex: "e9b221").hexString, "#e9b221")
     }
 }
-

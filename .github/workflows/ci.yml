@@ -13,11 +13,13 @@ concurrency:
 jobs:
   unit-tests:
     name: Unit tests and typecheck
-    runs-on: macos-26
-    timeout-minutes: 10
+    runs-on: xcode-27
+    timeout-minutes: 15
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_27.0.app/Contents/Developer
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Show Xcode version
         run: xcodebuild -version
@@ -27,7 +29,7 @@ jobs:
           xcodebuild test \
             -quiet \
             -scheme bowtie2 \
-            -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=latest' \
+            -destination 'platform=iOS Simulator,name=iPhone 17,OS=27.0' \
             -only-testing:bowtie2Tests \
             CODE_SIGNING_ALLOWED=NO \
             COMPILER_INDEX_STORE_ENABLE=NO

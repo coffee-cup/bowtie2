@@ -150,3 +150,7 @@ iOSInjectionProject/
 
 # Local Python script caches
 __pycache__/
+
+# Local Ruby dependency installation
+.bundle/
+vendor/bundle/

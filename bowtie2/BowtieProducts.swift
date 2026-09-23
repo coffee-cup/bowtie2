@@ -12,7 +12,7 @@ public struct BowtieProducts {
     
     private static let productIdentifiers: Set<ProductIdentifier> = [BowtieProducts.Premium]
     
-    public static let store = IAPHelper(productIds: BowtieProducts.productIdentifiers)
+    @MainActor public static let store = IAPHelper(productIds: BowtieProducts.productIdentifiers)
 }
 
 func resourceNameForProductIdentifier(_ productIdentifier: String) -> String? {

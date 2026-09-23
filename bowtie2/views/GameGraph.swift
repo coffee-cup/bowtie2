@@ -18,6 +18,9 @@ struct GameGraph: View {
         .padding(.vertical)
         .background(Color(.tertiarySystemGroupedBackground))
         .cornerRadius(10)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Score progression")
+        .accessibilityIdentifier("game.graph")
     }
 }
 

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class CodableUnitPoint: Codable {
+struct CodableUnitPoint: Codable, Sendable {
     var unitPoint: UnitPoint
     
     enum CodingKeys: CodingKey {
@@ -19,7 +19,7 @@ class CodableUnitPoint: Codable {
         self.unitPoint = unitPoint
     }
     
-    public required init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         let x = try container.decode(CGFloat.self, forKey: .x)

@@ -8,12 +8,13 @@
 import StoreKit
 
 public typealias ProductIdentifier = String
-public typealias ProductsRequestCompletionHandler = (_ success: Bool, _ products: [SKProduct]?) -> Void
+public typealias ProductsRequestCompletionHandler = @MainActor (_ success: Bool, _ products: [SKProduct]?) -> Void
 
 extension Notification.Name {
   static let IAPHelperPurchaseNotification = Notification.Name("IAPHelperPurchaseNotification")
 }
 
+@MainActor
 open class IAPHelper: NSObject  {
   
   private let productIdentifiers: Set<ProductIdentifier>
@@ -75,9 +76,14 @@ extension IAPHelper {
 
 extension IAPHelper: SKProductsRequestDelegate {
 
-  public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+  nonisolated public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+    Task { @MainActor in
+      receiveProducts(response.products)
+    }
+  }
+
+  private func receiveProducts(_ products: [SKProduct]) {
     print("Loaded list of products...")
-    let products = response.products
     productsRequestCompletionHandler?(true, products)
     clearRequestAndHandler()
     
@@ -86,11 +92,13 @@ extension IAPHelper: SKProductsRequestDelegate {
     }
   }
 
-  public func request(_ request: SKRequest, didFailWithError error: Error) {
-    print("Failed to load list of products.")
-    print("Error: \(error.localizedDescription)")
-    productsRequestCompletionHandler?(false, nil)
-    clearRequestAndHandler()
+  nonisolated public func request(_ request: SKRequest, didFailWithError error: Error) {
+    Task { @MainActor in
+      print("Failed to load list of products.")
+      print("Error: \(error.localizedDescription)")
+      productsRequestCompletionHandler?(false, nil)
+      clearRequestAndHandler()
+    }
   }
 
   private func clearRequestAndHandler() {
@@ -103,7 +111,13 @@ extension IAPHelper: SKProductsRequestDelegate {
 
 extension IAPHelper: SKPaymentTransactionObserver {
 
-  public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+  nonisolated public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    Task { @MainActor in
+      updateTransactions(transactions)
+    }
+  }
+
+  private func updateTransactions(_ transactions: [SKPaymentTransaction]) {
     for transaction in transactions {
       switch (transaction.transactionState) {
       case .purchased:
