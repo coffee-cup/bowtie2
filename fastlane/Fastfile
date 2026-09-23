@@ -27,7 +27,7 @@ platform :ios do
 
   desc "Upload symbols to sentry"
   lane :upload_symbols do
-    download_dsyms # this is the important part
+    download_dsyms
     sentry_debug_files_upload(
       org_slug: "jake-org",
       project_slug: "bowtie",
