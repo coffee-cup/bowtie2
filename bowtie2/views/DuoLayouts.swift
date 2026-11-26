@@ -4,8 +4,7 @@
 //
 //  Game layout for screens with a fold (iPhone Duo inner display). The fold splits
 //  the screen into two panes: player tiles in the first, and the chart or score
-//  entry in the second. The same layout is used in every orientation and hinge
-//  position; only the split axis changes.
+//  entry in the second. Orientation and hinge position only change the split axis.
 //
 
 import CoreData
@@ -51,16 +50,17 @@ struct DuoGameView: View {
             let scale = Sparkline.Scale(scores: scores, maxEntries: game.maxNumberOfEntries)
 
             ZStack(alignment: .topLeading) {
-                if let entering {
+                if entering != nil || showsChart {
                     tiles(scores, in: first, scale: scale)
-                    entryPanel(for: entering, size: second.size)
-                        .frame(width: second.width, height: second.height)
-                        .position(x: second.midX, y: second.midY)
-                } else if showsChart {
-                    tiles(scores, in: first, scale: scale)
-                    GameGraph(game: game, expands: true)
-                        .frame(width: second.width, height: second.height)
-                        .position(x: second.midX, y: second.midY)
+                    Group {
+                        if let entering {
+                            entryPanel(for: entering, size: second.size)
+                        } else {
+                            GameGraph(game: game, expands: true)
+                        }
+                    }
+                    .frame(width: second.width, height: second.height)
+                    .position(x: second.midX, y: second.midY)
                 } else {
                     let split = (scores.count + 1) / 2
                     tiles(Array(scores.prefix(split)), in: first, scale: scale)

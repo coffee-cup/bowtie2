@@ -46,15 +46,12 @@ struct GameStandings {
     }
 }
 
-/// Draws one line per player through precomputed points, with a dot at each round.
-struct StandingsPlot: View {
+/// One line per player through their place after each round. The final round is
+/// drawn as a marker with the player's initial instead of a dot.
+private struct StandingsPlot: View {
     let colours: [String]
     let points: [[CGPoint]]
-    /// Points past this index extend a line without a dot (e.g. down to a score chip).
-    let dotCount: Int
-    var lineWidth: CGFloat = 3.5
-    var dotDiameter: CGFloat = 10
-    var background: Color = Color(.tertiarySystemGroupedBackground)
+    let dotDiameter: CGFloat
 
     var body: some View {
         Canvas { context, _ in
@@ -63,22 +60,22 @@ struct StandingsPlot: View {
                 path.addLines(line)
                 context.stroke(path,
                                with: .color(Color(hex: colours[index])),
-                               style: StrokeStyle(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
+                               style: StrokeStyle(lineWidth: 3.5, lineCap: .round, lineJoin: .round))
             }
             for (index, line) in points.enumerated() {
-                for point in line.prefix(dotCount) {
+                for point in line.dropLast() {
                     let rect = CGRect(x: point.x - dotDiameter / 2, y: point.y - dotDiameter / 2,
                                       width: dotDiameter, height: dotDiameter)
                     let dot = Path(ellipseIn: rect)
                     context.fill(dot, with: .color(Color(hex: colours[index])))
-                    context.stroke(dot, with: .color(background), lineWidth: 2)
+                    context.stroke(dot, with: .color(Color(.tertiarySystemGroupedBackground)), lineWidth: 2)
                 }
             }
         }
     }
 }
 
-/// Places run top to bottom, rounds left to right. Sized for the iPhone graph card.
+/// Places run top to bottom, rounds left to right.
 struct StandingsChart: View {
     let standings: GameStandings
 
@@ -104,7 +101,6 @@ struct StandingsChart: View {
             ZStack(alignment: .topLeading) {
                 StandingsPlot(colours: standings.entries.map(\.colour),
                               points: points,
-                              dotCount: max(rounds - 1, 0),
                               dotDiameter: min(10, columnSpacing * 0.5, rowSpacing * 0.5))
 
                 ForEach(0..<players, id: \.self) { place in
