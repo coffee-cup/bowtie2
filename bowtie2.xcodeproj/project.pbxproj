@@ -102,6 +102,8 @@
 		B7CCE949257630BE00C3129B /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CCE948257630BE00C3129B /* Indicator.swift */; };
 		B7CCE94E25763B2B00C3129B /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CCE94D25763B2B00C3129B /* ModalView.swift */; };
 		B7D339082569AD6F00ADBEFF /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D339072569AD6F00ADBEFF /* GameView.swift */; };
+		BA5800042FF0000000000001 /* DuoLayouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5800032FF0000000000001 /* DuoLayouts.swift */; };
+		BA5800022FF0000000000001 /* StandingsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5800012FF0000000000001 /* StandingsChart.swift */; };
 		B7D3390D2569DAB300ADBEFF /* PlayerScoreCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3390C2569DAB300ADBEFF /* PlayerScoreCard.swift */; };
 		B7F82AB72562406600C7B221 /* GameCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F82AB62562406600C7B221 /* GameCard.swift */; };
 		B7F82ABC256258EA00C7B221 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F82ABB256258EA00C7B221 /* Array.swift */; };
@@ -279,6 +281,8 @@
 		B7CCE948257630BE00C3129B /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		B7CCE94D25763B2B00C3129B /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		B7D339072569AD6F00ADBEFF /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		BA5800032FF0000000000001 /* DuoLayouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoLayouts.swift; sourceTree = "<group>"; };
+		BA5800012FF0000000000001 /* StandingsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsChart.swift; sourceTree = "<group>"; };
 		B7D3390C2569DAB300ADBEFF /* PlayerScoreCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreCard.swift; sourceTree = "<group>"; };
 		B7F82AB62562406600C7B221 /* GameCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCard.swift; sourceTree = "<group>"; };
 		B7F82ABB256258EA00C7B221 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -501,6 +505,8 @@
 				B752066F2574BD5E00555390 /* GameSettings.swift */,
 				B781BA4725611518008EB298 /* GamesListView.swift */,
 				B7D339072569AD6F00ADBEFF /* GameView.swift */,
+				BA5800032FF0000000000001 /* DuoLayouts.swift */,
+				BA5800012FF0000000000001 /* StandingsChart.swift */,
 				B7659F84257CB85E00CA139E /* GraphView.swift */,
 				B7CCE948257630BE00C3129B /* Indicator.swift */,
 				B7CCE94D25763B2B00C3129B /* ModalView.swift */,
@@ -888,6 +894,8 @@
 				B7C1310125611D4D00EE6601 /* Player+CoreDataClass.swift in Sources */,
 				B791991D2586944600865BCB /* VersionView.swift in Sources */,
 				B7D339082569AD6F00ADBEFF /* GameView.swift in Sources */,
+				BA5800042FF0000000000001 /* DuoLayouts.swift in Sources */,
+				BA5800022FF0000000000001 /* StandingsChart.swift in Sources */,
 				B72DC117256A776100DF28F1 /* Number.swift in Sources */,
 				B7B0A4B2258EBF550068D810 /* SKProduct.swift in Sources */,
 				B7659F8F257DAA6B00CA139E /* SettingsView.swift in Sources */,

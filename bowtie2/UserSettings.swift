@@ -65,6 +65,11 @@ enum PlayerSortOrder: String, CaseIterable {
     }
 }
 
+enum GameChart: String, CaseIterable {
+    case graph
+    case standings
+}
+
 @MainActor
 final class UserSettings: ObservableObject {
     @Published var appIcon: String
@@ -99,6 +104,10 @@ final class UserSettings: ObservableObject {
     }
 
     @AppStorage("liveActivitiesEnabled") var liveActivitiesEnabled = true {
+        willSet { objectWillChange.send() }
+    }
+
+    @AppStorage("gameChart") var gameChart: GameChart = .graph {
         willSet { objectWillChange.send() }
     }
 }

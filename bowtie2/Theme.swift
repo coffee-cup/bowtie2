@@ -27,6 +27,10 @@ extension Theme {
     var gradient: LinearGradient {
         return LinearGradient(gradient: Gradient(colors: self.colours.map({ c in Color(hex: c) })), startPoint: self.startPoint.unitPoint, endPoint: self.endPoint.unitPoint)
     }
+
+    var accent: Color {
+        Color(hex: colours.last ?? "FF1493")
+    }
 }
 
 struct AppIcon: Sendable {
