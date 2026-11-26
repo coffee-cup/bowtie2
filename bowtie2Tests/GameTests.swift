@@ -124,4 +124,29 @@ class GameTests: XCTestCase {
         let game = Game.createGame(context: context, name: "Empty")
         XCTAssertEqual(game.maxNumberOfEntries, 0)
     }
+
+    // MARK: - Standings
+
+    func testStandingsRankEachRoundLikeTheScoreboard() throws {
+        for (winnerSort, expected) in [
+            (WinnerSort.scoreHighest, ["Alice": [1, 0], "Bob": [0, 1], "Cara": [2, 2]]),
+            (WinnerSort.scoreLowest, ["Alice": [1, 2], "Bob": [2, 1], "Cara": [0, 0]]),
+        ] {
+            let game = Game.createGame(context: context, name: "Standings")
+            game.winnerSort = winnerSort
+            // Round 1 ties Alice and Cara at 10; Cara misses round 2 and keeps her total.
+            let scores = [("Alice", [10, 20]), ("Bob", [30, -5]), ("Cara", [10])].map { name, history in
+                PlayerScore.createPlayerScore(context: context, game: game,
+                                              player: Player.createPlayer(context: context, name: name, colour: "000000"),
+                                              history: history)
+            }
+
+            let standings = GameStandings(scores: scores, winnerSort: winnerSort)
+
+            XCTAssertEqual(standings.rounds, 2)
+            XCTAssertEqual(Dictionary(uniqueKeysWithValues: standings.entries.map { ($0.name, $0.places) }), expected)
+            let finalOrder = standings.entries.sorted { $0.places.last! < $1.places.last! }.map(\.name)
+            XCTAssertEqual(finalOrder, game.scoresArray.map { $0.player?.wrappedName ?? "" })
+        }
+    }
 }
