@@ -38,6 +38,7 @@ struct GameView: View {
     @State private var orderDraft: [PlayerScore] = []
     @State private var isReordering = false
     @State private var showOrderError = false
+    @State private var fold: CGRect?
 
     init(game: Game) {
         self.game = game
@@ -51,15 +52,34 @@ struct GameView: View {
         game.displayScores(from: Array(playerScores))
     }
 
+    private var showsChart: Bool {
+        settings.showGraph && game.maxNumberOfEntries >= 2
+    }
+
     var body: some View {
         Group {
             if isReordering {
                 PlayerOrderList(scores: $orderDraft)
+            } else if let fold {
+                DuoGameView(game: game,
+                            scores: displayedScores,
+                            fold: fold,
+                            addScore: addScore,
+                            onHistory: { sheetState = .viewHistory(for: $0) })
             } else {
                 scoreboard
             }
         }
-        .navigationBarTitle(game.wrappedName, displayMode: .large)
+        .background(
+            GeometryReader { geo in
+                Color.clear
+                    .onAppear { fold = geo.foldFrame }
+                    .onChange(of: geo.foldFrame) { fold = $0 }
+            }
+        )
+        .navigationTitle(game.wrappedName)
+        .navigationBarTitleDisplayMode(fold == nil ? .large : .inline)
+        .toolbar(fold == nil ? .automatic : .hidden, for: .tabBar)
         .navigationBarBackButtonHidden(isReordering)
         .toolbar {
             if isReordering {
@@ -146,9 +166,9 @@ struct GameView: View {
             }
             .padding(.horizontal)
             
-            if settings.showGraph && game.maxNumberOfEntries >= 2 {
+            if showsChart {
                 GameGraph(game: game)
-                    .frame(maxWidth: .infinity, idealHeight: 200)
+                    .frame(maxWidth: .infinity)
                     .padding(.horizontal)
             } else {
                 EmptyView()

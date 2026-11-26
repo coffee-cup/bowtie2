@@ -194,6 +194,23 @@ struct ScoreCalculator {
     }
 }
 
+extension ScoreCalculator {
+    var showsExpression: Bool {
+        expression != result.map(String.init)
+    }
+
+    /// The expression with the operand or operator being entered highlighted.
+    func expressionText(accent: Color) -> Text {
+        guard let activeInput = pendingOperation?.symbol ?? activeOperand.map(String.init) else {
+            return Text(expression).foregroundColor(.secondary)
+        }
+
+        let prefix = String(expression.dropLast(activeInput.count))
+        return Text(prefix).foregroundColor(.secondary)
+            + Text(activeInput).foregroundColor(accent)
+    }
+}
+
 private struct CalculatorKeyButton: View {
     @EnvironmentObject private var settings: UserSettings
 
@@ -380,10 +397,10 @@ struct ScoreCalculatorView: View {
     }
 
     private var calculatorDisplay: some View {
-        let showsExpression = calculator.expression != calculator.result.map(String.init)
+        let showsExpression = calculator.showsExpression
 
         return VStack(spacing: 4) {
-            (showsExpression ? expressionText : Text(" "))
+            (showsExpression ? calculator.expressionText(accent: settings.theme.accent) : Text(" "))
                 .font(.headline)
                 .monospacedDigit()
                 .lineLimit(1)
@@ -404,18 +421,6 @@ struct ScoreCalculatorView: View {
         }
         .frame(maxWidth: 340)
         .frame(maxWidth: .infinity, alignment: .trailing)
-    }
-
-    private var expressionText: Text {
-        guard let activeInput = calculator.pendingOperation?.symbol
-            ?? calculator.activeOperand.map(String.init) else {
-            return Text(calculator.expression).foregroundColor(.secondary)
-        }
-
-        let prefix = String(calculator.expression.dropLast(activeInput.count))
-        let entryColor = Color(hex: settings.theme.colours.last ?? "FF1493")
-        return Text(prefix).foregroundColor(.secondary)
-            + Text(activeInput).foregroundColor(entryColor)
     }
 }
 
